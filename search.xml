@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/01/16/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. </p>
+<p>If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Testing</title>
+    <url>/2024/01/16/Testing/</url>
+    <content><![CDATA[<h2 id="markdown笔记"><a href="#markdown笔记" class="headerlink" title="markdown笔记"></a>markdown笔记</h2><h4 id="Test"><a href="#Test" class="headerlink" title="Test"></a><em>Test</em></h4><pre><code>    首先，体验一下~~*Typora*~~试试情况
+</code></pre>
+<p>接下来，试试代码块</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;T_T&quot;</span>&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><del>很好</del>，基本操作已经实现</p>
+<p>接下来就开始补充自己的知识体系，将脑中的内容输出记录，下个文档再见吧hh</p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSC与Vimc常用命令</title>
+    <url>/2024/01/17/VSC%E4%B8%8EVimc%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="VSC与Git常用命令"><a href="#VSC与Git常用命令" class="headerlink" title="VSC与Git常用命令"></a><strong>VSC与Git常用命令</strong></h1><h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
+<li><p>清除终端</p>
+<p><code>clear</code></p>
+</li>
+<li><p>列出当前目录中的文件和文件夹</p>
+<p><code>ls</code></p>
+</li>
+<li><p>切换指定目录</p>
+<p><code>cd &lt;目录路径&gt;</code></p>
+</li>
+<li><p>返回上一级目录</p>
+<p><code>cd ..</code></p>
+</li>
+<li><p>创建新文件夹</p>
+<p><code>mkdir &lt;文件夹名&gt;</code></p>
+</li>
+<li><p>创建新文件</p>
+<p><code>touch &lt;文件名&gt;</code></p>
+</li>
+<li><p>打开文件</p>
+<p><code>code &lt;文件名&gt;</code></p>
+</li>
+<li><p>删除文件</p>
+<p><code>rm &lt;文件名&gt;</code></p>
+</li>
+<li><p>删除文件夹</p>
+<p><code>rm -r &lt;文件夹名&gt;</code></p>
+</li>
+<li><p>查找文件</p>
+<p><code>find &lt;目录路径&gt; -name &lt;文件名&gt;</code></p>
+</li>
+<li><p>查找文件内容</p>
+<p><code>grep &lt;搜索内容&gt; &lt;文件名&gt;</code></p>
+</li>
+</ol>
+<h2 id="Git版本控制"><a href="#Git版本控制" class="headerlink" title="Git版本控制"></a>Git版本控制</h2><ol>
+<li><p>初始化Git仓库</p>
+<p><code>git init</code></p>
+</li>
+<li><p>克隆远程仓库到本地</p>
+<p><code>git clone &lt;远程仓库地址&gt;</code></p>
+</li>
+<li><p>添加文件到暂存区</p>
+<p><code>git add &lt;文件名&gt;</code></p>
+</li>
+<li><p>添加所有修改文件到暂存区</p>
+<p><code>git add .</code></p>
+</li>
+<li><p>提交暂存区文件到版本库</p>
+<p><code>git commit -m &quot;提交信息&quot;</code></p>
+</li>
+<li><p>查看当前仓库状态</p>
+<p><code>git status</code></p>
+</li>
+<li><p>查看文件修改差异</p>
+<p><code>git diff &lt;文件名&gt;</code></p>
+</li>
+<li><p>查看提交历史</p>
+<p><code>git log</code></p>
+</li>
+<li><p>创建新分支</p>
+<p><code>git branch &lt;分支名&gt;</code></p>
+</li>
+<li><p>切换到指定分支</p>
+<p><code>git checkout &lt;分支名&gt;</code></p>
+</li>
+<li><p>合并指定分支到当前分支</p>
+<p><code>git merge &lt;分支名&gt;</code></p>
+</li>
+<li><p>拉取远程仓库更新</p>
+<p><code>git pull</code></p>
+</li>
+<li><p>推送本地提交到远程仓库</p>
+<p><code>git push</code></p>
+</li>
+<li><p>查看远程仓库地址</p>
+<p><code>git remote -v</code></p>
+</li>
+<li><p>删除分支</p>
+<p><code>git branch -d &lt;分支名&gt;</code></p>
+</li>
+</ol>
+<h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于Hexo与git的个人博客快速部署</title>
+    <url>/2024/01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<h2 id="基于hexo与git的个人博客快速部署"><a href="#基于hexo与git的个人博客快速部署" class="headerlink" title="基于hexo与git的个人博客快速部署"></a>基于hexo与git的个人博客快速部署</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先，这个方法仅仅适于</p>
+]]></content>
+      <tags>
+        <tag>hexo,git</tag>
+      </tags>
+  </entry>
+</search>
