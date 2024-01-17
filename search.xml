@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Testing</title>
-    <url>/2024/01/16/Testing/</url>
+    <url>/project/2024/01/16/Testing/</url>
     <content><![CDATA[<h2 id="markdown笔记"><a href="#markdown笔记" class="headerlink" title="markdown笔记"></a>markdown笔记</h2><h4 id="Test"><a href="#Test" class="headerlink" title="Test"></a><em>Test</em></h4><pre><code>    首先，体验一下~~*Typora*~~试试情况
 </code></pre>
 <p>接下来，试试代码块</p>
@@ -17,7 +17,7 @@
   </entry>
   <entry>
     <title>VSC与Vim常用命令</title>
-    <url>/2024/01/17/VSC%E4%B8%8EVim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <url>/project/2024/01/17/VSC%E4%B8%8EVim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="VSC与Git常用命令"><a href="#VSC与Git常用命令" class="headerlink" title="VSC与Git常用命令"></a><strong>VSC与Git常用命令</strong></h1><h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
 <li><p>清除终端</p>
 <p><code>clear</code></p>
@@ -108,7 +108,7 @@
   </entry>
   <entry>
     <title>基于hexo与git的个人博客快速部署</title>
-    <url>/2024/01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/</url>
+    <url>/project/2024/01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/</url>
     <content><![CDATA[<h2 id="基于hexo与git的个人博客快速部署"><a href="#基于hexo与git的个人博客快速部署" class="headerlink" title="基于hexo与git的个人博客快速部署"></a>基于hexo与git的个人博客快速部署</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先，这个方法仅仅适于新手尝鲜，有想法搭建一个个人博客玩玩的。<del>没错，我就是先尝试玩玩</del>。真要想制作个人网站，最好是去学习web开发的相关知识。</p>
 <p>Hexo是一款基于Node.js的静态博客框架，可以方便的生成静态网页托管在GitHub上，是搭建该个人博客的框架。故而，首先得确保电脑有配置好相对应的环境。没有也别担心，本文会详细说明步骤。</p>
 <h3 id="安装Git和Node-js"><a href="#安装Git和Node-js" class="headerlink" title="安装Git和Node.js"></a>安装Git和Node.js</h3><p>直接官网下载即可，安装部分，纯小白可以无脑下一步，有点基础的可以自行谷歌。</p>
