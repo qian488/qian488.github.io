@@ -18,7 +18,7 @@
   <entry>
     <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</title>
     <url>/2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/</url>
-    <content><![CDATA[<h2 id="Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩"><a href="#Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩" class="headerlink" title="Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩"></a>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
 <p>首先，要明确一点的是，<code>(仅个人观点)</code>unity打包到WebGl这个功能主要用于将小型游戏demo发布试玩，本文是将游戏发布到unity官方提供的空间上，如果想要部署到自己的服务器的话，<del>我暂时不会</del>。</p>
 <p>网页快速试玩永远是让大家最容易接受的方法，快来看看如何快速分享你的游戏给小伙伴吧。</p>
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先，准备好一个你想要分享的简单的游戏demo。好了，第一步就结束捏<del>(bushi)</del></p>
@@ -48,7 +48,7 @@
   <entry>
     <title>基于hexo与git的个人博客快速部署</title>
     <url>/2024/01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/</url>
-    <content><![CDATA[<h2 id="基于hexo与git的个人博客快速部署"><a href="#基于hexo与git的个人博客快速部署" class="headerlink" title="基于hexo与git的个人博客快速部署"></a>基于hexo与git的个人博客快速部署</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先，这个方法仅仅适于新手尝鲜，有想法搭建一个个人博客玩玩的。<del>没错，我就是先尝试玩玩</del>。真要想制作个人网站，最好是去学习web开发的相关知识。</p>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先，这个方法仅仅适于新手尝鲜，有想法搭建一个个人博客玩玩的。<del>没错，我就是先尝试玩玩</del>。真要想制作个人网站，最好是去学习web开发的相关知识。</p>
 <p>Hexo是一款基于Node.js的静态博客框架，可以方便的生成静态网页托管在GitHub上，是搭建该个人博客的框架。故而，首先得确保电脑有配置好相对应的环境。没有也别担心，本文会详细说明步骤。</p>
 <h3 id="安装Git和Node-js"><a href="#安装Git和Node-js" class="headerlink" title="安装Git和Node.js"></a>安装Git和Node.js</h3><p>直接官网下载即可，安装部分，纯小白可以无脑下一步，有点基础的可以自行谷歌。</p>
 <p><strong>注意！</strong>最好下载长期支持版，即LTS</p>
@@ -166,7 +166,7 @@
   <entry>
     <title>Learning Git Branching 通关</title>
     <url>/2024/01/19/Learning-Git-Branching-%E9%80%9A%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="Learning-Git-Branching"><a href="#Learning-Git-Branching" class="headerlink" title="Learning Git Branching"></a>Learning Git Branching</h2><p>好耶、边玩边学！！！</p>
+    <content><![CDATA[<p>好耶、边玩边学！！！</p>
 <p><strong>Learning Git Branching游玩地址：</strong><a href="https://learngitbranching.js.org/?locale=zh_CN">https://learngitbranching.js.org/?locale=zh_CN</a></p>
 <p>我在思考需不需要将知识点总结写出来，但是我觉得这个网页的闯关式教学就已经挺好的。于是，我决定只保留每一关的问题与我的答案。<code>Q</code>表示问题，<code>A</code>表示答案。就当是一个小项目的分享。</p>
 <p>强烈建议直接进入网站游玩闯关。</p>
@@ -472,7 +472,7 @@
   <entry>
     <title>VSC与Git常用命令</title>
     <url>/2024/01/17/VSC%E4%B8%8EGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="VSC与Git常用命令"><a href="#VSC与Git常用命令" class="headerlink" title="VSC与Git常用命令"></a><strong>VSC与Git常用命令</strong></h1><h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
+    <content><![CDATA[<h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
 <li><p>清除终端</p>
 <p><code>clear</code></p>
 </li>
@@ -563,7 +563,7 @@
   <entry>
     <title>自我介绍</title>
     <url>/2050/03/14/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<h2 id="公告"><a href="#公告" class="headerlink" title="公告"></a>公告</h2><p><del>因为喜欢，所以我为之痴迷。</del></p>
+    <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
 <p>其实还没想好写些什么。</p>
 ]]></content>
       <tags>
