@@ -8,43 +8,43 @@
 <p>我在思考需不需要将知识点总结写出来，但是我觉得这个网页的闯关式教学就已经挺好的。于是，我决定只保留每一关的问题与我的答案。<code>Q</code>表示问题，<code>A</code>表示答案。就当是一个小项目的分享。</p>
 <p>强烈建议直接进入网站游玩闯关。</p>
 <h3 id="Git-commit"><a href="#Git-commit" class="headerlink" title="Git commit"></a>Git commit</h3><h4 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h4><p>进行两次提交</p>
-<h4 id="A"><a href="#A" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git commit<br>git commit<br></code></pre></td></tr></table></figure>
+<h4 id="A"><a href="#A" class="headerlink" title="A"></a>A</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">git <span class="hljs-keyword">commit</span><br>git <span class="hljs-keyword">commit</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-branch"><a href="#Git-branch" class="headerlink" title="Git branch"></a>Git branch</h3><h4 id="Q-1"><a href="#Q-1" class="headerlink" title="Q"></a>Q</h4><p>创建一个名为 <code>bugFix</code> 的新分支，然后切换过去。</p>
-<h4 id="A-1"><a href="#A-1" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git branch bugFix<br>git checkout bugFix<br></code></pre></td></tr></table></figure>
+<h4 id="A-1"><a href="#A-1" class="headerlink" title="A"></a>A</h4><figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">branch </span><span class="hljs-keyword">bugFix</span><br><span class="hljs-keyword"></span>git checkout <span class="hljs-keyword">bugFix</span><br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout -b bugFix<br></code></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout -<span class="hljs-keyword">b</span> bugFix<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-merge"><a href="#Git-merge" class="headerlink" title="Git merge"></a>Git merge</h3><h4 id="Q-2"><a href="#Q-2" class="headerlink" title="Q"></a>Q</h4><p>创建新分支 <code>bugFix</code>，切换到该分支，提交一次</p>
 <p>切换回 <code>main</code>，再提交一次</p>
 <p>把 <code>bugFix</code> 合并到 <code>main</code></p>
-<h4 id="A-2"><a href="#A-2" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout -b bugFix<br>git commit<br>git checkout main<br>git commit<br>git merge bugFix<br></code></pre></td></tr></table></figure>
+<h4 id="A-2"><a href="#A-2" class="headerlink" title="A"></a>A</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">git checkout <span class="hljs-operator">-</span>b bugFix<br>git <span class="hljs-keyword">commit</span><br>git checkout main<br>git <span class="hljs-keyword">commit</span><br>git <span class="hljs-keyword">merge</span> bugFix<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-rebase"><a href="#Git-rebase" class="headerlink" title="Git rebase"></a>Git rebase</h3><h4 id="Q-3"><a href="#Q-3" class="headerlink" title="Q"></a>Q</h4><p>新建并切换到 <code>bugFix</code> 分支，提交一次</p>
 <p>切换回 <code>main</code> 分支再提交一次</p>
 <p>再次切换到 <code>bugFix</code> 分支，rebase 到 <code>main</code> 上</p>
-<h4 id="A-3"><a href="#A-3" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout -b bugFix<br>git commit<br>git checkout main<br>git commit<br>git checkout bugFix<br>git rebase main<br></code></pre></td></tr></table></figure>
+<h4 id="A-3"><a href="#A-3" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git checkout -<span class="hljs-selector-tag">b</span> bugFix<br>git commit<br>git checkout <span class="hljs-selector-tag">main</span><br>git commit<br>git checkout bugFix<br>git rebase <span class="hljs-selector-tag">main</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="分离HEAD"><a href="#分离HEAD" class="headerlink" title="分离HEAD"></a>分离HEAD</h3><h4 id="Q-4"><a href="#Q-4" class="headerlink" title="Q"></a>Q</h4><p>从 <code>bugFix</code> 分支中分离出 HEAD 并让其指向一个提交记录。</p>
 <p>通过哈希值指定提交记录。每个提交记录的哈希值显示在代表提交记录的圆圈中。</p>
-<h4 id="A-4"><a href="#A-4" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout c4<br></code></pre></td></tr></table></figure>
+<h4 id="A-4"><a href="#A-4" class="headerlink" title="A"></a>A</h4><figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout <span class="hljs-built_in">c4</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="相对引用"><a href="#相对引用" class="headerlink" title="相对引用(^)"></a>相对引用(^)</h3><h4 id="Q-5"><a href="#Q-5" class="headerlink" title="Q"></a>Q</h4><p>切换到 <code>bugFix</code> 的 parent 节点。这会进入分离 <code>HEAD</code> 状态。</p>
-<h4 id="A-5"><a href="#A-5" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout bugFix^<br></code></pre></td></tr></table></figure>
+<h4 id="A-5"><a href="#A-5" class="headerlink" title="A"></a>A</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">git</span> checkout bugFix^<br></code></pre></td></tr></table></figure>
 
 <h3 id="相对引用2"><a href="#相对引用2" class="headerlink" title="相对引用2(~)"></a>相对引用2(~)</h3><h4 id="Q-6"><a href="#Q-6" class="headerlink" title="Q"></a>Q</h4><p>移动 <code>HEAD</code>，<code>main</code> 和 <code>bugFix</code> 到目标所示的位置。</p>
-<h4 id="A-6"><a href="#A-6" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout HEAD^<br>git branch -f bugFix HEAD^<br>git branch -f main c6<br></code></pre></td></tr></table></figure>
+<h4 id="A-6"><a href="#A-6" class="headerlink" title="A"></a>A</h4><figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git checkout HEAD^<br>git <span class="hljs-keyword">branch </span>-f <span class="hljs-keyword">bugFix </span>HEAD^<br>git <span class="hljs-keyword">branch </span>-f main c6<br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git branch -f bugFix HEAD~2<br>git checkout HEAD^<br>git branch -f main c6<br></code></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">branch </span>-f <span class="hljs-keyword">bugFix </span>HEAD~<span class="hljs-number">2</span><br>git checkout HEAD^<br>git <span class="hljs-keyword">branch </span>-f main c6<br></code></pre></td></tr></table></figure>
 
 <h3 id="撤销变更"><a href="#撤销变更" class="headerlink" title="撤销变更"></a>撤销变更</h3><h4 id="Q-7"><a href="#Q-7" class="headerlink" title="Q"></a>Q</h4><p>分别撤销 <code>local</code> 分支和 <code>pushed</code> 分支上的最近一次提交。共需要撤销两个提交（每个分支一个）。</p>
 <p>记住 <code>pushed</code> 是远程分支，<code>local</code> 是本地分支</p>
-<h4 id="A-7"><a href="#A-7" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git reset local^<br>git checkout pushed<br>git revert pushed<br></code></pre></td></tr></table></figure>
+<h4 id="A-7"><a href="#A-7" class="headerlink" title="A"></a>A</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">reset</span> <span class="hljs-built_in">local</span>^<br>git checkout pushed<br>git <span class="hljs-built_in">revert</span> pushed<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-cherry-pick"><a href="#Git-cherry-pick" class="headerlink" title="Git cherry-pick"></a>Git cherry-pick</h3><h4 id="Q-8"><a href="#Q-8" class="headerlink" title="Q"></a>Q</h4><p>选取其他分支的指定提交记录，合并到<code>main</code>分支</p>
-<h4 id="A-8"><a href="#A-8" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git cherry-pick c3 c4 c7<br></code></pre></td></tr></table></figure>
+<h4 id="A-8"><a href="#A-8" class="headerlink" title="A"></a>A</h4><figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c3</span> <span class="hljs-built_in">c4</span> <span class="hljs-built_in">c7</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="交互式-rebase"><a href="#交互式-rebase" class="headerlink" title="交互式 rebase"></a>交互式 rebase</h3><h4 id="Q-9"><a href="#Q-9" class="headerlink" title="Q"></a>Q</h4><p>当 rebase UI界面打开时, 你能做3件事:</p>
 <ul>
@@ -53,13 +53,13 @@
 <li>合并提交。</li>
 </ul>
 <p>做一次交互式的 rebase，整理成目标窗口中的提交顺序。</p>
-<h4 id="A-9"><a href="#A-9" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git rebase -i overHere<br>调整按题目顺序即可<br></code></pre></td></tr></table></figure>
+<h4 id="A-9"><a href="#A-9" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git rebase -<span class="hljs-selector-tag">i</span> overHere<br>调整按题目顺序即可<br></code></pre></td></tr></table></figure>
 
 <h3 id="只取一个提交记录"><a href="#只取一个提交记录" class="headerlink" title="只取一个提交记录"></a>只取一个提交记录</h3><h4 id="Q-10"><a href="#Q-10" class="headerlink" title="Q"></a>Q</h4><p>确保 <code>main</code> 分支能得到 <code>bugFix</code> 分支上的相关提交。</p>
-<h4 id="A-10"><a href="#A-10" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git rebase -i main<br>git checkout main<br>git cherry-pick bugFix<br></code></pre></td></tr></table></figure>
+<h4 id="A-10"><a href="#A-10" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git rebase -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">main</span><br>git checkout <span class="hljs-selector-tag">main</span><br>git cherry-pick bugFix<br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git rebase -i main<br>git rebase bugFix main<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git rebase -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">main</span><br>git rebase bugFix <span class="hljs-selector-tag">main</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="提交的技巧1"><a href="#提交的技巧1" class="headerlink" title="提交的技巧1"></a>提交的技巧1</h3><h4 id="Q-11"><a href="#Q-11" class="headerlink" title="Q"></a>Q</h4><p>你之前在 <code>newImage</code> 分支上进行了一次提交，然后又基于它创建了 <code>caption</code> 分支，然后又提交了一次。</p>
 <p>此时你想对某个以前的提交记录进行一些小小的调整。比如设计师想修改一下 <code>newImage</code> 中图片的分辨率，尽管那个提交记录并不是最新的了。</p>
@@ -70,55 +70,55 @@
 <li>接着再用 <code>git rebase -i</code> 来将他们调回原来的顺序</li>
 <li>最后我们把 main 移到修改的最前端（用你自己喜欢的方法），就大功告成啦</li>
 </ul>
-<h4 id="A-11"><a href="#A-11" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git rebase -i HEAD~2<br>git commit --amend<br>git rebase -i main<br>git rebase caption main<br></code></pre></td></tr></table></figure>
+<h4 id="A-11"><a href="#A-11" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git rebase -<span class="hljs-selector-tag">i</span> HEAD~<span class="hljs-number">2</span><br>git commit <span class="hljs-attr">--amend</span><br>git rebase -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">main</span><br>git rebase <span class="hljs-selector-tag">caption</span> <span class="hljs-selector-tag">main</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="提交的技巧-2"><a href="#提交的技巧-2" class="headerlink" title="提交的技巧 2"></a>提交的技巧 2</h3><h4 id="Q-12"><a href="#Q-12" class="headerlink" title="Q"></a>Q</h4><p>可以使用 <code>rebase -i</code> 对提交记录进行重新排序。只要把我们想要的提交记录挪到最前端，我们就可以很轻松的用 <code>--amend</code> 修改它，然后把它们重新排成我们想要的顺序。</p>
 <p>但这样做就唯一的问题就是要进行两次排序，而这有可能造成由 rebase 而导致的冲突。下面还是看看 <code>git cherry-pick</code> 是怎么做的吧。</p>
 <p>目标和上一关一样，通过 <code>--amend</code> 改变提交记录 <code>C2</code>，但你不能用 <code>rebase -i</code></p>
-<h4 id="A-12"><a href="#A-12" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout main<br>git cherry-pick c2<br>git commit --amend<br>git cherry-pick c3<br></code></pre></td></tr></table></figure>
+<h4 id="A-12"><a href="#A-12" class="headerlink" title="A"></a>A</h4><figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout main<br><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c2</span><br><span class="hljs-symbol">git</span> commit --amend<br><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c3</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-Tag"><a href="#Git-Tag" class="headerlink" title="Git Tag"></a>Git Tag</h3><h4 id="Q-13"><a href="#Q-13" class="headerlink" title="Q"></a>Q</h4><p>按照目标建立两个标签，然后切换到 <code>v1</code> 上面，要注意你会进到分离 <code>HEAD</code> 的状态 —— 这是因为不能直接在<code>v1</code> 上面做 commit。</p>
-<h4 id="A-13"><a href="#A-13" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout c2<br>git tag v0 HEAD^<br>git tag v1<br></code></pre></td></tr></table></figure>
+<h4 id="A-13"><a href="#A-13" class="headerlink" title="A"></a>A</h4><figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">git checkout c2<br>git <span class="hljs-keyword">tag</span> <span class="hljs-title">v0</span> HEAD^<br>git <span class="hljs-keyword">tag</span> <span class="hljs-title">v1</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-Describe"><a href="#Git-Describe" class="headerlink" title="Git Describe"></a>Git Describe</h3><h4 id="Q-14"><a href="#Q-14" class="headerlink" title="Q"></a>Q</h4><p><code>git describe</code> 的语法是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git describe &lt;ref&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">git <span class="hljs-keyword">describe</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">ref</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><code>&lt;ref&gt;</code> 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会使用你目前所在的位置（<code>HEAD</code>）。</p>
 <p>它输出的结果是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">&lt;tag&gt;_&lt;numCommits&gt;_g&lt;hash&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">tag</span>&gt;</span>_<span class="hljs-tag">&lt;<span class="hljs-name">numCommits</span>&gt;</span>_g<span class="hljs-tag">&lt;<span class="hljs-name">hash</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><code>tag</code> 表示的是离 <code>ref</code> 最近的标签， <code>numCommits</code> 是表示这个 <code>ref</code> 与 <code>tag</code> 相差有多少个提交记录， <code>hash</code> 表示的是你所给定的 <code>ref</code> 所表示的提交记录哈希值的前几位。</p>
 <p>当 <code>ref</code> 提交记录上有某个标签时，则只输出标签名称</p>
 <p>试着在这个关卡指定几个位置来感受一下这个命令</p>
-<h4 id="A-14"><a href="#A-14" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git describe main<br>git describe side<br>git describe bugFix<br>git commit<br></code></pre></td></tr></table></figure>
+<h4 id="A-14"><a href="#A-14" class="headerlink" title="A"></a>A</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">git <span class="hljs-keyword">describe</span> main<br>git <span class="hljs-keyword">describe</span> side<br>git <span class="hljs-keyword">describe</span> bugFix<br>git <span class="hljs-keyword">commit</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="多次-Rebase"><a href="#多次-Rebase" class="headerlink" title="多次 Rebase"></a>多次 Rebase</h3><h4 id="Q-15"><a href="#Q-15" class="headerlink" title="Q"></a>Q</h4><p>把所有这些分支上所做的工作都通过 rebase 合并到 main 分支上吧。</p>
 <p>但是你的领导给你提了点要求 —— 他们希望得到有序的提交历史，也就是我们最终的结果应该是 <code>C6&#39;</code> 在 <code>C7&#39;</code> 上面， <code>C5&#39;</code> 在 <code>C6&#39;</code> 上面，依此类推。</p>
-<h4 id="A-15"><a href="#A-15" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git rebase main bugFix<br>git rebase bugFix side<br>git rebase side another<br>git rebase another main<br></code></pre></td></tr></table></figure>
+<h4 id="A-15"><a href="#A-15" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git rebase <span class="hljs-selector-tag">main</span> bugFix<br>git rebase bugFix side<br>git rebase side another<br>git rebase another <span class="hljs-selector-tag">main</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="两个-parent-节点"><a href="#两个-parent-节点" class="headerlink" title="两个 parent 节点"></a>两个 parent 节点</h3><h4 id="Q-16"><a href="#Q-16" class="headerlink" title="Q"></a>Q</h4><p>操作符 <code>^</code> 与 <code>~</code> 符一样，后面也可以跟一个数字。</p>
 <p>但是该操作符后面的数字与 <code>~</code> 后面的不同，并不是用来指定向上返回几代，而是指定合并提交记录的某个 parent 提交。还记得前面提到过的一个合并提交有两个 parent 提交吧，所以遇到这样的节点时该选择哪条路径就不是很清晰了。</p>
 <p>Git 默认选择合并提交的“第一个” parent 提交，在操作符 <code>^</code> 后跟一个数字可以改变这一默认行为。这些操作符还支持链式操作！</p>
 <p>在指定的目标位置创建一个新的分支。</p>
 <p>很明显可以简单地直接使用提交记录的哈希值（比如 <code>C6</code>），但我要求你使用刚刚讲到的相对引用修饰符</p>
-<h4 id="A-16"><a href="#A-16" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git branch -f bugWork c2<br></code></pre></td></tr></table></figure>
+<h4 id="A-16"><a href="#A-16" class="headerlink" title="A"></a>A</h4><figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">branch </span>-f <span class="hljs-keyword">bugWork </span>c2<br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git branch bugWork main^^2^<br></code></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git <span class="hljs-keyword">branch </span><span class="hljs-keyword">bugWork </span>main^^<span class="hljs-number">2</span>^<br></code></pre></td></tr></table></figure>
 
 <h3 id="纠缠不清的分支"><a href="#纠缠不清的分支" class="headerlink" title="纠缠不清的分支"></a>纠缠不清的分支</h3><h4 id="Q-17"><a href="#Q-17" class="headerlink" title="Q"></a>Q</h4><p>现在我们的 <code>main</code> 分支是比 <code>one</code>、<code>two</code> 和 <code>three</code> 要多几个提交。出于某种原因，我们需要把 <code>main</code> 分支上最近的几次提交做不同的调整后，分别添加到各个的分支上。</p>
 <p><code>one</code> 需要重新排序并删除 <code>C5</code>，<code>two</code> 仅需要重排排序，而 <code>three</code> 只需要提交一次。</p>
-<h4 id="A-17"><a href="#A-17" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout one<br>git cherry-pick c4 c3 c2<br>git checkout two<br>git cherry-pick c5 c4 c3 c2<br>git checkout three<br>git rebase c2 three<br></code></pre></td></tr></table></figure>
+<h4 id="A-17"><a href="#A-17" class="headerlink" title="A"></a>A</h4><figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout one<br><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c4</span> <span class="hljs-built_in">c3</span> <span class="hljs-built_in">c2</span><br><span class="hljs-symbol">git</span> checkout two<br><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c5</span> <span class="hljs-built_in">c4</span> <span class="hljs-built_in">c3</span> <span class="hljs-built_in">c2</span><br><span class="hljs-symbol">git</span> checkout three<br><span class="hljs-symbol">git</span> rebase <span class="hljs-built_in">c2</span> three<br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout one<br>git cherry-pick c4 c3 c2<br>git checkout two<br>git cherry-pick c5 c4 c3 c2<br>git branch -f three c2<br></code></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> checkout one<br><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c4</span> <span class="hljs-built_in">c3</span> <span class="hljs-built_in">c2</span><br><span class="hljs-symbol">git</span> checkout two<br><span class="hljs-symbol">git</span> cherry-pick <span class="hljs-built_in">c5</span> <span class="hljs-built_in">c4</span> <span class="hljs-built_in">c3</span> <span class="hljs-built_in">c2</span><br><span class="hljs-symbol">git</span> branch -f three <span class="hljs-built_in">c2</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-clone"><a href="#Git-clone" class="headerlink" title="Git clone"></a>Git clone</h3><p>从技术上来讲，<code>git clone</code> 命令在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。 但在该教程中使用这个命令会有一些不同 —— 它会在远程创建一个你本地仓库的副本。显然这和真实命令的意思刚好相反，但是它帮咱们把本地仓库和远程仓库关联到了一起，在教程中就凑合着用吧。</p>
 <h4 id="Q-18"><a href="#Q-18" class="headerlink" title="Q"></a>Q</h4><p>克隆仓库</p>
-<h4 id="A-18"><a href="#A-18" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git clone<br></code></pre></td></tr></table></figure>
+<h4 id="A-18"><a href="#A-18" class="headerlink" title="A"></a>A</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><h4 id="Q-19"><a href="#Q-19" class="headerlink" title="Q"></a>Q</h4><p>在 <code>main</code> 分支上做一次提交；然后切换到 <code>o/main</code>，再做一提交。这有助于你理解远程分支的不同，他们的更新只是反映了远程的状态。</p>
-<h4 id="A-19"><a href="#A-19" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git commit<br>git checkout o/main<br>git commit<br></code></pre></td></tr></table></figure>
+<h4 id="A-19"><a href="#A-19" class="headerlink" title="A"></a>A</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">git <span class="hljs-keyword">commit</span><br>git checkout o<span class="hljs-operator">/</span>main<br>git <span class="hljs-keyword">commit</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-Fetch"><a href="#Git-Fetch" class="headerlink" title="Git Fetch"></a>Git Fetch</h3><h4 id="Q-20"><a href="#Q-20" class="headerlink" title="Q"></a>Q</h4><p><code>git fetch</code> 完成了仅有的但是很重要的两步:</p>
 <ul>
@@ -128,23 +128,23 @@
 <p><code>git fetch</code> 实际上将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
 <p><code>git fetch</code> 并不会改变你本地仓库的状态。它不会更新你的 <code>main</code> 分支，也不会修改你磁盘上的文件。</p>
 <p>本关只需用 <code>git fetch</code> 下载所有的提交！</p>
-<h4 id="A-20"><a href="#A-20" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch<br></code></pre></td></tr></table></figure>
+<h4 id="A-20"><a href="#A-20" class="headerlink" title="A"></a>A</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git fetch</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-Pull"><a href="#Git-Pull" class="headerlink" title="Git Pull"></a>Git Pull</h3><h4 id="Q-21"><a href="#Q-21" class="headerlink" title="Q"></a>Q</h4><p><code>git pull</code> 就是 git fetch 和 git merge 的缩写！接下来会探索一下 <code>git pull</code> 的细节(包括选项和参数)，现在咱们先解决这个关卡。</p>
 <p>实际上你完全可以用 <code>fetch</code> 和 <code>merge</code> 通过本关，但是这会增加你的命令数。</p>
-<h4 id="A-21"><a href="#A-21" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git pull<br></code></pre></td></tr></table></figure>
+<h4 id="A-21"><a href="#A-21" class="headerlink" title="A"></a>A</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git pull</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="模拟团队合作"><a href="#模拟团队合作" class="headerlink" title="模拟团队合作"></a>模拟团队合作</h3><h4 id="Q-22"><a href="#Q-22" class="headerlink" title="Q"></a>Q</h4><p>为了接下来的课程, 我们需要先教你如何制造远程仓库的变更。</p>
 <p>这意味着，我们需要“假装”你的同事、朋友、合作伙伴更新了远程仓库，有可能是某个特定的分支，或是几个提交记录。</p>
 <p>注意：该网页为了做到这点，引入一个自造命令 <code>git fakeTeamwork</code></p>
 <p><code>fakeTeamwork</code> 默认操作就是在远程仓库的 main 分支上做一次提交。可以指定提交的分支或是数量，只需要在命令后加上它们就可以了。</p>
 <p>克隆一个远程仓库（用 <code>git clone</code>），再在刚创建的远程仓库中模拟一些修改，然后在你自己的本地分支上做一些提交，再拉取远程仓库的变更。</p>
-<h4 id="A-22"><a href="#A-22" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git clone<br>git fakeTeamwork 2<br>git commit<br>git pull<br></code></pre></td></tr></table></figure>
+<h4 id="A-22"><a href="#A-22" class="headerlink" title="A"></a>A</h4><figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span><br><span class="hljs-title">git</span> fakeTeamwork <span class="hljs-number">2</span><br>git commit<br>git pull<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-Push"><a href="#Git-Push" class="headerlink" title="Git Push"></a>Git Push</h3><h4 id="Q-23"><a href="#Q-23" class="headerlink" title="Q"></a>Q</h4><p>与 <code>git pull</code> 相反的命令是什么呢？<code>git push</code>！</p>
 <p><code>git push</code> 负责将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录。一旦 <code>git push</code> 完成, 你的朋友们就可以从这个远程仓库下载。</p>
 <p>要完成本关，需要向远程仓库分享两个提交记录。</p>
-<h4 id="A-23"><a href="#A-23" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git commit<br>git commit<br>git push<br></code></pre></td></tr></table></figure>
+<h4 id="A-23"><a href="#A-23" class="headerlink" title="A"></a>A</h4><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">git <span class="hljs-keyword">commit</span><br>git <span class="hljs-keyword">commit</span><br>git push<br></code></pre></td></tr></table></figure>
 
 <h3 id="偏离的提交历史"><a href="#偏离的提交历史" class="headerlink" title="偏离的提交历史"></a>偏离的提交历史</h3><h4 id="Q-24"><a href="#Q-24" class="headerlink" title="Q"></a>Q</h4><p>我们用 <code>git fetch</code> 更新了本地仓库中的远程分支，然后用 rebase 将我们的工作移动到最新的提交记录下，最后再用 <code>git push</code> 推送到远程仓库。还可以使用 <code>merge</code>，尽管 <code>git merge</code> 不会移动你的工作（它会创建新的合并提交），但是它会告诉 Git 你已经合并了远程仓库的所有变更。这是因为远程分支现在是你本地分支的祖先，也就是说你的提交已经包含了远程分支的所有变化。前面已经介绍过 <code>git pull</code> 就是 fetch 和 merge 的简写，类似的 <code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
 <p>要完成本关，你需要完成以下几步：</p>
@@ -154,16 +154,16 @@
 <li>完成一次本地提交</li>
 <li>用 <em>rebase</em> 发布你的工作</li>
 </ul>
-<h4 id="A-24"><a href="#A-24" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git clone<br>git fakeTeamwork<br>git commit<br>git pull --rebase<br>git push<br></code></pre></td></tr></table></figure>
+<h4 id="A-24"><a href="#A-24" class="headerlink" title="A"></a>A</h4><figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span><br><span class="hljs-title">git</span> fakeTeamwork<br>git commit<br>git pull --rebase<br>git push<br></code></pre></td></tr></table></figure>
 
 <h3 id="锁定的Main-Locked-Main"><a href="#锁定的Main-Locked-Main" class="headerlink" title="锁定的Main(Locked Main)"></a>锁定的Main(Locked Main)</h3><h4 id="Q-25"><a href="#Q-25" class="headerlink" title="Q"></a>Q</h4><p>如果你是在一个大的合作团队中工作, 很可能是main被锁定了, 需要一些Pull Request流程来合并修改。如果你直接提交(commit)到本地main, 然后试图推送(push)修改, 你将会收到这样类似的信息:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">! [远程服务器拒绝] main -&gt; main (TF402455: 不允许推送(push)这个分支; 你必须使用pull request来更新这个分支.)<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">! <span class="hljs-selector-attr">[远程服务器拒绝]</span> <span class="hljs-selector-tag">main</span> -&gt; <span class="hljs-selector-tag">main</span> (TF402455: 不允许推送(push)这个分支; 你必须使用pull request来更新这个分支.)<br></code></pre></td></tr></table></figure>
 
 <p>远程服务器拒绝直接推送(push)提交到main, 因为策略配置要求 pull requests 来提交更新.</p>
 <p>你应该按照流程,新建一个分支, 推送(push)这个分支并申请pull request,但是你忘记并直接提交给了main.现在你卡住并且无法推送你的更新.</p>
 <p>解决办法：新建一个分支feature, 推送到远程服务器. 然后reset你的main分支和远程服务器保持一致, 否则下次你pull并且他人的提交和你冲突的时候就会有问题.</p>
 <h4 id="A-25"><a href="#A-25" class="headerlink" title="A"></a>A</h4><p>注意：该网页中默认的行为是<code>--hard</code>硬重置，但是要记录Git中默认的是<code>--mixed</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git reset --hard o/main<br>git checkout -b feature c2<br>git push<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git reset <span class="hljs-attr">--hard</span> o/<span class="hljs-selector-tag">main</span><br>git checkout -<span class="hljs-selector-tag">b</span> feature c2<br>git push<br></code></pre></td></tr></table></figure>
 
 <h3 id="推送主分支"><a href="#推送主分支" class="headerlink" title="推送主分支"></a>推送主分支</h3><h4 id="Q-26"><a href="#Q-26" class="headerlink" title="Q"></a>Q</h4><p>在大型项目中开发人员通常会在（从 <code>main</code> 上分出来的）特性分支上工作，工作完成后只做一次集成。这跟前面课程的描述很相像（把 side 分支推送到远程仓库），不过本节我们会深入一些.</p>
 <p>但是有些开发人员只在 main 上做 push、pull —— 这样的话 main 总是最新的，始终与远程分支 (o&#x2F;main) 保持一致。</p>
@@ -183,10 +183,10 @@
 <li>我需要将这三分支按顺序推送到远程仓库</li>
 <li>因为远程仓库已经被更新过了，所以我们还要把那些工作合并过来</li>
 </ul>
-<h4 id="A-26"><a href="#A-26" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout main<br>git pull --rebase<br>git rebase main side1<br>git rebase side1 side2<br>git rebase side2 side3<br>git rebase side3 main<br>git push<br></code></pre></td></tr></table></figure>
+<h4 id="A-26"><a href="#A-26" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git checkout <span class="hljs-selector-tag">main</span><br>git pull <span class="hljs-attr">--rebase</span><br>git rebase <span class="hljs-selector-tag">main</span> side1<br>git rebase side1 side2<br>git rebase side2 side3<br>git rebase side3 <span class="hljs-selector-tag">main</span><br>git push<br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch<br>git rebase o/main side1<br>git rebase side1 side2<br>git rebase side2 side3<br>git rebase side3 main<br>git push<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git fetch<br>git rebase o/<span class="hljs-selector-tag">main</span> side1<br>git rebase side1 side2<br>git rebase side2 side3<br>git rebase side3 <span class="hljs-selector-tag">main</span><br>git push<br></code></pre></td></tr></table></figure>
 
 <h3 id="合并远程仓库"><a href="#合并远程仓库" class="headerlink" title="合并远程仓库"></a>合并远程仓库</h3><h4 id="Q-27"><a href="#Q-27" class="headerlink" title="Q"></a>Q</h4><p>在开发社区里，有许多关于 merge 与 rebase 的讨论。以下是关于 rebase 的优缺点：</p>
 <p>优点:</p>
@@ -200,7 +200,7 @@
 <p>比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。</p>
 <p>一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人可能更喜欢干净的提交树，于是偏爱 rebase。</p>
 <p>本关，我们还是解决上一关卡中的问题，但是要用 merge 替换 rebase。这显然有点画蛇添足，但这只是为了更好的说明上面的观点。</p>
-<h4 id="A-27"><a href="#A-27" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout main<br>git pull<br>git merge side1<br>git merge side2<br>git merge side3<br>git push<br></code></pre></td></tr></table></figure>
+<h4 id="A-27"><a href="#A-27" class="headerlink" title="A"></a>A</h4><figure class="highlight cos"><table><tr><td class="code"><pre><code class="hljs cos">git checkout main<br>git pull<br>git <span class="hljs-keyword">merge</span> side1<br>git <span class="hljs-keyword">merge</span> side2<br>git <span class="hljs-keyword">merge</span> side3<br>git push<br></code></pre></td></tr></table></figure>
 
 <h3 id="远程跟踪分支"><a href="#远程跟踪分支" class="headerlink" title="远程跟踪分支"></a>远程跟踪分支</h3><h4 id="Q-28"><a href="#Q-28" class="headerlink" title="Q"></a>Q</h4><p>Git 好像知道 <code>main</code> 与 <code>o/main</code> 是相关的。当然这些分支的名字是相似的，可能会让你觉得是依此将远程分支 main 和本地的 main 分支进行了关联。这种关联在以下两种情况下可以清楚地得到展示：</p>
 <ul>
@@ -212,31 +212,31 @@
 <p>当你克隆时, Git 会为远程仓库中的每个分支在本地仓库中创建一个远程分支（比如 <code>o/main</code>）。然后再创建一个跟踪远程仓库中活动分支的本地分支，默认情况下这个本地分支会被命名为 <code>main</code>。</p>
 <p>克隆完成后，你会得到一个本地分支（如果没有这个本地分支的话，你的目录就是“空白”的），但是可以查看远程仓库中所有的分支（如果你好奇心很强的话）。这样做对于本地仓库和远程仓库来说，都是最佳选择。</p>
 <p>这也解释了为什么会在克隆的时候会看到下面的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">local branch &quot;main&quot; set to track remote branch &quot;o/main&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">local</span> branch <span class="hljs-string">&quot;main&quot;</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">to</span> track remote branch <span class="hljs-string">&quot;o/main&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>你可以让任意分支跟踪 <code>o/main</code>, 然后该分支会像 <code>main</code> 分支一样得到隐含的 push 目的地以及 merge 的目标。 这意味着你可以在分支 <code>totallyNotMain</code> 上执行 <code>git push</code>，将工作推送到远程仓库的 <code>main</code> 分支上。</p>
 <p>有两种方法设置这个属性</p>
 <p><strong>第一种方法</strong></p>
 <p>第一种就是通过远程分支切换到一个新的分支，执行:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout -b totallyNotMain o/main<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git checkout -<span class="hljs-selector-tag">b</span> totallyNotMain o/<span class="hljs-selector-tag">main</span><br></code></pre></td></tr></table></figure>
 
 <p>就可以创建一个名为 <code>totallyNotMain</code> 的分支，它跟踪远程分支 <code>o/main</code>。</p>
 <p><strong>第二种方法</strong></p>
 <p>另一种设置远程追踪分支的方法就是使用：<code>git branch -u</code> 命令，执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git branch -u o/main foo<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git branch -u o/main foo<br></code></pre></td></tr></table></figure>
 
 <p>这样 <code>foo</code> 就会跟踪 <code>o/main</code> 了。如果当前就在 foo 分支上, 还可以省略 foo：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git branch -u o/main<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git branch -u o/main<br></code></pre></td></tr></table></figure>
 
 <p>本节我们在<strong>不</strong>切换到 <code>main</code> 分支的情况下将工作推送到的远程仓库中的 <code>main</code> 分支上。</p>
-<h4 id="A-28"><a href="#A-28" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git checkout -b side o/main<br>git commit<br>git pull --rebase<br>git push<br></code></pre></td></tr></table></figure>
+<h4 id="A-28"><a href="#A-28" class="headerlink" title="A"></a>A</h4><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">git checkout -<span class="hljs-selector-tag">b</span> side o/<span class="hljs-selector-tag">main</span><br>git commit<br>git pull <span class="hljs-attr">--rebase</span><br>git push<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-push-的参数1"><a href="#Git-push-的参数1" class="headerlink" title="Git push 的参数1"></a>Git push 的参数1</h3><h4 id="Q-29"><a href="#Q-29" class="headerlink" title="Q"></a>Q</h4><p>既然你知道了远程跟踪分支，我们可以开始揭开 git push、fetch 和 pull 的神秘面纱了。我们会逐个介绍这几个命令，它们在理念上是非常相似的。</p>
 <p>首先来看 <code>git push</code>。在远程跟踪课程中，你已经学到了 Git 是通过当前所在分支的属性来确定远程仓库以及要 push 的目的地的。这是未指定参数时的行为，我们可以为 push 指定参数，语法是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git push &lt;remote&gt; &lt;place&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">git push <span class="hljs-tag">&lt;<span class="hljs-name">remote</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">place</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><code>&lt;place&gt;</code> 参数是什么意思呢？我们稍后会深入其中的细节, 先看看例子, 这个命令是:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git push origin main<br></code></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> main<br></code></pre></td></tr></table></figure>
 
 <p>把这个命令翻译过来就是：</p>
 <p><em>切到本地仓库中的“main”分支，获取所有的提交，再到远程仓库“origin”中找到“main”分支，将远程仓库中没有的提交记录都添加上去，搞定之后告诉我。</em></p>
@@ -244,24 +244,24 @@
 <p>需要注意的是，因为我们通过指定参数告诉了 Git 所有它需要的信息, 所以它就忽略了我们所切换分支的属性！</p>
 <p>本关我们要更新远程仓库中的 <code>foo</code> 和 <code>main</code>, 但是 <code>git checkout</code> 被禁用了！</p>
 <p><em>注意：远程分支使用 <code>o/</code> 开头是因为 <code>origin/</code> 对于 UI 来说太长了。不用太在意这个，直接用 <code>origin</code> 作为远程仓库的名称就可以了。</em></p>
-<h4 id="A-29"><a href="#A-29" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git push origin main<br>git push origin foo<br></code></pre></td></tr></table></figure>
+<h4 id="A-29"><a href="#A-29" class="headerlink" title="A"></a>A</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> main<br>git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> foo<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-push-参数-2"><a href="#Git-push-参数-2" class="headerlink" title="Git push 参数 2"></a>Git push 参数 2</h3><h4 id="Q-30"><a href="#Q-30" class="headerlink" title="Q"></a>Q</h4><p>当为 git push 指定 place 参数为 <code>main</code> 时，我们同时指定了提交记录的来源和去向。</p>
 <p>你可能想问 —— 如果来源和去向分支的名称不同呢？比如你想把本地的 <code>foo</code> 分支推送到远程仓库中的 <code>bar</code> 分支。</p>
 <p>哎，很遗憾 Git 做不到…… 开个玩笑，别当真！当然是可以的啦 :) Git 拥有超强的灵活性（有点过于灵活了）</p>
 <p>要同时为源和目的地指定 <code>&lt;place&gt;</code> 的话，只需要用冒号 <code>:</code> 将二者连起来就可以了：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git push origin &lt;source&gt;:&lt;destination&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><code class="hljs elixir">git push origin &lt;source&gt;<span class="hljs-symbol">:&lt;destination&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>这个参数实际的值是个 refspec，“refspec” 是一个自造的词，意思是 Git 能识别的位置（比如分支 <code>foo</code> 或者 <code>HEAD~1</code>）</p>
 <p>一旦你指定了独立的来源和目的地，就可以组织出言简意赅的远程操作命令.</p>
 <p>在这个关卡中，试着完成目标窗口展示的提交树，记住参数格式哟：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">&lt;source&gt;:&lt;destination&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><code class="hljs elixir">&lt;source&gt;<span class="hljs-symbol">:&lt;destination&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="A-30"><a href="#A-30" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git push origin foo:main<br>git push origin main^:foo<br></code></pre></td></tr></table></figure>
+<h4 id="A-30"><a href="#A-30" class="headerlink" title="A"></a>A</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> foo:main<br>git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> main^:foo<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-fetch-的参数"><a href="#Git-fetch-的参数" class="headerlink" title="Git fetch 的参数"></a>Git fetch 的参数</h3><h4 id="Q-31"><a href="#Q-31" class="headerlink" title="Q"></a>Q</h4><p><code>git fetch</code> 的参数和 <code>git push</code> 极其相似。他们的概念是相同的，只是方向相反罢了（因为现在你是下载，而非上传）</p>
 <p>如果你像如下命令这样为 git fetch 设置 的话：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch origin foo<br></code></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git fetch origin foo</span><br></code></pre></td></tr></table></figure>
 
 <p>Git 会到远程仓库的 <code>foo</code> 分支上，然后获取所有本地不存在的提交，放到本地的 <code>o/foo</code> 上。</p>
 <p>为何 Git 会将新提交放到 <code>o/foo</code> 而不是放到我本地的 foo 分支呢？之前不是说这样的 参数就是同时应用于本地和远程的位置吗？</p>
@@ -271,7 +271,7 @@
 <p>理论上虽然行的通，但开发人员很少这么做。我在这里介绍它主要是为了从概念上说明 <code>fetch</code> 和 <code>push</code> 的相似性，只是方向相反罢了。</p>
 <p>要完成本关，抓取目标窗口中指定的提交记录，使用这些魔幻的命令吧！</p>
 <p>使用 fetch 时, 你必须指定 source 和 destination。 注意一下目标窗口, 因为提交对象的 ID 可能会变哦!</p>
-<h4 id="A-31"><a href="#A-31" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch origin foo:main<br>git fetch origin main^:foo<br>git checkout foo <br>git merge main<br></code></pre></td></tr></table></figure>
+<h4 id="A-31"><a href="#A-31" class="headerlink" title="A"></a>A</h4><figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">git</span> <span class="hljs-selector-tag">fetch</span> <span class="hljs-selector-tag">origin</span> <span class="hljs-selector-tag">foo</span>:<span class="hljs-selector-tag">main</span><br><span class="hljs-selector-tag">git</span> <span class="hljs-selector-tag">fetch</span> <span class="hljs-selector-tag">origin</span> <span class="hljs-selector-tag">main</span>^:<span class="hljs-selector-tag">foo</span><br><span class="hljs-selector-tag">git</span> <span class="hljs-selector-tag">checkout</span> <span class="hljs-selector-tag">foo</span> <br><span class="hljs-selector-tag">git</span> <span class="hljs-selector-tag">merge</span> <span class="hljs-selector-tag">main</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="没有-source-的-source"><a href="#没有-source-的-source" class="headerlink" title="没有 source 的 source"></a>没有 source 的 source</h3><h4 id="Q-32"><a href="#Q-32" class="headerlink" title="Q"></a>Q</h4><p>Git 有两种关于 <code>&lt;source&gt;</code> 的用法是比较诡异的，即你可以在 git push 或 git fetch 时不指定任何 <code>source</code>，方法就是仅保留冒号和 destination 部分，source 部分留空。</p>
 <ul>
@@ -282,26 +282,29 @@
 <p>通过给 push 传空值 source，成功删除了远程仓库中的 <code>foo</code> 分支</p>
 <p> fetch 空 到本地，会在本地创建一个新分支。</p>
 <p>这个关卡很容易 —— 只要删除一个远程的分支, 再用 <code>git fetch</code> 在本地创建一个新分支就可以了！</p>
-<h4 id="A-32"><a href="#A-32" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git push origin :foo<br>git fetch origin :bar<br></code></pre></td></tr></table></figure>
+<h4 id="A-32"><a href="#A-32" class="headerlink" title="A"></a>A</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> :foo<br>git fetch <span class="hljs-built_in">origin</span> :bar<br></code></pre></td></tr></table></figure>
 
 <h3 id="Git-pull-的参数"><a href="#Git-pull-的参数" class="headerlink" title="Git pull 的参数"></a>Git pull 的参数</h3><h4 id="Q-33"><a href="#Q-33" class="headerlink" title="Q"></a>Q</h4><p> git pull 到头来就是 fetch 后跟 merge 的缩写。你可以理解为用同样的参数执行 git fetch，然后再 merge 你所抓取到的提交记录。</p>
 <p>以下命令在 Git 中是等效的:</p>
 <p><code>git pull origin foo</code> 相当于：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch origin foo; git merge o/foo<br></code></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git fetch <span class="hljs-keyword">origin </span>foo<span class="hljs-comment">; git merge o/foo</span><br></code></pre></td></tr></table></figure>
 
 <p>还有…</p>
 <p><code>git pull origin bar~1:bugFix</code> 相当于：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch origin bar~1:bugFix; git merge bugFix<br></code></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git fetch <span class="hljs-keyword">origin </span><span class="hljs-keyword">bar~1:bugFix; </span>git merge <span class="hljs-keyword">bugFix</span><br></code></pre></td></tr></table></figure>
 
 <p>看到了? git pull 实际上就是 fetch + merge 的缩写, git pull 唯一关注的是提交最终合并到哪里（也就是为 git fetch 所提供的 destination 参数）</p>
 <p>请按照目标窗口中的状态进行操作。你需要下载一些提交，然后创建一些新分支，再合并这些分支到其它分支, 但这用不了几个命令</p>
-<h4 id="A-33"><a href="#A-33" class="headerlink" title="A"></a>A</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git fetch origin bar:foo<br>git fetch origin main:side<br>git merge foo<br>git merge side<br></code></pre></td></tr></table></figure>
+<h4 id="A-33"><a href="#A-33" class="headerlink" title="A"></a>A</h4><figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">git fetch origin bar:foo<br>git fetch origin main:<span class="hljs-built_in">side</span><br>git <span class="hljs-built_in">merge</span> foo<br>git <span class="hljs-built_in">merge</span> <span class="hljs-built_in">side</span><br></code></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git pull origin bar:foo<br>git pull origin main:side<br></code></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">git pull <span class="hljs-keyword">origin </span><span class="hljs-keyword">bar:foo</span><br><span class="hljs-keyword"></span>git pull <span class="hljs-keyword">origin </span>main:side<br></code></pre></td></tr></table></figure>
 
 <h3 id="Wow！你通关了！-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ"><a href="#Wow！你通关了！-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ" class="headerlink" title="Wow！你通关了！ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ"></a><strong>Wow！你通关了！ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ</strong></h3><p>本来以为两个小时左右应该就可以搞定，但没想到不止。不过这么一玩，也知道了Git大致的用法啦！</p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>git</tag>
       </tags>
@@ -332,6 +335,9 @@
 <p>Running：<a href="https://play.unity.com/mg/other/runningwebgl-3">Running_Webgl_Test - Unity Play</a></p>
 <p>这是我首次接触unity时制作的小游戏<del>(初学者学习项目)</del>，欢迎试玩！！！</p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>unity</tag>
         <tag>WebGl</tag>
@@ -424,6 +430,9 @@
 </ol>
 <h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
 ]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
       <tags>
         <tag>git</tag>
         <tag>test</tag>
@@ -442,57 +451,57 @@
 <p>安装完后，可以在电脑桌面，右键，有出现<strong>Open Git Bash here</strong>即为成功。</p>
 <h4 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h4><p>Node.js官网：<a href="https://nodejs.org/">https://nodejs.org/</a></p>
 <p>安装完成后，打开cmd窗口或者PowerShell窗口,输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">node -v<br></code></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">node</span> <span class="hljs-title">-v</span><br></code></pre></td></tr></table></figure>
 
 <p>返回版本号即为成功</p>
 <h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>在电脑本地新建一个用于安装博客的文件夹，进入文件夹，右键，Open Git Bash here 就会打开一个git窗口，显示的地址就是文件夹的路径。</p>
 <p>然后打开Hexo官网，将官网给出的几条命令逐条复制到git窗口，回车表示运行</p>
 <p>Hexo官网：<a href="https://hexo.io/zh-cn/index.html">https://hexo.io/zh-cn/index.html</a></p>
-<h4 id="安装Hexo框架"><a href="#安装Hexo框架" class="headerlink" title="安装Hexo框架"></a>安装Hexo框架</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">npm install hexo-cli -g<br></code></pre></td></tr></table></figure>
+<h4 id="安装Hexo框架"><a href="#安装Hexo框架" class="headerlink" title="安装Hexo框架"></a>安装Hexo框架</h4><figure class="highlight avrasm"><table><tr><td class="code"><pre><code class="hljs avrasm">npm install hexo-<span class="hljs-keyword">cli</span> -g<br></code></pre></td></tr></table></figure>
 
-<h4 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo init blog<br></code></pre></td></tr></table></figure>
+<h4 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h4><figure class="highlight csharp"><table><tr><td class="code"><pre><code class="hljs csharp">hexo <span class="hljs-keyword">init</span> blog<br></code></pre></td></tr></table></figure>
 
-<h4 id="进入博客文件夹"><a href="#进入博客文件夹" class="headerlink" title="进入博客文件夹"></a>进入博客文件夹</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">cd blog<br></code></pre></td></tr></table></figure>
+<h4 id="进入博客文件夹"><a href="#进入博客文件夹" class="headerlink" title="进入博客文件夹"></a>进入博客文件夹</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> blog<br></code></pre></td></tr></table></figure>
 
-<h4 id="安装Hexo的依赖包文件"><a href="#安装Hexo的依赖包文件" class="headerlink" title="安装Hexo的依赖包文件"></a>安装Hexo的依赖包文件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">npm install<br></code></pre></td></tr></table></figure>
+<h4 id="安装Hexo的依赖包文件"><a href="#安装Hexo的依赖包文件" class="headerlink" title="安装Hexo的依赖包文件"></a>安装Hexo的依赖包文件</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="启动Hexo服务"><a href="#启动Hexo服务" class="headerlink" title="启动Hexo服务"></a>启动Hexo服务</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo server<br></code></pre></td></tr></table></figure>
+<h4 id="启动Hexo服务"><a href="#启动Hexo服务" class="headerlink" title="启动Hexo服务"></a>启动Hexo服务</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta">hexo <span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
 
 <p>在浏览器输入<strong><a href="http://localhost:4000/">http://localhost:4000</a></strong>即可本地访问博客，推荐使用chrome浏览器。</p>
 <p>按F12，进入开发者模式，可以查看网页的元素等。</p>
 <h3 id="编辑博客"><a href="#编辑博客" class="headerlink" title="编辑博客"></a>编辑博客</h3><p>在前面打开的git窗口中输入以下命令</p>
-<h4 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo new &quot;文章标题&quot;<br></code></pre></td></tr></table></figure>
+<h4 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h4><figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript">hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;文章标题&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>在<code>/blog/souce/posts</code>文件夹下可以看到新建的文章，以markdown文件形式，打开即可使用markdown编辑文章。</p>
 <p>可以使用<strong>Visual Studio Code</strong>（轻量级文本编辑器)来进行编辑，不过更推荐使用<strong>Typora</strong>(轻量级Markdown编辑器)。</p>
-<h4 id="生成网页"><a href="#生成网页" class="headerlink" title="生成网页"></a>生成网页</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo g<br></code></pre></td></tr></table></figure>
+<h4 id="生成网页"><a href="#生成网页" class="headerlink" title="生成网页"></a>生成网页</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo g</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="运行博客"><a href="#运行博客" class="headerlink" title="运行博客"></a>运行博客</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo s<br></code></pre></td></tr></table></figure>
+<h4 id="运行博客"><a href="#运行博客" class="headerlink" title="运行博客"></a>运行博客</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
 
 <p>即回到浏览器刷新一下即可看到编辑的文件，如果不行，就重新进入 <strong><a href="http://localhost:4000/">http://localhost:4000</a></strong>即可。</p>
 <h3 id="更改主题样式"><a href="#更改主题样式" class="headerlink" title="更改主题样式"></a>更改主题样式</h3><p>打开Hexo官网，寻找喜欢的主题，就可以进入对应主题的Github仓库，然后跟着主题的配置指南即可。这里我以本博客的主题样式为例。<a href="https://github.com/Fechin/hexo-theme-diaspora">Diaspora</a>，通过链接去到主题的Github仓库，可以跟着指南配置。</p>
-<h4 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git clone https://github.com/Fechin/hexo-theme-diaspora.git themes/diaspora<br></code></pre></td></tr></table></figure>
+<h4 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/Fechin/hexo-theme-diaspora.git themes/diaspora<br></code></pre></td></tr></table></figure>
 
 <p>在<strong>Themes</strong>文件夹下，可以看到下载好的主题</p>
 <p>需要对主题进行个性化修改，就进入对应主题的文件夹下<code>_config.yml</code>可以进行对应的配置。如果懂相关知识就可以随便改了<del>（bushi）</del></p>
 <p>一般来说，一般人主要更改的就是图像以及音频，然后其他功能需要就开，不需要就关掉。</p>
 <p>图像部分，找到<strong>cover</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext"># 默认文章封面图（随机调用,支持外链）<br>cover: <br>  - /img/图片文件名<br></code></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># 默认文章封面图（随机调用,支持外链）</span><br><span class="hljs-symbol">cover:</span> <br>  - <span class="hljs-keyword">/img/</span>图片文件名<br></code></pre></td></tr></table></figure>
 
 <p>记得将想要放置的图片放进<code>/Themes/img</code>文件夹下</p>
 <p>音频部分，确保开启音频，</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">autoplay: true<br><br># 默认音乐（随机播放）<br>mp3: <br>    - 音频的外链地址，如(http://music.163.com/song/media/outer/url?id=869119.mp3)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">autoplay: <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 默认音乐（随机播放）</span><br>mp3: <br>    - 音频的外链地址，如(http://music.163.com/song/media/outer/url?<span class="hljs-built_in">id</span>=869119.mp3)<br></code></pre></td></tr></table></figure>
 
 <p>不知道外链怎么获取的可以去谷歌或者bing，当然也可以直接去这个网站找<a href="https://music.liuzhijin.cn/?name=%E4%B8%9C%E6%96%B9&type=netease">https://music.liuzhijin.cn/?name=%E4%B8%9C%E6%96%B9&amp;type=netease</a></p>
 <h4 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h4><p>修改Hexo配置文件 <code>_config.yml</code> 找到主题项，设置为diaspora</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">...<br>theme: diaspora<br>...<br></code></pre></td></tr></table></figure>
+<figure class="highlight node-repl"><table><tr><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">...</span><br>theme: diaspora<br><span class="hljs-meta prompt_">...</span><br></code></pre></td></tr></table></figure>
 
 <p>在这个配置文件中可以修改网站的title等信息，一并修改后</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext"># Site<br>title: 千幻笙的小窝<br>subtitle: &#x27;Awith的小站&#x27;<br>author: Awith<br></code></pre></td></tr></table></figure>
+<figure class="highlight ldif"><table><tr><td class="code"><pre><code class="hljs ldif"><span class="hljs-comment"># Site</span><br><span class="hljs-attribute">title</span>: 千幻笙的小窝<br><span class="hljs-attribute">subtitle</span>: &#x27;Awith的小站&#x27;<br><span class="hljs-attribute">author</span>: Awith<br></code></pre></td></tr></table></figure>
 
 <p><strong>Ctrl+S</strong>保存退出</p>
 <p>在git窗口生成网页，运行博客，在浏览器查看主题样式。如果git窗口之前不小心关了，可以去到自己建的用于安装hexo的文件夹，右键，Open Git Bash here 就会打开一个git窗口。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo g</span><br><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
 
 <p>刷新一下浏览器即可查看更改后的网页。</p>
 <h3 id="注册Github账号以及新建仓库"><a href="#注册Github账号以及新建仓库" class="headerlink" title="注册Github账号以及新建仓库"></a>注册Github账号以及新建仓库</h3><p>要将我们的个人博客网站部署到GitHub Pages上，拥有一个GitHub账户自然就是最基本的前提了。当然也可以部署到Gitee Pages上，或者是有自己的服务器就部署到自己的服务器上。一般主要尝试一下的话，直接在GitHub Pages上就好了。如果没有魔法，那就配置在Gitee Pages上吧。</p>
@@ -501,18 +510,18 @@
 <p><strong>注意！</strong>仓库名应该为：**<code>用户名.github.io </code><strong>这个</strong>用户名**使用你的GitHub帐号名称代替</p>
 <p>创建好仓库后，在setting里找到pages，可以看到GitHub Pages给我们提供了一个格式为<code>https://用户名.github.io/ </code>的免费域名，并且相应的网站是从该仓库的 main 分支构建得到的。复制该网站到浏览器，即可查看形成的网页。</p>
 <h3 id="上传博客到Github托管"><a href="#上传博客到Github托管" class="headerlink" title="上传博客到Github托管"></a>上传博客到Github托管</h3><p>在git窗口执行命令行</p>
-<h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">git config --global user.name &quot;你的GitHub用户名&quot;<br>git config --global user.email &quot;你的GitHub注册邮箱&quot;<br></code></pre></td></tr></table></figure>
+<h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;你的GitHub用户名&quot;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> <span class="hljs-string">&quot;你的GitHub注册邮箱&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>没有报错，就是成功</p>
-<h4 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件"></a>生成ssh密钥文件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;<br></code></pre></td></tr></table></figure>
+<h4 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件"></a>生成ssh密钥文件</h4><figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">&quot;你的GitHub注册邮箱&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>然后直接三个回车即可，默认不需要设置密码。</p>
 <p>输入以下命令获取密钥</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">cat ~/.ssh/id_rsa.pub<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> ~/.ssh/id_rsa.pub<br></code></pre></td></tr></table></figure>
 
 <p>将显示的密钥复制，在Github仓库setting下Deploy Keys，公钥随便输入，密钥就填刚才生成的。</p>
 <h4 id="检测ssh是否成功"><a href="#检测ssh是否成功" class="headerlink" title="检测ssh是否成功"></a>检测ssh是否成功</h4><p>输入以下命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></td></tr></table></figure>
 
 <p>若出现successfully即为成功，若出现</p>
 <p>This key is not known by any other names.<br>Are you sure you want to continue connecting (yes&#x2F;no&#x2F;[fingerprint])?</p>
@@ -524,16 +533,16 @@
 <li>输入”no”，取消连接到主机。</li>
 </ol>
 <h4 id="设置部署仓库和分支"><a href="#设置部署仓库和分支" class="headerlink" title="设置部署仓库和分支"></a>设置部署仓库和分支</h4><p>回到我们前面创建的用于安装hexo的文件夹，打开目录下面的<code>_config.yml</code>文件，并滚动到文件最后，找到deploy，进行更改。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">deploy:<br>  type: &#x27;git&#x27;<br>  repository: git@github.com:qian488/qian488.github.io.git<br>  branch: main<br></code></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus">deploy:<br>  type: <span class="hljs-string">&#x27;git&#x27;</span><br>  repository: git@github<span class="hljs-selector-class">.com</span>:qian488/qian488<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span><br>  branch: main<br></code></pre></td></tr></table></figure>
 
 <p>关于repository的获取，就是去创建的GitHub的仓库下，点击code，点击ssh，看到SSH key，复制上面的即可。</p>
 <p>关于branch的填写，需要跟之前GitHub形成网页的分支一样，即main</p>
 <p><strong>注意！</strong>冒号后要空格。</p>
-<h4 id="安装Git部署插件"><a href="#安装Git部署插件" class="headerlink" title="安装Git部署插件"></a>安装Git部署插件</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+<h4 id="安装Git部署插件"><a href="#安装Git部署插件" class="headerlink" title="安装Git部署插件"></a>安装Git部署插件</h4><figure class="highlight ada"><table><tr><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
 
 <p>等待安装完成后即可。</p>
 <h4 id="部署网页"><a href="#部署网页" class="headerlink" title="部署网页"></a>部署网页</h4><p>清除缓存，生成网页，运行博客，检查没什么问题后，就实施部署</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">hexo clean <br>hexo g<br>hexo s<br>hexo d<br></code></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo clean </span><br><span class="hljs-attribute">hexo g</span><br><span class="hljs-attribute">hexo s</span><br><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure>
 
 <p>去到Github的仓库即可看到上传的内容，而进入GitHub Pages提供的网站，即可看到个人博客搭建成功，将该网站分享给好友，也可查看该个人博客。</p>
 <h3 id="后续更新博客"><a href="#后续更新博客" class="headerlink" title="后续更新博客"></a>后续更新博客</h3><p>主要步骤就是</p>
@@ -544,6 +553,9 @@
 <p>5.检查网页</p>
 <p>希望对你有用！</p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>git</tag>
         <tag>hexo</tag>
@@ -645,7 +657,7 @@
 
 <h3 id="基于比较的排序-8个"><a href="#基于比较的排序-8个" class="headerlink" title="基于比较的排序(8个)"></a>基于比较的排序(8个)</h3><p>所有的不稳定都可以转化为稳定(按照数值顺序为首位,下标顺序为次位)</p>
 <h4 id="1-直接插入排序"><a href="#1-直接插入排序" class="headerlink" title="1.直接插入排序"></a>1.直接插入排序</h4><p><strong>做法:相当于每次把元素插入有序位置</strong><br><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:整个数组都有序，只执行外层循环，O(n)<br>2.平均情况:O(n^2)<br>3.最坏情况:O(n^2)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:整个数组都有序，只执行外层循环，<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>辅助空间复杂度:O(1)</strong></p>
 <p><strong>稳定</strong></p>
@@ -653,7 +665,7 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert_sort</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-comment">//由于是从头往后做，前面做过的都是有序的，只需要找到合适位置，将后面整体往后移一位，在有序位置插入t</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++) <span class="hljs-comment">//q[0]只有一个数，有序</span><br>        &#123;<br>                <span class="hljs-type">int</span> t=q[i],j=i;<br><br>                <span class="hljs-keyword">while</span>(j&amp;&amp;q[j<span class="hljs-number">-1</span>]&gt;t)<br>                &#123;<br>                        q[j]=q[j<span class="hljs-number">-1</span>];<br>                        j--;<br>                &#125;<br>                q[j]=t;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="2-折半插入排序"><a href="#2-折半插入排序" class="headerlink" title="2.折半插入排序"></a>2.折半插入排序</h4><p><strong>直接插入排序的不明显优化：用二分找到第一个&gt;t的位置,优化了比较次数(O(n)-&gt;O(logn))，但是没有优化移动次数</strong><br><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:整个数组都有序，只执行外层循环，里面都continue，O(n)<br>2.平均情况:O(n^2)<br>3.最坏情况:O(n^2)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:整个数组都有序，只执行外层循环，里面都<span class="hljs-variable">continue</span>，<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>辅助空间复杂度:O(1)</strong></p>
 <p><strong>稳定</strong></p>
@@ -661,7 +673,7 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">binary_insert_sort</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)<br>        &#123;<br>                <span class="hljs-type">int</span> t=q[i];<br>                <span class="hljs-keyword">if</span>(q[i]&gt;=q[i<span class="hljs-number">-1</span>]) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-comment">//二分出第一个&gt;t的元素，将此之后的所有元素往后移动一位，再将t插到当前有序位置</span><br>                <span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=i<span class="hljs-number">-1</span>;<br>                <span class="hljs-keyword">while</span>(l&lt;r)<br>                &#123;<br>                        <span class="hljs-type">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<br>                        <span class="hljs-keyword">if</span>(q[mid]&gt;t) r=mid;<br>                        <span class="hljs-keyword">else</span> l=mid+<span class="hljs-number">1</span>;<br>                &#125;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">-1</span>;j&gt;=r;j--)<br>                        q[j+<span class="hljs-number">1</span>]=q[j];<br>                q[r]=t;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="3-冒泡排序"><a href="#3-冒泡排序" class="headerlink" title="3.冒泡排序"></a>3.冒泡排序</h4><p><strong>做法:每次从后往前处理逆序对，把第i小的元素放i位，最多n-1次之后就有序，因为n-1次后，剩下的最后一个数一定是最大的</strong><br><strong>优化:可以通过交换次数进行优化，如果某一次没有交换一次，说明已经有序，直接break出去</strong><br><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:整个数组都有序，第一次就break,O(n)<br>2.平均情况:O(n^2)<br>3.最坏情况:每次使逆序对-1，最坏有n^2个逆序对，O(n^2)<br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>.最好情况:整个数组都有序，第一次就break,O(n)<br><span class="hljs-attribute">2</span>.平均情况:O(n^<span class="hljs-number">2</span>)<br><span class="hljs-attribute">3</span>.最坏情况:每次使逆序对-<span class="hljs-number">1</span>，最坏有n^<span class="hljs-number">2</span>个逆序对，O(n^<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
 
 <p><strong>辅助空间复杂度:O(1)</strong></p>
 <p><strong>稳定</strong></p>
@@ -669,7 +681,7 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">//最多执行n-1次，n-1次后剩下的一个数一定是最大的</span><br>        &#123;<br>                <span class="hljs-type">bool</span> has_swap=<span class="hljs-literal">false</span>;<span class="hljs-comment">//做优化，如果某次没有交换过一次，说明有序，直接break</span><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=n<span class="hljs-number">-1</span>;j&gt;i;j--)<span class="hljs-comment">//前i个元素有序(0~i-1),只需要比较后面的，又因为每次比较j与j-1，所以j&gt;i</span><br>                &#123;<br>                        <span class="hljs-keyword">if</span>(q[j]&lt;q[j<span class="hljs-number">-1</span>])<br>                        &#123;<br>                                <span class="hljs-built_in">swap</span>(q[j],q[j<span class="hljs-number">-1</span>]);<br>                                has_swap=<span class="hljs-literal">true</span>;<br>                        &#125;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(!has_swap) <span class="hljs-keyword">break</span>;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="4-简单-选择排序——最朴素的做法，所以也最慢"><a href="#4-简单-选择排序——最朴素的做法，所以也最慢" class="headerlink" title="4.(简单)选择排序——最朴素的做法，所以也最慢^+^"></a>4.(简单)选择排序——最朴素的做法，所以也最慢^+^</h4><p><strong>区别:冒泡排序可以看成是选择排序的优化</strong><br><strong>做法:选择排序不是处理逆序对，而是最朴素德每次找到第i小的元素，与第i位上的元素互换</strong><br><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:O(n^2)<br>2.平均情况:O(n^2)<br>3.最坏情况:O(n^2)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>辅助空间复杂度:O(1)</strong></p>
 <p><strong>不稳定，如2(1) 2(2) 1,排序后1 2（2） 2（1)，相对位置发生了变化</strong></p>
@@ -677,11 +689,11 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">select_sort</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">//也是最多只需要n-1次，n-1次后剩下的一个元素就是最大的</span><br>        &#123;<br>                <span class="hljs-type">int</span> k=i;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;n;j++)<span class="hljs-comment">//前面i个有序(0~i-1),所以从i开始往后面找最小,进行交换</span><br>                        <span class="hljs-keyword">if</span>(q[j]&lt;q[k])<br>                                k=j;<br>                <span class="hljs-built_in">swap</span>(q[i],q[k]);<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="5-希尔排序——第一个把排序最坏时间复杂度降到O-n-2-之下的"><a href="#5-希尔排序——第一个把排序最坏时间复杂度降到O-n-2-之下的" class="headerlink" title="5.希尔排序——第一个把排序最坏时间复杂度降到O(n^2)之下的"></a>5.希尔排序——第一个把排序最坏时间复杂度降到O(n^2)之下的</h4><p><strong>做法:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.每次把所有元素分组，每一组下标都是等差数列，公差d称之为增量，每组的公差d相同<br><br>2.每组内部做插入排序<br><br>3.以此类推，组内插入排序，不断细化公差d，直到为d为1<br><br>当d为n/2,n/4,n/8...,1时，时间复杂度最坏O(n^2)<br>当d为n/3,n/9,n/27,...,1时，时间复杂度O(n^(3/2))<br></code></pre></td></tr></table></figure>
+<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel"><span class="hljs-number">1</span>.每次把所有元素分组，每一组下标都是等差数列，公差d称之为增量，每组的公差d相同<br><br><span class="hljs-number">2</span>.每组内部做插入排序<br><br><span class="hljs-number">3</span>.以此类推，组内插入排序，不断细化公差d，直到为d为<span class="hljs-number">1</span><br><br>当d为<span class="hljs-built_in">n</span>/<span class="hljs-number">2</span>,<span class="hljs-built_in">n</span>/<span class="hljs-number">4</span>,<span class="hljs-built_in">n</span>/<span class="hljs-number">8</span>...,<span class="hljs-number">1</span>时，时间复杂度最坏O(<span class="hljs-built_in">n</span>^<span class="hljs-number">2</span>)<br>当d为<span class="hljs-built_in">n</span>/<span class="hljs-number">3</span>,<span class="hljs-built_in">n</span>/<span class="hljs-number">9</span>,<span class="hljs-built_in">n</span>/<span class="hljs-number">27</span>,...,<span class="hljs-number">1</span>时，时间复杂度O(<span class="hljs-built_in">n</span>^(<span class="hljs-number">3</span>/<span class="hljs-number">2</span>))<br></code></pre></td></tr></table></figure>
 
 <p><strong>原因:借助插入排序对于部分有序的序列排序效果好的特性进行优化</strong></p>
 <p><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">根据d的划分来看的，种类多<br>大体上O(n(3/2))<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl">根据<span class="hljs-variable">d</span>的划分来看的，种类多<br>大体上<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-title">n</span>(<span class="hljs-number">3</span>/<span class="hljs-number">2</span>))</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>辅助空间复杂度:O(1)</strong></p>
 <p><strong>不稳定，因为会进行分组</strong></p>
@@ -690,23 +702,23 @@
 
 <h4 id="6-快速排序-和归并排序一样，基于分治-且快排和哈希一般不考虑最坏情况时间复杂度"><a href="#6-快速排序-和归并排序一样，基于分治-且快排和哈希一般不考虑最坏情况时间复杂度" class="headerlink" title="6.快速排序(和归并排序一样，基于分治),且快排和哈希一般不考虑最坏情况时间复杂度"></a>6.快速排序(和归并排序一样，基于分治),且快排和哈希一般不考虑最坏情况时间复杂度</h4><p><strong>做法:1.找分界值通常x&#x3D;q[l+r&gt;&gt;1] 2.用分界值把区间分为左右两端，使左&lt;&#x3D;x,x,x&lt;&#x3D;右 3.递归排序左右两段</strong><br><strong>这里与一些老教材不同，AcWing的模板不能保证排完序后中间那个数就是x，而一些老版的教材可以保证这一点</strong></p>
 <p><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:O(nlogn)<br>2.平均情况:O(nlogn)<br>3.最坏情况:O(n^2)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>^<span class="hljs-number">2</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>空间复杂度:由于需要调用系统栈，所以O(logn)</strong></p>
 <p><strong>不稳定,因为在划分时，等于x的元素即可能在前，也可能在后</strong><br><strong>代码</strong></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> q[],<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">if</span>(l&gt;=r) <span class="hljs-keyword">return</span> ;<br>        <span class="hljs-type">int</span> i=l<span class="hljs-number">-1</span>,j=r+<span class="hljs-number">1</span>,x=q[l+r&gt;&gt;<span class="hljs-number">1</span>];<br><br>        <span class="hljs-keyword">while</span>(i&lt;j)<span class="hljs-comment">//双指针算法</span><br>        &#123;<br>                <span class="hljs-keyword">do</span> i++;<span class="hljs-keyword">while</span>(q[i]&lt;x);<br>                <span class="hljs-keyword">do</span> j--;<span class="hljs-keyword">while</span>(q[j]&gt;x);<br>                <span class="hljs-keyword">if</span>(i&lt;j) <span class="hljs-built_in">swap</span>(q[i],q[j]);<br>        &#125;<br>        <span class="hljs-built_in">quick_sort</span>(q,l,j),<span class="hljs-built_in">quick_sort</span>(q,j+<span class="hljs-number">1</span>,r);<br>        <span class="hljs-comment">//递归的分界点，取j时,x不能为q[r],取q[l+r&gt;&gt;1];取i时，x不能取q[l],也不能取q[l+r&gt;&gt;1]，要取q[l+r+1&gt;&gt;1]</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="7-堆排序"><a href="#7-堆排序" class="headerlink" title="7.堆排序"></a>7.堆排序</h4><p><strong>down(i)</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">递归处理使以i为父节点的树满足大根堆/小根堆的定义方式，不满足就往下;满足就不变<br></code></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><code class="hljs abnf">递归处理使以i为父节点的树满足大根堆/小根堆的定义方式，不满足就往下<span class="hljs-comment">;满足就不变</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>删除堆顶操作</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">并不是真的delete，而是放到heap的size之外去<br>先于最后一个数heap[size]互换，再删除heap[size](就是size--，让我们索引不到，但实际还在数组中)<br>最后由于刚刚上来的数不一定是最值，所以需要down(1)使满足堆的递归定义<br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><code class="hljs arduino">并不是真的<span class="hljs-keyword">delete</span>，而是放到heap的size之外去<br>先于最后一个数heap[size]互换，再删除heap[size](就是size--，让我们索引不到，但实际还在数组中)<br>最后由于刚刚上来的数不一定是最值，所以需要<span class="hljs-built_in">down</span>(<span class="hljs-number">1</span>)使满足堆的递归定义<br></code></pre></td></tr></table></figure>
 
 <p><strong>做法:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">建立小根堆或大根堆<br><br>大根堆:每次删除堆顶（将堆顶删除,就是最后一个数替换堆顶），然后heap的size-1，表示不再管q[]中的最后一个数,最后记得down(1)，因为最后一个数不能保证是此时heap中最大的数<br><br>小根堆:可以每次先输出/用辅助函数存下来，再删除堆顶；或者和大根堆一样操作，然后逆序输出<br></code></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="code"><pre><code class="hljs perl">建立小根堆或大根堆<br><br>大根堆:每次删除堆顶（将堆顶删除,就是最后一个数替换堆顶），然后heap的size-<span class="hljs-number">1</span>，表示不再管<span class="hljs-string">q[]</span>中的最后一个数,最后记得down(<span class="hljs-number">1</span>)，因为最后一个数不能保证是此时heap中最大的数<br><br>小根堆:可以每次先输出/用辅助函数存下来，再删除堆顶；或者和大根堆一样操作，然后逆序输出<br></code></pre></td></tr></table></figure>
 
 <p><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:O(nlogn)<br>2.平均情况:O(nlogn)<br>3.最坏情况:O(nlogn)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>辅助空间复杂度:O(logn),因为要用递归</strong></p>
 <p><strong>不稳定,第一个会与最后一个交换，相等就不稳定了</strong></p>
@@ -715,7 +727,7 @@
 
 <h4 id="8-归并排序-基于分治"><a href="#8-归并排序-基于分治" class="headerlink" title="8.归并排序(基于分治)"></a>8.归并排序(基于分治)</h4><p><strong>做法:1.找分界点mid&#x3D;(l+r)&#x2F;2 2.用分界点把区间分为左右两端，递归处理这两段 3.二路归并</strong></p>
 <p><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:O(nlogn)<br>2.平均情况:O(nlogn)<br>3.最坏情况:O(nlogn)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">nlogn</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>空间复杂度:由于需要调用系统栈和辅助数组，所以O(logn+n) -&gt; O(n)</strong></p>
 <p><strong>稳定</strong><br><strong>代码</strong></p>
@@ -723,11 +735,11 @@
 
 <h3 id="非比较排序"><a href="#非比较排序" class="headerlink" title="非比较排序"></a>非比较排序</h3><h4 id="1-桶排序-又叫计数排序"><a href="#1-桶排序-又叫计数排序" class="headerlink" title="1.桶排序(又叫计数排序)"></a>1.桶排序(又叫计数排序)</h4><p><strong>桶:实际上就是开数组，存储每个数值出现的次数，所以数组的大小取决于数值的大小</strong><br><strong>a[i]的位置取决于小于a[i]的数量+i左边等于a[i]的数量,所以可以想到用前缀和的思想来求位置</strong></p>
 <p><strong>此时存在一个区别:有没有相等的数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.如果所有数都不相等，可以直接从前往后做,位置为s[a[i]]-1<br>2.如果存在相等的数x，则需要从后往前摆放，s[x]-1,s[x]--,组合起来:--s[x]<br><br>这里s[x]-1是这么想的:假设第一个大于x的数为y,y的位置为s[x]<br>则最后一个x为s[x]-1,让后往前x的数量-1，所以s[x]--<br></code></pre></td></tr></table></figure>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><code class="hljs prolog"><span class="hljs-number">1.</span>如果所有数都不相等，可以直接从前往后做,位置为s[a[i]]<span class="hljs-number">-1</span><br><span class="hljs-number">2.</span>如果存在相等的数x，则需要从后往前摆放，s[x]<span class="hljs-number">-1</span>,s[x]--,组合起来:--s[x]<br><br>这里s[x]<span class="hljs-number">-1</span>是这么想的:假设第一个大于x的数为y,y的位置为s[x]<br>则最后一个x为s[x]<span class="hljs-number">-1</span>,让后往前x的数量<span class="hljs-number">-1</span>，所以s[x]--<br></code></pre></td></tr></table></figure>
 
 <p><strong>思想:用桶+辅助数组直接把每个数摆放的应该放的位置，并保证相对位置不变</strong><br><strong>做法:为了保证相对顺序，倒着摆放</strong></p>
 <p><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:O(n+m)<br>2.平均情况:O(n+m)<br>3.最坏情况:O(n+m)<br></code></pre></td></tr></table></figure>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><code class="hljs isbl"><span class="hljs-number">1</span>.最好情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>+<span class="hljs-variable">m</span>)</span><br><span class="hljs-number">2</span>.平均情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>+<span class="hljs-variable">m</span>)</span><br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-function"><span class="hljs-title">O</span>(<span class="hljs-variable">n</span>+<span class="hljs-variable">m</span>)</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>空间复杂度:由于要求统计数值的个数和求数值数量的前缀和，以及辅助数组，所以O(n+m)</strong></p>
 <p><strong>稳定:倒着排保证的相对位置</strong><br><strong>代码</strong></p>
@@ -735,24 +747,24 @@
 
 <h4 id="2-基数排序"><a href="#2-基数排序" class="headerlink" title="2.基数排序"></a>2.基数排序</h4><p><strong>实际上就是一个多关键字排序，这个多关键字是把a[i]化为r进制的每一位(估计数值范围，范围内用什么进制都可以)</strong></p>
 <p><strong>做法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.可以从高位递归到低位，需要用到系统栈;<br>2.可以从低位到高位枚举，由于桶排序是稳定的，所以基数排序也是稳定的<br></code></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><code class="hljs abnf"><span class="hljs-number">1</span>.可以从高位递归到低位，需要用到系统栈<span class="hljs-comment">;</span><br><span class="hljs-number">2</span>.可以从低位到高位枚举，由于桶排序是稳定的，所以基数排序也是稳定的<br></code></pre></td></tr></table></figure>
 
 <p><strong>思想:用桶+辅助数组直接把每个数摆放的应该放的位置，并保证相对位置不变</strong><br><strong>做法:为了保证相对顺序，倒着摆放</strong></p>
 <p><strong>时间复杂度</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1.最好情况:O(k(n+r)),k为a[i]分为r进制的位数<br>2.平均情况:O(k(n+r)),k为a[i]分为r进制的位数<br>3.最坏情况:O(k(n+r)),k为a[i]分为r进制的位数<br></code></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">1</span>.最好情况:<span class="hljs-built_in">O</span>(<span class="hljs-built_in">k</span>(n+r)),k为<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[i]</span>分为r进制的位数<br><span class="hljs-number">2</span>.平均情况:<span class="hljs-built_in">O</span>(<span class="hljs-built_in">k</span>(n+r)),k为<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[i]</span>分为r进制的位数<br><span class="hljs-number">3</span>.最坏情况:<span class="hljs-built_in">O</span>(<span class="hljs-built_in">k</span>(n+r)),k为<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[i]</span>分为r进制的位数<br></code></pre></td></tr></table></figure>
 
 <p><strong>空间复杂度:由于要求统计数值的个数和求数值数量的前缀和，以及辅助数组，所以O(n+m)</strong></p>
 <p><strong>稳定:从低到高做桶排序，每次高位都是以低位为基础，如果高位相同，则按照低位的相对位置排，所以稳定</strong><br><strong>代码</strong></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">radix_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> d,<span class="hljs-type">int</span> r)</span><span class="hljs-comment">//d表示关键字的位数,r表示r进制</span></span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-type">int</span> radix=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=d;i++)<span class="hljs-comment">//枚举每一位,从低位到高位,由于每次都是在上次的基础上再桶排序，所以稳定</span><br>        &#123;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;r;j++) s[j]=<span class="hljs-number">0</span>;<span class="hljs-comment">//可以直接用memset</span><br><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++) s[q[j]/radix%r]++;<br><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;r;j++) s[j]+=s[j<span class="hljs-number">-1</span>];<br><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=n<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">0</span>;j--) w[--s[q[j]/radix%r]]=q[j];<br><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++) q[j]=w[j];<br>                radix*=r;<br><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="外部排序-外存里的排序，主要取决于读取次数"><a href="#外部排序-外存里的排序，主要取决于读取次数" class="headerlink" title="外部排序(外存里的排序，主要取决于读取次数)"></a>外部排序(外存里的排序，主要取决于读取次数)</h3><p><strong>做法:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1. 置换选择排序(在内存中预处理出m个有序序列,m可能很大，大到内存存不下)<br>2. 再利用Huffman思想(每次去k个最短的序列)，使用败者树将k个序列合并成一个序列,k个序列归并<br>   所以读写时间复杂度为O(logk m)<br>3. 以此类推直到m个序列合并成1个序列<br></code></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-number">1</span>. 置换选择排序(在内存中预处理出m个有序序列,m可能很大，大到内存存不下)<br><span class="hljs-number">2</span>. 再利用Huffman思想(每次去k个最短的序列)，使用败者树将k个序列合并成一个序列,k个序列归并<br>   所以读写时间复杂度为<span class="hljs-built_in">O</span>(logk m)<br><span class="hljs-number">3</span>. 以此类推直到m个序列合并成<span class="hljs-number">1</span>个序列<br></code></pre></td></tr></table></figure>
 
 <p>为了减少O(logk m)的读取时间复杂度，有两种方法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1. k增加，当时要权衡归并是内存对k的限制<br><br>2. m减小，用置换选择排序来生成更长的序列，从而使m减小<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> k增加，当时要权衡归并是内存对k的限制<br><br><span class="hljs-bullet">2.</span> m减小，用置换选择排序来生成更长的序列，从而使m减小<br></code></pre></td></tr></table></figure>
 
 <p><strong>置换选择排序(内排序)主要有两种实现方法</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">1. 堆排序<br>拿小根堆为例<br>如当前序列读到x，此时堆顶为a<br>1.1 先输出a<br>1.2 if(x&gt;a)<br>        插到堆顶，down(1)<br>    if(x&lt;a) <br>        不能放到堆顶,因为输出的序列要保持有序，直接插x到堆顶，下一次输出x会有a、x的序列，但是这是逆序的<br>        正确做法:把最后一个元素heap[size]放到堆顶，dowm(1),再将x放到最后元素的位置,up(size)<br>1.3 当堆为空时，就不能再操作，形成了一个升序序列，长度大概为2m<br>    再重新开文件做上述步骤，得到m个升序序列<br><br>2. 败者树(对胜者树排序的优化，优化IO次数) <br></code></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="code"><pre><code class="hljs scss"><span class="hljs-number">1</span>. 堆排序<br>拿小根堆为例<br>如当前序列读到x，此时堆顶为<span class="hljs-selector-tag">a</span><br><span class="hljs-number">1.1</span> 先输出<span class="hljs-selector-tag">a</span><br><span class="hljs-number">1.2</span> <span class="hljs-built_in">if</span>(x&gt;a)<br>        插到堆顶，<span class="hljs-built_in">down</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-built_in">if</span>(x&lt;a) <br>        不能放到堆顶,因为输出的序列要保持有序，直接插x到堆顶，下一次输出x会有<span class="hljs-selector-tag">a</span>、x的序列，但是这是逆序的<br>        正确做法:把最后一个元素heap[size]放到堆顶，<span class="hljs-built_in">dowm</span>(<span class="hljs-number">1</span>),再将x放到最后元素的位置,<span class="hljs-built_in">up</span>(size)<br><span class="hljs-number">1.3</span> 当堆为空时，就不能再操作，形成了一个升序序列，长度大概为<span class="hljs-number">2</span>m<br>    再重新开文件做上述步骤，得到m个升序序列<br><br><span class="hljs-number">2</span>. 败者树(对胜者树排序的优化，优化IO次数) <br></code></pre></td></tr></table></figure>
 
 <p><strong>每次从m段有序序列中选k段，合并成一段，可以用Huffman树的思想来优化，相当于k进制的Huffman树<br>每合并k段，形成1段，所以每次减少k-1段，如果(m-1)%(k-1)!&#x3D;0,则加0(也叫虚段)</strong></p>
 <p><strong>k路归并时每次需要找到k个序列的最小值经行比较<br>可以用对来维护，而每次堆删除元素和插入比a更小的数，比较慢，删除——down(1),插入x(x&lt;a)——down(1)+up(size)<br>所以可以将堆优化为胜者树</strong></p>
@@ -1190,6 +1202,9 @@
 <h3 id="区间合并"><a href="#区间合并" class="headerlink" title="区间合并"></a>区间合并</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//将所有存在交集的区间合并</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Pll pair<span class="hljs-string">&lt;long long,long long&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(vector&lt;Pll&gt; &amp;segs)</span></span><br><span class="hljs-function"></span>&#123;<br>    vector&lt;Pll&gt; res;<br>    <br>    <span class="hljs-built_in">sort</span>(segs.<span class="hljs-built_in">begin</span>(),segs.<span class="hljs-built_in">end</span>());<br>    <br>    <span class="hljs-type">int</span> st=<span class="hljs-number">-2e9</span>,ed=<span class="hljs-number">-2e9</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> seg:segs)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(ed&lt;seg.first)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(st!=<span class="hljs-number">-2e9</span>) res.<span class="hljs-built_in">push_back</span>(&#123;st,ed&#125;);<br>            st=seg.first,ed=seg.second;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            ed=<span class="hljs-built_in">max</span>(ed,seg.second);<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span>(st!=<span class="hljs-number">-2e9</span>) res.<span class="hljs-built_in">push_back</span>(&#123;st,ed&#125;);<br>    <br>    segs=res;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
       <tags>
         <tag>算法</tag>
       </tags>
@@ -1200,6 +1215,9 @@
     <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
 <p>其实还没想好写些什么。</p>
 ]]></content>
+      <categories>
+        <category>公告</category>
+      </categories>
       <tags>
         <tag>公告</tag>
       </tags>
