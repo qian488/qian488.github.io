@@ -82,58 +82,70 @@ Hexo是一款基于Node.js的静态博客框架，可以,"/>
 <p>安装完后，可以在电脑桌面，右键，有出现<strong>Open Git Bash here</strong>即为成功。</p>
 <h4 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h4><p>Node.js官网：<a target="_blank" rel="noopener" href="https://nodejs.org/">https://nodejs.org/</a></p>
 <p>安装完成后，打开cmd窗口或者PowerShell窗口,输入</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">node</span> <span class="hljs-title">-v</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>node -v
+</code></pre>
 <p>返回版本号即为成功</p>
 <h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>在电脑本地新建一个用于安装博客的文件夹，进入文件夹，右键，Open Git Bash here 就会打开一个git窗口，显示的地址就是文件夹的路径。</p>
 <p>然后打开Hexo官网，将官网给出的几条命令逐条复制到git窗口，回车表示运行</p>
 <p>Hexo官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">https://hexo.io/zh-cn/index.html</a></p>
-<h4 id="安装Hexo框架"><a href="#安装Hexo框架" class="headerlink" title="安装Hexo框架"></a>安装Hexo框架</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install hexo-<span class="hljs-keyword">cli</span> -g<br></code></pre></td></tr></table></figure>
-
-<h4 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">hexo <span class="hljs-keyword">init</span> blog<br></code></pre></td></tr></table></figure>
-
-<h4 id="进入博客文件夹"><a href="#进入博客文件夹" class="headerlink" title="进入博客文件夹"></a>进入博客文件夹</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> blog<br></code></pre></td></tr></table></figure>
-
-<h4 id="安装Hexo的依赖包文件"><a href="#安装Hexo的依赖包文件" class="headerlink" title="安装Hexo的依赖包文件"></a>安装Hexo的依赖包文件</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="启动Hexo服务"><a href="#启动Hexo服务" class="headerlink" title="启动Hexo服务"></a>启动Hexo服务</h4><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta">hexo <span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="安装Hexo框架"><a href="#安装Hexo框架" class="headerlink" title="安装Hexo框架"></a>安装Hexo框架</h4><pre><code>npm install hexo-cli -g
+</code></pre>
+<h4 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h4><pre><code>hexo init blog
+</code></pre>
+<h4 id="进入博客文件夹"><a href="#进入博客文件夹" class="headerlink" title="进入博客文件夹"></a>进入博客文件夹</h4><pre><code>cd blog
+</code></pre>
+<h4 id="安装Hexo的依赖包文件"><a href="#安装Hexo的依赖包文件" class="headerlink" title="安装Hexo的依赖包文件"></a>安装Hexo的依赖包文件</h4><pre><code>npm install
+</code></pre>
+<h4 id="启动Hexo服务"><a href="#启动Hexo服务" class="headerlink" title="启动Hexo服务"></a>启动Hexo服务</h4><pre><code>hexo server
+</code></pre>
 <p>在浏览器输入<strong><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></strong>即可本地访问博客，推荐使用chrome浏览器。</p>
 <p>按F12，进入开发者模式，可以查看网页的元素等。</p>
 <h3 id="编辑博客"><a href="#编辑博客" class="headerlink" title="编辑博客"></a>编辑博客</h3><p>在前面打开的git窗口中输入以下命令</p>
-<h4 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;文章标题&quot;</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h4><pre><code>hexo new &quot;文章标题&quot;
+</code></pre>
 <p>在<code>/blog/souce/posts</code>文件夹下可以看到新建的文章，以markdown文件形式，打开即可使用markdown编辑文章。</p>
 <p>可以使用<strong>Visual Studio Code</strong>（轻量级文本编辑器)来进行编辑，不过更推荐使用<strong>Typora</strong>(轻量级Markdown编辑器)。</p>
-<h4 id="生成网页"><a href="#生成网页" class="headerlink" title="生成网页"></a>生成网页</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo g</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="运行博客"><a href="#运行博客" class="headerlink" title="运行博客"></a>运行博客</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="生成网页"><a href="#生成网页" class="headerlink" title="生成网页"></a>生成网页</h4><pre><code>hexo g
+</code></pre>
+<h4 id="运行博客"><a href="#运行博客" class="headerlink" title="运行博客"></a>运行博客</h4><pre><code>hexo s
+</code></pre>
 <p>即回到浏览器刷新一下即可看到编辑的文件，如果不行，就重新进入 <strong><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></strong>即可。</p>
 <h3 id="更改主题样式"><a href="#更改主题样式" class="headerlink" title="更改主题样式"></a>更改主题样式</h3><p>打开Hexo官网，寻找喜欢的主题，就可以进入对应主题的Github仓库，然后跟着主题的配置指南即可。这里我以本博客的主题样式为例。<a target="_blank" rel="noopener" href="https://github.com/Fechin/hexo-theme-diaspora">Diaspora</a>，通过链接去到主题的Github仓库，可以跟着指南配置。</p>
-<h4 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/Fechin/hexo-theme-diaspora.git themes/diaspora<br></code></pre></td></tr></table></figure>
-
+<h4 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h4><pre><code>git clone https://github.com/Fechin/hexo-theme-diaspora.git themes/diaspora
+</code></pre>
 <p>在<strong>Themes</strong>文件夹下，可以看到下载好的主题</p>
 <p>需要对主题进行个性化修改，就进入对应主题的文件夹下<code>_config.yml</code>可以进行对应的配置。如果懂相关知识就可以随便改了<del>（bushi）</del></p>
 <p>一般来说，一般人主要更改的就是图像以及音频，然后其他功能需要就开，不需要就关掉。</p>
 <p>图像部分，找到<strong>cover</strong></p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># 默认文章封面图（随机调用,支持外链）</span><br><span class="hljs-symbol">cover:</span> <br>  - <span class="hljs-keyword">/img/</span>图片文件名<br></code></pre></td></tr></table></figure>
-
+<pre><code># 默认文章封面图（随机调用,支持外链）
+cover: 
+  - /img/图片文件名
+</code></pre>
 <p>记得将想要放置的图片放进<code>/Themes/img</code>文件夹下</p>
 <p>音频部分，确保开启音频，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">autoplay: <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 默认音乐（随机播放）</span><br>mp3: <br>    - 音频的外链地址，如(http://music.163.com/song/media/outer/url?<span class="hljs-built_in">id</span>=869119.mp3)<br></code></pre></td></tr></table></figure>
+<pre><code>autoplay: true
 
+# 默认音乐（随机播放）
+mp3: 
+    - 音频的外链地址，如(http://music.163.com/song/media/outer/url?id=869119.mp3)
+</code></pre>
 <p>不知道外链怎么获取的可以去谷歌或者bing，当然也可以直接去这个网站找<a target="_blank" rel="noopener" href="https://music.liuzhijin.cn/?name=%E4%B8%9C%E6%96%B9&type=netease">https://music.liuzhijin.cn/?name=%E4%B8%9C%E6%96%B9&amp;type=netease</a></p>
 <h4 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h4><p>修改Hexo配置文件 <code>_config.yml</code> 找到主题项，设置为diaspora</p>
-<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">...</span><br>theme: diaspora<br><span class="hljs-meta prompt_">...</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>...
+theme: diaspora
+...
+</code></pre>
 <p>在这个配置文件中可以修改网站的title等信息，一并修改后</p>
-<figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ldif"><span class="hljs-comment"># Site</span><br><span class="hljs-attribute">title</span>: 千幻笙的小窝<br><span class="hljs-attribute">subtitle</span>: &#x27;Awith的小站&#x27;<br><span class="hljs-attribute">author</span>: Awith<br></code></pre></td></tr></table></figure>
-
+<pre><code># Site
+title: 千幻笙的小窝
+subtitle: &#39;Awith的小站&#39;
+author: Awith
+</code></pre>
 <p><strong>Ctrl+S</strong>保存退出</p>
 <p>在git窗口生成网页，运行博客，在浏览器查看主题样式。如果git窗口之前不小心关了，可以去到自己建的用于安装hexo的文件夹，右键，Open Git Bash here 就会打开一个git窗口。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo g</span><br><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>hexo g
+hexo s
+</code></pre>
 <p>刷新一下浏览器即可查看更改后的网页。</p>
 <h3 id="注册Github账号以及新建仓库"><a href="#注册Github账号以及新建仓库" class="headerlink" title="注册Github账号以及新建仓库"></a>注册Github账号以及新建仓库</h3><p>要将我们的个人博客网站部署到GitHub Pages上，拥有一个GitHub账户自然就是最基本的前提了。当然也可以部署到Gitee Pages上，或者是有自己的服务器就部署到自己的服务器上。一般主要尝试一下的话，直接在GitHub Pages上就好了。如果没有魔法，那就配置在Gitee Pages上吧。</p>
 <p>Github官网：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></p>
@@ -141,19 +153,20 @@ Hexo是一款基于Node.js的静态博客框架，可以,"/>
 <p><strong>注意！</strong>仓库名应该为：**<code>用户名.github.io </code><strong>这个</strong>用户名**使用你的GitHub帐号名称代替</p>
 <p>创建好仓库后，在setting里找到pages，可以看到GitHub Pages给我们提供了一个格式为<code>https://用户名.github.io/ </code>的免费域名，并且相应的网站是从该仓库的 main 分支构建得到的。复制该网站到浏览器，即可查看形成的网页。</p>
 <h3 id="上传博客到Github托管"><a href="#上传博客到Github托管" class="headerlink" title="上传博客到Github托管"></a>上传博客到Github托管</h3><p>在git窗口执行命令行</p>
-<h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;你的GitHub用户名&quot;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> <span class="hljs-string">&quot;你的GitHub注册邮箱&quot;</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><pre><code>git config --global user.name &quot;你的GitHub用户名&quot;
+git config --global user.email &quot;你的GitHub注册邮箱&quot;
+</code></pre>
 <p>没有报错，就是成功</p>
-<h4 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件"></a>生成ssh密钥文件</h4><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">&quot;你的GitHub注册邮箱&quot;</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件"></a>生成ssh密钥文件</h4><pre><code>ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;
+</code></pre>
 <p>然后直接三个回车即可，默认不需要设置密码。</p>
 <p>输入以下命令获取密钥</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> ~/.ssh/id_rsa.pub<br></code></pre></td></tr></table></figure>
-
+<pre><code> cat ~/.ssh/id_rsa.pub
+</code></pre>
 <p>将显示的密钥复制，在Github仓库setting下Deploy Keys，公钥随便输入，密钥就填刚才生成的。</p>
 <h4 id="检测ssh是否成功"><a href="#检测ssh是否成功" class="headerlink" title="检测ssh是否成功"></a>检测ssh是否成功</h4><p>输入以下命令</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></td></tr></table></figure>
-
+<pre><code> ssh -T git@github.com
+</code></pre>
 <p>若出现successfully即为成功，若出现</p>
 <p>This key is not known by any other names.<br>Are you sure you want to continue connecting (yes&#x2F;no&#x2F;[fingerprint])?</p>
 <p>一般情况下，不用担心，输入yes，回车就可以了。</p>
@@ -164,17 +177,23 @@ Hexo是一款基于Node.js的静态博客框架，可以,"/>
 <li>输入”no”，取消连接到主机。</li>
 </ol>
 <h4 id="设置部署仓库和分支"><a href="#设置部署仓库和分支" class="headerlink" title="设置部署仓库和分支"></a>设置部署仓库和分支</h4><p>回到我们前面创建的用于安装hexo的文件夹，打开目录下面的<code>_config.yml</code>文件，并滚动到文件最后，找到deploy，进行更改。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">deploy:<br>  type: <span class="hljs-string">&#x27;git&#x27;</span><br>  repository: git@github<span class="hljs-selector-class">.com</span>:qian488/qian488<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span><br>  branch: main<br></code></pre></td></tr></table></figure>
-
+<pre><code>deploy:
+  type: &#39;git&#39;
+  repository: git@github.com:qian488/qian488.github.io.git
+  branch: main
+</code></pre>
 <p>关于repository的获取，就是去创建的GitHub的仓库下，点击code，点击ssh，看到SSH key，复制上面的即可。</p>
 <p>关于branch的填写，需要跟之前GitHub形成网页的分支一样，即main</p>
 <p><strong>注意！</strong>冒号后要空格。</p>
-<h4 id="安装Git部署插件"><a href="#安装Git部署插件" class="headerlink" title="安装Git部署插件"></a>安装Git部署插件</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
-
+<h4 id="安装Git部署插件"><a href="#安装Git部署插件" class="headerlink" title="安装Git部署插件"></a>安装Git部署插件</h4><pre><code> npm install hexo-deployer-git --save
+</code></pre>
 <p>等待安装完成后即可。</p>
 <h4 id="部署网页"><a href="#部署网页" class="headerlink" title="部署网页"></a>部署网页</h4><p>清除缓存，生成网页，运行博客，检查没什么问题后，就实施部署</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo clean </span><br><span class="hljs-attribute">hexo g</span><br><span class="hljs-attribute">hexo s</span><br><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>hexo clean 
+hexo g
+hexo s
+hexo d
+</code></pre>
 <p>去到Github的仓库即可看到上传的内容，而进入GitHub Pages提供的网站，即可看到个人博客搭建成功，将该网站分享给好友，也可查看该个人博客。</p>
 <h3 id="后续更新博客"><a href="#后续更新博客" class="headerlink" title="后续更新博客"></a>后续更新博客</h3><p>主要步骤就是</p>
 <p>1.创建文章</p>
