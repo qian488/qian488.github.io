@@ -333,7 +333,8 @@
 <p>这是我首次接触unity时制作的小游戏<del>(初学者学习项目)</del>，欢迎试玩！！！</p>
 ]]></content>
       <tags>
-        <tag>unity WebGl</tag>
+        <tag>unity</tag>
+        <tag>WebGl</tag>
       </tags>
   </entry>
   <entry>
@@ -424,7 +425,9 @@
 <h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
 ]]></content>
       <tags>
+        <tag>git</tag>
         <tag>test</tag>
+        <tag>vsc</tag>
       </tags>
   </entry>
   <entry>
@@ -542,7 +545,8 @@
 <p>希望对你有用！</p>
 ]]></content>
       <tags>
-        <tag>hexo git</tag>
+        <tag>git</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1186,6 +1190,9 @@
 <h3 id="区间合并"><a href="#区间合并" class="headerlink" title="区间合并"></a>区间合并</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//将所有存在交集的区间合并</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Pll pair<span class="hljs-string">&lt;long long,long long&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(vector&lt;Pll&gt; &amp;segs)</span></span><br><span class="hljs-function"></span>&#123;<br>    vector&lt;Pll&gt; res;<br>    <br>    <span class="hljs-built_in">sort</span>(segs.<span class="hljs-built_in">begin</span>(),segs.<span class="hljs-built_in">end</span>());<br>    <br>    <span class="hljs-type">int</span> st=<span class="hljs-number">-2e9</span>,ed=<span class="hljs-number">-2e9</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> seg:segs)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(ed&lt;seg.first)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(st!=<span class="hljs-number">-2e9</span>) res.<span class="hljs-built_in">push_back</span>(&#123;st,ed&#125;);<br>            st=seg.first,ed=seg.second;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            ed=<span class="hljs-built_in">max</span>(ed,seg.second);<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span>(st!=<span class="hljs-number">-2e9</span>) res.<span class="hljs-built_in">push_back</span>(&#123;st,ed&#125;);<br>    <br>    segs=res;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
   </entry>
   <entry>
     <title>自我介绍</title>
