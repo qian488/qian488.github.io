@@ -397,7 +397,7 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
   </entry>
   <entry>
     <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
-    <url>/2024/04/03/Typora-picgo-github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
+    <url>/2024/04/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
     <content><![CDATA[<p>先鸽了。。。先备赛蓝桥杯和天梯赛。</p>
 ]]></content>
       <categories>
@@ -704,6 +704,7 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <p>板子也不是我自己原创的，应该站在巨人的肩膀上，因此，网络上我习惯用的板子也收集</p>
 <p>我觉得比较好的内容都收集起来</p>
 <h2 id="时空复杂度分析"><a href="#时空复杂度分析" class="headerlink" title="时空复杂度分析"></a>时空复杂度分析</h2><p>理论基础，做题的时候首先观察数据范围，确定解决方案的大致时间复杂度，再思考用什么数据结构，能用什么算法。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240404104429301.png" alt="image-20240404104429301"></p>
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong>时间复杂度</strong></h3><p>大O,算法导论给出的解释：<strong>大O用来表示上界的</strong>，当用它作为算法的最坏情况运行时间的上界，就是对任意数据输入的运行时间的上界。</p>
 <p><strong>整体测试数据整理如下：</strong></p>
 <p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20201208231559175-20230310124325152.png" alt="程序超时1"></p>
