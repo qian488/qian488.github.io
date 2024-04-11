@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
+    <url>/2024/04/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<p>先鸽了。。。先备赛蓝桥杯和天梯赛。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>Typora</tag>
+        <tag>picGo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Learning Git Branching 通关</title>
     <url>/2024/01/19/Learning-Git-Branching-%E9%80%9A%E5%85%B3/</url>
     <content><![CDATA[<p>好耶、边玩边学！！！</p>
@@ -396,20 +410,6 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
       </tags>
   </entry>
   <entry>
-    <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
-    <url>/2024/04/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
-    <content><![CDATA[<p>先鸽了。。。先备赛蓝桥杯和天梯赛。</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>Typora</tag>
-        <tag>picGo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</title>
     <url>/2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
@@ -537,6 +537,22 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
         <tag>git</tag>
         <tag>test</tag>
         <tag>vsc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欢迎来到我的小站</title>
+    <url>/2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/</url>
+    <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
+<p>额，其实还没想好写些什么。</p>
+<p>这个小站主要用途是让我的总结、笔记之类的能够多端协同以及便于分享给我的朋友。可能后续会加上杂谈、文章之类的吧，但目前没什么想法。</p>
+<p>往后打算开始随缘更新博客。</p>
+<p>如果对网站或者其中内容有问题、看法什么的，都可以找我。网站是有我的联系方式的，仔细翻翻就能找到。备注来意即可。</p>
+]]></content>
+      <categories>
+        <category>公告</category>
+      </categories>
+      <tags>
+        <tag>公告</tag>
       </tags>
   </entry>
   <entry>
@@ -678,22 +694,6 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
       <tags>
         <tag>git</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欢迎来到我的小站</title>
-    <url>/2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/</url>
-    <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
-<p>额，其实还没想好写些什么。</p>
-<p>这个小站主要用途是让我的总结、笔记之类的能够多端协同以及便于分享给我的朋友。可能后续会加上杂谈、文章之类的吧，但目前没什么想法。</p>
-<p>往后打算开始随缘更新博客。</p>
-<p>如果对网站或者其中内容有问题、看法什么的，都可以找我。网站是有我的联系方式的，仔细翻翻就能找到。备注来意即可。</p>
-]]></content>
-      <categories>
-        <category>公告</category>
-      </categories>
-      <tags>
-        <tag>公告</tag>
       </tags>
   </entry>
   <entry>
@@ -3327,6 +3327,18 @@ a<span class="token punctuation">[</span>i<span class="token punctuation">]</spa
 
 s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>s<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>s<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">+</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//保留原数组，开新数组存前缀和</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h4 id="树上前缀和"><a href="#树上前缀和" class="headerlink" title="树上前缀和"></a>树上前缀和</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411225334753.png" alt="image-20240411225334753"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411225722085.png" alt="image-20240411225722085"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411225801406.png" alt="image-20240411225801406"></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//s[x]表示起点到x的前缀和</span>
+<span class="token comment">//(x,y)的路径和</span>
+<span class="token comment">//点前缀和</span>
+s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+</span>s<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">-</span>s<span class="token punctuation">[</span>lca<span class="token punctuation">]</span><span class="token operator">-</span>s<span class="token punctuation">[</span>fa<span class="token punctuation">[</span>lca<span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token comment">//边前缀和</span>
+s<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+</span>s<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span>s<span class="token punctuation">[</span>lca<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h4 id="一维差分"><a href="#一维差分" class="headerlink" title="一维差分"></a>一维差分</h4><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//给区间[l,r]中每个数加上c</span>
 <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span><span class="token keyword">int</span> r<span class="token punctuation">,</span><span class="token keyword">int</span> c<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -3343,6 +3355,21 @@ s<span class="token punctuation">[</span>i<span class="token punctuation">]</spa
     b<span class="token punctuation">[</span>x2<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>y2<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">+=</span>c<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411223716522.png" alt="image-20240411223716522"></p>
+<p><img src="/C:/Users/Awith/AppData/Roaming/Typora/typora-user-images/image-20240411223812930.png" alt="image-20240411223812930"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411230329114.png" alt="image-20240411230329114"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411224337257.png" alt="image-20240411224337257"></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//初态树上权为0，对（x,y）路径均做+1操作</span>
+<span class="token comment">//点差分</span>
+d<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+d<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+d<span class="token punctuation">[</span>lca<span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">;</span>
+d<span class="token punctuation">[</span>fa<span class="token punctuation">[</span>lca<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">;</span>
+<span class="token comment">//边差分</span>
+d<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+d<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+d<span class="token punctuation">[</span>lca<span class="token punctuation">]</span><span class="token operator">-=</span><span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
