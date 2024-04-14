@@ -1013,6 +1013,7 @@ q<span class="token punctuation">[</span>hh<span class="token punctuation">]</sp
 
 <p>用stl库的priority_queue</p>
 <h3 id="字符串（string）"><a href="#字符串（string）" class="headerlink" title="字符串（string）"></a>字符串（string）</h3><h4 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330094444867.png"></p>
+<p>next[i]的值表示下标为i的字符前的字符串最长相等前后缀的长度。也表示该处字符不匹配时应该回溯到的字符的下标。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//求next数组</span>
 <span class="token comment">//s[]是模式串，p[]是模板串，n是s的长度，m是p的长度</span>
 <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
