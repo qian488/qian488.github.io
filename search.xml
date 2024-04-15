@@ -396,99 +396,51 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
       </tags>
   </entry>
   <entry>
-    <title>VSC与Git常用命令</title>
-    <url>/2024/01/17/VSC%E4%B8%8EGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
-<li><p>清除终端</p>
-<p><code>clear</code></p>
-</li>
-<li><p>列出当前目录中的文件和文件夹</p>
-<p><code>ls</code></p>
-</li>
-<li><p>切换指定目录</p>
-<p><code>cd &lt;目录路径&gt;</code></p>
-</li>
-<li><p>返回上一级目录</p>
-<p><code>cd ..</code></p>
-</li>
-<li><p>创建新文件夹</p>
-<p><code>mkdir &lt;文件夹名&gt;</code></p>
-</li>
-<li><p>创建新文件</p>
-<p><code>touch &lt;文件名&gt;</code></p>
-</li>
-<li><p>打开文件</p>
-<p><code>code &lt;文件名&gt;</code></p>
-</li>
-<li><p>删除文件</p>
-<p><code>rm &lt;文件名&gt;</code></p>
-</li>
-<li><p>删除文件夹</p>
-<p><code>rm -r &lt;文件夹名&gt;</code></p>
-</li>
-<li><p>查找文件</p>
-<p><code>find &lt;目录路径&gt; -name &lt;文件名&gt;</code></p>
-</li>
-<li><p>查找文件内容</p>
-<p><code>grep &lt;搜索内容&gt; &lt;文件名&gt;</code></p>
-</li>
-</ol>
-<h2 id="Git版本控制"><a href="#Git版本控制" class="headerlink" title="Git版本控制"></a>Git版本控制</h2><ol>
-<li><p>初始化Git仓库</p>
-<p><code>git init</code></p>
-</li>
-<li><p>克隆远程仓库到本地</p>
-<p><code>git clone &lt;远程仓库地址&gt;</code></p>
-</li>
-<li><p>添加文件到暂存区</p>
-<p><code>git add &lt;文件名&gt;</code></p>
-</li>
-<li><p>添加所有修改文件到暂存区</p>
-<p><code>git add .</code></p>
-</li>
-<li><p>提交暂存区文件到版本库</p>
-<p><code>git commit -m &quot;提交信息&quot;</code></p>
-</li>
-<li><p>查看当前仓库状态</p>
-<p><code>git status</code></p>
-</li>
-<li><p>查看文件修改差异</p>
-<p><code>git diff &lt;文件名&gt;</code></p>
-</li>
-<li><p>查看提交历史</p>
-<p><code>git log</code></p>
-</li>
-<li><p>创建新分支</p>
-<p><code>git branch &lt;分支名&gt;</code></p>
-</li>
-<li><p>切换到指定分支</p>
-<p><code>git checkout &lt;分支名&gt;</code></p>
-</li>
-<li><p>合并指定分支到当前分支</p>
-<p><code>git merge &lt;分支名&gt;</code></p>
-</li>
-<li><p>拉取远程仓库更新</p>
-<p><code>git pull</code></p>
-</li>
-<li><p>推送本地提交到远程仓库</p>
-<p><code>git push</code></p>
-</li>
-<li><p>查看远程仓库地址</p>
-<p><code>git remote -v</code></p>
-</li>
-<li><p>删除分支</p>
-<p><code>git branch -d &lt;分支名&gt;</code></p>
-</li>
-</ol>
-<h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
+    <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
+    <url>/2024/04/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<p>先鸽了。。。先备赛蓝桥杯和天梯赛。</p>
 ]]></content>
       <categories>
-        <category>总结</category>
+        <category>教程</category>
       </categories>
       <tags>
-        <tag>git</tag>
-        <tag>test</tag>
-        <tag>vsc</tag>
+        <tag>github</tag>
+        <tag>Typora</tag>
+        <tag>picGo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</title>
+    <url>/2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
+<p>首先，要明确一点的是，<code>(仅个人观点)</code>unity打包到WebGl这个功能主要用于将小型游戏demo发布试玩，本文是将游戏发布到unity官方提供的空间上，如果想要部署到自己的服务器的话，<del>我暂时不会</del>。</p>
+<p>网页快速试玩永远是让大家最容易接受的方法，快来看看如何快速分享你的游戏给小伙伴吧。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先，准备好一个你想要分享的简单的游戏demo。好了，第一步就结束捏<del>(bushi)</del></p>
+<p>其次，安装<strong>WebGL Build Support</strong>到你的unity游戏项目的编辑器版本。这是非常简单的操作，直接去到<strong>unity hub</strong>中安装的编辑器版本中<strong>添加模块</strong>，勾选WebGl选项。</p>
+<p>然后，打开你的unity游戏项目。</p>
+<h3 id="打包上传"><a href="#打包上传" class="headerlink" title="打包上传"></a>打包上传</h3><p>将你的unity游戏项目在<strong>Build Settings</strong>中切换到 WebGL 平台。</p>
+<p><code>注意！！！</code>切换好平台可能会有一些问题，最主要集中的就是在<strong>Color Space</strong> 上。很可能你的项目设置的是 <strong>Liner</strong>，但是为了生成 WebGL 你需要切换到 <strong>Gamma</strong> 。Gamma和Linear颜色空间，两者有色差，Gamma有个2.25左右的修正值。<del>其实具体的我也不懂</del></p>
+<p>接下来，需要安装一个 package 插件包 ：<strong>WebGL Publisher</strong></p>
+<p>在你的unity游戏项目中菜单栏找到<strong>window</strong>，打开<strong>Package Manager</strong>，勾选<strong>Unity Registry</strong>，然后搜索该插件包(WebGl Publisher)进行安装。</p>
+<p>安装好了之后，你的整个菜单当中会多出来一个 <strong>Publish</strong>的菜单，里面可以打开一个窗口叫做：<strong>WebGL Project</strong> </p>
+<p>然后还是用正常的<strong>Build Settings</strong> 的窗口来 Build 保存你的整个项目。当你打包成功了，就可以在 WebGL Project 的窗口里看到你最新打包的 WebGL 项目。 然后点击 <strong>Publish</strong> 就会帮你上传到你的 connect 网站(unity官方提供的网站)上。</p>
+<p>上传完成后，会自动在浏览器跳转到网站上，没有的话，就在 WebGL Project 的窗口里应该可以看到一个click相关的字样，点击就能跳转。在网站上，<strong>add</strong>可以为游戏选择一个封面，<strong>play</strong>选项就可以直接试玩游戏。然后填写相关信息即可发布。</p>
+<p><strong>至此你就成功上传好了 WebGL 平台的游戏了！可以把网址分享给你的朋友试玩啦！</strong></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.网站仅支持电脑端打开游玩，<del>(我也不知道做其他平台的操作适配后可不可以)</del></p>
+<p>2.游戏项目不能太大，不然容易卡加载界面</p>
+<p>3.默认的字体打包后不显示中文，需要中文的话需要连相对应的字体文件一起打包<del>(但是字体文件本身也挺大，需要优化)</del></p>
+<p>4.默认游玩的时候，音频是关闭的，需要手动打开</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>好耶，奇怪的知识增加了、</p>
+<p>测试的游戏项目试玩网址</p>
+<p>Running：<a href="https://play.unity.com/mg/other/runningwebgl-3">Running_Webgl_Test - Unity Play</a></p>
+<p>这是我首次接触unity时制作的小游戏<del>(初学者学习项目)</del>，欢迎试玩！！！</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>unity</tag>
+        <tag>WebGl</tag>
       </tags>
   </entry>
   <entry>
@@ -630,6 +582,102 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
       <tags>
         <tag>git</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSC与Git常用命令</title>
+    <url>/2024/01/17/VSC%E4%B8%8EGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
+<li><p>清除终端</p>
+<p><code>clear</code></p>
+</li>
+<li><p>列出当前目录中的文件和文件夹</p>
+<p><code>ls</code></p>
+</li>
+<li><p>切换指定目录</p>
+<p><code>cd &lt;目录路径&gt;</code></p>
+</li>
+<li><p>返回上一级目录</p>
+<p><code>cd ..</code></p>
+</li>
+<li><p>创建新文件夹</p>
+<p><code>mkdir &lt;文件夹名&gt;</code></p>
+</li>
+<li><p>创建新文件</p>
+<p><code>touch &lt;文件名&gt;</code></p>
+</li>
+<li><p>打开文件</p>
+<p><code>code &lt;文件名&gt;</code></p>
+</li>
+<li><p>删除文件</p>
+<p><code>rm &lt;文件名&gt;</code></p>
+</li>
+<li><p>删除文件夹</p>
+<p><code>rm -r &lt;文件夹名&gt;</code></p>
+</li>
+<li><p>查找文件</p>
+<p><code>find &lt;目录路径&gt; -name &lt;文件名&gt;</code></p>
+</li>
+<li><p>查找文件内容</p>
+<p><code>grep &lt;搜索内容&gt; &lt;文件名&gt;</code></p>
+</li>
+</ol>
+<h2 id="Git版本控制"><a href="#Git版本控制" class="headerlink" title="Git版本控制"></a>Git版本控制</h2><ol>
+<li><p>初始化Git仓库</p>
+<p><code>git init</code></p>
+</li>
+<li><p>克隆远程仓库到本地</p>
+<p><code>git clone &lt;远程仓库地址&gt;</code></p>
+</li>
+<li><p>添加文件到暂存区</p>
+<p><code>git add &lt;文件名&gt;</code></p>
+</li>
+<li><p>添加所有修改文件到暂存区</p>
+<p><code>git add .</code></p>
+</li>
+<li><p>提交暂存区文件到版本库</p>
+<p><code>git commit -m &quot;提交信息&quot;</code></p>
+</li>
+<li><p>查看当前仓库状态</p>
+<p><code>git status</code></p>
+</li>
+<li><p>查看文件修改差异</p>
+<p><code>git diff &lt;文件名&gt;</code></p>
+</li>
+<li><p>查看提交历史</p>
+<p><code>git log</code></p>
+</li>
+<li><p>创建新分支</p>
+<p><code>git branch &lt;分支名&gt;</code></p>
+</li>
+<li><p>切换到指定分支</p>
+<p><code>git checkout &lt;分支名&gt;</code></p>
+</li>
+<li><p>合并指定分支到当前分支</p>
+<p><code>git merge &lt;分支名&gt;</code></p>
+</li>
+<li><p>拉取远程仓库更新</p>
+<p><code>git pull</code></p>
+</li>
+<li><p>推送本地提交到远程仓库</p>
+<p><code>git push</code></p>
+</li>
+<li><p>查看远程仓库地址</p>
+<p><code>git remote -v</code></p>
+</li>
+<li><p>删除分支</p>
+<p><code>git branch -d &lt;分支名&gt;</code></p>
+</li>
+</ol>
+<h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
+]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>test</tag>
+        <tag>vsc</tag>
       </tags>
   </entry>
   <entry>
@@ -3691,20 +3739,6 @@ string <span class="token function">HtoO</span><span class="token punctuation">(
       </tags>
   </entry>
   <entry>
-    <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
-    <url>/2024/04/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
-    <content><![CDATA[<p>先鸽了。。。先备赛蓝桥杯和天梯赛。</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>Typora</tag>
-        <tag>picGo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>欢迎来到我的小站</title>
     <url>/2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/</url>
     <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
@@ -3718,40 +3752,6 @@ string <span class="token function">HtoO</span><span class="token punctuation">(
       </categories>
       <tags>
         <tag>公告</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</title>
-    <url>/2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
-<p>首先，要明确一点的是，<code>(仅个人观点)</code>unity打包到WebGl这个功能主要用于将小型游戏demo发布试玩，本文是将游戏发布到unity官方提供的空间上，如果想要部署到自己的服务器的话，<del>我暂时不会</del>。</p>
-<p>网页快速试玩永远是让大家最容易接受的方法，快来看看如何快速分享你的游戏给小伙伴吧。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先，准备好一个你想要分享的简单的游戏demo。好了，第一步就结束捏<del>(bushi)</del></p>
-<p>其次，安装<strong>WebGL Build Support</strong>到你的unity游戏项目的编辑器版本。这是非常简单的操作，直接去到<strong>unity hub</strong>中安装的编辑器版本中<strong>添加模块</strong>，勾选WebGl选项。</p>
-<p>然后，打开你的unity游戏项目。</p>
-<h3 id="打包上传"><a href="#打包上传" class="headerlink" title="打包上传"></a>打包上传</h3><p>将你的unity游戏项目在<strong>Build Settings</strong>中切换到 WebGL 平台。</p>
-<p><code>注意！！！</code>切换好平台可能会有一些问题，最主要集中的就是在<strong>Color Space</strong> 上。很可能你的项目设置的是 <strong>Liner</strong>，但是为了生成 WebGL 你需要切换到 <strong>Gamma</strong> 。Gamma和Linear颜色空间，两者有色差，Gamma有个2.25左右的修正值。<del>其实具体的我也不懂</del></p>
-<p>接下来，需要安装一个 package 插件包 ：<strong>WebGL Publisher</strong></p>
-<p>在你的unity游戏项目中菜单栏找到<strong>window</strong>，打开<strong>Package Manager</strong>，勾选<strong>Unity Registry</strong>，然后搜索该插件包(WebGl Publisher)进行安装。</p>
-<p>安装好了之后，你的整个菜单当中会多出来一个 <strong>Publish</strong>的菜单，里面可以打开一个窗口叫做：<strong>WebGL Project</strong> </p>
-<p>然后还是用正常的<strong>Build Settings</strong> 的窗口来 Build 保存你的整个项目。当你打包成功了，就可以在 WebGL Project 的窗口里看到你最新打包的 WebGL 项目。 然后点击 <strong>Publish</strong> 就会帮你上传到你的 connect 网站(unity官方提供的网站)上。</p>
-<p>上传完成后，会自动在浏览器跳转到网站上，没有的话，就在 WebGL Project 的窗口里应该可以看到一个click相关的字样，点击就能跳转。在网站上，<strong>add</strong>可以为游戏选择一个封面，<strong>play</strong>选项就可以直接试玩游戏。然后填写相关信息即可发布。</p>
-<p><strong>至此你就成功上传好了 WebGL 平台的游戏了！可以把网址分享给你的朋友试玩啦！</strong></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.网站仅支持电脑端打开游玩，<del>(我也不知道做其他平台的操作适配后可不可以)</del></p>
-<p>2.游戏项目不能太大，不然容易卡加载界面</p>
-<p>3.默认的字体打包后不显示中文，需要中文的话需要连相对应的字体文件一起打包<del>(但是字体文件本身也挺大，需要优化)</del></p>
-<p>4.默认游玩的时候，音频是关闭的，需要手动打开</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>好耶，奇怪的知识增加了、</p>
-<p>测试的游戏项目试玩网址</p>
-<p>Running：<a href="https://play.unity.com/mg/other/runningwebgl-3">Running_Webgl_Test - Unity Play</a></p>
-<p>这是我首次接触unity时制作的小游戏<del>(初学者学习项目)</del>，欢迎试玩！！！</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>unity</tag>
-        <tag>WebGl</tag>
       </tags>
   </entry>
 </search>
