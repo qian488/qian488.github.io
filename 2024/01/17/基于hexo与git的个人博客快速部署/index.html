@@ -85,7 +85,7 @@ Hexo是一款基于Node.js的静态博客框架，可以,"/>
 <pre class="line-numbers language-none"><code class="language-none">node -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>返回版本号即为成功</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>在电脑本地新建一个用于安装博客的文件夹，进入文件夹，右键，Open Git Bash here 就会打开一个git窗口，显示的地址就是文件夹的路径。</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>在电脑本地新建一个用于安装博客的文件夹，进入文件夹，右键，Open Git Bash here 就会打开一个窗口(为了方便说明，这里将该窗口称为git窗口)，显示的地址就是文件夹的路径。</p>
 <p>然后打开Hexo官网，将官网给出的几条命令逐条复制到git窗口，回车表示运行</p>
 <p>Hexo官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">https://hexo.io/zh-cn/index.html</a></p>
 <h4 id="安装Hexo框架"><a href="#安装Hexo框架" class="headerlink" title="安装Hexo框架"></a>安装Hexo框架</h4><pre class="line-numbers language-none"><code class="language-none">npm install hexo-cli -g<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -131,6 +131,7 @@ mp3:
 
 <p>不知道外链怎么获取的可以去谷歌或者bing，当然也可以直接去这个网站找<a target="_blank" rel="noopener" href="https://music.liuzhijin.cn/?name=%E4%B8%9C%E6%96%B9&type=netease">https://music.liuzhijin.cn/?name=%E4%B8%9C%E6%96%B9&amp;type=netease</a></p>
 <h4 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h4><p>修改Hexo配置文件 <code>_config.yml</code> 找到主题项，设置为diaspora</p>
+<p><strong>注意，是blog文件夹下的配置文件</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">...
 theme: diaspora
 ...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -142,7 +143,7 @@ subtitle: &#39;Awith的小站&#39;
 author: Awith<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>Ctrl+S</strong>保存退出</p>
-<p>在git窗口生成网页，运行博客，在浏览器查看主题样式。如果git窗口之前不小心关了，可以去到自己建的用于安装hexo的文件夹，右键，Open Git Bash here 就会打开一个git窗口。</p>
+<p>在git窗口生成网页，运行博客，在浏览器查看主题样式。如果git窗口之前不小心关了，可以去到自己建的用于安装hexo的文件夹，打开blog文件夹，右键，Open Git Bash here 就会打开一个git窗口。</p>
 <pre class="line-numbers language-none"><code class="language-none">hexo g
 hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -150,7 +151,7 @@ hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <h3 id="注册Github账号以及新建仓库"><a href="#注册Github账号以及新建仓库" class="headerlink" title="注册Github账号以及新建仓库"></a>注册Github账号以及新建仓库</h3><p>要将我们的个人博客网站部署到GitHub Pages上，拥有一个GitHub账户自然就是最基本的前提了。当然也可以部署到Gitee Pages上，或者是有自己的服务器就部署到自己的服务器上。一般主要尝试一下的话，直接在GitHub Pages上就好了。如果没有魔法，那就配置在Gitee Pages上吧。</p>
 <p>Github官网：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></p>
 <p>注册完账号后新建一个仓库用于个人博客</p>
-<p><strong>注意！</strong>仓库名应该为：**<code>用户名.github.io </code><strong>这个</strong>用户名**使用你的GitHub帐号名称代替</p>
+<p><strong>注意！</strong>仓库名应该为：<code>用户名.github.io </code>这个<strong>用户名</strong>使用你的GitHub帐号名称代替</p>
 <p>创建好仓库后，在setting里找到pages，可以看到GitHub Pages给我们提供了一个格式为<code>https://用户名.github.io/ </code>的免费域名，并且相应的网站是从该仓库的 main 分支构建得到的。复制该网站到浏览器，即可查看形成的网页。</p>
 <h3 id="上传博客到Github托管"><a href="#上传博客到Github托管" class="headerlink" title="上传博客到Github托管"></a>上传博客到Github托管</h3><p>在git窗口执行命令行</p>
 <h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><pre class="line-numbers language-none"><code class="language-none">git config --global user.name &quot;你的GitHub用户名&quot;
@@ -196,11 +197,19 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 
 <p>去到Github的仓库即可看到上传的内容，而进入GitHub Pages提供的网站，即可看到个人博客搭建成功，将该网站分享给好友，也可查看该个人博客。</p>
 <h3 id="后续更新博客"><a href="#后续更新博客" class="headerlink" title="后续更新博客"></a>后续更新博客</h3><p>主要步骤就是</p>
-<p>1.创建文章</p>
-<p>2.编写博客</p>
-<p>3.生成网页</p>
+<p>1.创建文章并编写内容</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo new &quot;文章标题&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在<code>/blog/souce/posts</code>文件夹下可以看到新建的文章，以markdown文件形式，打开即可使用markdown编辑文章。</p>
+<p>2.生成网页</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo g<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3.检查网页</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>4.部署网页</p>
-<p>5.检查网页</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>希望对你有用！</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
