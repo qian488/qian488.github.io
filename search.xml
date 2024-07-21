@@ -3,7 +3,24 @@
   <entry>
     <title>Godot快速上手</title>
     <url>/2024/07/21/Godot%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3>]]></content>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。</p>
+<p>为什么写这篇文章，主要是记录一下Godot游戏引擎的使用体验。</p>
+<p>我跟着的教程是油管游戏开发大神<strong>Brackeys</strong>的<a href="https://www.youtube.com/watch?v=LOhfqjmasi0&t=85s">How to make a vedio game</a></p>
+<p>至此，这篇文章于你的作用可能就结束了，因为他的视频教程真的非常棒，非常酷，跟着做就可以完成一款简单的2d平台跳跃游戏。</p>
+<p>接下来，简单讲讲Godot的优点与不足</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><h4 id="编辑器和脚本高度一致化"><a href="#编辑器和脚本高度一致化" class="headerlink" title="编辑器和脚本高度一致化"></a>编辑器和脚本高度一致化</h4><p>一致化到极致了，因为它的编辑器就是用它的脚本实现的，就是说Godot编辑器本身就是一个游戏。 </p>
+<p>所以可以轻松用脚本来控制它的编辑器，比如在编辑器中直接看代码运行效果。</p>
+<p>另外也可以在运行游戏的过程中实现许多编辑器中的功能，比如动态生成一些东西，或者将运行时的东西反保存到编辑器中。</p>
+<p>虽然这些不算什么新鲜功能，比如后者rpg maker都能做到，前者unity想弄也可以（虽然无比麻烦和拉胯）。但godot的特点因为是高度一致化，所以学习成本还挺低的。</p>
+<h4 id="合并概念，组件-对象，场景-对象"><a href="#合并概念，组件-对象，场景-对象" class="headerlink" title="合并概念，组件&#x3D;对象，场景&#x3D;对象"></a>合并概念，组件&#x3D;对象，场景&#x3D;对象</h4><p>我这里是拿unity里的概念来对比说的。 在Unity里的话，首先是分了很多的场景Scene，场景里会有许多的对象Object，一个对象上挂许多的组件Component。每个Component对应一类功能，比如物理运动、碰撞盒、音频、位图、动画……</p>
+<p>而在Godot里，<strong>所有的这一切，都算是对象</strong>。</p>
+<p>场景本身其实就是一个对象，所以可以场景套场景，或者一下实例化好几个场景。其实Unity虽然设计了场景这种东西，但用的时候，似乎许多项目并没按它设计的那种来用，因为限制很多，而且有许多不可控因素，使用方式反而更倾向Godot的这种设计。 另外就是，组件也是对象。把一个带功能的对象作为子对象挂在一个对象上，这个对象就有了这个功能。这个子对象，既算是组件，也是一个对象。这一点和Unity风格不同，初见可能觉得不太习惯，但用了会儿发现是非常美妙的。<del>（也有可能是我本来也没怎么学好Unity）</del></p>
+<p>Godot的这种合并概念的设计，大大地简化了开发，也弱化了限制，非常酷。</p>
+<h3 id="树形文档查找"><a href="#树形文档查找" class="headerlink" title="树形文档查找"></a>树形文档查找</h3><p>快速查找对象功能，查找直接用的是路径名称，非常方便也非常快速。它一切概念都合并成了对象，所以使用这种快速查找可以快速找到一切对象（场景、组件）。这个风格贯彻着整个游戏开发的始终。</p>
+<h3 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h3><p>相对于UE和Unity，它的学习资料实在是太少了，社区生态也并没有发展起来，编辑器的功能相对来说也还是薄弱。</p>
+<p>确实准确来说，我也不太懂其他方面，我只能说对于初学者而言，体验到的就是这些方面。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Godot还是蛮不错的感觉，至少在跟着<strong>Brackeys</strong>的教程做的时候感觉很简单、很爽。<del>（不排除是因为大神教学牛逼）</del>个人认为该引擎适用于做些独立小游戏这类的，未来学习资料多了，社区发展起来，还是不错的一个选择。至少这种，所有东西都看成Node的理念，我喜欢。</p>
+]]></content>
       <tags>
         <tag>Godot</tag>
       </tags>
@@ -404,6 +421,50 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
       </tags>
   </entry>
   <entry>
+    <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
+    <url>/2024/07/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。</p>
+<p>这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。</p>
+<h3 id="博客图片无法显示的原因"><a href="#博客图片无法显示的原因" class="headerlink" title="博客图片无法显示的原因"></a>博客图片无法显示的原因</h3><p>如标题而言，这篇文章就要讲述的就是之前的基于hexo快速搭建的个人博客中，文章的图片无法正常显示的问题。</p>
+<p>在Typora中，图片是写的路径位置，但当把文章上传到博客编辑的时候，博客是无法访问本地图片的路径的，所以在博客上的图片不能正常显示。不过，博客能访问网上图片的路径，因此只需要把图片上传到一个网页里面存放，然后在写博客的时候就可以直接正常使用。这就是图床的功能，简单来说就是你需要将图片上传到网上，以至于可以找到实现链接显示。</p>
+<p>考虑到简单的博客搭建，再加上先前的个人博客就是利用github pages实现，已经接触过GitHub，故而，我们接着利用GitHub。<del>使劲薅</del></p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="第一步-创建存放图片的仓库"><a href="#第一步-创建存放图片的仓库" class="headerlink" title="第一步 创建存放图片的仓库"></a>第一步 创建存放图片的仓库</h4><p>登录自己的Github，然后新建一个仓库用于存储图片</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721212250153.png" alt="image-20240721212250153"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721221630058.png" alt="image-20240721221630058"></p>
+<p>如此，用于存储的仓库就建好了。</p>
+<h4 id="第二步-安装配置Picgo"><a href="#第二步-安装配置Picgo" class="headerlink" title="第二步 安装配置Picgo"></a>第二步 安装配置Picgo</h4><p>搜索安装软件，注意，记住软件安装的位置在哪！！！下一步需要用到</p>
+<p>安装后的界面如下</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721222042533.png" alt="image-20240721222042533"></p>
+<p>点击图床设置中的Github</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721222422203.png" alt="image-20240721222422203"></p>
+<p>仓库名是<strong>账号&#x2F;仓库名</strong>的形式</p>
+<p>分支名一般仓库默认创建的是<strong>main</strong>分支</p>
+<p>Token需要去Github的setting页面获取</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721223035486.png" alt="image-20240721223035486"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721223632140.png" alt="image-20240721223632140"></p>
+<p>然后滑至最下的页面生成token，将token复制到picgo配置的位置</p>
+<p>注意，token生成的时候不要立马关掉页面，关闭后不会再显示，注意保存</p>
+<p>点击picgo配置设置的确定保存</p>
+<p>然后找一张图片直接拖动到上传区的页面，上传，再去GitHub的仓库看看图片是否上传成功</p>
+<h4 id="第三步-Typora有关设置"><a href="#第三步-Typora有关设置" class="headerlink" title="第三步 Typora有关设置"></a>第三步 Typora有关设置</h4><p>打开Typora,点击文件，偏好设置，图像</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721230247030-1721574249377-2.png"></p>
+<p>点击验证会向仓库上传位置上传Typora的图标</p>
+<p>如果出现错误，可以看报错信息提示的文件路径，打开picgo.log日志文件，查看错误原因，针对对应的错误去解决，这一部分就得多利用搜索以及ai等工具，<del>确信</del></p>
+<h3 id="上传博客文章图片"><a href="#上传博客文章图片" class="headerlink" title="上传博客文章图片"></a>上传博客文章图片</h3><p>在写文章的时候，需要插入图片就直接插入图片，右键图片，可以看到上传图片，点击即可上传</p>
+<p>如果你嫌每次插入图片都要上传麻烦的话，可以直接回Typora的设置，将图像插入时的操作直接跟换为上传图片，不过这样的弊端就是只要是用Typora写东西插入图片都会自动上传，有时容易将一些原本不想上传的内容都直接上传</p>
+<p>建议插入图片和上传图片还是有个分离，而不是直接捆绑。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>至此，就是Typora+picgo+Github搭建图床的全部内容。如果还是无法显示图片，看看网络情况，再看看仓库内是否上传了图片等。善用搜索、善用ai。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>Typora</tag>
+        <tag>picGo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</title>
     <url>/2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
@@ -435,26 +496,6 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
       <tags>
         <tag>unity</tag>
         <tag>WebGl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Typora+picgo+github搭建图床实现博客图片正常显示</title>
-    <url>/2024/07/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。</p>
-<p>这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。</p>
-<h3 id="博客图片无法现实的原因"><a href="#博客图片无法现实的原因" class="headerlink" title="博客图片无法现实的原因"></a>博客图片无法现实的原因</h3><p>如标题而言，这篇文章就要讲述的就是之前的基于hexo快速搭建的个人博客中，文章的图片无法正常显示的问题。</p>
-<p>在Typora中，图片是写的路径位置，但当把文章上传到博客编辑的时候，博客是无法访问本地图片的路径的，所以在博客上的图片不能正常显示。不过，博客能访问网上图片的路径，因此只需要把图片上传到一个网页里面存放，然后在写博客的时候就可以直接正常使用。这就是图床的功能，简单来说就是你需要将图片上传到网上，以至于可以找到实现链接显示。</p>
-<p>考虑到简单的博客搭建，再加上先前的个人博客就是利用github pages实现，已经接触过GitHub，故而，我们接着利用GitHub。<del>使劲薅</del></p>
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="第一步-创建存放图片的仓库"><a href="#第一步-创建存放图片的仓库" class="headerlink" title="第一步 创建存放图片的仓库"></a>第一步 创建存放图片的仓库</h4><p>登录自己的Github，然后新建一个仓库用于存储图片</p>
-<p><img src="/C:/Users/Awith/AppData/Roaming/Typora/typora-user-images/image-20240721212250153.png" alt="image-20240721212250153"></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>Typora</tag>
-        <tag>picGo</tag>
       </tags>
   </entry>
   <entry>
@@ -551,22 +592,6 @@ git pull origin main:side<span aria-hidden="true" class="line-numbers-rows"><spa
         <tag>git</tag>
         <tag>test</tag>
         <tag>vsc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欢迎来到我的小站</title>
-    <url>/2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/</url>
-    <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
-<p>额，其实还没想好写些什么。</p>
-<p>这个小站主要用途是让我的总结、笔记之类的能够多端协同以及便于分享给我的朋友。可能后续会加上杂谈、文章之类的吧，但目前没什么想法。</p>
-<p>往后打算开始随缘更新博客。</p>
-<p>如果对网站或者其中内容有问题、看法什么的，都可以找我。网站是有我的联系方式的，仔细翻翻就能找到。备注来意即可。</p>
-]]></content>
-      <categories>
-        <category>公告</category>
-      </categories>
-      <tags>
-        <tag>公告</tag>
       </tags>
   </entry>
   <entry>
@@ -717,6 +742,22 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
       <tags>
         <tag>git</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欢迎来到我的小站</title>
+    <url>/2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/</url>
+    <content><![CDATA[<p><del>因为喜欢，所以我为之痴迷。</del></p>
+<p>额，其实还没想好写些什么。</p>
+<p>这个小站主要用途是让我的总结、笔记之类的能够多端协同以及便于分享给我的朋友。可能后续会加上杂谈、文章之类的吧，但目前没什么想法。</p>
+<p>往后打算开始随缘更新博客。</p>
+<p>如果对网站或者其中内容有问题、看法什么的，都可以找我。网站是有我的联系方式的，仔细翻翻就能找到。备注来意即可。</p>
+]]></content>
+      <categories>
+        <category>公告</category>
+      </categories>
+      <tags>
+        <tag>公告</tag>
       </tags>
   </entry>
   <entry>
