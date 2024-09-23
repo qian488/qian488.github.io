@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>如何给你的Hexo个人博客加上可爱的live2d小人？ - 千幻笙的小窝</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Awith,qian488,qianhuangsheng,blog,"> 
+    <meta name="description" content="qian488,前言本文操作的前置准备，需要已经搭建好自己的hexo个人博客。没有搭建博客的话，可以根据本站之前的教程文章一步一步跟着搭建。搭建好后，需要live2d小人就可以跟着本文操作
+具体操作1.拉取live,"> 
+    <meta name="author" content="Awith"> 
+    <link rel="alternative" href="atom.xml" title="千幻笙的小窝" type="application/atom+xml"> 
+    <link rel="icon" href="../../../../img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="如何给你的Hexo个人博客加上可爱的live2d小人？ - 千幻笙的小窝"/>
+    <meta name="twitter:description" content="qian488,前言本文操作的前置准备，需要已经搭建好自己的hexo个人博客。没有搭建博客的话，可以根据本站之前的教程文章一步一步跟着搭建。搭建好后，需要live2d小人就可以跟着本文操作
+具体操作1.拉取live,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="千幻笙的小窝"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="如何给你的Hexo个人博客加上可爱的live2d小人？ - 千幻笙的小窝"/>
+    <meta property="og:description" content="qian488,前言本文操作的前置准备，需要已经搭建好自己的hexo个人博客。没有搭建博客的话，可以根据本站之前的教程文章一步一步跟着搭建。搭建好后，需要live2d小人就可以跟着本文操作
+具体操作1.拉取live,"/>
+    
+<link rel="stylesheet" href="../../../../css/diaspora.css">
+
+    <script>window.searchDbPath = "../../../../search.xml";</script>
+    <script src="/live2d-widget/autoload.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">千幻笙的小窝</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://qian488.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">如何给你的Hexo个人博客加上可爱的live2d小人？</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">如何给你的Hexo个人博客加上可爱的live2d小人？</h1>
+        <div class="stuff">
+            <span>九月 04, 2024</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/hexo/" rel="tag">hexo</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/live2d/" rel="tag">live2d</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文操作的前置准备，需要已经搭建好自己的hexo个人博客。没有搭建博客的话，可以根据本站之前的教程文章一步一步跟着搭建。搭建好后，需要live2d小人就可以跟着本文操作</p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="1-拉取live2d-widget项目"><a href="#1-拉取live2d-widget项目" class="headerlink" title="1.拉取live2d-widget项目"></a>1.拉取live2d-widget项目</h4><p>前往<a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget">live2d-widget</a>，通过<code>git clone</code>拉取项目到使用的主题的<strong>source</strong>文件夹下</p>
+<h4 id="2-使用live2d"><a href="#2-使用live2d" class="headerlink" title="2.使用live2d"></a>2.使用live2d</h4><p>在主题的<strong>layout</strong>文件夹内，找到<strong>head</strong>文件，并将以下代码添加其中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script src=<span class="hljs-string">&quot;/live2d-widget/autoload.js&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>修改<strong>live2d-widget</strong>文件夹下的<code>autoload.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> live2d_path = <span class="hljs-string">&quot;/live2d-widget/&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;</span>,<br></code></pre></td></tr></table></figure>
+
+<p>修改后，保存</p>
+<p>再将博文重新生成，部署，不出意外，即可看见效果</p>
+<p>如果<strong>live2d</strong>被遮挡住，可以进入<strong>live2d-widget</strong>文件夹下的<code>waifu.css</code></p>
+<p>找到<code>z-index</code>，将后面的数值修改为一个较大的数，数字越大，所在图层越高</p>
+<p>我这里设置的是99999</p>
+<p>一般情况下，这样就可以用了。</p>
+<h4 id="3-进阶微调"><a href="#3-进阶微调" class="headerlink" title="3.进阶微调"></a>3.进阶微调</h4><p>先将进入<a target="_blank" rel="noopener" href="https://github.com/Akilarlxh/live2d_api">live2d-api</a>，然后<strong>fork</strong>到自己的仓库，再将自己的仓库<code>git clone</code>到自己的本地，放在主题的<strong>source</strong>文件夹下,这个路径记住</p>
+<p>然后，修改<strong>live2d-widget</strong>文件夹下的<code>autoload.js</code></p>
+<p>将<strong>cdnPath</strong>修改为<strong>live2-api</strong>的路径，例如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;/live2d-api/Blog_live2d_api/&quot;</span>,<br></code></pre></td></tr></table></figure>
+
+<h5 id="修改模型大小比例与位置"><a href="#修改模型大小比例与位置" class="headerlink" title="修改模型大小比例与位置"></a>修改模型大小比例与位置</h5><p>如果需要修改模型大小比例与位置，进入<strong>live2d-api</strong>的<strong>model</strong>文件夹下，进入需要修改的模型文件夹，找到<code>index.json</code>文件，找到<code>layout</code>部分,进行微调</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;layout&quot;</span>: &#123;<br>		<span class="hljs-string">&quot;center_x&quot;</span>:<span class="hljs-number">0.0</span>,<br>        <span class="hljs-string">&quot;center_y&quot;</span>:-<span class="hljs-number">0.1</span>,<br>        <span class="hljs-string">&quot;width&quot;</span>:<span class="hljs-number">2.0</span><br>	&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>我这里以蕾姆的为例</p>
+<h5 id="修改live2d插件的样式"><a href="#修改live2d插件的样式" class="headerlink" title="修改live2d插件的样式"></a>修改live2d插件的样式</h5><p>如果需要修改整个live2d的位置的话，进入<strong>live2d-widget</strong>文件夹下的<code>waifu.css</code></p>
+<p>以下是我的配置，可做参考</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#waifu-toggle</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">100</span>, <span class="hljs-number">179</span>, <span class="hljs-number">243</span>, <span class="hljs-number">0.048</span>);<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50px</span>;<br>	<span class="hljs-attribute">bottom</span>: <span class="hljs-number">80px</span>;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#f4f9fa6e</span>;<br>	<span class="hljs-attribute">cursor</span>: pointer;<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">margin-right</span>: <span class="hljs-number">30px</span>;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">2px</span> <span class="hljs-number">5px</span> <span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">transition</span>: margin-left <span class="hljs-number">1s</span>;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;<br>	<span class="hljs-attribute">writing-mode</span>: horizontal-tb;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-toggle</span><span class="hljs-selector-class">.waifu-toggle-active</span> &#123;<br>	<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">50px</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-toggle</span><span class="hljs-selector-class">.waifu-toggle-active</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>	<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">30px</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu</span> &#123;<br>	<span class="hljs-attribute">bottom</span>: -<span class="hljs-number">1000px</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">margin-bottom</span>: -<span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">3px</span>);<br>	<span class="hljs-attribute">transition</span>: transform .<span class="hljs-number">3s</span> ease-in-out, bottom <span class="hljs-number">3s</span> ease-in-out;<br>	<span class="hljs-attribute">z-index</span>: <span class="hljs-number">999999</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>	<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tips</span> &#123;<br>	<span class="hljs-attribute">animation</span>: shake <span class="hljs-number">50s</span> ease-in-out <span class="hljs-number">5s</span> infinite;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">60</span>, <span class="hljs-number">220</span>, <span class="hljs-number">248</span>, <span class="hljs-number">0.356</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">rgba</span>(<span class="hljs-number">48</span>, <span class="hljs-number">176</span>, <span class="hljs-number">235</span>, <span class="hljs-number">0.62</span>);<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">12px</span>;<br>	<span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">3px</span> <span class="hljs-number">15px</span> <span class="hljs-number">2px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">191</span>, <span class="hljs-number">158</span>, <span class="hljs-number">118</span>, .<span class="hljs-number">2</span>);<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">24px</span>;<br>	<span class="hljs-attribute">margin</span>: -<span class="hljs-number">30px</span> <span class="hljs-number">20px</span>;<br>	<span class="hljs-attribute">min-height</span>: <span class="hljs-number">70px</span>;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">overflow</span>: hidden;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">10px</span>;<br>	<span class="hljs-attribute">position</span>: absolute;<br>	<span class="hljs-attribute">text-overflow</span>: ellipsis;<br>	<span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">1s</span>;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">250px</span>;<br>	<span class="hljs-attribute">word-break</span>: break-all;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tips</span><span class="hljs-selector-class">.waifu-tips-active</span> &#123;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">transition</span>: opacity .<span class="hljs-number">2s</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tips</span> <span class="hljs-selector-tag">span</span> &#123;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#0099cc</span>;<br>&#125;<br><br><span class="hljs-selector-id">#live2d</span> &#123;<br>	<span class="hljs-attribute">cursor</span>: grab;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br>	<span class="hljs-attribute">position</span>: relative;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>&#125;<br><br><span class="hljs-selector-id">#live2d</span><span class="hljs-selector-pseudo">:active</span> &#123;<br>	<span class="hljs-attribute">cursor</span>: grabbing;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> &#123;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#aaa</span>;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">position</span>: absolute;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">70px</span>;<br>	<span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">1s</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-id">#waifu-tool</span> &#123;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> <span class="hljs-selector-tag">span</span> &#123;<br>	<span class="hljs-attribute">display</span>: block;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;<br>	<span class="hljs-attribute">text-align</span>: center;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> svg &#123;<br>	fill: <span class="hljs-number">#7b8c9d</span>;<br>	<span class="hljs-attribute">cursor</span>: pointer;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">25px</span>;<br>	<span class="hljs-attribute">transition</span>: fill .<span class="hljs-number">3s</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> svg<span class="hljs-selector-pseudo">:hover</span> &#123;<br>	fill: <span class="hljs-number">#0684bd</span>; <span class="hljs-comment">/* #34495e */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果需要live2d小人在左边的话</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#waifu</span> &#123;<br>	<span class="hljs-attribute">bottom</span>: -<span class="hljs-number">1000px</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">margin-bottom</span>: -<span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">3px</span>);<br>	<span class="hljs-attribute">transition</span>: transform .<span class="hljs-number">3s</span> ease-in-out, bottom <span class="hljs-number">3s</span> ease-in-out;<br>	<span class="hljs-attribute">z-index</span>: <span class="hljs-number">999999</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>将这部分的<strong>right</strong>修改为<strong>left</strong>即可</p>
+<h5 id="修改live2d的文本"><a href="#修改live2d的文本" class="headerlink" title="修改live2d的文本"></a>修改live2d的文本</h5><p>进入<strong>live2d-widget</strong>文件夹下的<code>waifu-tips.json</code></p>
+<p>就可以按照自己的想法修改</p>
+<h5 id="删除模型"><a href="#删除模型" class="headerlink" title="删除模型"></a>删除模型</h5><p>进入<strong>live2d-api</strong>文件夹下的<code>model_list.json</code></p>
+<p>即可看见使用的模型以及切换看板娘对应的语句</p>
+<p>不需要的删去即可，记得去<strong>model</strong>文件夹也将对应的模型删去</p>
+<p>当然，也可以不删，需要用的时候，可以回到<code>model_list.json</code>加回去</p>
+<h5 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h5><p>这一部分暂时还没摸索，之后有机会看情况补充</p>
+<p>有关<strong>live2d-widget</strong>和<strong>live2d-api</strong>的其他信息，也可直接去找到对应的github仓库，看看<strong>issue</strong>,或许你的问题已经被解答了。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget/issues?page=5&q=is:issue+is:closed">Issues · stevenjoezhang&#x2F;live2d-widget (github.com)</a></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>其实最花时间的是<code>waifu.css</code>和对应model的微调，毕竟要调整到适配自己网站再加上自己满意的情况，还是需要些时间滴</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://music.163.com/song/media/outer/url?id=869119.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://music.163.com/song/media/outer/url?id=22645196.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="http://music.163.com/song/media/outer/url?id=22636640.mp3"></li>
+                        
+                    
+                        
+                            <li title="3" data-url="http://music.163.com/song/media/outer/url?id=22765919.mp3"></li>
+                        
+                    
+                        
+                            <li title="4" data-url="http://music.163.com/song/media/outer/url?id=849739.mp3"></li>
+                        
+                    
+                        
+                            <li title="5" data-url="http://music.163.com/song/media/outer/url?id=1991012773.mp3"></li>
+                        
+                    
+                        
+                            <li title="6" data-url="http://music.163.com/song/media/outer/url?id=2003496380.mp3"></li>
+                        
+                    
+                        
+                            <li title="7" data-url="http://music.163.com/song/media/outer/url?id=1983527215.mp3"></li>
+                        
+                    
+                        
+                            <li title="8" data-url="http://music.163.com/song/media/outer/url?id=1996323631.mp3"></li>
+                        
+                    
+                        
+                            <li title="9" data-url="http://music.163.com/song/media/outer/url?id=2003496467.mp3"></li>
+                        
+                    
+                        
+                            <li title="10" data-url="http://music.163.com/song/media/outer/url?id=468490592.mp3"></li>
+                        
+                    
+                        
+                            <li title="11" data-url="http://music.163.com/song/media/outer/url?id=468490564.mp3"></li>
+                        
+                    
+                        
+                            <li title="12" data-url="http://music.163.com/song/media/outer/url?id=28151022.mp3"></li>
+                        
+                    
+                        
+                            <li title="13" data-url="http://music.163.com/song/media/outer/url?id=2114614108.mp3"></li>
+                        
+                    
+                        
+                            <li title="14" data-url="http://music.163.com/song/media/outer/url?id=1441758494.mp3"></li>
+                        
+                    
+                        
+                            <li title="15" data-url="http://music.163.com/song/media/outer/url?id=760533.mp3"></li>
+                        
+                    
+                        
+                            <li title="16" data-url="http://music.163.com/song/media/outer/url?id=29017078.mp3"></li>
+                        
+                    
+                        
+                            <li title="17" data-url="http://music.163.com/song/media/outer/url?id=2128223647.mp3"></li>
+                        
+                    
+                        
+                            <li title="18" data-url="http://music.163.com/song/media/outer/url?id=16686470.mp3"></li>
+                        
+                    
+                        
+                            <li title="19" data-url="http://music.163.com/song/media/outer/url?id=1805088448.mp3"></li>
+                        
+                    
+                        
+                            <li title="20" data-url="http://music.163.com/song/media/outer/url?id=34341360.mp3"></li>
+                        
+                    
+                        
+                            <li title="21" data-url="http://music.163.com/song/media/outer/url?id=478507889.mp3"></li>
+                        
+                    
+                        
+                            <li title="22" data-url="http://music.163.com/song/media/outer/url?id=5238992.mp3"></li>
+                        
+                    
+                        
+                            <li title="23" data-url="http://music.163.com/song/media/outer/url?id=571545720.mp3"></li>
+                        
+                    
+                        
+                            <li title="24" data-url="http://music.163.com/song/media/outer/url?id=34179901.mp3"></li>
+                        
+                    
+                        
+                            <li title="25" data-url="https://link.hhtjim.com/163/5146554.mp3"></li>
+                        
+                    
+                        
+                            <li title="26" data-url="http://music.163.com/song/media/outer/url?id=467624651.mp3"></li>
+                        
+                    
+                        
+                            <li title="27" data-url="https://music.163.com/song/media/outer/url?id=419827614.mp3"></li>
+                        
+                    
+                        
+                            <li title="28" data-url="http://music.163.com/song/media/outer/url?id=1416747959.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+            <div>
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Author:  </strong>Awith</a>
+    </li>
+    <li class="post-copyright-title">
+      <strong>title:  </strong>
+      如何给你的Hexo个人博客加上可爱的live2d小人？
+    </li>
+    <li class="post-copyright-link">
+      <strong>Link:  </strong>
+      <a href="" target="_blank" title="如何给你的Hexo个人博客加上可爱的live2d小人？">https://qian488.github.io</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License:   </strong>
+
+      
+        <a
+          rel="license"
+          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+          target="_blank"
+          title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"
+        >
+          CC BY-NC-ND 4.0
+        </a>
+
+      
+    </li>
+  </ul>
+<div>
+
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liPfH9ZRqICV6gNR"
+        data-cs="e81c4094d5c05607977b43e55ad572ee94f7b2f1"
+        data-r="Blog_comments"
+        data-o="qian488"
+        data-a="qian488"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8B%89%E5%8F%96live2d-widget%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">1.拉取live2d-widget项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8live2d"><span class="toc-number">2.2.</span> <span class="toc-text">2.使用live2d</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%BF%9B%E9%98%B6%E5%BE%AE%E8%B0%83"><span class="toc-number">2.3.</span> <span class="toc-text">3.进阶微调</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9E%8B%E5%A4%A7%E5%B0%8F%E6%AF%94%E4%BE%8B%E4%B8%8E%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.3.1.</span> <span class="toc-text">修改模型大小比例与位置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9live2d%E6%8F%92%E4%BB%B6%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.3.2.</span> <span class="toc-text">修改live2d插件的样式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9live2d%E7%9A%84%E6%96%87%E6%9C%AC"><span class="toc-number">2.3.3.</span> <span class="toc-text">修改live2d的文本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.4.</span> <span class="toc-text">删除模型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.5.</span> <span class="toc-text">增加模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">写在最后</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="../js/plugin.js"></script>
+<script src="../js/typed.js"></script>
+<script src="../js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="../photoswipe/photoswipe.css">
+<link rel="stylesheet" href="../photoswipe/default-skin/default-skin.css">
+
+
+<script src="../photoswipe/photoswipe.min.js"></script>
+<script src="../photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>

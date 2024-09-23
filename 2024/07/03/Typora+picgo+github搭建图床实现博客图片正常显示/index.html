@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Typora+picgo+github搭建图床实现博客图片正常显示 - 千幻笙的小窝</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Awith,qian488,qianhuangsheng,blog,"> 
+    <meta name="description" content="qian488,前言很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。
+这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。
+博客图片无法显示的原因如标题而言，这,"> 
+    <meta name="author" content="Awith"> 
+    <link rel="alternative" href="atom.xml" title="千幻笙的小窝" type="application/atom+xml"> 
+    <link rel="icon" href="../../../../img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Typora+picgo+github搭建图床实现博客图片正常显示 - 千幻笙的小窝"/>
+    <meta name="twitter:description" content="qian488,前言很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。
+这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。
+博客图片无法显示的原因如标题而言，这,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="千幻笙的小窝"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Typora+picgo+github搭建图床实现博客图片正常显示 - 千幻笙的小窝"/>
+    <meta property="og:description" content="qian488,前言很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。
+这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。
+博客图片无法显示的原因如标题而言，这,"/>
+    
+<link rel="stylesheet" href="../../../../css/diaspora.css">
+
+    <script>window.searchDbPath = "../../../../search.xml";</script>
+    <script src="/live2d-widget/autoload.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">千幻笙的小窝</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://qian488.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Typora+picgo+github搭建图床实现博客图片正常显示</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Typora+picgo+github搭建图床实现博客图片正常显示</h1>
+        <div class="stuff">
+            <span>七月 03, 2024</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/Typora/" rel="tag">Typora</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/github/" rel="tag">github</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/picGo/" rel="tag">picGo</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。</p>
+<p>这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。</p>
+<h3 id="博客图片无法显示的原因"><a href="#博客图片无法显示的原因" class="headerlink" title="博客图片无法显示的原因"></a>博客图片无法显示的原因</h3><p>如标题而言，这篇文章就要讲述的就是之前的基于hexo快速搭建的个人博客中，文章的图片无法正常显示的问题。</p>
+<p>在Typora中，图片是写的路径位置，但当把文章上传到博客编辑的时候，博客是无法访问本地图片的路径的，所以在博客上的图片不能正常显示。不过，博客能访问网上图片的路径，因此只需要把图片上传到一个网页里面存放，然后在写博客的时候就可以直接正常使用。这就是图床的功能，简单来说就是你需要将图片上传到网上，以至于可以找到实现链接显示。</p>
+<p>考虑到简单的博客搭建，再加上先前的个人博客就是利用github pages实现，已经接触过GitHub，故而，我们接着利用GitHub。<del>使劲薅</del></p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="第一步-创建存放图片的仓库"><a href="#第一步-创建存放图片的仓库" class="headerlink" title="第一步 创建存放图片的仓库"></a>第一步 创建存放图片的仓库</h4><p>登录自己的Github，然后新建一个仓库用于存储图片</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721212250153.png" alt="image-20240721212250153"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721221630058.png" alt="image-20240721221630058"></p>
+<p>如此，用于存储的仓库就建好了。</p>
+<h4 id="第二步-安装配置Picgo"><a href="#第二步-安装配置Picgo" class="headerlink" title="第二步 安装配置Picgo"></a>第二步 安装配置Picgo</h4><p>搜索安装软件，注意，记住软件安装的位置在哪！！！下一步需要用到</p>
+<p>安装后的界面如下</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721222042533.png" alt="image-20240721222042533"></p>
+<p>点击图床设置中的Github</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721222422203.png" alt="image-20240721222422203"></p>
+<p>仓库名是<strong>账号&#x2F;仓库名</strong>的形式</p>
+<p>分支名一般仓库默认创建的是<strong>main</strong>分支</p>
+<p>Token需要去Github的setting页面获取</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721223035486.png" alt="image-20240721223035486"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721223632140.png" alt="image-20240721223632140"></p>
+<p>然后滑至最下的页面生成token，将token复制到picgo配置的位置</p>
+<p>注意，token生成的时候不要立马关掉页面，关闭后不会再显示，注意保存</p>
+<p>点击picgo配置设置的确定保存</p>
+<p>然后找一张图片直接拖动到上传区的页面，上传，再去GitHub的仓库看看图片是否上传成功</p>
+<h4 id="第三步-Typora有关设置"><a href="#第三步-Typora有关设置" class="headerlink" title="第三步 Typora有关设置"></a>第三步 Typora有关设置</h4><p>打开Typora,点击文件，偏好设置，图像</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721230247030-1721574249377-2.png"></p>
+<p>点击验证会向仓库上传位置上传Typora的图标</p>
+<p>如果出现错误，可以看报错信息提示的文件路径，打开picgo.log日志文件，查看错误原因，针对对应的错误去解决，这一部分就得多利用搜索以及ai等工具，<del>确信</del></p>
+<h3 id="上传博客文章图片"><a href="#上传博客文章图片" class="headerlink" title="上传博客文章图片"></a>上传博客文章图片</h3><p>在写文章的时候，需要插入图片就直接插入图片，右键图片，可以看到上传图片，点击即可上传</p>
+<p>如果你嫌每次插入图片都要上传麻烦的话，可以直接回Typora的设置，将图像插入时的操作直接跟换为上传图片，不过这样的弊端就是只要是用Typora写东西插入图片都会自动上传，有时容易将一些原本不想上传的内容都直接上传</p>
+<p>建议插入图片和上传图片还是有个分离，而不是直接捆绑。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>至此，就是Typora+picgo+Github搭建图床的全部内容。如果还是无法显示图片，看看网络情况，再看看仓库内是否上传了图片等。善用搜索、善用ai。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://music.163.com/song/media/outer/url?id=869119.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://music.163.com/song/media/outer/url?id=22645196.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="http://music.163.com/song/media/outer/url?id=22636640.mp3"></li>
+                        
+                    
+                        
+                            <li title="3" data-url="http://music.163.com/song/media/outer/url?id=22765919.mp3"></li>
+                        
+                    
+                        
+                            <li title="4" data-url="http://music.163.com/song/media/outer/url?id=849739.mp3"></li>
+                        
+                    
+                        
+                            <li title="5" data-url="http://music.163.com/song/media/outer/url?id=1991012773.mp3"></li>
+                        
+                    
+                        
+                            <li title="6" data-url="http://music.163.com/song/media/outer/url?id=2003496380.mp3"></li>
+                        
+                    
+                        
+                            <li title="7" data-url="http://music.163.com/song/media/outer/url?id=1983527215.mp3"></li>
+                        
+                    
+                        
+                            <li title="8" data-url="http://music.163.com/song/media/outer/url?id=1996323631.mp3"></li>
+                        
+                    
+                        
+                            <li title="9" data-url="http://music.163.com/song/media/outer/url?id=2003496467.mp3"></li>
+                        
+                    
+                        
+                            <li title="10" data-url="http://music.163.com/song/media/outer/url?id=468490592.mp3"></li>
+                        
+                    
+                        
+                            <li title="11" data-url="http://music.163.com/song/media/outer/url?id=468490564.mp3"></li>
+                        
+                    
+                        
+                            <li title="12" data-url="http://music.163.com/song/media/outer/url?id=28151022.mp3"></li>
+                        
+                    
+                        
+                            <li title="13" data-url="http://music.163.com/song/media/outer/url?id=2114614108.mp3"></li>
+                        
+                    
+                        
+                            <li title="14" data-url="http://music.163.com/song/media/outer/url?id=1441758494.mp3"></li>
+                        
+                    
+                        
+                            <li title="15" data-url="http://music.163.com/song/media/outer/url?id=760533.mp3"></li>
+                        
+                    
+                        
+                            <li title="16" data-url="http://music.163.com/song/media/outer/url?id=29017078.mp3"></li>
+                        
+                    
+                        
+                            <li title="17" data-url="http://music.163.com/song/media/outer/url?id=2128223647.mp3"></li>
+                        
+                    
+                        
+                            <li title="18" data-url="http://music.163.com/song/media/outer/url?id=16686470.mp3"></li>
+                        
+                    
+                        
+                            <li title="19" data-url="http://music.163.com/song/media/outer/url?id=1805088448.mp3"></li>
+                        
+                    
+                        
+                            <li title="20" data-url="http://music.163.com/song/media/outer/url?id=34341360.mp3"></li>
+                        
+                    
+                        
+                            <li title="21" data-url="http://music.163.com/song/media/outer/url?id=478507889.mp3"></li>
+                        
+                    
+                        
+                            <li title="22" data-url="http://music.163.com/song/media/outer/url?id=5238992.mp3"></li>
+                        
+                    
+                        
+                            <li title="23" data-url="http://music.163.com/song/media/outer/url?id=571545720.mp3"></li>
+                        
+                    
+                        
+                            <li title="24" data-url="http://music.163.com/song/media/outer/url?id=34179901.mp3"></li>
+                        
+                    
+                        
+                            <li title="25" data-url="https://link.hhtjim.com/163/5146554.mp3"></li>
+                        
+                    
+                        
+                            <li title="26" data-url="http://music.163.com/song/media/outer/url?id=467624651.mp3"></li>
+                        
+                    
+                        
+                            <li title="27" data-url="https://music.163.com/song/media/outer/url?id=419827614.mp3"></li>
+                        
+                    
+                        
+                            <li title="28" data-url="http://music.163.com/song/media/outer/url?id=1416747959.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+            <div>
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Author:  </strong>Awith</a>
+    </li>
+    <li class="post-copyright-title">
+      <strong>title:  </strong>
+      Typora+picgo+github搭建图床实现博客图片正常显示
+    </li>
+    <li class="post-copyright-link">
+      <strong>Link:  </strong>
+      <a href="" target="_blank" title="Typora+picgo+github搭建图床实现博客图片正常显示">https://qian488.github.io</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License:   </strong>
+
+      
+        <a
+          rel="license"
+          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+          target="_blank"
+          title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"
+        >
+          CC BY-NC-ND 4.0
+        </a>
+
+      
+    </li>
+  </ul>
+<div>
+
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liPfH9ZRqICV6gNR"
+        data-cs="e81c4094d5c05607977b43e55ad572ee94f7b2f1"
+        data-r="Blog_comments"
+        data-o="qian488"
+        data-a="qian488"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">博客图片无法显示的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E5%88%9B%E5%BB%BA%E5%AD%98%E6%94%BE%E5%9B%BE%E7%89%87%E7%9A%84%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">第一步 创建存放图片的仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEPicgo"><span class="toc-number">3.2.</span> <span class="toc-text">第二步 安装配置Picgo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-Typora%E6%9C%89%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">第三步 Typora有关设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87"><span class="toc-number">4.</span> <span class="toc-text">上传博客文章图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">5.</span> <span class="toc-text">写在最后</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="../js/plugin.js"></script>
+<script src="../js/typed.js"></script>
+<script src="../js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="../photoswipe/photoswipe.css">
+<link rel="stylesheet" href="../photoswipe/default-skin/default-skin.css">
+
+
+<script src="../photoswipe/photoswipe.min.js"></script>
+<script src="../photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>

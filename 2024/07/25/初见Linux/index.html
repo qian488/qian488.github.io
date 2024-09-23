@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>初见Linux - 千幻笙的小窝</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Awith,qian488,qianhuangsheng,blog,"> 
+    <meta name="description" content="qian488,前言玩Linux，最重要就是要留意报错信息，然后使劲搜，搜着搜着就能解决了。(雾)
+本篇文章主要记录我装系统的过程以及使用Linux的基本命令
+Linux简介Linux 是一款基于 GNU 通用公共,"> 
+    <meta name="author" content="Awith"> 
+    <link rel="alternative" href="atom.xml" title="千幻笙的小窝" type="application/atom+xml"> 
+    <link rel="icon" href="../../../../img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="初见Linux - 千幻笙的小窝"/>
+    <meta name="twitter:description" content="qian488,前言玩Linux，最重要就是要留意报错信息，然后使劲搜，搜着搜着就能解决了。(雾)
+本篇文章主要记录我装系统的过程以及使用Linux的基本命令
+Linux简介Linux 是一款基于 GNU 通用公共,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="千幻笙的小窝"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="初见Linux - 千幻笙的小窝"/>
+    <meta property="og:description" content="qian488,前言玩Linux，最重要就是要留意报错信息，然后使劲搜，搜着搜着就能解决了。(雾)
+本篇文章主要记录我装系统的过程以及使用Linux的基本命令
+Linux简介Linux 是一款基于 GNU 通用公共,"/>
+    
+<link rel="stylesheet" href="../../../../css/diaspora.css">
+
+    <script>window.searchDbPath = "../../../../search.xml";</script>
+    <script src="/live2d-widget/autoload.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">千幻笙的小窝</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://qian488.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">初见Linux</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">初见Linux</h1>
+        <div class="stuff">
+            <span>七月 25, 2024</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>玩Linux，最重要就是要留意报错信息，然后使劲搜，搜着搜着就能解决了。<del>(雾)</del></p>
+<p>本篇文章主要记录我装系统的过程以及使用Linux的基本命令</p>
+<h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><p>Linux 是一款基于 GNU 通用公共许可证（GPL）发布的<strong>免费开源操作系统</strong>。任何人都可以运行、研究、修改和重新分发源代码，甚至还可以销售修改后代码的副本。Linux已成为全球范围内规模最大的开源软件项目。</p>
+<h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>我是在自己的笔记本电脑装第二系统，装的Ubuntu，因此需要做些准备。</p>
+<h4 id="0-准备部分"><a href="#0-准备部分" class="headerlink" title="0.准备部分"></a>0.准备部分</h4><h5 id="0-1分配空间"><a href="#0-1分配空间" class="headerlink" title="0.1分配空间"></a>0.1分配空间</h5><p>右键“此电脑”进入管理，点击左侧的“磁盘管理”，选择需要的盘，点击”压缩卷”，分配空间。假设分配200G空间，就填入200*1024&#x3D;204800MB。</p>
+<h5 id="0-2制作启动盘"><a href="#0-2制作启动盘" class="headerlink" title="0.2制作启动盘"></a>0.2制作启动盘</h5><p>准备闲置u盘，或者空的，制作系统盘。制作过程会清空盘的内容，注意备份资料。下载软件”UltraSO”，下载Ubuntu镜像，然后在软件中打开Ubuntu，点击”启动”-&gt;”写入硬盘映像”，选择用于制作系统盘的u盘，如此，系统盘就做好了。</p>
+<h4 id="1-引导安装"><a href="#1-引导安装" class="headerlink" title="1.引导安装"></a>1.引导安装</h4><h5 id="1-1进入bios调整系统引导"><a href="#1-1进入bios调整系统引导" class="headerlink" title="1.1进入bios调整系统引导"></a>1.1进入bios调整系统引导</h5><p>插入制作好的系统盘，重启电脑，按”F2“进入bios界面。(不同厂商进入的方式不同)</p>
+<p>将UEFI字样的引导分区放到最前面，保存后退出，重启。此时，就会进入Ubuntu安装程序。</p>
+<h5 id="1-2Ubuntu安装"><a href="#1-2Ubuntu安装" class="headerlink" title="1.2Ubuntu安装"></a>1.2Ubuntu安装</h5><p>按喜好进行选择语言，然后选择最小化安装，有需要的后续再装就好。</p>
+<p>在安装类型的时候选择其他选项，自行分配系统分区。我这里是参考了一篇文章的内容，但是我忘了在哪。</p>
+<p>找到上文中在windows系统分配的200GB空间(看自己分配的是多少)。点击左下角“+”号进行分区设置。</p>
+<p>新建boot引导分区，大小为2GB &#x3D; 2*1024MB &#x3D; 2048MB。设置为主分区，文件系统选择“Ext4”。</p>
+<p>新建交换分区，大小一般为主机内存1-2倍，由于本机内存为8GB，所以设置分区大小为8GB&#x3D;8192MB。分区类型选择“逻辑分区”，文件系统选择“交换空间”。</p>
+<p>新建主分区（相当于windows的C盘），存储Ubuntu的主要系统文件，大小一般为20-50GB，我设置为50GB&#x3D;51200MB，分区类型选择主分区，文件系统选择“Ext4”，挂载点选择“&#x2F;”。</p>
+<p>新建数据分区（相当于Windows的数据盘），容量大小为分配后剩余的空间。分区类型选择逻辑分区，文件系统选择“Ext4”，挂载点选择“&#x2F;home”。</p>
+<p>点击右下角“现在安装”，确认分区无误后，点击“继续”。</p>
+<p>根据目前所在地选择时区，我选择的是上海。</p>
+<p>然后就是设置账号名，主机名，(记得全英文)，登录密码(也是root密码)。等待安装完毕，重启。根据提示拔掉U盘，按下”Enter“。重启后，进入选择界面，选择Ubuntu系统，就可以进入系统了，如此，系统就算安装完毕。</p>
+<h4 id="2-初始配置"><a href="#2-初始配置" class="headerlink" title="2.初始配置"></a>2.初始配置</h4><h5 id="2-1更换国内软件源"><a href="#2-1更换国内软件源" class="headerlink" title="2.1更换国内软件源"></a>2.1更换国内软件源</h5><p>由于Ubuntu的软件源服务器在境外，因此下载速度会很慢，需要更改软件源为国内镜像网站。</p>
+<p>点击左下角的设置界面，找到Software&amp;Updates，Download from选择Select Best Server。</p>
+<p>进入&#x2F;ect&#x2F;apt路径，找到软件源配置文件“sources.list”，使用Ubuntu自带的编辑器对“sources.list”进行修改，熟悉vi、vim的可以使用vi、vim命令进行编辑。将源文件清空并替换为下列源地址。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs text">deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse<br><br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse<br><br>## Pre-released source, not recommended.<br># deb https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse<br></code></pre></td></tr></table></figure>
+
+<p>点击“保存”按钮或者“ctrl+s”后退出，vi、vim输入“:wq”后退出。</p>
+<h5 id="2-2设置apt包管理工具"><a href="#2-2设置apt包管理工具" class="headerlink" title="2.2设置apt包管理工具"></a>2.2设置apt包管理工具</h5><p>apt是Ubuntu上的软件包管理器，可以通过apt的相关命令进行软件的更新、卸载、故障排除等。更换国内软件源后需要对apt进行更新。</p>
+<p>首先更新apt软件包的源。输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt update<br></code></pre></td></tr></table></figure>
+
+<p>更新完apt的源后，进行相关软件包的升级。输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt upgrade<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-3配置局域网ssh连接"><a href="#2-3配置局域网ssh连接" class="headerlink" title="2.3配置局域网ssh连接"></a>2.3配置局域网ssh连接</h5><p>使用以下命令安装一下Ubuntu的网络工具包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install net-tools<br></code></pre></td></tr></table></figure>
+
+<p>在Ubuntu上启用SSH。</p>
+<p>Secure Shell (SSH) 是一个网络协议，它主要被用来加密客户端和服务端之间的连接。 从而建立一条安全的交互通道。</p>
+<p>使用以下命令安装ssh工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install openssh-server<br></code></pre></td></tr></table></figure>
+
+<p>如果显示安装依赖，无法安装，先卸掉原本可能安装的不完整的。</p>
+<p>输入命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt autoremove openssh-client<br></code></pre></td></tr></table></figure>
+
+<p>然后重新安装。</p>
+<p>接下来修改一下ssh的系统配置，输入以下命令，用编辑器打开配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo gedit /etc/ssh/sshd_config //注意不要和ssh_config文件搞混了<br></code></pre></td></tr></table></figure>
+
+<p>修改四个位置。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">将“Port 22”一行解除注释，可以自定义端口号，这里直接用默认的“22”端口号。<br>将“ListenAddress 0.0.0.0”一行解除注释。<br>将“PermitRootLogin prohibit-password”一行解除注释并将“prohibit-password”修改为“yes”。<br>将“PasswordAuthentication yes”一行解除注释。<br></code></pre></td></tr></table></figure>
+
+<p>打开ssh服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo service ssh start 或 systemctl start ssh<br></code></pre></td></tr></table></figure>
+
+<p>查看目前ssh的服务状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo service ssh status 或 systemctl status ssh<br></code></pre></td></tr></table></figure>
+
+<p>设置ssh开机自启动。输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> ssh<br></code></pre></td></tr></table></figure>
+
+<p>至此ssh的配置完成。</p>
+<h4 id="3-常用软件安装"><a href="#3-常用软件安装" class="headerlink" title="3.常用软件安装"></a>3.常用软件安装</h4><h5 id="3-1Chrome"><a href="#3-1Chrome" class="headerlink" title="3.1Chrome"></a>3.1Chrome</h5><p>进入官网下载chrome浏览器的“deb”后缀文件。</p>
+<p>找到下载路径，输入以下命令进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dpkg -i google-chrome-stable_current_amd64.deb<br></code></pre></td></tr></table></figure>
+
+<p><strong>google-chrome-stable_current_amd64.deb</strong>是下载的文件的名字，如果有报错，就检查一下是否和下载的文件名一致。</p>
+<h5 id="3-2搜狗输入法"><a href="#3-2搜狗输入法" class="headerlink" title="3.2搜狗输入法"></a>3.2搜狗输入法</h5><p>进入浏览器搜索，官方有教程，按教程一步一步，即可安装。</p>
+<p>其他软件都可以按这个方式去下载，去浏览器搜官网。</p>
+<p>ps：</p>
+<p>1.终端的autoremove慎用，我忘了删什么东西的时候，把图形界面给删掉，然后就只剩下命令行，然后就搜啊搜，重新将图形界面下回来。</p>
+<p>2.如果时间不一致，可使用以下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install ntpdate<br>sudo ntpdate time.windows.com<br>sudo hwclock --localtime --systohc<br></code></pre></td></tr></table></figure>
+
+<p>3.如果声音无法播放，原因有些多，具体情况具体排查，可能是默认静音，也可能是没有声卡驱动，也可能是系统没更新完，有可能是什么其他问题。</p>
+<p>我的问题是windows10下可以正常播放，进入Ubuntu没有声音，重启，暂时性恢复，指过了几天，又没有声音了。然后，删掉自带的snap后，声音恢复，我也很奇怪。</p>
+<p>4.如果还有什么其他问题，搜索，搜着搜着就有解决方案。</p>
+<h3 id="常用命令总结"><a href="#常用命令总结" class="headerlink" title="常用命令总结"></a>常用命令总结</h3><p>0.提权，类似于管理员模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo<br></code></pre></td></tr></table></figure>
+
+<p>需要输入自己的密码</p>
+<p>1.重启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">reboot<br></code></pre></td></tr></table></figure>
+
+<p>2.杀死进程(关闭程序)</p>
+<p>ctrl+c退出当前程序</p>
+<p>后台程序需要kill，PID是程序的进程ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> PID<br></code></pre></td></tr></table></figure>
+
+<p>3.下载安装</p>
+<p>浏览器下载.deb文件,然后终端打开文件所在位置，输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo dpkg -i 文件名<br></code></pre></td></tr></table></figure>
+
+<p>命令行直接下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install XXX<br></code></pre></td></tr></table></figure>
+
+<p>4.列出目录内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
+
+<p>5.切换目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span><br></code></pre></td></tr></table></figure>
+
+<p>6.显示文件内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名<br></code></pre></td></tr></table></figure>
+
+<p>7.创建新目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> 名字<br></code></pre></td></tr></table></figure>
+
+<p>8.搜索内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grep<br></code></pre></td></tr></table></figure>
+
+<p>使用上的话，这些够用了，有图形界面，这些有些也用不上，其他有需要，搜就完事了。<del>(绝对不是因为我懒)</del></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>初见Linux系统，并没有看到其特别优秀之处，应该是我还没学到或者是用到，感受不到，但是用着确实感觉帅。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">学习资料</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="https://link.hhtjim.com/163/5146554.mp3">
+            </audio>
+            
+        </div>
+        
+            <div>
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Author:  </strong>Awith</a>
+    </li>
+    <li class="post-copyright-title">
+      <strong>title:  </strong>
+      初见Linux
+    </li>
+    <li class="post-copyright-link">
+      <strong>Link:  </strong>
+      <a href="" target="_blank" title="初见Linux">https://qian488.github.io</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License:   </strong>
+
+      
+        <a
+          rel="license"
+          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+          target="_blank"
+          title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"
+        >
+          CC BY-NC-ND 4.0
+        </a>
+
+      
+    </li>
+  </ul>
+<div>
+
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liPfH9ZRqICV6gNR"
+        data-cs="e81c4094d5c05607977b43e55ad572ee94f7b2f1"
+        data-r="Blog_comments"
+        data-o="qian488"
+        data-a="qian488"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">Linux简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">装系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-%E5%87%86%E5%A4%87%E9%83%A8%E5%88%86"><span class="toc-number">3.1.</span> <span class="toc-text">0.准备部分</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#0-1%E5%88%86%E9%85%8D%E7%A9%BA%E9%97%B4"><span class="toc-number">3.1.1.</span> <span class="toc-text">0.1分配空间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#0-2%E5%88%B6%E4%BD%9C%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="toc-number">3.1.2.</span> <span class="toc-text">0.2制作启动盘</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BC%95%E5%AF%BC%E5%AE%89%E8%A3%85"><span class="toc-number">3.2.</span> <span class="toc-text">1.引导安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1%E8%BF%9B%E5%85%A5bios%E8%B0%83%E6%95%B4%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC"><span class="toc-number">3.2.1.</span> <span class="toc-text">1.1进入bios调整系统引导</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2Ubuntu%E5%AE%89%E8%A3%85"><span class="toc-number">3.2.2.</span> <span class="toc-text">1.2Ubuntu安装</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">2.初始配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.1更换国内软件源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2%E8%AE%BE%E7%BD%AEapt%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.2设置apt包管理工具</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91ssh%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.3.3.</span> <span class="toc-text">2.3配置局域网ssh连接</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">3.4.</span> <span class="toc-text">3.常用软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1Chrome"><span class="toc-number">3.4.1.</span> <span class="toc-text">3.1Chrome</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">3.4.2.</span> <span class="toc-text">3.2搜狗输入法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">常用命令总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">5.</span> <span class="toc-text">写在最后</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="../js/plugin.js"></script>
+<script src="../js/typed.js"></script>
+<script src="../js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="../photoswipe/photoswipe.css">
+<link rel="stylesheet" href="../photoswipe/default-skin/default-skin.css">
+
+
+<script src="../photoswipe/photoswipe.min.js"></script>
+<script src="../photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Godot快速上手 - 千幻笙的小窝</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Awith,qian488,qianhuangsheng,blog,"> 
+    <meta name="description" content="qian488,前言Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。
+为什,"> 
+    <meta name="author" content="Awith"> 
+    <link rel="alternative" href="atom.xml" title="千幻笙的小窝" type="application/atom+xml"> 
+    <link rel="icon" href="../../../../img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Godot快速上手 - 千幻笙的小窝"/>
+    <meta name="twitter:description" content="qian488,前言Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。
+为什,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="千幻笙的小窝"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Godot快速上手 - 千幻笙的小窝"/>
+    <meta property="og:description" content="qian488,前言Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。
+为什,"/>
+    
+<link rel="stylesheet" href="../../../../css/diaspora.css">
+
+    <script>window.searchDbPath = "../../../../search.xml";</script>
+    <script src="/live2d-widget/autoload.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">千幻笙的小窝</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://qian488.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Godot快速上手</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Godot快速上手</h1>
+        <div class="stuff">
+            <span>七月 21, 2024</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/Godot/" rel="tag">Godot</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。</p>
+<p>为什么写这篇文章，主要是记录一下Godot游戏引擎的使用体验。</p>
+<p>我跟着的教程是油管游戏开发大神<strong>Brackeys</strong>的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LOhfqjmasi0&t=85s">How to make a vedio game</a></p>
+<p>至此，这篇文章于你的作用可能就结束了，因为他的视频教程真的非常棒，非常酷，跟着做就可以完成一款简单的2d平台跳跃游戏。</p>
+<p><del>怎么感觉好像这篇文章不怎么必要写，不管哩，写都写了</del></p>
+<p>接下来，简单讲讲Godot的优点与不足</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><h4 id="编辑器和脚本高度一致化"><a href="#编辑器和脚本高度一致化" class="headerlink" title="编辑器和脚本高度一致化"></a>编辑器和脚本高度一致化</h4><p>一致化到极致了，因为它的编辑器就是用它的脚本实现的，就是说Godot编辑器本身就是一个游戏。 </p>
+<p>所以可以轻松用脚本来控制它的编辑器，比如在编辑器中直接看代码运行效果。</p>
+<p>另外也可以在运行游戏的过程中实现许多编辑器中的功能，比如动态生成一些东西，或者将运行时的东西反保存到编辑器中。</p>
+<p>虽然这些不算什么新鲜功能，比如后者rpg maker都能做到，前者unity想弄也可以（虽然无比麻烦和拉胯）。但godot的特点因为是高度一致化，所以学习成本还挺低的。</p>
+<h4 id="合并概念，组件-对象，场景-对象"><a href="#合并概念，组件-对象，场景-对象" class="headerlink" title="合并概念，组件&#x3D;对象，场景&#x3D;对象"></a>合并概念，组件&#x3D;对象，场景&#x3D;对象</h4><p>我这里是拿unity里的概念来对比说的。 在Unity里的话，首先是分了很多的场景Scene，场景里会有许多的对象Object，一个对象上挂许多的组件Component。每个Component对应一类功能，比如物理运动、碰撞盒、音频、位图、动画……</p>
+<p>而在Godot里，<strong>所有的这一切，都算是对象</strong>。</p>
+<p>场景本身其实就是一个对象，所以可以场景套场景，或者一下实例化好几个场景。其实Unity虽然设计了场景这种东西，但用的时候，似乎许多项目并没按它设计的那种来用，因为限制很多，而且有许多不可控因素，使用方式反而更倾向Godot的这种设计。 另外就是，组件也是对象。把一个带功能的对象作为子对象挂在一个对象上，这个对象就有了这个功能。这个子对象，既算是组件，也是一个对象。这一点和Unity风格不同，初见可能觉得不太习惯，但用了会儿发现是非常美妙的。<del>（也有可能是我本来也没怎么学好Unity）</del></p>
+<p>Godot的这种合并概念的设计，大大地简化了开发，也弱化了限制，非常酷。</p>
+<h4 id="树形文档查找"><a href="#树形文档查找" class="headerlink" title="树形文档查找"></a>树形文档查找</h4><p>快速查找对象功能，查找直接用的是路径名称，非常方便也非常快速。它一切概念都合并成了对象，所以使用这种快速查找可以快速找到一切对象（场景、组件）。这个风格贯彻着整个游戏开发的始终。</p>
+<h3 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h3><p>相对于UE和Unity，它的学习资料实在是太少了，社区生态也并没有发展起来，编辑器的功能相对来说也还是薄弱。</p>
+<p>确实准确来说，我也不太懂其他方面，我只能说对于初学者而言，体验到的就是这些方面。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Godot还是蛮不错的感觉，至少在跟着<strong>Brackeys</strong>的教程做的时候感觉很简单、很爽。<del>（不排除是因为大神教学牛逼）</del>个人认为该引擎适用于做些独立小游戏这类的，未来学习资料多了，社区发展起来，还是不错的一个选择。至少这种，所有东西都看成Node的理念，我喜欢。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://music.163.com/song/media/outer/url?id=869119.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://music.163.com/song/media/outer/url?id=22645196.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="http://music.163.com/song/media/outer/url?id=22636640.mp3"></li>
+                        
+                    
+                        
+                            <li title="3" data-url="http://music.163.com/song/media/outer/url?id=22765919.mp3"></li>
+                        
+                    
+                        
+                            <li title="4" data-url="http://music.163.com/song/media/outer/url?id=849739.mp3"></li>
+                        
+                    
+                        
+                            <li title="5" data-url="http://music.163.com/song/media/outer/url?id=1991012773.mp3"></li>
+                        
+                    
+                        
+                            <li title="6" data-url="http://music.163.com/song/media/outer/url?id=2003496380.mp3"></li>
+                        
+                    
+                        
+                            <li title="7" data-url="http://music.163.com/song/media/outer/url?id=1983527215.mp3"></li>
+                        
+                    
+                        
+                            <li title="8" data-url="http://music.163.com/song/media/outer/url?id=1996323631.mp3"></li>
+                        
+                    
+                        
+                            <li title="9" data-url="http://music.163.com/song/media/outer/url?id=2003496467.mp3"></li>
+                        
+                    
+                        
+                            <li title="10" data-url="http://music.163.com/song/media/outer/url?id=468490592.mp3"></li>
+                        
+                    
+                        
+                            <li title="11" data-url="http://music.163.com/song/media/outer/url?id=468490564.mp3"></li>
+                        
+                    
+                        
+                            <li title="12" data-url="http://music.163.com/song/media/outer/url?id=28151022.mp3"></li>
+                        
+                    
+                        
+                            <li title="13" data-url="http://music.163.com/song/media/outer/url?id=2114614108.mp3"></li>
+                        
+                    
+                        
+                            <li title="14" data-url="http://music.163.com/song/media/outer/url?id=1441758494.mp3"></li>
+                        
+                    
+                        
+                            <li title="15" data-url="http://music.163.com/song/media/outer/url?id=760533.mp3"></li>
+                        
+                    
+                        
+                            <li title="16" data-url="http://music.163.com/song/media/outer/url?id=29017078.mp3"></li>
+                        
+                    
+                        
+                            <li title="17" data-url="http://music.163.com/song/media/outer/url?id=2128223647.mp3"></li>
+                        
+                    
+                        
+                            <li title="18" data-url="http://music.163.com/song/media/outer/url?id=16686470.mp3"></li>
+                        
+                    
+                        
+                            <li title="19" data-url="http://music.163.com/song/media/outer/url?id=1805088448.mp3"></li>
+                        
+                    
+                        
+                            <li title="20" data-url="http://music.163.com/song/media/outer/url?id=34341360.mp3"></li>
+                        
+                    
+                        
+                            <li title="21" data-url="http://music.163.com/song/media/outer/url?id=478507889.mp3"></li>
+                        
+                    
+                        
+                            <li title="22" data-url="http://music.163.com/song/media/outer/url?id=5238992.mp3"></li>
+                        
+                    
+                        
+                            <li title="23" data-url="http://music.163.com/song/media/outer/url?id=571545720.mp3"></li>
+                        
+                    
+                        
+                            <li title="24" data-url="http://music.163.com/song/media/outer/url?id=34179901.mp3"></li>
+                        
+                    
+                        
+                            <li title="25" data-url="https://link.hhtjim.com/163/5146554.mp3"></li>
+                        
+                    
+                        
+                            <li title="26" data-url="http://music.163.com/song/media/outer/url?id=467624651.mp3"></li>
+                        
+                    
+                        
+                            <li title="27" data-url="https://music.163.com/song/media/outer/url?id=419827614.mp3"></li>
+                        
+                    
+                        
+                            <li title="28" data-url="http://music.163.com/song/media/outer/url?id=1416747959.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+            <div>
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Author:  </strong>Awith</a>
+    </li>
+    <li class="post-copyright-title">
+      <strong>title:  </strong>
+      Godot快速上手
+    </li>
+    <li class="post-copyright-link">
+      <strong>Link:  </strong>
+      <a href="" target="_blank" title="Godot快速上手">https://qian488.github.io</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License:   </strong>
+
+      
+        <a
+          rel="license"
+          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+          target="_blank"
+          title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"
+        >
+          CC BY-NC-ND 4.0
+        </a>
+
+      
+    </li>
+  </ul>
+<div>
+
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liPfH9ZRqICV6gNR"
+        data-cs="e81c4094d5c05607977b43e55ad572ee94f7b2f1"
+        data-r="Blog_comments"
+        data-o="qian488"
+        data-a="qian488"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">优点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E5%92%8C%E8%84%9A%E6%9C%AC%E9%AB%98%E5%BA%A6%E4%B8%80%E8%87%B4%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">编辑器和脚本高度一致化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%BB%84%E4%BB%B6-%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%9C%BA%E6%99%AF-%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.</span> <span class="toc-text">合并概念，组件&#x3D;对象，场景&#x3D;对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2%E6%96%87%E6%A1%A3%E6%9F%A5%E6%89%BE"><span class="toc-number">2.3.</span> <span class="toc-text">树形文档查找</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B6%B3"><span class="toc-number">3.</span> <span class="toc-text">不足</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="../js/plugin.js"></script>
+<script src="../js/typed.js"></script>
+<script src="../js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="../photoswipe/photoswipe.css">
+<link rel="stylesheet" href="../photoswipe/default-skin/default-skin.css">
+
+
+<script src="../photoswipe/photoswipe.min.js"></script>
+<script src="../photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+</html>
