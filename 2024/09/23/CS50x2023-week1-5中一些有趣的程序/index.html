@@ -44,35 +44,32 @@
     <span id="config-title" style="display:none">千幻笙的小窝</span>
     <div id="loader"></div>
     <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://qian488.github.io"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">CS50x2023_week1-5中一些有趣的程序</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
+    <div id="top" class="apple-style-top-bar" style="display: block;">
+    <div class="apple-style-bar" style="width: 0;"></div>
+    <a class="iconfont icon-home apple-style-home-button" href="javascript:;" data-url="https://qian488.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play apple-style-play-button"></div>
+    <h3 class="apple-style-title-text">CS50x2023_week1-5中一些有趣的程序</h3>
+    <div class="apple-style-social">
+        <div class="apple-style-share">
+            <a title="获取二维码" class="iconfont icon-scan apple-style-qr-button" href="javascript:;"></a>
         </div>
+        <div id="qr" class="apple-style-qr-code"></div>
     </div>
-    <div class="scrollbar"></div>
+    <div class="apple-style-scrollbar"></div>
 </div>
-
     <div class="section">
-        <div class="article">
+        <div class="article apple-style-article">
     <div class='main'>
-        <h1 class="title">CS50x2023_week1-5中一些有趣的程序</h1>
-        <div class="stuff">
-            <span>九月 23, 2024</span>
-            
+      <h1 class="title apple-style-title">CS50x2023_week1-5中一些有趣的程序</h1>
+      <div class="stuff">
+        <span class="date">九月 23, 2024</span>
+        
   <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/CS50/" rel="tag">CS50</a></li></ul>
 
 
-        </div>
-        <div class="content markdown">
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>虽然说是week1-5的分享，但是，其实好玩的主要集中在week4 menory和week5 data-structures。前三章也不是说不好，只是我不太感兴趣而已。week3 Algorithms并没有什么算法的实现，只是三个模拟。<del>（算法的真谛是大模拟）</del>简单说说week4-5有什么好玩的。在这两章的Lab和Problem set可以实现<strong>读取wav文件并将音频声音变大</strong>、<strong>bmp图片的样式处理(包括变颜色、灰度化、棕褐色滤镜、水平镜像、模糊处理、边缘检测)<strong>、</strong>恢复jpg图片数据</strong>、<strong>反转wav音频</strong>、<strong>随机血型遗传模拟</strong>、<strong>拼写检查器</strong>。</p>
+      </div>
+      <div class="content markdown">
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>虽然说是week1-5的分享，但是，其实好玩的主要集中在week4 menory和week5 data-structures。前三章也不是说不好，只是我不太感兴趣而已。week3 Algorithms并没有什么算法的实现，只是三个模拟。<del>（算法的真谛是大模拟）</del>简单说说week4-5有什么好玩的。在这两章的Lab和Problem set可以实现<strong>读取wav文件并将音频声音变大</strong>、<strong>bmp图片的样式处理(包括变颜色、灰度化、棕褐色滤镜、水平镜像、模糊处理、边缘检测)<strong>、</strong>恢复jpg图片数据</strong>、<strong>反转wav音频</strong>、<strong>随机血型遗传模拟</strong>、<strong>拼写检查器</strong>。</p>
 <h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>编写一个程序来修改音频文件的音量。</p>
 <p><strong>WAV文件</strong></p>
 <p>WAV文件是表示音频的常用文件格式。WAV文件将音频存储为一系列“样本”：代表特定时间点上某个音频信号值的数字。WAV文件以一个44字节的“头文件”开始，其中包含有关文件本身的信息，包括文件大小、每秒样本数和每个样本的大小。在头文件之后，WAV文件包含一系列样本，每个样本是一个单独的2字节（16位）整数，代表特定时间点上的音频信号。</p>
@@ -1078,158 +1075,147 @@ bool unload(void)
 <p>但要坚定信念–你在变强</p>
 <p>如果对其中的程序感兴趣，而中途又缺乏什么资料的话，可以去<a target="_blank" rel="noopener" href="https://github.com/qian488/Life_Long_Learning/tree/main/CS50_Start/CS50x2023_MySolution">这里</a>获取。</p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title="0" data-url="http://music.163.com/song/media/outer/url?id=869119.mp3"></li>
-                        
-                    
-                        
-                            <li title="1" data-url="http://music.163.com/song/media/outer/url?id=22645196.mp3"></li>
-                        
-                    
-                        
-                            <li title="2" data-url="http://music.163.com/song/media/outer/url?id=22636640.mp3"></li>
-                        
-                    
-                        
-                            <li title="3" data-url="http://music.163.com/song/media/outer/url?id=22765919.mp3"></li>
-                        
-                    
-                        
-                            <li title="4" data-url="http://music.163.com/song/media/outer/url?id=849739.mp3"></li>
-                        
-                    
-                        
-                            <li title="5" data-url="http://music.163.com/song/media/outer/url?id=1991012773.mp3"></li>
-                        
-                    
-                        
-                            <li title="6" data-url="http://music.163.com/song/media/outer/url?id=2003496380.mp3"></li>
-                        
-                    
-                        
-                            <li title="7" data-url="http://music.163.com/song/media/outer/url?id=1983527215.mp3"></li>
-                        
-                    
-                        
-                            <li title="8" data-url="http://music.163.com/song/media/outer/url?id=1996323631.mp3"></li>
-                        
-                    
-                        
-                            <li title="9" data-url="http://music.163.com/song/media/outer/url?id=2003496467.mp3"></li>
-                        
-                    
-                        
-                            <li title="10" data-url="http://music.163.com/song/media/outer/url?id=468490592.mp3"></li>
-                        
-                    
-                        
-                            <li title="11" data-url="http://music.163.com/song/media/outer/url?id=468490564.mp3"></li>
-                        
-                    
-                        
-                            <li title="12" data-url="http://music.163.com/song/media/outer/url?id=28151022.mp3"></li>
-                        
-                    
-                        
-                            <li title="13" data-url="http://music.163.com/song/media/outer/url?id=2114614108.mp3"></li>
-                        
-                    
-                        
-                            <li title="14" data-url="http://music.163.com/song/media/outer/url?id=1441758494.mp3"></li>
-                        
-                    
-                        
-                            <li title="15" data-url="http://music.163.com/song/media/outer/url?id=760533.mp3"></li>
-                        
-                    
-                        
-                            <li title="16" data-url="http://music.163.com/song/media/outer/url?id=29017078.mp3"></li>
-                        
-                    
-                        
-                            <li title="17" data-url="http://music.163.com/song/media/outer/url?id=2128223647.mp3"></li>
-                        
-                    
-                        
-                            <li title="18" data-url="http://music.163.com/song/media/outer/url?id=16686470.mp3"></li>
-                        
-                    
-                        
-                            <li title="19" data-url="http://music.163.com/song/media/outer/url?id=1805088448.mp3"></li>
-                        
-                    
-                        
-                            <li title="20" data-url="http://music.163.com/song/media/outer/url?id=34341360.mp3"></li>
-                        
-                    
-                        
-                            <li title="21" data-url="http://music.163.com/song/media/outer/url?id=478507889.mp3"></li>
-                        
-                    
-                        
-                            <li title="22" data-url="http://music.163.com/song/media/outer/url?id=5238992.mp3"></li>
-                        
-                    
-                        
-                            <li title="23" data-url="http://music.163.com/song/media/outer/url?id=571545720.mp3"></li>
-                        
-                    
-                        
-                            <li title="24" data-url="http://music.163.com/song/media/outer/url?id=34179901.mp3"></li>
-                        
-                    
-                        
-                            <li title="25" data-url="https://link.hhtjim.com/163/5146554.mp3"></li>
-                        
-                    
-                        
-                            <li title="26" data-url="http://music.163.com/song/media/outer/url?id=467624651.mp3"></li>
-                        
-                    
-                        
-                            <li title="27" data-url="https://music.163.com/song/media/outer/url?id=419827614.mp3"></li>
-                        
-                    
-                        
-                            <li title="28" data-url="http://music.163.com/song/media/outer/url?id=1416747959.mp3"></li>
-                        
-                    
-                </ul>
-            
-        </div>
+        <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+          <source type="audio/mpeg" src="">
+        </audio>
         
-            <div>
-  <ul class="post-copyright">
+          <ul id="audio-list" style="display:none">
+            
+              
+                <li title="0" data-url="http://music.163.com/song/media/outer/url?id=869119.mp3"></li>
+              
+            
+              
+                <li title="1" data-url="http://music.163.com/song/media/outer/url?id=22645196.mp3"></li>
+              
+            
+              
+                <li title="2" data-url="http://music.163.com/song/media/outer/url?id=22636640.mp3"></li>
+              
+            
+              
+                <li title="3" data-url="http://music.163.com/song/media/outer/url?id=22765919.mp3"></li>
+              
+            
+              
+                <li title="4" data-url="http://music.163.com/song/media/outer/url?id=849739.mp3"></li>
+              
+            
+              
+                <li title="5" data-url="http://music.163.com/song/media/outer/url?id=1991012773.mp3"></li>
+              
+            
+              
+                <li title="6" data-url="http://music.163.com/song/media/outer/url?id=2003496380.mp3"></li>
+              
+            
+              
+                <li title="7" data-url="http://music.163.com/song/media/outer/url?id=1983527215.mp3"></li>
+              
+            
+              
+                <li title="8" data-url="http://music.163.com/song/media/outer/url?id=1996323631.mp3"></li>
+              
+            
+              
+                <li title="9" data-url="http://music.163.com/song/media/outer/url?id=2003496467.mp3"></li>
+              
+            
+              
+                <li title="10" data-url="http://music.163.com/song/media/outer/url?id=468490592.mp3"></li>
+              
+            
+              
+                <li title="11" data-url="http://music.163.com/song/media/outer/url?id=468490564.mp3"></li>
+              
+            
+              
+                <li title="12" data-url="http://music.163.com/song/media/outer/url?id=28151022.mp3"></li>
+              
+            
+              
+                <li title="13" data-url="http://music.163.com/song/media/outer/url?id=2114614108.mp3"></li>
+              
+            
+              
+                <li title="14" data-url="http://music.163.com/song/media/outer/url?id=1441758494.mp3"></li>
+              
+            
+              
+                <li title="15" data-url="http://music.163.com/song/media/outer/url?id=760533.mp3"></li>
+              
+            
+              
+                <li title="16" data-url="http://music.163.com/song/media/outer/url?id=29017078.mp3"></li>
+              
+            
+              
+                <li title="17" data-url="http://music.163.com/song/media/outer/url?id=2128223647.mp3"></li>
+              
+            
+              
+                <li title="18" data-url="http://music.163.com/song/media/outer/url?id=16686470.mp3"></li>
+              
+            
+              
+                <li title="19" data-url="http://music.163.com/song/media/outer/url?id=1805088448.mp3"></li>
+              
+            
+              
+                <li title="20" data-url="http://music.163.com/song/media/outer/url?id=34341360.mp3"></li>
+              
+            
+              
+                <li title="21" data-url="http://music.163.com/song/media/outer/url?id=478507889.mp3"></li>
+              
+            
+              
+                <li title="22" data-url="http://music.163.com/song/media/outer/url?id=5238992.mp3"></li>
+              
+            
+              
+                <li title="23" data-url="http://music.163.com/song/media/outer/url?id=571545720.mp3"></li>
+              
+            
+              
+                <li title="24" data-url="http://music.163.com/song/media/outer/url?id=34179901.mp3"></li>
+              
+            
+              
+                <li title="25" data-url="https://link.hhtjim.com/163/5146554.mp3"></li>
+              
+            
+              
+                <li title="26" data-url="http://music.163.com/song/media/outer/url?id=467624651.mp3"></li>
+              
+            
+              
+                <li title="27" data-url="https://music.163.com/song/media/outer/url?id=419827614.mp3"></li>
+              
+            
+              
+                <li title="28" data-url="http://music.163.com/song/media/outer/url?id=1416747959.mp3"></li>
+              
+            
+          </ul>
+        
+      </div>
+      
+        <div class="post-copyright-container">
+  <ul class="post-copyright apple-style-list">
     <li class="post-copyright-author">
-      <strong>Author:  </strong>Awith</a>
+      <strong>Author:  </strong><span>Awith</span>
     </li>
     <li class="post-copyright-license">
       <strong>License:   </strong>
-
       
-        <a
-          rel="license"
-          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
-          target="_blank"
-          title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)"
-        >
-          CC BY-NC-ND 4.0
-        </a>
-
+        <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)" class="apple-style-link">CC BY-NC-ND 4.0</a>
       
     </li>
   </ul>
-<div>
-
-        
-        
+</div>
+      
+      
     <div id="gitalk-container" class="comment link"
 		data-enable="true"
         data-ae="false"
@@ -1244,13 +1230,11 @@ bool unload(void)
 
     </div>
     
-        <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volume"><span class="toc-number">2.</span> <span class="toc-text">volume</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#helpers"><span class="toc-number">3.</span> <span class="toc-text">helpers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A9%E8%93%9D%E8%89%B2"><span class="toc-number">3.1.</span> <span class="toc-text">天蓝色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">灰度化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E8%A4%90%E8%89%B2"><span class="toc-number">3.3.</span> <span class="toc-text">深褐色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E9%95%9C%E5%83%8F"><span class="toc-number">3.4.</span> <span class="toc-text">水平镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A"><span class="toc-number">3.5.</span> <span class="toc-text">模糊</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B"><span class="toc-number">3.6.</span> <span class="toc-text">边缘检测</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recover"><span class="toc-number">4.</span> <span class="toc-text">recover</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reverse"><span class="toc-number">5.</span> <span class="toc-text">reverse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inheritance"><span class="toc-number">6.</span> <span class="toc-text">inheritance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#speller"><span class="toc-number">7.</span> <span class="toc-text">speller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">写在最后</span></a></li></ol>
-        </div>
+      <div class="side apple-style-toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volume"><span class="toc-number">2.</span> <span class="toc-text">volume</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#helpers"><span class="toc-number">3.</span> <span class="toc-text">helpers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A9%E8%93%9D%E8%89%B2"><span class="toc-number">3.1.</span> <span class="toc-text">天蓝色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">灰度化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E8%A4%90%E8%89%B2"><span class="toc-number">3.3.</span> <span class="toc-text">深褐色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E9%95%9C%E5%83%8F"><span class="toc-number">3.4.</span> <span class="toc-text">水平镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A"><span class="toc-number">3.5.</span> <span class="toc-text">模糊</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B"><span class="toc-number">3.6.</span> <span class="toc-text">边缘检测</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recover"><span class="toc-number">4.</span> <span class="toc-text">recover</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reverse"><span class="toc-number">5.</span> <span class="toc-text">reverse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inheritance"><span class="toc-number">6.</span> <span class="toc-text">inheritance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#speller"><span class="toc-number">7.</span> <span class="toc-text">speller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">写在最后</span></a></li></ol>
+      </div>
     
-</div>
-
-
+  </div>
     </div>
 </div>
 </body>
