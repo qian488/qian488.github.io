@@ -3922,7 +3922,7 @@ string HtoO(string s)
     <title>Stable Diffusion 模型与提示词分享</title>
     <url>/2024/08/17/Stable-Diffusion-%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%88%86%E4%BA%AB/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>该板块分享形式为对应提示词与模型,有个人实践的，有其他人推荐的。</p>
-<h3 id="个人实践"><a href="#个人实践" class="headerlink" title="个人实践"></a>个人实践</h3><h4 id="绿毛"><a href="#绿毛" class="headerlink" title="绿毛"></a>绿毛</h4><p>![02354-3069966321-best quality,masterpiece,HDR,UHD,8K,best quality,absurdres,ultra-fine painting,Vivid Colors,simple background,1girl,long hair,aq](D:\Projects\MyProjects\HexoBlog\blog\source_posts\Stable-Diffusion-模型与提示词分享.assets\02354-3069966321-best quality,masterpiece,HDR,UHD,8K,best quality,absurdres,ultra-fine painting,Vivid Colors,simple background,1girl,long hair,aq.png)</p>
+<h3 id="个人实践"><a href="#个人实践" class="headerlink" title="个人实践"></a>个人实践</h3><h4 id="绿毛"><a href="#绿毛" class="headerlink" title="绿毛"></a>绿毛</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/02354-3069966321-best%20quality%2Cmasterpiece%2CHDR%2CUHD%2C8K%2Cbest%20quality%2Cabsurdres%2Cultra-fine%20painting%2CVivid%20Colors%2Csimple%20background%2C1girl%2Clong%20hair%2Caq.png" alt="02354-3069966321-best quality,masterpiece,HDR,UHD,8K,best quality,absurdres,ultra-fine painting,Vivid Colors,simple background,1girl,long hair,aq"></p>
 <p>正向:</p>
 <pre><code>best quality,masterpiece,HDR,UHD,8K,best quality,
 absurdres,ultra-fine painting,Vivid Colors,simple background,
@@ -3943,8 +3943,8 @@ badhandv4
 <pre><code>Stable Diffusion:darkSushiMixMix_225D.safetensors
 VAE:vae-ft-mse-840000-ema-pruned
 </code></pre>
-<h4 id="黑丝or白丝"><a href="#黑丝or白丝" class="headerlink" title="黑丝or白丝"></a>黑丝or白丝</h4><p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\Stable-Diffusion-模型与提示词分享.assets\01952,.png" alt="01952,.png"></p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\Stable-Diffusion-模型与提示词分享.assets\02877,.png" alt="02877,.png"></p>
+<h4 id="黑丝or白丝"><a href="#黑丝or白丝" class="headerlink" title="黑丝or白丝"></a>黑丝or白丝</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/01952%252C.png" alt="01952,.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/02877%252C.png" alt="02877,.png"></p>
 <p>正向:</p>
 <pre><code>best quality,Vivid Colors,simple background,
 extreme detail description,
@@ -4225,7 +4225,7 @@ Hires.fix放大算法:R-ESRGAN 4x+ Anime6B
 <h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>编写一个程序来修改音频文件的音量。</p>
 <p><strong>WAV文件</strong></p>
 <p>WAV文件是表示音频的常用文件格式。WAV文件将音频存储为一系列“样本”：代表特定时间点上某个音频信号值的数字。WAV文件以一个44字节的“头文件”开始，其中包含有关文件本身的信息，包括文件大小、每秒样本数和每个样本的大小。在头文件之后，WAV文件包含一系列样本，每个样本是一个单独的2字节（16位）整数，代表特定时间点上的音频信号。</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923193819759.png" alt="image-20240923193819759"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193819759.png" alt="image-20240923193819759"></p>
 <p>通过给定的因子缩放每个样本值可以改变音频的音量。例如，将每个样本值乘以2.0，将使原始音频的音量翻倍。同时，将每个样本乘以0.5，将使音量减半。</p>
 <p>到目前为止，我们已经在C语言中看到了许多不同类型的数据，包括<code>int</code>、<code>bool</code>、<code>char</code>、<code>double</code>、<code>float</code>和<code>long</code>。在名为<code>stdint.h</code>的头文件中，声明了许多其他类型，这些类型允许我们非常精确地定义整数的大小（以位为单位）和符号（有符号或无符号）。在这个实验中，有两种类型特别有用。</p>
 <ul>
@@ -4298,14 +4298,14 @@ int main(int argc, char *argv[])
 <p>过滤图像到底意味着什么？你可以将过滤图像视为采取一些原始图像的像素，并以某种方式修改每个像素，使得在结果图像中出现特定的效果。</p>
 <p><strong>位图</strong></p>
 <p>也许最简单的表示图像的方式是使用像素（即点）的网格，每个像素可以有不同的颜色。对于黑白图像，因此每个像素需要1位，0可以代表黑色，1可以代表白色，如下所示。</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923193318894.png" alt="image-20240923193318894"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193318894.png" alt="image-20240923193318894"></p>
 <p>从这个意义上说，图像只是位图（即位的映射）。对于更丰富多彩的图像，每个像素只需要更多的位。支持“24位色”的文件格式使用每个像素24位。（BMP实际上支持1、4、8、16、24和32位色。）</p>
 <p>24位BMP使用8位表示像素颜色中的红色量，8位表示绿色量，8位表示蓝色量。如果你听说过RGB颜色，那就是：红色、绿色、蓝色。</p>
 <p>如果BMP中某个像素的R、G和B值分别是十六进制的<code>0xff</code>、<code>0x00</code>和<code>0x00</code>，那么该像素完全是红色的，因为<code>0xff</code>（十进制中的<code>255</code>）意味着“很多红色”，而<code>0x00</code>和<code>0x00</code>分别意味着“没有绿色”和“没有蓝色”。</p>
 <p><strong>技术上的位图</strong></p>
 <p>回想一下，文件只是按某种方式排列的位序列。那么，24位BMP文件本质上只是位的序列，（几乎）每24位代表某个像素的颜色。但BMP文件还包含一些“元数据”，比如图像的高度和宽度。这些元数据以两个数据结构的形式存储在文件开头，通常被称为“头文件”，不要与C的头文件混淆。（顺便说一下，这些头文件随着时间的推移已经发展。这个问题使用的是微软BMP格式的最新版本，4.0，它首次亮相是在Windows 95中。）</p>
 <p>其中第一个头文件，称为<code>BITMAPFILEHEADER</code>，长14字节。（回想一下，1字节等于8位。）第二个头文件，称为<code>BITMAPINFOHEADER</code>，长40字节。紧接着这些头文件之后是实际的位图：字节数组，其中三元组代表像素的颜色。然而，BMP以相反的顺序存储这些三元组（即BGR），先是8位蓝色，然后是8位绿色，再是8位红色。（有些BMP也将整个位图以相反的顺序存储，图像的顶行在BMP文件的末尾。但我们在这个系列的问题中存储BMP，每个位图的顶行在前，底行在后。）换句话说，如果我们将上面的1位笑脸转换为24位笑脸，用红色代替黑色，24位BMP将如下存储这个位图，其中<code>0000ff</code>表示红色，<code>ffffff</code>表示白色；我们用红色突出显示所有<code>0000ff</code>的实例。</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923193410002.png" alt="image-20240923193410002"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193410002.png" alt="image-20240923193410002"></p>
 <p>因为我们从左到右、从上到下以8列的方式呈现这些位，你实际上可以退后一步看到红色的笑脸。</p>
 <p>为了明确，回想一下，一个十六进制数字代表4位。因此，十六进制中的<code>ffffff</code>实际上在二进制中表示为<code>111111111111111111111111</code>。</p>
 <p>注意，你可以将位图表示为像素的二维数组：图像是一个由行组成的数组，每行本身是一个像素数组。事实上，这就是我们在这个系列问题中选择表示位图图像的方式。</p>
@@ -4405,7 +4405,7 @@ RGBTRIPLE;
 &#125;
 </code></pre>
 <p>如果真爱有颜色，那一定是蓝色！！！</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923194859323.png" alt="image-20240923194859323"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923194859323.png" alt="image-20240923194859323"></p>
 <h4 id="灰度化"><a href="#灰度化" class="headerlink" title="灰度化"></a>灰度化</h4><p>一种常见的过滤器是“灰度”过滤器，我们将图像转换为黑白。这是怎么做的呢？</p>
 <p>回想一下，如果红色、绿色和蓝色值都设置为0x00（0的十六进制），那么像素就是黑色的。如果所有值都设置为0xff（255的十六进制），那么像素就是白色的。只要红色、绿色和蓝色值都相等，结果就会是黑色-白色谱上的不同灰度，值越高意味着越浅的色调（更接近白色），值越低意味着更深的色调（更接近黑色）。</p>
 <p>因此，要将像素转换为灰度，我们只需要确保红色、绿色和蓝色值都相同。但我们怎么知道要将它们设置为什么值呢？嗯，如果原始的红色、绿色和蓝色值都相当高，那么新值也应该相当高。如果原始值都很低，那么新值也应该很低。</p>
@@ -4435,7 +4435,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     return;
 &#125;
 </code></pre>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923195259169.png" alt="image-20240923195259169"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923195259169.png" alt="image-20240923195259169"></p>
 <h4 id="深褐色"><a href="#深褐色" class="headerlink" title="深褐色"></a>深褐色</h4><p>大多数图像编辑程序都支持“深褐色”过滤器，它通过使整个图像看起来有点红棕色，赋予图像一种过时的感觉。</p>
 <p>通过采取每个像素，并根据原始的三个值计算新的红色、绿色和蓝色值，可以将图像转换为深褐色。</p>
 <p>有许多算法可以将图像转换为深褐色，但对于这个问题，我们将要求你使用以下算法。对于每个像素，深褐色颜色值应根据下面的原始颜色值计算。</p>
@@ -4473,7 +4473,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     return;
 &#125;
 </code></pre>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923195358364.png" alt="image-20240923195358364"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923195358364.png" alt="image-20240923195358364"></p>
 <h4 id="水平镜像"><a href="#水平镜像" class="headerlink" title="水平镜像"></a>水平镜像</h4><p>请注意，原始图像的所有原始像素仍然会出现在镜像图像中，只是这些像素可能在图像中重新排列到不同的位置。</p>
 <p><strong>算法实现</strong></p>
 <pre><code class="c">// 水平翻转
@@ -4494,7 +4494,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     return;
 &#125;
 </code></pre>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923201033527.png" alt="image-20240923201033527"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923201033527.png" alt="image-20240923201033527"></p>
 <p><strong>小插曲</strong></p>
 <p>因为这里使用的文件是bmp文件，所以还写了一个其他格式的文件转换为bmp的c程序，但是总是要么毁损0kb要么就三重影。。。然后搜了搜，python导包后两句代码解决。。。</p>
 <pre><code class="python">import cv2
@@ -4503,10 +4503,10 @@ if __name__ == &quot;__main__&quot;:
     img = cv2.imread(&quot;输入文件名&quot;)
     cv2.imwrite(&quot;输出文件名&quot;, img)
 </code></pre>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923200226814.png" alt="image-20240923200226814"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923200226814.png" alt="image-20240923200226814"></p>
 <h4 id="模糊"><a href="#模糊" class="headerlink" title="模糊"></a>模糊</h4><p>有许多方法可以创建模糊或软化图像的效果。对于这个问题，我们将使用“盒式模糊”，它通过采取每个像素，并为每个颜色值，通过平均邻近像素的颜色值，给它一个新的值。</p>
 <p>考虑以下像素网格，我们已经对每个像素进行了编号。</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923193500188.png" alt="image-20240923193500188"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193500188.png" alt="image-20240923193500188"></p>
 <p>每个像素的新值将是原始像素1行和1列内所有像素值的平均值（形成一个3x3的盒子）。例如，像素6的每种颜色值将通过平均原始颜色值的像素1、2、3、5、6、7、9、10和11获得（注意像素6本身包含在平均值中）。同样，像素11的颜色值将通过平均像素6、7、8、10、11、12、14、15和16的原始颜色值获得。</p>
 <p>对于像像素15这样的边缘或角落像素，我们仍然寻找1行和1列内的所有像素：在这种情况下，像素10、11、12、14、15和16。</p>
 <p><strong>算法实现</strong></p>
@@ -4552,11 +4552,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 &#125;
 </code></pre>
 <p>不知道为什么同一张到这里就不能正常生成图片，直接0kb，但是用原本的例子又可以正常实现。暂时没搞懂<del>（之后也不一定会去搞清楚）</del></p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923201558117.png" alt="image-20240923201558117"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923201558117.png" alt="image-20240923201558117"></p>
 <p>左边原图，右边模糊处理过后</p>
 <h4 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h4><p>在图像处理的人工智能算法中，经常有助于检测图像中的边缘：在图像中创建一个对象与另一个对象之间的边界的线。实现这种效果的一种方法是对图像应用Sobel算子。</p>
 <p>像图像模糊一样，边缘检测也通过采取每个像素，并根据围绕该像素的3x3网格中的像素来修改它。但不仅仅是采取这九个像素的平均值，Sobel算子通过采取周围像素的加权和来计算每个像素的新值。由于物体之间的边缘可能在垂直和水平方向上发生，你实际上会计算两个加权和：一个用于检测x方向上的边缘，一个用于检测y方向上的边缘。特别是，你将使用以下两个“核”：</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923193543691.png" alt="image-20240923193543691"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193543691.png" alt="image-20240923193543691"></p>
 <p>如何解释这些核？简而言之，对于每个像素的三种颜色值，我们将计算两个值<code>Gx</code>和<code>Gy</code>。例如，要计算一个像素的红色通道值的<code>Gx</code>，我们将采取围绕像素的九个像素的原始红色值，将它们每个乘以<code>Gx</code>核中的相应值，并取结果值的总和。</p>
 <p>为什么选择这些特定的核值？例如，在<code>Gx</code>方向上，我们将目标像素右侧的像素乘以正数，将目标像素左侧的像素乘以负数。当我们取总和时，如果右侧的像素与左侧的像素颜色相似，结果将接近0（数字抵消）。但如果右侧的像素与左侧的像素非常不同，那么结果值将非常正或非常负，表明颜色的变化很可能是由于物体之间的边界。对于计算y方向上的边缘，也是类似的论点。</p>
 <p>使用这些核，我们可以为一个像素的红色、绿色和蓝色通道生成一个<code>Gx</code>和<code>Gy</code>值。但每个通道只能取一个值，而不是两个：所以我们需要某种方式将<code>Gx</code>和<code>Gy</code>合并成一个单一的值。Sobel过滤器算法通过计算<code>Gx^2 + Gy^2</code>的平方根将Gx和Gy合并成最终值。由于通道值只能取0到255的整数值，确保结果值四舍五入到最近的整数，并限制在255以内！</p>
@@ -4619,7 +4619,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 &#125;
 </code></pre>
 <p>和模糊一样的问题，也是0kb，但是官方给的图片可以正常。。。应该算正常吧？。。。</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923201921276.png" alt="image-20240923201921276"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923201921276.png" alt="image-20240923201921276"></p>
 <h3 id="recover"><a href="#recover" class="headerlink" title="recover"></a>recover</h3><p>实现一个程序，从取证镜像中恢复JPEG文件</p>
 <p>在这个问题之前，我们过去几天在校园里拍了很多照片，都被保存在数字相机的存储卡上作为JPEG格式。不幸的是，我们不知怎么的全部删除了！幸运的是，在计算机世界中，“删除”往往并不意味着“删除”，而更像是“遗忘”。尽管相机坚称存储卡现在是空的，我们非常确定这不是真的。事实上，我们希望（或者说期待！）你能为我们编写一个程序来恢复这些照片！</p>
 <p>尽管JPEG比BMP更复杂，但JPEG有“签名”，字节模式可以将其与其他文件格式区分开来。具体来说，JPEG的前三个字节是：</p>
@@ -4677,7 +4677,7 @@ int main(int argc, char *argv[])
 &#125;
 </code></pre>
 <p>恢复后</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923202241936.png" alt="image-20240923202241936"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923202241936.png" alt="image-20240923202241936"></p>
 <h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h3><p>实现一个程序，按照以下要求反转一个WAV文件。</p>
 <p>在Electric Light Orchestra的“Fire on High”中，音乐的前一分钟有点不对劲。如果你仔细听，它听起来就像是音频在倒播。事实证明，如果你将这首歌的开头部分倒过来播放，你会听到以下内容：</p>
 <p>“音乐可以反转。时间不可以。回头，回头！”</p>
@@ -4963,7 +4963,7 @@ char random_allele()
 &#125;
 </code></pre>
 <p>实际上就是建一个树</p>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923203156840.png" alt="image-20240923203156840"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923203156840.png" alt="image-20240923203156840"></p>
 <h3 id="speller"><a href="#speller" class="headerlink" title="speller"></a>speller</h3><p>在这个问题中，你将实现一个程序，使用哈希表对文件进行拼写检查</p>
 <p>这个实际上就是链表+哈希，主要完成四个函数。但是由于给的speller.c文件使用的计算时间的函数是基于Unix的，而我是在Windows上运行，搞了好一会儿才转换过来。</p>
 <p><strong>speller.c</strong></p>
@@ -5220,7 +5220,7 @@ bool unload(void)
     return false;
 &#125;
 </code></pre>
-<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\CS50x2023-week1-5中一些有趣的程序.assets\image-20240923203811861.png" alt="image-20240923203811861"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923203811861.png" alt="image-20240923203811861"></p>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>自学路上，唯有坚持</p>
 <p>这一切，没有学分，没有绩点，没有老师，没有同学</p>
 <p>没有DDL是一件很可怕的事</p>
