@@ -168,7 +168,7 @@ h1.title {font-size:30px;color:#333;line-height:1.3;position:relative;font-weigh
 .article > div {width:100%;padding:30px 0;margin:0 auto;}
 .article .main {width:700px;}
 .article .side {align-self:flex-start;flex:0 0 220px;}
-.article .toc {width:200px;height:100%;/*position:fixed;*/top:60px;right:100px;padding:1em;line-height:2.3;overflow-y:auto;}
+.article .toc {width:200px;height:100%;position:fixed;top:60px;right:100px;padding:1em;line-height:2.3;overflow-y:auto;}
 .article .toc .toc-item:hover {font-weight:900;}
 .article .toc li a {display:inline-block;color:#737373;text-decoration:none;transition:color,padding 0.2s ease-in-out;}
 .article .toc li a:hover {padding-left:8px;border-left:3px solid black;}
@@ -353,203 +353,69 @@ pre .keyword,pre .javascript .function {color:#cc99cc;}
   .comment .gt-btn-public .gt-btn-text:after{content:"";}
 }
 
-/* 链接样式 */
-.apple-style-link {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 20px 0;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  color: #000;
-  text-decoration: none;
-  background-color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-.apple-style-link:hover {
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* 文章标题样式 */
-.apple-style-title {
-  margin: 0;
-  padding: 50px 0;
-  font-size: 2em;
-  font-weight: bold;
-  line-height: 1.2;
-  color: #000;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  text-align: center; /* 标题居中 */
-}
-
 /* 版权信息容器样式 */
-.apple-style-copyright-container {
+.post-copyright-container.apple-style-copyright-container {
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   margin-top: 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* 版权信息列表样式 */
-.apple-style-copyright-list {
+.post-copyright.apple-style-list {
   list-style: none;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-/* 版权信息中作者和许可样式 */
-.apple-style-copyright-author strong,
-.apple-style-copyright-license strong {
-  font-weight: bold;
+  font-size: 14px;
   color: #333;
 }
 
-/* 顶部导航栏样式 */
-.apple-style-top-bar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/* 版权信息中的强调文本样式 */
+.post-copyright-author strong,
+.post-copyright-license strong {
+  font-weight: 500;
+  color: #000;
 }
 
-/* 进度条样式 */
-.apple-style-bar {
-  height: 3px;
-  background-color: #0077cc;
+/* 版权信息链接样式 */
+.post-copyright a.apple-style-link {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px 0;
   border-radius: 5px;
-  width: 0; /* 初始宽度为0，根据需要动态调整 */
-}
-
-/* 导航栏按钮样式 */
-.apple-style-home-button,
-.apple-style-play-button,
-.apple-style-qr-button {
-  cursor: pointer;
-  font-size: 24px;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.apple-style-home-button:hover,
-.apple-style-play-button:hover,
-.apple-style-qr-button:hover {
   color: #0077cc;
-}
-
-/* 标题文本样式 */
-.apple-style-title-text {
-  margin: 0;
-  color: #333;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* 社交分享按钮样式 */
-.apple-style-share .iconfont {
-  cursor: pointer;
-  font-size: 24px;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.apple-style-share .iconfont:hover {
-  color: #0077cc;
-}
-
-/* 二维码样式 */
-.apple-style-qr-code {
-  width: 100px;
-  height: 100px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  display: none; /* 默认不显示，需要时通过JS控制显示 */
-}
-
-/* 滚动条样式 */
-.apple-style-scrollbar {
-  width: 2px;
-  background-color: #cccccc;
-  border-radius: 1px;
-}
-
-/* 文章内容样式 */
-.apple-style-article {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* 文章日期样式 */
-.apple-style-date {
-  color: #666;
-  font-size: 0.9em;
-  margin-bottom: 20px;
-}
-
-/* 右侧目录固定样式 */
-.apple-style-side {
-  position: fixed; /* 固定位置 */
-  top: 60px; /* 距离顶部的距离 */
-  right: 20px; /* 距离右侧的距离 */
-  width: 200px; /* 目录宽度 */
-  height: calc(100vh - 60px); /* 视口高度减去顶部边距 */
-  overflow-y: auto; /* 垂直滚动条 */
-  padding: 10px;
-  background: #f8f8f8;
-  border-left: 1px solid #eaeaea;
-  z-index: 1000; /* 确保在内容上方 */
-}
-
-/* 音频列表样式 */
-#apple-style-audio-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-}
-
-#apple-style-audio-list li {
-  margin-bottom: 10px;
+  text-decoration: none;
   background-color: #eaeaea;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-#apple-style-audio-list li:hover {
+.post-copyright a.apple-style-link:hover {
   background-color: #ddd;
 }
 
-/* 目录样式 */
-.apple-style-toc {
-  border-left: 1px solid #e0e0e0;
-  padding-left: 20px;
-  margin-left: 20px;
-}
-
-.apple-style-toc ol {
-  padding-left: 15px;
-}
-
-.apple-style-toc ol li {
-  margin-bottom: 10px;
-  list-style-type: decimal;
-  font-size: 0.9em;
-}
-
-.apple-style-toc ol li a {
+/* 苹果风格的链接样式 */
+.apple-style-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  color: #007aff; /* 苹果风格的蓝色 */
   text-decoration: none;
-  color: #333;
   transition: color 0.3s ease;
 }
 
-.apple-style-toc ol li a:hover {
-  color: #0077cc;
+.apple-style-link:hover {
+  color: #0056d1; /* Hover 状态下的颜色 */
+}
+
+.apple-style-link:active {
+  color: #003d99; /* 点击时的颜色变化 */
+}
+
+/* 苹果风格的标题样式 */
+.apple-style-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 2rem; /* 可以根据需求调整大小 */
+  color: #1c1c1e; /* 深色文本，符合苹果风格 */
+  margin-bottom: 16px; /* 与标题下方内容的间距 */
+  line-height: 1.2;
 }
