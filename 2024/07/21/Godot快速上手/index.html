@@ -1,80 +1,290 @@
-
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Godot快速上手 - 千幻笙的小窝</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Awith,qian488,qianhuangsheng,blog,"> 
-    <meta name="description" content="qian488,前言Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。
-为什,"> 
-    <meta name="author" content="Awith"> 
-    <link rel="alternative" href="atom.xml" title="千幻笙的小窝" type="application/atom+xml"> 
-    <link rel="icon" href="../../../../img/favicon.png"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Awith">
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <meta name="description" content="qian488">
+    
+    
+    
+    
+    
+    
+    <title>Godot快速上手 | 千幻笙的小窝</title>
+    <link href="https://qian488.github.io" rel="prefetch" />
 
     
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Godot快速上手 - 千幻笙的小窝"/>
-    <meta name="twitter:description" content="qian488,前言Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。
-为什,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="千幻笙的小窝"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Godot快速上手 - 千幻笙的小窝"/>
-    <meta property="og:description" content="qian488,前言Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。
-为什,"/>
-    
-<link rel="stylesheet" href="../../../../css/diaspora.css">
+<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../css/aos.css">
+<link rel="stylesheet" href="../../../../css/style.css">
 
-    <script>window.searchDbPath = "../../../../search.xml";</script>
-    <script src="/live2d-widget/autoload.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    
+<script src="../../../../js/jquery.min.js"></script>
+
+    
+<script src="../../../../js/bootstrap.min.js"></script>
+
+    
+<script src="../../../../js/aos.js"></script>
+
+    
+<script src="../../../../js/highslide/highslide-full.min.js"></script>
+
+    
+<link rel="stylesheet" href="../../../../js/highslide/highslide.css">
+
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '../../../../imgs/avatar1.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '../../../../imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
 <meta name="generator" content="Hexo 7.0.0"></head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>艾拉</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="https://qian488.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="../../../../archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">精华</a>
+            <a href="../../../../about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="../../../../message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
 
-<body class="loading">
-    <span id="config-title" style="display:none">千幻笙的小窝</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://qian488.github.io"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">Godot快速上手</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="../../../../imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="https://qian488.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">千幻笙的小窝</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="../../../../index.html">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="../../../../archives">
+                        <i class="fa fa-archive"></i>精华
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">总结</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">分享</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">教程</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../categories/%E6%80%BB%E7%BB%93/%E6%95%99%E7%A8%8B/">教程</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../categories/%E5%85%AC%E5%91%8A/">公告</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="../../../../tags/CS/">CS</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../tags/CS50/">CS50</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../tags/Godot/">Godot</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../tags/hexo/">hexo</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../tags/git/">git</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="../../../../tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="../../../../about">
+                        <i class="fa fa-user"></i>关于
+                    </a>
+                </li>
+                
+                
+            </ul>
         </div>
     </div>
-    <div class="scrollbar"></div>
-</div>
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">Godot快速上手</h1>
-        <div class="stuff">
-            <span>七月 21, 2024</span>
-            
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="../../../../tags/Godot/" rel="tag">Godot</a></li></ul>
-
-
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="https://qian488.github.io">千幻笙的小窝</a>
+        >
+        <span>Godot快速上手</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="">Godot快速上手</a>
+            </h1>
         </div>
-        <div class="content markdown">
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。</p>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="../../../../tags/Godot/">Godot</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2024-07-21
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="">Godot快速上手</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2024-07-21
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="../../../../tags/Godot/">Godot</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。</p>
 <p>为什么写这篇文章，主要是记录一下Godot游戏引擎的使用体验。</p>
 <p>我跟着的教程是油管游戏开发大神<strong>Brackeys</strong>的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LOhfqjmasi0&t=85s">How to make a vedio game</a></p>
 <p>至此，这篇文章于你的作用可能就结束了，因为他的视频教程真的非常棒，非常酷，跟着做就可以完成一款简单的2d平台跳跃游戏。</p>
@@ -93,257 +303,360 @@
 <p>确实准确来说，我也不太懂其他方面，我只能说对于初学者而言，体验到的就是这些方面。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Godot还是蛮不错的感觉，至少在跟着<strong>Brackeys</strong>的教程做的时候感觉很简单、很爽。<del>（不排除是因为大神教学牛逼）</del>个人认为该引擎适用于做些独立小游戏这类的，未来学习资料多了，社区发展起来，还是不错的一个选择。至少这种，所有东西都看成Node的理念，我喜欢。</p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title="0" data-url="http://music.163.com/song/media/outer/url?id=869119.mp3"></li>
-                        
-                    
-                        
-                            <li title="1" data-url="http://music.163.com/song/media/outer/url?id=22645196.mp3"></li>
-                        
-                    
-                        
-                            <li title="2" data-url="http://music.163.com/song/media/outer/url?id=22636640.mp3"></li>
-                        
-                    
-                        
-                            <li title="3" data-url="http://music.163.com/song/media/outer/url?id=22765919.mp3"></li>
-                        
-                    
-                        
-                            <li title="4" data-url="http://music.163.com/song/media/outer/url?id=849739.mp3"></li>
-                        
-                    
-                        
-                            <li title="5" data-url="http://music.163.com/song/media/outer/url?id=1991012773.mp3"></li>
-                        
-                    
-                        
-                            <li title="6" data-url="http://music.163.com/song/media/outer/url?id=2003496380.mp3"></li>
-                        
-                    
-                        
-                            <li title="7" data-url="http://music.163.com/song/media/outer/url?id=1983527215.mp3"></li>
-                        
-                    
-                        
-                            <li title="8" data-url="http://music.163.com/song/media/outer/url?id=1996323631.mp3"></li>
-                        
-                    
-                        
-                            <li title="9" data-url="http://music.163.com/song/media/outer/url?id=2003496467.mp3"></li>
-                        
-                    
-                        
-                            <li title="10" data-url="http://music.163.com/song/media/outer/url?id=468490592.mp3"></li>
-                        
-                    
-                        
-                            <li title="11" data-url="http://music.163.com/song/media/outer/url?id=468490564.mp3"></li>
-                        
-                    
-                        
-                            <li title="12" data-url="http://music.163.com/song/media/outer/url?id=28151022.mp3"></li>
-                        
-                    
-                        
-                            <li title="13" data-url="http://music.163.com/song/media/outer/url?id=2114614108.mp3"></li>
-                        
-                    
-                        
-                            <li title="14" data-url="http://music.163.com/song/media/outer/url?id=1441758494.mp3"></li>
-                        
-                    
-                        
-                            <li title="15" data-url="http://music.163.com/song/media/outer/url?id=760533.mp3"></li>
-                        
-                    
-                        
-                            <li title="16" data-url="http://music.163.com/song/media/outer/url?id=29017078.mp3"></li>
-                        
-                    
-                        
-                            <li title="17" data-url="http://music.163.com/song/media/outer/url?id=2128223647.mp3"></li>
-                        
-                    
-                        
-                            <li title="18" data-url="http://music.163.com/song/media/outer/url?id=16686470.mp3"></li>
-                        
-                    
-                        
-                            <li title="19" data-url="http://music.163.com/song/media/outer/url?id=1805088448.mp3"></li>
-                        
-                    
-                        
-                            <li title="20" data-url="http://music.163.com/song/media/outer/url?id=34341360.mp3"></li>
-                        
-                    
-                        
-                            <li title="21" data-url="http://music.163.com/song/media/outer/url?id=478507889.mp3"></li>
-                        
-                    
-                        
-                            <li title="22" data-url="http://music.163.com/song/media/outer/url?id=5238992.mp3"></li>
-                        
-                    
-                        
-                            <li title="23" data-url="http://music.163.com/song/media/outer/url?id=571545720.mp3"></li>
-                        
-                    
-                        
-                            <li title="24" data-url="http://music.163.com/song/media/outer/url?id=34179901.mp3"></li>
-                        
-                    
-                        
-                            <li title="25" data-url="https://link.hhtjim.com/163/5146554.mp3"></li>
-                        
-                    
-                        
-                            <li title="26" data-url="http://music.163.com/song/media/outer/url?id=467624651.mp3"></li>
-                        
-                    
-                        
-                            <li title="27" data-url="https://music.163.com/song/media/outer/url?id=419827614.mp3"></li>
-                        
-                    
-                        
-                            <li title="28" data-url="http://music.163.com/song/media/outer/url?id=1416747959.mp3"></li>
-                        
-                    
-                </ul>
-            
-        </div>
-        
-            <div class="post-copyright-container apple-style-copyright-container">
-  <ul class="post-copyright apple-style-list">
-    <li class="post-copyright-author">
-      <strong>Author: </strong><span>Awith</span>
-    </li>
-    <li class="post-copyright-license">
-      <strong>License: </strong>
-      
-        <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)" class="apple-style-link">CC BY-NC-ND 4.0</a>
-      
-    </li>
-  </ul>
-</div>
-        
-        
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="Ov23liPfH9ZRqICV6gNR"
-        data-cs="e81c4094d5c05607977b43e55ad572ee94f7b2f1"
-        data-r="Blog_comments"
-        data-o="qian488"
-        data-a="qian488"
-        data-d="false"
-    >查看评论</div>
-
-
     </div>
-    
-        <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">优点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E5%92%8C%E8%84%9A%E6%9C%AC%E9%AB%98%E5%BA%A6%E4%B8%80%E8%87%B4%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">编辑器和脚本高度一致化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%BB%84%E4%BB%B6-%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%9C%BA%E6%99%AF-%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.</span> <span class="toc-text">合并概念，组件&#x3D;对象，场景&#x3D;对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91%E5%BD%A2%E6%96%87%E6%A1%A3%E6%9F%A5%E6%89%BE"><span class="toc-number">2.3.</span> <span class="toc-text">树形文档查找</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B6%B3"><span class="toc-number">3.</span> <span class="toc-text">不足</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+</article>
+
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="../../../../search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~" autocomplete="off">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            Awith
+            <i class="fa fa-quote-right"></i>
         </div>
+        <div class="author-panel text-center">
+            <img src="../../../../imgs/avatar1.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"><p>qian488</p>
+</p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../../2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/">欢迎来到我的小站</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../../2049/04/01/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">算法竞赛知识总结</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../10/20/CS%E8%87%AA%E5%AD%A6%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86%E6%80%BB%E7%BB%93/">CS自学资料收集总结</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/18/Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/18/Unity-2D-Shader-Graph%E5%AE%9E%E7%8E%B0%E6%BA%B6%E8%A7%A3%E5%92%8C%E5%8F%91%E5%85%89%E6%80%9D%E8%B7%AF/">Unity 2D Shader Graph实现溶解和发光思路</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/">Typora+picgo+github搭建图床实现博客图片正常显示</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/18/Unity-2D-Shader-Graph%E5%AE%9E%E7%8E%B0%E6%BA%B6%E8%A7%A3%E5%92%8C%E5%8F%91%E5%85%89%E6%80%9D%E8%B7%AF/">Unity 2D Shader Graph实现溶解和发光思路</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/18/Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../01/17/VSC%E4%B8%8EGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">VSC与Git常用命令</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../25/%E5%88%9D%E8%A7%81Linux/">初见Linux</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../26/%E5%88%9D%E8%A7%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E2%80%94%E2%80%94Anaconda%E5%92%8CPytorch%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">初见深度学习——Anaconda和Pytorch环境搭建</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../08/15/%E5%9F%BA%E4%BA%8EVS%E4%BD%BF%E7%94%A8C-%E5%BC%80%E5%8F%91windows%E7%AA%97%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E5%B0%8F%E5%B7%A5%E5%85%B7-NumberPicker/">基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/">基于Hexo与git的个人博客快速部署</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+
+                
+                <li>
+                    <a href="#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                
+                
+                
+            </ul>
+            <div class="tab-content">
+                
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="../../../../tags/CS/" style="font-size: 12.043507489016559px;" class="tag-cloud-link">CS</a>
+    
+    <a href="../../../../tags/CS50/" style="font-size: 8.677596161920462px;" class="tag-cloud-link">CS50</a>
+    
+    <a href="../../../../tags/Godot/" style="font-size: 8.298070481576378px;" class="tag-cloud-link">Godot</a>
+    
+    <a href="../../../../tags/hexo/" style="font-size: 16.275761682394467px;" class="tag-cloud-link">hexo</a>
+    
+    <a href="../../../../tags/git/" style="font-size: 14.22181682152651px;" class="tag-cloud-link">git</a>
+    
+    <a href="../../../../tags/SD/" style="font-size: 13.678425742750479px;" class="tag-cloud-link">SD</a>
+    
+    <a href="../../../../tags/prompt/" style="font-size: 16.518520281475336px;" class="tag-cloud-link">prompt</a>
+    
+    <a href="../../../../tags/github/" style="font-size: 15.93412074738944px;" class="tag-cloud-link">github</a>
+    
+    <a href="../../../../tags/Typora/" style="font-size: 15.77577503642284px;" class="tag-cloud-link">Typora</a>
+    
+    <a href="../../../../tags/picGo/" style="font-size: 14.211437509211875px;" class="tag-cloud-link">picGo</a>
+    
+    <a href="../../../../tags/unity/" style="font-size: 12.471859682501591px;" class="tag-cloud-link">unity</a>
+    
+    <a href="../../../../tags/2D/" style="font-size: 14.249876551450486px;" class="tag-cloud-link">2D</a>
+    
+    <a href="../../../../tags/Shader/" style="font-size: 15.442747024596196px;" class="tag-cloud-link">Shader</a>
+    
+    <a href="../../../../tags/WebGl/" style="font-size: 9.700273393672457px;" class="tag-cloud-link">WebGl</a>
+    
+    <a href="../../../../tags/Galgame/" style="font-size: 16.18324100264683px;" class="tag-cloud-link">Galgame</a>
+    
+    <a href="../../../../tags/Naninovel/" style="font-size: 13.334154101731958px;" class="tag-cloud-link">Naninovel</a>
+    
+    <a href="../../../../tags/test/" style="font-size: 18.921397520126334px;" class="tag-cloud-link">test</a>
+    
+    <a href="../../../../tags/vsc/" style="font-size: 10.34197710875592px;" class="tag-cloud-link">vsc</a>
+    
+    <a href="../../../../tags/Vim/" style="font-size: 17.025981092041334px;" class="tag-cloud-link">Vim</a>
+    
+    <a href="../../../../tags/Linux/" style="font-size: 12.220507626123382px;" class="tag-cloud-link">Linux</a>
+    
+    <a href="../../../../tags/Anaconda/" style="font-size: 15.874249325130304px;" class="tag-cloud-link">Anaconda</a>
+    
+    <a href="../../../../tags/Pytorch/" style="font-size: 14.076126793932502px;" class="tag-cloud-link">Pytorch</a>
+    
+    <a href="../../../../tags/Deeplearn/" style="font-size: 11.620864037538063px;" class="tag-cloud-link">Deeplearn</a>
+    
+    <a href="../../../../tags/C/" style="font-size: 14.179465261048472px;" class="tag-cloud-link">C#</a>
+    
+    <a href="../../../../tags/VS/" style="font-size: 13.739374850873398px;" class="tag-cloud-link">VS</a>
+    
+    <a href="../../../../tags/Windows-Forms/" style="font-size: 14.242147362119947px;" class="tag-cloud-link">Windows Forms</a>
+    
+    <a href="../../../../tags/live2d/" style="font-size: 19.61271338667467px;" class="tag-cloud-link">live2d</a>
+    
+    <a href="../../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 10.071886114672848px;" class="tag-cloud-link">公告</a>
+    
+    <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.937720387099233px;" class="tag-cloud-link">算法</a>
     
 </div>
-
+                
+                
+                
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
     </div>
+    <footer id="gal-footer">
+    <div class="container">
+        纸上谈来终觉浅，绝知此事要躬行。
+        <!--Copyright © 2018 Awith Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>-->
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
 </div>
 </body>
 
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="../../../../js/activate-power-mode.js"></script>
 
+<script>
 
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="../js/plugin.js"></script>
-<script src="../js/typed.js"></script>
-<script src="../js/diaspora.js"></script>
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
 
-
-<link rel="stylesheet" href="../photoswipe/photoswipe.css">
-<link rel="stylesheet" href="../photoswipe/default-skin/default-skin.css">
-
-
-<script src="../photoswipe/photoswipe.min.js"></script>
-<script src="../photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
-        messageStyle: "none"
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
     });
+
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '../../../../imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '7'
+    }
 </script>
 
-<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<script src="../../../../js/hs.js"></script>
+<script src="../../../../js/blog.js"></script>
+
+
+
+<script src="../../../../js/oni.js"></script>
 
 
 
