@@ -88,13 +88,46 @@
 <p>我这里用到的控件就是Label用于展示文本，TextBox文本框获取随机数的范围，Button控制开始与暂停，Timer控制随机数展示的间隔。</p>
 <h4 id="第三步-编写脚本"><a href="#第三步-编写脚本" class="headerlink" title="第三步 编写脚本"></a>第三步 编写脚本</h4><p>为Button写一个用于在指定范围生成随机数的脚本，双击Button控件可快速转到按钮点击的方法中。</p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818235237599.png" alt="image-20240818235237599"></p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startStopButton_Click</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, EventArgs e</span>)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (!isRolling)<br>    &#123;<br>        <span class="hljs-comment">// 开始滚动</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">int</span>.TryParse(minValueTextBox.Text, <span class="hljs-keyword">out</span> minValue) &amp;&amp;<br>            <span class="hljs-built_in">int</span>.TryParse(maxValueTextBox.Text, <span class="hljs-keyword">out</span> maxValue) &amp;&amp;<br>            minValue &lt;= maxValue)<br>        &#123;<br>            isRolling = <span class="hljs-literal">true</span>;<br>            startStopButton.Text = <span class="hljs-string">&quot;Stop&quot;</span>;<br>            timer.Start();<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            MessageBox.Show(<span class="hljs-string">&quot;请输入有效的范围！&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// 停止滚动并显示结果</span><br>        isRolling = <span class="hljs-literal">false</span>;<br>        startStopButton.Text = <span class="hljs-string">&quot;Start&quot;</span>;<br>        timer.Stop();<br>        <span class="hljs-built_in">int</span> result = <span class="hljs-built_in">int</span>.Parse(rollingNumberLabel.Text);<br>        ShowResult(result);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<pre><code class="csharp">private void startStopButton_Click(object sender, EventArgs e)
+&#123;
+    if (!isRolling)
+    &#123;
+        // 开始滚动
+        if (int.TryParse(minValueTextBox.Text, out minValue) &amp;&amp;
+            int.TryParse(maxValueTextBox.Text, out maxValue) &amp;&amp;
+            minValue &lt;= maxValue)
+        &#123;
+            isRolling = true;
+            startStopButton.Text = &quot;Stop&quot;;
+            timer.Start();
+        &#125;
+        else
+        &#123;
+            MessageBox.Show(&quot;请输入有效的范围！&quot;);
+        &#125;
+    &#125;
+    else
+    &#123;
+        // 停止滚动并显示结果
+        isRolling = false;
+        startStopButton.Text = &quot;Start&quot;;
+        timer.Stop();
+        int result = int.Parse(rollingNumberLabel.Text);
+        ShowResult(result);
+    &#125;
+&#125;
+</code></pre>
 <p>注意引入Timer的时候，需指明是form下的，不然编译器可能不知道。</p>
 <p>以及，一般建议不直接在form上直接进行编写，开一个新窗口继承form，然后将你的内容写进去。这样的好处就是区分开直接自己写和拖动控件智能自动生成的部分。</p>
 <p>提示timer的有关编写。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Form1</span>()</span><br>&#123;<br>    InitializeComponent();<br>    timer = <span class="hljs-keyword">new</span> System.Windows.Forms.Timer();<br>    timer.Interval = <span class="hljs-number">50</span>; <span class="hljs-comment">// 数字滚动的速度</span><br>    timer.Tick += Timer_Tick;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<pre><code class="csharp">public Form1()
+&#123;
+    InitializeComponent();
+    timer = new System.Windows.Forms.Timer();
+    timer.Interval = 50; // 数字滚动的速度
+    timer.Tick += Timer_Tick;
+&#125;
+</code></pre>
 <p>Timer_Tick只消写好随机数，并将数值赋值给显示的label即可，这样就可以实现点击按钮后，开始不断随机数显示，直到点击stop时，停止新一轮的随机数。</p>
 <h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p>点击start，按钮的文本变成stop，开始抽数，再次点击stop，确定最终的数。</p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/78d394e1e03545f0ffe204f0564d796.png" alt="78d394e1e03545f0ffe204f0564d796"></p>

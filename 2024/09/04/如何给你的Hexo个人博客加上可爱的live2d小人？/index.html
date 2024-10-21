@@ -77,13 +77,13 @@
             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文操作的前置准备，需要已经搭建好自己的hexo个人博客。没有搭建博客的话，可以根据本站之前的教程文章一步一步跟着搭建。搭建好后，需要live2d小人就可以跟着本文操作</p>
 <h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="1-拉取live2d-widget项目"><a href="#1-拉取live2d-widget项目" class="headerlink" title="1.拉取live2d-widget项目"></a>1.拉取live2d-widget项目</h4><p>前往<a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget">live2d-widget</a>，通过<code>git clone</code>拉取项目到使用的主题的<strong>source</strong>文件夹下</p>
 <h4 id="2-使用live2d"><a href="#2-使用live2d" class="headerlink" title="2.使用live2d"></a>2.使用live2d</h4><p>在主题的<strong>layout</strong>文件夹内，找到<strong>head</strong>文件，并将以下代码添加其中</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script src=<span class="hljs-string">&quot;/live2d-widget/autoload.js&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
-
+<pre><code class="js">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;
+</code></pre>
 <p>修改<strong>live2d-widget</strong>文件夹下的<code>autoload.js</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> live2d_path = <span class="hljs-string">&quot;/live2d-widget/&quot;</span>;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;</span>,<br></code></pre></td></tr></table></figure>
-
+<pre><code class="js">const live2d_path = &quot;/live2d-widget/&quot;;
+</code></pre>
+<pre><code class="js">cdnPath: &quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;,
+</code></pre>
 <p>修改后，保存</p>
 <p>再将博文重新生成，部署，不出意外，即可看见效果</p>
 <p>如果<strong>live2d</strong>被遮挡住，可以进入<strong>live2d-widget</strong>文件夹下的<code>waifu.css</code></p>
@@ -93,19 +93,139 @@
 <h4 id="3-进阶微调"><a href="#3-进阶微调" class="headerlink" title="3.进阶微调"></a>3.进阶微调</h4><p>先将进入<a target="_blank" rel="noopener" href="https://github.com/Akilarlxh/live2d_api">live2d-api</a>，然后<strong>fork</strong>到自己的仓库，再将自己的仓库<code>git clone</code>到自己的本地，放在主题的<strong>source</strong>文件夹下,这个路径记住</p>
 <p>然后，修改<strong>live2d-widget</strong>文件夹下的<code>autoload.js</code></p>
 <p>将<strong>cdnPath</strong>修改为<strong>live2-api</strong>的路径，例如</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">cdnPath</span>: <span class="hljs-string">&quot;/live2d-api/Blog_live2d_api/&quot;</span>,<br></code></pre></td></tr></table></figure>
-
+<pre><code class="js">cdnPath: &quot;/live2d-api/Blog_live2d_api/&quot;,
+</code></pre>
 <h5 id="修改模型大小比例与位置"><a href="#修改模型大小比例与位置" class="headerlink" title="修改模型大小比例与位置"></a>修改模型大小比例与位置</h5><p>如果需要修改模型大小比例与位置，进入<strong>live2d-api</strong>的<strong>model</strong>文件夹下，进入需要修改的模型文件夹，找到<code>index.json</code>文件，找到<code>layout</code>部分,进行微调</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;layout&quot;</span>: &#123;<br>		<span class="hljs-string">&quot;center_x&quot;</span>:<span class="hljs-number">0.0</span>,<br>        <span class="hljs-string">&quot;center_y&quot;</span>:-<span class="hljs-number">0.1</span>,<br>        <span class="hljs-string">&quot;width&quot;</span>:<span class="hljs-number">2.0</span><br>	&#125;,<br></code></pre></td></tr></table></figure>
-
+<pre><code class="js">&quot;layout&quot;: &#123;
+        &quot;center_x&quot;:0.0,
+        &quot;center_y&quot;:-0.1,
+        &quot;width&quot;:2.0
+    &#125;,
+</code></pre>
 <p>我这里以蕾姆的为例</p>
 <h5 id="修改live2d插件的样式"><a href="#修改live2d插件的样式" class="headerlink" title="修改live2d插件的样式"></a>修改live2d插件的样式</h5><p>如果需要修改整个live2d的位置的话，进入<strong>live2d-widget</strong>文件夹下的<code>waifu.css</code></p>
 <p>以下是我的配置，可做参考</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#waifu-toggle</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">100</span>, <span class="hljs-number">179</span>, <span class="hljs-number">243</span>, <span class="hljs-number">0.048</span>);<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50px</span>;<br>	<span class="hljs-attribute">bottom</span>: <span class="hljs-number">80px</span>;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#f4f9fa6e</span>;<br>	<span class="hljs-attribute">cursor</span>: pointer;<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">margin-right</span>: <span class="hljs-number">30px</span>;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">2px</span> <span class="hljs-number">5px</span> <span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">transition</span>: margin-left <span class="hljs-number">1s</span>;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;<br>	<span class="hljs-attribute">writing-mode</span>: horizontal-tb;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-toggle</span><span class="hljs-selector-class">.waifu-toggle-active</span> &#123;<br>	<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">50px</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-toggle</span><span class="hljs-selector-class">.waifu-toggle-active</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>	<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">30px</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu</span> &#123;<br>	<span class="hljs-attribute">bottom</span>: -<span class="hljs-number">1000px</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">margin-bottom</span>: -<span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">3px</span>);<br>	<span class="hljs-attribute">transition</span>: transform .<span class="hljs-number">3s</span> ease-in-out, bottom <span class="hljs-number">3s</span> ease-in-out;<br>	<span class="hljs-attribute">z-index</span>: <span class="hljs-number">999999</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>	<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tips</span> &#123;<br>	<span class="hljs-attribute">animation</span>: shake <span class="hljs-number">50s</span> ease-in-out <span class="hljs-number">5s</span> infinite;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">60</span>, <span class="hljs-number">220</span>, <span class="hljs-number">248</span>, <span class="hljs-number">0.356</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">rgba</span>(<span class="hljs-number">48</span>, <span class="hljs-number">176</span>, <span class="hljs-number">235</span>, <span class="hljs-number">0.62</span>);<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">12px</span>;<br>	<span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">3px</span> <span class="hljs-number">15px</span> <span class="hljs-number">2px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">191</span>, <span class="hljs-number">158</span>, <span class="hljs-number">118</span>, .<span class="hljs-number">2</span>);<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">24px</span>;<br>	<span class="hljs-attribute">margin</span>: -<span class="hljs-number">30px</span> <span class="hljs-number">20px</span>;<br>	<span class="hljs-attribute">min-height</span>: <span class="hljs-number">70px</span>;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">overflow</span>: hidden;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">10px</span>;<br>	<span class="hljs-attribute">position</span>: absolute;<br>	<span class="hljs-attribute">text-overflow</span>: ellipsis;<br>	<span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">1s</span>;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">250px</span>;<br>	<span class="hljs-attribute">word-break</span>: break-all;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tips</span><span class="hljs-selector-class">.waifu-tips-active</span> &#123;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">transition</span>: opacity .<span class="hljs-number">2s</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tips</span> <span class="hljs-selector-tag">span</span> &#123;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#0099cc</span>;<br>&#125;<br><br><span class="hljs-selector-id">#live2d</span> &#123;<br>	<span class="hljs-attribute">cursor</span>: grab;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br>	<span class="hljs-attribute">position</span>: relative;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>&#125;<br><br><span class="hljs-selector-id">#live2d</span><span class="hljs-selector-pseudo">:active</span> &#123;<br>	<span class="hljs-attribute">cursor</span>: grabbing;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> &#123;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#aaa</span>;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">position</span>: absolute;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">70px</span>;<br>	<span class="hljs-attribute">transition</span>: opacity <span class="hljs-number">1s</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-id">#waifu-tool</span> &#123;<br>	<span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> <span class="hljs-selector-tag">span</span> &#123;<br>	<span class="hljs-attribute">display</span>: block;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;<br>	<span class="hljs-attribute">text-align</span>: center;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> svg &#123;<br>	fill: <span class="hljs-number">#7b8c9d</span>;<br>	<span class="hljs-attribute">cursor</span>: pointer;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">25px</span>;<br>	<span class="hljs-attribute">transition</span>: fill .<span class="hljs-number">3s</span>;<br>&#125;<br><br><span class="hljs-selector-id">#waifu-tool</span> svg<span class="hljs-selector-pseudo">:hover</span> &#123;<br>	fill: <span class="hljs-number">#0684bd</span>; <span class="hljs-comment">/* #34495e */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<pre><code class="css">#waifu-toggle &#123;
+    background-color: rgba(100, 179, 243, 0.048);
+    border-radius: 50px;
+    bottom: 80px;
+    color: #f4f9fa6e;
+    cursor: pointer;
+    font-size: 24px;
+    right: 0;
+    margin-right: 30px;
+    padding: 5px 2px 5px 5px;
+    position: fixed;
+    transition: margin-left 1s;
+    width: 150px;
+    writing-mode: horizontal-tb;
+&#125;
 
+#waifu-toggle.waifu-toggle-active &#123;
+    margin-left: -50px;
+&#125;
+
+#waifu-toggle.waifu-toggle-active:hover &#123;
+    margin-left: -30px;
+&#125;
+
+#waifu &#123;
+    bottom: -1000px;
+    right: 0;
+    line-height: 1;
+    margin-bottom: -5px;
+    position: fixed;
+    transform: translateY(3px);
+    transition: transform .3s ease-in-out, bottom 3s ease-in-out;
+    z-index: 999999;
+&#125;
+
+#waifu:hover &#123;
+    transform: translateY(0);
+&#125;
+
+#waifu-tips &#123;
+    animation: shake 50s ease-in-out 5s infinite;
+    background-color: rgba(60, 220, 248, 0.356);
+    border: 1px solid rgba(48, 176, 235, 0.62);
+    border-radius: 12px;
+    box-shadow: 0 3px 15px 2px rgba(191, 158, 118, .2);
+    font-size: 14px;
+    line-height: 24px;
+    margin: -30px 20px;
+    min-height: 70px;
+    opacity: 0;
+    overflow: hidden;
+    padding: 5px 10px;
+    position: absolute;
+    text-overflow: ellipsis;
+    transition: opacity 1s;
+    width: 250px;
+    word-break: break-all;
+&#125;
+
+#waifu-tips.waifu-tips-active &#123;
+    opacity: 1;
+    transition: opacity .2s;
+&#125;
+
+#waifu-tips span &#123;
+    color: #0099cc;
+&#125;
+
+#live2d &#123;
+    cursor: grab;
+    height: 300px;
+    position: relative;
+    width: 300px;
+&#125;
+
+#live2d:active &#123;
+    cursor: grabbing;
+&#125;
+
+#waifu-tool &#123;
+    color: #aaa;
+    opacity: 0;
+    position: absolute;
+    right: 5px;
+    top: 70px;
+    transition: opacity 1s;
+&#125;
+
+#waifu:hover #waifu-tool &#123;
+    opacity: 1;
+&#125;
+
+#waifu-tool span &#123;
+    display: block;
+    height: 30px;
+    text-align: center;
+&#125;
+
+#waifu-tool svg &#123;
+    fill: #7b8c9d;
+    cursor: pointer;
+    height: 25px;
+    transition: fill .3s;
+&#125;
+
+#waifu-tool svg:hover &#123;
+    fill: #0684bd; /* #34495e */
+&#125;
+</code></pre>
 <p>如果需要live2d小人在左边的话</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#waifu</span> &#123;<br>	<span class="hljs-attribute">bottom</span>: -<span class="hljs-number">1000px</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">margin-bottom</span>: -<span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">3px</span>);<br>	<span class="hljs-attribute">transition</span>: transform .<span class="hljs-number">3s</span> ease-in-out, bottom <span class="hljs-number">3s</span> ease-in-out;<br>	<span class="hljs-attribute">z-index</span>: <span class="hljs-number">999999</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<pre><code class="css">#waifu &#123;
+    bottom: -1000px;
+    right: 0;
+    line-height: 1;
+    margin-bottom: -5px;
+    position: fixed;
+    transform: translateY(3px);
+    transition: transform .3s ease-in-out, bottom 3s ease-in-out;
+    z-index: 999999;
+&#125;
+</code></pre>
 <p>将这部分的<strong>right</strong>修改为<strong>left</strong>即可</p>
 <h5 id="修改live2d的文本"><a href="#修改live2d的文本" class="headerlink" title="修改live2d的文本"></a>修改live2d的文本</h5><p>进入<strong>live2d-widget</strong>文件夹下的<code>waifu-tips.json</code></p>
 <p>就可以按照自己的想法修改</p>

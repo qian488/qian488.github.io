@@ -87,8 +87,30 @@ npm i --save gita,"/>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240905135810326.png" alt="image-20240905135810326"></p>
 <h4 id="配置主题的-config-yml"><a href="#配置主题的-config-yml" class="headerlink" title="配置主题的_config.yml"></a>配置主题的_config.yml</h4><p>进入主题文件夹下的<code>_config.yml</code></p>
 <p>以下是参考配置</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Gitalk 评论插件（https://github.com/gitalk/gitalk）</span><br><span class="hljs-attr">gitalk:</span><br>    <span class="hljs-comment"># 是否启用评论功能</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment"># 是否自动展开评论框</span><br>    <span class="hljs-attr">autoExpand:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 应用编号</span><br>    <span class="hljs-attr">clientID:</span> <span class="hljs-string">&#x27;你的Client ID&#x27;</span><br>    <span class="hljs-comment"># 应用秘钥</span><br>    <span class="hljs-attr">clientSecret:</span> <span class="hljs-string">&#x27;你的Client secrets&#x27;</span><br>    <span class="hljs-comment"># issue仓库名</span><br>    <span class="hljs-attr">repo:</span> <span class="hljs-string">&#x27;存放评论的仓库名&#x27;</span><br>    <span class="hljs-comment"># Github名</span><br>    <span class="hljs-attr">owner:</span> <span class="hljs-string">&#x27;你的GitHub名&#x27;</span><br>    <span class="hljs-attr">perPage:</span> <span class="hljs-number">20</span> <span class="hljs-comment"># 每页多少个评论</span><br>    <span class="hljs-attr">pagerDirection:</span> <span class="hljs-string">last</span> <span class="hljs-comment"># 排序方式是从旧到新（first）还是从新到旧（last）</span><br>    <span class="hljs-attr">createIssueManually:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 如果 issue 仓库没有当前页面的 issue 且登陆的用户为管理员，则显示一个初始化按钮创建issue 需要点击 init 按钮。</span><br>    <span class="hljs-comment"># Github名</span><br>    <span class="hljs-attr">admin:</span> [<span class="hljs-string">&#x27;你的GitHub名&#x27;</span>]<br>    <span class="hljs-comment"># Ensure uniqueness and length less than 50</span><br>    <span class="hljs-attr">id:</span> <span class="hljs-string">location.pathname</span><br>    <span class="hljs-comment"># Facebook-like distraction free mode</span><br>    <span class="hljs-attr">distractionFreeMode:</span> <span class="hljs-literal">false</span><br><br></code></pre></td></tr></table></figure>
-
+<pre><code class="yml"># Gitalk 评论插件（https://github.com/gitalk/gitalk）
+gitalk:
+    # 是否启用评论功能
+    enable: true
+    # 是否自动展开评论框
+    autoExpand: false
+    # 应用编号
+    clientID: &#39;你的Client ID&#39;
+    # 应用秘钥
+    clientSecret: &#39;你的Client secrets&#39;
+    # issue仓库名
+    repo: &#39;存放评论的仓库名&#39;
+    # Github名
+    owner: &#39;你的GitHub名&#39;
+    perPage: 20 # 每页多少个评论
+    pagerDirection: last # 排序方式是从旧到新（first）还是从新到旧（last）
+    createIssueManually: true # 如果 issue 仓库没有当前页面的 issue 且登陆的用户为管理员，则显示一个初始化按钮创建issue 需要点击 init 按钮。
+    # Github名
+    admin: [&#39;你的GitHub名&#39;]
+    # Ensure uniqueness and length less than 50
+    id: location.pathname
+    # Facebook-like distraction free mode
+    distractionFreeMode: false
+</code></pre>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>至此，你的博客就能够评论啦</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
