@@ -14,7 +14,8 @@
 视频指路
 一些需要知道的命令
 创建虚拟环境:
-1conda create -n 虚拟环境名字 python=版本
+conda create -n 虚拟环境名字 python=版本
+
 激活虚拟,"> 
     <meta name="author" content="Awith"> 
     <link rel="alternative" href="atom.xml" title="千幻笙的小窝" type="application/atom+xml"> 
@@ -30,7 +31,8 @@
 视频指路
 一些需要知道的命令
 创建虚拟环境:
-1conda create -n 虚拟环境名字 python=版本
+conda create -n 虚拟环境名字 python=版本
+
 激活虚拟,"/>
     
     
@@ -43,7 +45,8 @@
 视频指路
 一些需要知道的命令
 创建虚拟环境:
-1conda create -n 虚拟环境名字 python=版本
+conda create -n 虚拟环境名字 python=版本
+
 激活虚拟,"/>
     
 <link rel="stylesheet" href="../../../../css/diaspora.css">
@@ -90,19 +93,20 @@
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S5411X7FY?p=21&vd_source=212c67fc161f36062c5d44784ed8b749">视频指路</a></p>
 <p>一些需要知道的命令</p>
 <p><strong>创建虚拟环境:</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">conda create -n 虚拟环境名字 <span class="hljs-attribute">python</span>=版本<br></code></pre></td></tr></table></figure>
+<pre><code>conda create -n 虚拟环境名字 python=版本
+</code></pre>
 <p><strong>激活虚拟环境:</strong></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">activate</span> 虚拟环境名字<br></code></pre></td></tr></table></figure>
+<pre><code>conda activate 虚拟环境名字
+</code></pre>
 <p><strong>关闭目前虚拟环境:</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">conda deactivate</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>conda deactivate
+</code></pre>
 <p><strong>罗列拥有的虚拟环境:</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda <span class="hljs-built_in">env</span> list<br></code></pre></td></tr></table></figure>
+<pre><code>conda env list
+</code></pre>
 <p><strong>罗列该环境下的包:</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">conda list</span><br></code></pre></td></tr></table></figure>
-
-
-
+<pre><code>conda list
+</code></pre>
 <h3 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/7df56c96c0e06b18c164aea4974fef9.png" alt="7df56c96c0e06b18c164aea4974fef9"></p>
 <p>Anaconda是一个大的环境管理工具，在其中可以创建多个相互隔离的虚拟环境，每个虚拟环境中，有对应的包(package)，其中就包括pytorch、tensorflow这些人工智能常客，而conda、pip是包管理工具，用于安装、运行和更新软件包及其依赖项。这就是他们之间的关系。为什么使用Anaconda的理由显而易见。可以方便的使用互不干扰的虚拟环境，方便各个项目的配置。因为，大多数情况下，对应的python版本那些都是不完全一样的，不同的版本有不同版本的torch包。</p>
 <p>pycharm是一个IDE，方便开发和进行调试代码的工具，使用的时候需要配置相对应的环境，才能使用环境下的内容以及解释python文件，这里的环境就是指前面提到的虚拟环境。</p>
@@ -112,8 +116,8 @@
 <p>下载pytorch，也是去<a href="%5BPyTorch%5D(https://pytorch.org/)">官网</a>下载</p>
 <p>显卡算力可以去<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CUDA">维基</a>搜索查到</p>
 <p>显卡驱动可以在电脑的驱动查看，也可以在命令行输入</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nvidia-smi</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>nvidia-smi
+</code></pre>
 <p>即可查看对应的版本</p>
 <p>由此，也确定了需要下载的cuda版本及对应的pytorch版本，注意，需要查看对应版本所需的python环境。</p>
 <p>接下来就是打开Anaconda的终端窗口，新建虚拟环境，指定python的版本，然后再使用pytorch官网下查询到的命令安装所需要的包及依赖，等待安装即可。</p>

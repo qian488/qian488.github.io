@@ -3668,19 +3668,20 @@ string HtoO(string s)
 <p><a href="https://www.bilibili.com/video/BV1S5411X7FY?p=21&vd_source=212c67fc161f36062c5d44784ed8b749">视频指路</a></p>
 <p>一些需要知道的命令</p>
 <p><strong>创建虚拟环境:</strong></p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">conda create -n 虚拟环境名字 <span class="hljs-attribute">python</span>=版本<br></code></pre></td></tr></table></figure>
+<pre><code>conda create -n 虚拟环境名字 python=版本
+</code></pre>
 <p><strong>激活虚拟环境:</strong></p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">activate</span> 虚拟环境名字<br></code></pre></td></tr></table></figure>
+<pre><code>conda activate 虚拟环境名字
+</code></pre>
 <p><strong>关闭目前虚拟环境:</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">conda deactivate</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>conda deactivate
+</code></pre>
 <p><strong>罗列拥有的虚拟环境:</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">conda <span class="hljs-built_in">env</span> list<br></code></pre></td></tr></table></figure>
+<pre><code>conda env list
+</code></pre>
 <p><strong>罗列该环境下的包:</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">conda list</span><br></code></pre></td></tr></table></figure>
-
-
-
+<pre><code>conda list
+</code></pre>
 <h3 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/7df56c96c0e06b18c164aea4974fef9.png" alt="7df56c96c0e06b18c164aea4974fef9"></p>
 <p>Anaconda是一个大的环境管理工具，在其中可以创建多个相互隔离的虚拟环境，每个虚拟环境中，有对应的包(package)，其中就包括pytorch、tensorflow这些人工智能常客，而conda、pip是包管理工具，用于安装、运行和更新软件包及其依赖项。这就是他们之间的关系。为什么使用Anaconda的理由显而易见。可以方便的使用互不干扰的虚拟环境，方便各个项目的配置。因为，大多数情况下，对应的python版本那些都是不完全一样的，不同的版本有不同版本的torch包。</p>
 <p>pycharm是一个IDE，方便开发和进行调试代码的工具，使用的时候需要配置相对应的环境，才能使用环境下的内容以及解释python文件，这里的环境就是指前面提到的虚拟环境。</p>
@@ -3690,8 +3691,8 @@ string HtoO(string s)
 <p>下载pytorch，也是去<a href="%5BPyTorch%5D(https://pytorch.org/)">官网</a>下载</p>
 <p>显卡算力可以去<a href="https://en.wikipedia.org/wiki/CUDA">维基</a>搜索查到</p>
 <p>显卡驱动可以在电脑的驱动查看，也可以在命令行输入</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nvidia-smi</span><br></code></pre></td></tr></table></figure>
-
+<pre><code>nvidia-smi
+</code></pre>
 <p>即可查看对应的版本</p>
 <p>由此，也确定了需要下载的cuda版本及对应的pytorch版本，注意，需要查看对应版本所需的python环境。</p>
 <p>接下来就是打开Anaconda的终端窗口，新建虚拟环境，指定python的版本，然后再使用pytorch官网下查询到的命令安装所需要的包及依赖，等待安装即可。</p>
@@ -3735,94 +3736,111 @@ string HtoO(string s)
 <h4 id="2-初始配置"><a href="#2-初始配置" class="headerlink" title="2.初始配置"></a>2.初始配置</h4><h5 id="2-1更换国内软件源"><a href="#2-1更换国内软件源" class="headerlink" title="2.1更换国内软件源"></a>2.1更换国内软件源</h5><p>由于Ubuntu的软件源服务器在境外，因此下载速度会很慢，需要更改软件源为国内镜像网站。</p>
 <p>点击左下角的设置界面，找到Software&amp;Updates，Download from选择Select Best Server。</p>
 <p>进入&#x2F;ect&#x2F;apt路径，找到软件源配置文件“sources.list”，使用Ubuntu自带的编辑器对“sources.list”进行修改，熟悉vi、vim的可以使用vi、vim命令进行编辑。将源文件清空并替换为下列源地址。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text">deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse<br><br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse<br><br>## Pre-released source, not recommended.<br># deb https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse<br># deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse<br></code></pre></td></tr></table></figure>
+<pre><code class="text">deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
 
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+
+## Pre-released source, not recommended.
+# deb https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+</code></pre>
 <p>点击“保存”按钮或者“ctrl+s”后退出，vi、vim输入“:wq”后退出。</p>
 <h5 id="2-2设置apt包管理工具"><a href="#2-2设置apt包管理工具" class="headerlink" title="2.2设置apt包管理工具"></a>2.2设置apt包管理工具</h5><p>apt是Ubuntu上的软件包管理器，可以通过apt的相关命令进行软件的更新、卸载、故障排除等。更换国内软件源后需要对apt进行更新。</p>
 <p>首先更新apt软件包的源。输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt update
+</code></pre>
 <p>更新完apt的源后，进行相关软件包的升级。输入命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt upgrade<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt upgrade
+</code></pre>
 <h5 id="2-3配置局域网ssh连接"><a href="#2-3配置局域网ssh连接" class="headerlink" title="2.3配置局域网ssh连接"></a>2.3配置局域网ssh连接</h5><p>使用以下命令安装一下Ubuntu的网络工具包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install net-tools<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt install net-tools
+</code></pre>
 <p>在Ubuntu上启用SSH。</p>
 <p>Secure Shell (SSH) 是一个网络协议，它主要被用来加密客户端和服务端之间的连接。 从而建立一条安全的交互通道。</p>
 <p>使用以下命令安装ssh工具：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install openssh-server<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt install openssh-server
+</code></pre>
 <p>如果显示安装依赖，无法安装，先卸掉原本可能安装的不完整的。</p>
 <p>输入命令:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt autoremove openssh-client<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt autoremove openssh-client
+</code></pre>
 <p>然后重新安装。</p>
 <p>接下来修改一下ssh的系统配置，输入以下命令，用编辑器打开配置文件。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo gedit /etc/ssh/sshd_config //注意不要和ssh_config文件搞混了<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo gedit /etc/ssh/sshd_config //注意不要和ssh_config文件搞混了
+</code></pre>
 <p>修改四个位置。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text">将“Port 22”一行解除注释，可以自定义端口号，这里直接用默认的“22”端口号。<br>将“ListenAddress 0.0.0.0”一行解除注释。<br>将“PermitRootLogin prohibit-password”一行解除注释并将“prohibit-password”修改为“yes”。<br>将“PasswordAuthentication yes”一行解除注释。<br></code></pre></td></tr></table></figure>
-
+<pre><code class="text">将“Port 22”一行解除注释，可以自定义端口号，这里直接用默认的“22”端口号。
+将“ListenAddress 0.0.0.0”一行解除注释。
+将“PermitRootLogin prohibit-password”一行解除注释并将“prohibit-password”修改为“yes”。
+将“PasswordAuthentication yes”一行解除注释。
+</code></pre>
 <p>打开ssh服务。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo service ssh start 或 systemctl start ssh<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo service ssh start 或 systemctl start ssh
+</code></pre>
 <p>查看目前ssh的服务状态</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo service ssh status 或 systemctl status ssh<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo service ssh status 或 systemctl status ssh
+</code></pre>
 <p>设置ssh开机自启动。输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> ssh<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo systemctl enable ssh
+</code></pre>
 <p>至此ssh的配置完成。</p>
 <h4 id="3-常用软件安装"><a href="#3-常用软件安装" class="headerlink" title="3.常用软件安装"></a>3.常用软件安装</h4><h5 id="3-1Chrome"><a href="#3-1Chrome" class="headerlink" title="3.1Chrome"></a>3.1Chrome</h5><p>进入官网下载chrome浏览器的“deb”后缀文件。</p>
 <p>找到下载路径，输入以下命令进行安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo dpkg -i google-chrome-stable_current_amd64.deb<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo dpkg -i google-chrome-stable_current_amd64.deb
+</code></pre>
 <p><strong>google-chrome-stable_current_amd64.deb</strong>是下载的文件的名字，如果有报错，就检查一下是否和下载的文件名一致。</p>
 <h5 id="3-2搜狗输入法"><a href="#3-2搜狗输入法" class="headerlink" title="3.2搜狗输入法"></a>3.2搜狗输入法</h5><p>进入浏览器搜索，官方有教程，按教程一步一步，即可安装。</p>
 <p>其他软件都可以按这个方式去下载，去浏览器搜官网。</p>
 <p>ps：</p>
 <p>1.终端的autoremove慎用，我忘了删什么东西的时候，把图形界面给删掉，然后就只剩下命令行，然后就搜啊搜，重新将图形界面下回来。</p>
 <p>2.如果时间不一致，可使用以下命令:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install ntpdate<br>sudo ntpdate time.windows.com<br>sudo hwclock --localtime --systohc<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt install ntpdate
+sudo ntpdate time.windows.com
+sudo hwclock --localtime --systohc
+</code></pre>
 <p>3.如果声音无法播放，原因有些多，具体情况具体排查，可能是默认静音，也可能是没有声卡驱动，也可能是系统没更新完，有可能是什么其他问题。</p>
 <p>我的问题是windows10下可以正常播放，进入Ubuntu没有声音，重启，暂时性恢复，指过了几天，又没有声音了。然后，删掉自带的snap后，声音恢复，我也很奇怪。</p>
 <p>4.如果还有什么其他问题，搜索，搜着搜着就有解决方案。</p>
 <h3 id="常用命令总结"><a href="#常用命令总结" class="headerlink" title="常用命令总结"></a>常用命令总结</h3><p>0.提权，类似于管理员模式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo
+</code></pre>
 <p>需要输入自己的密码</p>
 <p>1.重启</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">reboot<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">reboot
+</code></pre>
 <p>2.杀死进程(关闭程序)</p>
 <p>ctrl+c退出当前程序</p>
 <p>后台程序需要kill，PID是程序的进程ID</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> PID<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">kill PID
+</code></pre>
 <p>3.下载安装</p>
 <p>浏览器下载.deb文件,然后终端打开文件所在位置，输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo dpkg -i 文件名<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo dpkg -i 文件名
+</code></pre>
 <p>命令行直接下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install XXX<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">sudo apt install XXX
+</code></pre>
 <p>4.列出目录内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">ls
+</code></pre>
 <p>5.切换目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span><br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">cd
+</code></pre>
 <p>6.显示文件内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">cat 文件名
+</code></pre>
 <p>7.创建新目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> 名字<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">mkdir 名字
+</code></pre>
 <p>8.搜索内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">grep<br></code></pre></td></tr></table></figure>
-
+<pre><code class="bash">grep
+</code></pre>
 <p>使用上的话，这些够用了，有图形界面，这些有些也用不上，其他有需要，搜就完事了。<del>(绝对不是因为我懒)</del></p>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>初见Linux系统，并没有看到其特别优秀之处，应该是我还没学到或者是用到，感受不到，但是用着确实感觉帅。</p>
 <p>参考<a href="https://www.runoob.com/linux/linux-tutorial.html">学习资料</a></p>
