@@ -5603,4 +5603,103 @@ string HtoO(string s)
         <tag>算法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C#基础一览</title>
+    <url>/2024/10/24/C-%E5%9F%BA%E7%A1%80%E4%B8%80%E8%A7%88/</url>
+    <content><![CDATA[<h2 id="C-基础一览"><a href="#C-基础一览" class="headerlink" title="C#基础一览"></a>C#基础一览</h2><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423213738286.png" alt="image-20240423213738286"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225741021.png" alt="image-20240423225741021"></p>
+<h3 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423213815091.png" alt="image-20240423213815091"></p>
+<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\C-基础一览.assets\image-20240423224156790.png" alt="image-20240423224156790"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423214027525.png" alt="image-20240423214027525"></p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225719092.png" alt="image-20240423225719092"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230544949.png" alt="image-20240423230544949"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231929349.png" alt="image-20240423231929349"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230819040.png" alt="image-20240423230819040"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423232022222.png" alt="image-20240423232022222"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225606226.png" alt="image-20240423225606226"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423091505313.png" alt="image-20240423091505313"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230901761.png" alt="image-20240423230901761"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225644142.png" alt="image-20240423225644142"></p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231754296.png" alt="image-20240423231754296"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231807400.png" alt="image-20240423231807400"></p>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231835532.png" alt="image-20240423231835532"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231847589.png" alt="image-20240423231847589"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231855144.png" alt="image-20240423231855144"></p>
+<h3 id="参数详情"><a href="#参数详情" class="headerlink" title="参数详情"></a>参数详情</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224629949.png" alt="image-20240423224629949"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224718526.png" alt="image-20240423224718526"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224733467.png" alt="image-20240423224733467"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224754580.png" alt="image-20240423224754580"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224808654.png" alt="image-20240423224808654"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224903042.png" alt="image-20240423224903042"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224915587.png" alt="image-20240423224915587"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224927237.png" alt="image-20240423224927237"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224941662.png" alt="image-20240423224941662"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224955906.png" alt="image-20240423224955906"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225018033.png" alt="image-20240423225018033"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225002425.png" alt="image-20240423225002425"><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225514909.png" alt="image-20240423225514909"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223908471.png" alt="image-20240423223908471"></p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423091716748.png" alt="image-20240423091716748"></p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240530181818612.png" alt="image-20240530181818612"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240531171510068.png" alt="image-20240531171510068"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225816556.png" alt="image-20240423225816556"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230930577.png" alt="image-20240423230930577"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230704333.png" alt="image-20240423230704333"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423232108303.png" alt="image-20240423232108303"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423232121019.png" alt="image-20240423232121019"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225832987.png" alt="image-20240423225832987"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225904111.png" alt="image-20240423225904111"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231042314.png" alt="image-20240423231042314"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230238719.png" alt="image-20240423230238719"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230304049.png" alt="image-20240423230304049"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230440445.png" alt="image-20240423230440445"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230316370.png" alt="image-20240423230316370"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092008806.png" alt="image-20240423092008806"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092044580.png" alt="image-20240423092044580"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092459785.png" alt="image-20240423092459785"></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423233158069.png" alt="image-20240423233158069"></p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092330070.png" alt="image-20240423092330070"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092348633.png" alt="image-20240423092348633"></p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092537723.png" alt="image-20240423092537723"></p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092554206.png" alt="image-20240423092554206"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092727350.png" alt="image-20240423092727350"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092913463.png" alt="image-20240423092913463"></p>
+<h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222628058.png" alt="image-20240423222628058"></p>
+<p>函数指针例子</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223419194.png" alt="image-20240423223419194"><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223430737.png" alt="image-20240423223430737"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223629501.png" alt="image-20240423223629501"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222644032.png" alt="image-20240423222644032"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222700154.png" alt="image-20240423222700154"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223529190.png" alt="image-20240423223529190"><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223540611.png" alt="image-20240423223540611"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222715405.png" alt="image-20240423222715405"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223728500.png" alt="image-20240423223728500"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223748001.png" alt="image-20240423223748001"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223826450.png" alt="image-20240423223826450"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093021347.png" alt="image-20240423093021347"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093043616.png" alt="image-20240423093043616"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093124538.png" alt="image-20240423093124538"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093144556.png" alt="image-20240423093144556"></p>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222533493.png" alt="image-20240423222533493"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222448701.png" alt="image-20240423222448701"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240530172049121.png" alt="image-20240530172049121"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240530180259134.png" alt="image-20240530180259134"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093206385.png" alt="image-20240423093206385"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093239413.png" alt="image-20240423093239413"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093310629.png" alt="image-20240423093310629"></p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093334959.png" alt="image-20240423093334959"></p>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006114841703.png" alt="image-20241006114841703"></p>
+<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\C-基础一览.assets\image-20241006114946908.png" alt="image-20241006114946908"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006115112869.png" alt="image-20241006115112869"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006115932380.png" alt="image-20241006115932380"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006115740170.png" alt="image-20241006115740170"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120250170.png" alt="image-20241006120250170"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120406248.png" alt="image-20241006120406248"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120631954.png" alt="image-20241006120631954"></p>
+<p>通过反射设置数据成员、调用成员函数</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120932958.png" alt="image-20241006120932958"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006121059892.png" alt="image-20241006121059892"></p>
+]]></content>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
 </search>

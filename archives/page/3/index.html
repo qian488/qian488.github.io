@@ -12,29 +12,29 @@
     
     
     
-    <title>Unity 2D Shader Graph实现溶解和发光思路 | 千幻笙的小窝</title>
+    <title>archive_a | 千幻笙的小窝</title>
     <link href="https://qian488.github.io" rel="prefetch" />
     <script src="/live2d-widget/autoload.js"></script>
 
     
-<link rel="stylesheet" href="../../../../css/bootstrap.min.css">
-<link rel="stylesheet" href="../../../../css/aos.css">
-<link rel="stylesheet" href="../../../../css/style.css">
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../css/aos.css">
+<link rel="stylesheet" href="../../../css/style.css">
 
     
-<script src="../../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.min.js"></script>
 
     
-<script src="../../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
 
     
-<script src="../../../../js/aos.js"></script>
+<script src="../../../js/aos.js"></script>
 
     
-<script src="../../../../js/highslide/highslide-full.min.js"></script>
+<script src="../../../js/highslide/highslide-full.min.js"></script>
 
     
-<link rel="stylesheet" href="../../../../js/highslide/highslide.css">
+<link rel="stylesheet" href="../../../js/highslide/highslide.css">
 
     <style type="text/css">
         @media (max-width: 768px) {
@@ -49,12 +49,12 @@
     <!--<script type="text/javascript">
       if (document.images) {
         var avatar = new Image();
-        avatar.src = '../../../../imgs/avatar1.jpg'
+        avatar.src = '../../../imgs/avatar1.jpg'
         var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg,/img/wallhaven-3l69q3.jpg,/img/wallhaven-3lrjwy.jpg,/img/wallhaven-5gml91.jpg,/img/wallhaven-6dpjm6.jpg,/img/wallhaven-g8orp7.png,/img/wallhaven-m3g1rk.png,/img/wallhaven-rrj52j.png,/img/wallhaven-yx8p2k.png,/img/1310403.jpeg,/img/1328243.jpeg,/img/1336068.jpeg,/img/1348243.jpeg,/img/1322940.jpeg,/img/1329597.jpeg,/img/47569.jpg,/img/51004.jpg,/img/84947.jpg,/img/108751.jpg,/img/109841.jpg,/img/111793.jpg,/img/113372.jpg,/img/120652.jpg,/img/120686.jpg,/img/122042.jpg,/img/122067.jpg,/img/122080.jpg,/img/535616.jpg,/img/596892.jpg,/img/629546.jpg,/img/647762.jpg,/img/648557.jpg,/img/677543.jpg,/img/698140.jpg,/img/728202.jpg,/img/739561.jpg,/img/792780.jpg,/img/841819.jpg,/img/1130744.jpg,/img/1187334.jpg,/img/1251420.jpg,/img/1255284.jpg,/img/1286997.jpg,/img/1290006.jpg,/img/1291901.jpg,/img/1299890.jpg,/img/1307438.jpg,/img/wallhaven-4oomvp.jpg,/img/wallhaven-28p626.jpg,/img/wallhaven-m3gqzk.jpg,/img/wallhaven-p955gm.jpg,/img/wallhaven-vqvgl8.jpg,/img/wallhaven-zyv5qj.jpg,/img/603243.png,/img/628927.png,/img/643901.png,/img/649533.png,/img/690810.png,/img/691314.png,/img/710132.png,/img/941448.png,/img/941663.png,/img/941852.png,/img/941856.png,/img/941861.png,/img/941868.png,/img/942144.png,/img/942146.png,/img/942150.png,/img/942153.png,/img/1021365.png,/img/1109789.png,/img/1131199.png,/img/1131209.png,/img/1253690.png,/img/1254868.png,/img/1256235.png,/img/1256240.png,/img/1260719.png,/img/1314408.png,/img/1318226.png,/img/1322879.png,/img/1324845.png,/img/1344526.png,/img/wallhaven-1k78jg.png,/img/wallhaven-2y31l6.png,/img/wallhaven-8563jo.png,/img/wallhaven-m3rm11.png,/img/wallhaven-vq5vjp.png'.split(',')
         var previewsPreLoad = []
         for(var i = 0; i < length; i++) {
           previewsPreLoad.push(new Image())
-          previewsPreLoad[previewsPreLoad.length - 1].src = '../../../../imgs/preview' + previews[i]
+          previewsPreLoad[previewsPreLoad.length - 1].src = '../../../imgs/preview' + previews[i]
         }
       }
     </script>-->
@@ -80,15 +80,15 @@
             
             <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
             
-            <a href="../../../../archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">精华</a>
-            <a href="../../../../about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
-            <a href="../../../../message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            <a href="../.." class="menuItem" style="left: 80.3109%; top: 67.5%;">精华</a>
+            <a href="../../../about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="../../../message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
 
             
-            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            <a href="../../../page/2" class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
             
         </div>
-        <audio id="audio" src="../../../../imgs/oni.mp3"></audio>
+        <audio id="audio" src="../../../imgs/oni.mp3"></audio>
     </div>
 </div>
     
@@ -122,15 +122,15 @@
                 
                 
                 <li class="">
-                    <a href="../../../../index.html">
+                    <a href="../../../index.html">
                         <i class="fa fa-home"></i>首页
                     </a>
                 </li>
                 
                 
                 
-                <li class="">
-                    <a href="../../../../archives">
+                <li class="current">
+                    <a href="../..">
                         <i class="fa fa-archive"></i>精华
                     </a>
                 </li>
@@ -148,23 +148,23 @@
                         
                         
                         <li>
-                            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">总结</a>
+                            <a href="../../../categories/%E6%80%BB%E7%BB%93/">总结</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">分享</a>
+                            <a href="../../../categories/%E5%88%86%E4%BA%AB/">分享</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">教程</a>
+                            <a href="../../../categories/%E6%95%99%E7%A8%8B/">教程</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../categories/%E6%80%BB%E7%BB%93/%E6%95%99%E7%A8%8B/">教程</a>
+                            <a href="../../../categories/%E6%80%BB%E7%BB%93/%E6%95%99%E7%A8%8B/">教程</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../categories/%E5%85%AC%E5%91%8A/">公告</a>
+                            <a href="../../../categories/%E5%85%AC%E5%91%8A/">公告</a>
                         </li>
                         
                         
@@ -186,28 +186,28 @@
                         
                         
                         <li>
-                            <a href="../../../../tags/CS/">CS</a>
+                            <a href="../../../tags/CS/">CS</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../tags/CS50/">CS50</a>
+                            <a href="../../../tags/CS50/">CS50</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../tags/Godot/">Godot</a>
+                            <a href="../../../tags/Godot/">Godot</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../tags/hexo/">hexo</a>
+                            <a href="../../../tags/hexo/">hexo</a>
                         </li>
                         
                         <li>
-                            <a href="../../../../tags/git/">git</a>
+                            <a href="../../../tags/git/">git</a>
                         </li>
                         
                         
                         <li>
-                            <a href="../../../../tags">...</a>
+                            <a href="../../../tags">...</a>
                         </li>
                         
                         
@@ -218,7 +218,7 @@
                 
                 
                 <li class="">
-                    <a href="../../../../about">
+                    <a href="../../../about">
                         <i class="fa fa-user"></i>关于
                     </a>
                 </li>
@@ -226,7 +226,7 @@
                 
                 
                 <li class="">
-                    <a href="../../../../links">
+                    <a href="../../../links">
                         <i class="fa fa-"></i>友链
                     </a>
                 </li>
@@ -240,38 +240,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    
-<article class="article well article-body" id="article">
+                    <article class="article well article-body" id="article-archive">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://qian488.github.io">千幻笙的小窝</a>
         >
-        <span>Unity 2D Shader Graph实现溶解和发光思路</span>
+        <span>精华</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="">Unity 2D Shader Graph实现溶解和发光思路</a>
+                <a href="../..">精华</a>
             </h1>
-        </div>
-        <div class="tag-article">
-            
-            <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="../../../../tags/unity/">unity</a>, 
-                
-                <a href="../../../../tags/2D/">2D</a>, 
-                
-                <a href="../../../../tags/Shader/">Shader</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2024-08-18
-            </span>
-            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -279,62 +260,124 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="">Unity 2D Shader Graph实现溶解和发光思路</a>
+                    <a href="../..">精华</a>
                 </h4>
             </div>
-            <p>
-                <i class="fa fa-calendar"></i> 2024-08-18
-            </p>
-            <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="../../../../tags/unity/">unity</a>, 
-                
-                <a href="../../../../tags/2D/">2D</a>, 
-                
-                <a href="../../../../tags/Shader/">Shader</a>
-                
-                
-                
-            </p>
         </center>
     </div>
-    <div class="content-article">
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要介绍通过使用unity的2d Shader Graph实现溶解和发光的思路。</p>
-<p>首先需要导入URP的包，然后再设置用于2D的shader</p>
-<p><strong>2D Shader Graph设置：</strong></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180222086.png" alt="image-20240819180222086"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180001392.png" alt="image-20240819180001392"></p>
-<p>生成URP Assest的时候会生成一个默认的Renderer，不过默认是3D用的，所以记得删去。</p>
-<h3 id="Dissolve效果展示"><a href="#Dissolve效果展示" class="headerlink" title="Dissolve效果展示"></a>Dissolve效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174737029.png" alt="image-20240819174737029"></p>
-<p>从效果上可以看到，除了溶解，还有边缘发光的效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174829845.png" alt="image-20240819174829845"></p>
-<p>Shader编辑器如图。</p>
-<p>溶解的思路就是生成一个噪声图，与图片叠加，由噪声图控制透明度，然后用step节点控制噪声图，就能形成淡出淡入的效果，再加上噪声图的大小缩放也控制上，就能实现溶解。</p>
-<p>间隙发光的思路是用原来的噪声图进行一点点偏差，生成一个新的噪声图，再将两个噪声图做差，再与原本的噪声图（指最初的噪声图与图片叠加后的结果），得到间隙，再附带上颜色，就形成了间隙发光的效果。</p>
-<h3 id="Glowing效果展示"><a href="#Glowing效果展示" class="headerlink" title="Glowing效果展示"></a>Glowing效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174946598.png" alt="image-20240819174946598"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175437088.png" alt="image-20240819175437088"></p>
-<p>这个发光效果的好处就是可以变化颜色，也就是说，可以代码控制颜色变化，实现角色获得buff展示不同效果或者是角色技能升级产生不同效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175231392.png" alt="image-20240819175231392"></p>
-<p>Shader编辑器如图。</p>
-<p>首先要制作一个原本技能贴图的蒙版，作为原本图片的次级纹理。蒙版图片只有黑白，所以只选取RGB其中任意一个通道就行，然后再用个颜色叠加，就能只影响技能的发光并且可以更改技能颜色。</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这也算是我第一次接触这部分的知识，道阻且长。无他，只是想记录记录，其实这也没什么技术含量，但是我想写就写。</p>
-<p>参考资料：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d541167q4/?spm_id_from=333.788.video.desc.click&vd_source=212c67fc161f36062c5d44784ed8b749">Dissolve</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gA411h7Qc/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=212c67fc161f36062c5d44784ed8b749">Glowing</a></p>
-
+    <div class="content-article" style="margin-top: 30px;">
+        
+        
+            <h1 style="font-size: 24px; margin-top: 40px;">2050年</h1>
+            
+        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+            
+             
+             
+                        <a href="../../../2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/">欢迎来到我的小站</a>
+                        <br>
+            
+             
+                        </div>
+                    <h1 style="font-size: 24px; margin-top: 40px;">2049年</h1>
+                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+                 
+             
+                        <a href="../../../2049/04/01/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">算法竞赛知识总结</a>
+                        <br>
+            
+             
+                        </div>
+                    <h1 style="font-size: 24px; margin-top: 40px;">2024年</h1>
+                    <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+                 
+             
+                        <a href="../../../2024/10/24/C-%E5%9F%BA%E7%A1%80%E4%B8%80%E8%A7%88/">C#基础一览</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/10/20/CS%E8%87%AA%E5%AD%A6%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86%E6%80%BB%E7%BB%93/">CS自学资料收集总结</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/08/23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/08/18/Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/08/18/Unity-2D-Shader-Graph%E5%AE%9E%E7%8E%B0%E6%BA%B6%E8%A7%A3%E5%92%8C%E5%8F%91%E5%85%89%E6%80%9D%E8%B7%AF/">Unity 2D Shader Graph实现溶解和发光思路</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/08/17/Stable-Diffusion-%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%88%86%E4%BA%AB/">Stable Diffusion 模型与提示词分享</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/08/15/%E5%9F%BA%E4%BA%8EVS%E4%BD%BF%E7%94%A8C-%E5%BC%80%E5%8F%91windows%E7%AA%97%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E5%B0%8F%E5%B7%A5%E5%85%B7-NumberPicker/">基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/07/26/%E5%88%9D%E8%A7%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E2%80%94%E2%80%94Anaconda%E5%92%8CPytorch%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">初见深度学习——Anaconda和Pytorch环境搭建</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/07/25/%E5%88%9D%E8%A7%81Linux/">初见Linux</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/07/21/Godot%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">Godot快速上手</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/07/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/">Typora+picgo+github搭建图床实现博客图片正常显示</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/01/19/Learning-Git-Branching-%E9%80%9A%E5%85%B3/">Learning Git Branching 通关</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/">Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/">基于Hexo与git的个人博客快速部署</a>
+                        <br>
+            
+             
+                        <a href="../../../2024/01/17/VSC%E4%B8%8EGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">VSC与Git常用命令</a>
+                        <br>
+            
+                    </div>
+        
     </div>
 </article>
-
-
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
 <aside id="sidebar-search">
     <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
         <form class="form-inline clearfix" id="search-form" method="get"
-              action="../../../../search/index.html">
+              action="../../../search/index.html">
             <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~" autocomplete="off">
             <button class="btn btn-danger btn-gal" type="submit">
                 <i class="fa fa-search"></i>
@@ -350,7 +393,7 @@
             <i class="fa fa-quote-right"></i>
         </div>
         <div class="author-panel text-center">
-            <img src="../../../../imgs/avatar1.jpg" width="140" height="140"
+            <img src="../../../imgs/avatar1.jpg" width="140" height="140"
                  alt="个人头像" class="author-image">
             <p class="author-description"><p>qian488</p>
 </p>
@@ -385,61 +428,61 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/">欢迎来到我的小站</a>
+                    <a href="../../../2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/">欢迎来到我的小站</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2049/04/01/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">算法竞赛知识总结</a>
+                    <a href="../../../2049/04/01/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">算法竞赛知识总结</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../10/24/C-%E5%9F%BA%E7%A1%80%E4%B8%80%E8%A7%88/">C#基础一览</a>
+                    <a href="../../../2024/10/24/C-%E5%9F%BA%E7%A1%80%E4%B8%80%E8%A7%88/">C#基础一览</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../10/20/CS%E8%87%AA%E5%AD%A6%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86%E6%80%BB%E7%BB%93/">CS自学资料收集总结</a>
+                    <a href="../../../2024/10/20/CS%E8%87%AA%E5%AD%A6%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86%E6%80%BB%E7%BB%93/">CS自学资料收集总结</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
+                    <a href="../../../2024/09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
+                    <a href="../../../2024/09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
+                    <a href="../../../2024/09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
+                    <a href="../../../2024/09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
+                    <a href="../../../2024/08/23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
+                    <a href="../../../2024/08/18/Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
                 </span>
             </li>
             
@@ -461,61 +504,61 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
+                    <a href="../../../2024/10/20/CS%E8%87%AA%E5%AD%A6%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86%E6%80%BB%E7%BB%93/">CS自学资料收集总结</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../07/21/Godot%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">Godot快速上手</a>
+                    <a href="../../../2024/09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
+                    <a href="../../../2024/09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../17/Stable-Diffusion-%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%88%86%E4%BA%AB/">Stable Diffusion 模型与提示词分享</a>
+                    <a href="../../../2024/01/19/Learning-Git-Branching-%E9%80%9A%E5%85%B3/">Learning Git Branching 通关</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="">Unity 2D Shader Graph实现溶解和发光思路</a>
+                    <a href="../../../2024/08/17/Stable-Diffusion-%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%88%86%E4%BA%AB/">Stable Diffusion 模型与提示词分享</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
+                    <a href="../../../2024/07/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/">Typora+picgo+github搭建图床实现博客图片正常显示</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
+                    <a href="../../../2024/07/25/%E5%88%9D%E8%A7%81Linux/">初见Linux</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../07/25/%E5%88%9D%E8%A7%81Linux/">初见Linux</a>
+                    <a href="../../../2024/09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../15/%E5%9F%BA%E4%BA%8EVS%E4%BD%BF%E7%94%A8C-%E5%BC%80%E5%8F%91windows%E7%AA%97%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E5%B0%8F%E5%B7%A5%E5%85%B7-NumberPicker/">基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</a>
+                    <a href="../../../2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/">欢迎来到我的小站</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
+                    <a href="../../../2049/04/01/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">算法竞赛知识总结</a>
                 </span>
             </li>
             
@@ -540,65 +583,65 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="../../../../tags/CS/" style="font-size: 17.539814340066464px;" class="tag-cloud-link">CS</a>
+    <a href="../../../tags/CS/" style="font-size: 16.710212785441588px;" class="tag-cloud-link">CS</a>
     
-    <a href="../../../../tags/CS50/" style="font-size: 8.978532434660325px;" class="tag-cloud-link">CS50</a>
+    <a href="../../../tags/CS50/" style="font-size: 18.695330284519276px;" class="tag-cloud-link">CS50</a>
     
-    <a href="../../../../tags/Godot/" style="font-size: 13.116674465674672px;" class="tag-cloud-link">Godot</a>
+    <a href="../../../tags/Godot/" style="font-size: 14.547332054032688px;" class="tag-cloud-link">Godot</a>
     
-    <a href="../../../../tags/hexo/" style="font-size: 14.454835328010855px;" class="tag-cloud-link">hexo</a>
+    <a href="../../../tags/hexo/" style="font-size: 16.843046891293262px;" class="tag-cloud-link">hexo</a>
     
-    <a href="../../../../tags/git/" style="font-size: 16.3684897464561px;" class="tag-cloud-link">git</a>
+    <a href="../../../tags/git/" style="font-size: 15.102839413384874px;" class="tag-cloud-link">git</a>
     
-    <a href="../../../../tags/SD/" style="font-size: 13.215639586371507px;" class="tag-cloud-link">SD</a>
+    <a href="../../../tags/SD/" style="font-size: 8.198053146340246px;" class="tag-cloud-link">SD</a>
     
-    <a href="../../../../tags/prompt/" style="font-size: 19.29737020706568px;" class="tag-cloud-link">prompt</a>
+    <a href="../../../tags/prompt/" style="font-size: 9.012174879159073px;" class="tag-cloud-link">prompt</a>
     
-    <a href="../../../../tags/github/" style="font-size: 15.1474361768088px;" class="tag-cloud-link">github</a>
+    <a href="../../../tags/github/" style="font-size: 14.313933740050402px;" class="tag-cloud-link">github</a>
     
-    <a href="../../../../tags/Typora/" style="font-size: 18.732687178873107px;" class="tag-cloud-link">Typora</a>
+    <a href="../../../tags/Typora/" style="font-size: 10.922461525480866px;" class="tag-cloud-link">Typora</a>
     
-    <a href="../../../../tags/picGo/" style="font-size: 13.069784794317158px;" class="tag-cloud-link">picGo</a>
+    <a href="../../../tags/picGo/" style="font-size: 18.15366941948498px;" class="tag-cloud-link">picGo</a>
     
-    <a href="../../../../tags/unity/" style="font-size: 19.33898707408049px;" class="tag-cloud-link">unity</a>
+    <a href="../../../tags/unity/" style="font-size: 13.245122722143648px;" class="tag-cloud-link">unity</a>
     
-    <a href="../../../../tags/2D/" style="font-size: 8.111167369120773px;" class="tag-cloud-link">2D</a>
+    <a href="../../../tags/2D/" style="font-size: 12.800464367875618px;" class="tag-cloud-link">2D</a>
     
-    <a href="../../../../tags/Shader/" style="font-size: 19.316902176534718px;" class="tag-cloud-link">Shader</a>
+    <a href="../../../tags/Shader/" style="font-size: 9.778593788784535px;" class="tag-cloud-link">Shader</a>
     
-    <a href="../../../../tags/WebGl/" style="font-size: 16.58010663961239px;" class="tag-cloud-link">WebGl</a>
+    <a href="../../../tags/WebGl/" style="font-size: 15.8044384451731px;" class="tag-cloud-link">WebGl</a>
     
-    <a href="../../../../tags/Galgame/" style="font-size: 18.348297983263873px;" class="tag-cloud-link">Galgame</a>
+    <a href="../../../tags/Galgame/" style="font-size: 17.606591668896346px;" class="tag-cloud-link">Galgame</a>
     
-    <a href="../../../../tags/Naninovel/" style="font-size: 17.004996306194176px;" class="tag-cloud-link">Naninovel</a>
+    <a href="../../../tags/Naninovel/" style="font-size: 9.327337929265706px;" class="tag-cloud-link">Naninovel</a>
     
-    <a href="../../../../tags/test/" style="font-size: 14.378135082061226px;" class="tag-cloud-link">test</a>
+    <a href="../../../tags/test/" style="font-size: 17.559940967672397px;" class="tag-cloud-link">test</a>
     
-    <a href="../../../../tags/vsc/" style="font-size: 15.512624131366767px;" class="tag-cloud-link">vsc</a>
+    <a href="../../../tags/vsc/" style="font-size: 11.621519477365897px;" class="tag-cloud-link">vsc</a>
     
-    <a href="../../../../tags/Vim/" style="font-size: 13.79876755855318px;" class="tag-cloud-link">Vim</a>
+    <a href="../../../tags/Vim/" style="font-size: 15.217664416632411px;" class="tag-cloud-link">Vim</a>
     
-    <a href="../../../../tags/Linux/" style="font-size: 12.31678084974535px;" class="tag-cloud-link">Linux</a>
+    <a href="../../../tags/Linux/" style="font-size: 12.030385262873247px;" class="tag-cloud-link">Linux</a>
     
-    <a href="../../../../tags/Anaconda/" style="font-size: 9.831468109161996px;" class="tag-cloud-link">Anaconda</a>
+    <a href="../../../tags/Anaconda/" style="font-size: 8.980296393344354px;" class="tag-cloud-link">Anaconda</a>
     
-    <a href="../../../../tags/Pytorch/" style="font-size: 12.399013259624052px;" class="tag-cloud-link">Pytorch</a>
+    <a href="../../../tags/Pytorch/" style="font-size: 11.754119968137111px;" class="tag-cloud-link">Pytorch</a>
     
-    <a href="../../../../tags/Deeplearn/" style="font-size: 17.32914458482073px;" class="tag-cloud-link">Deeplearn</a>
+    <a href="../../../tags/Deeplearn/" style="font-size: 19.361077375514917px;" class="tag-cloud-link">Deeplearn</a>
     
-    <a href="../../../../tags/C/" style="font-size: 18.206938643303452px;" class="tag-cloud-link">C#</a>
+    <a href="../../../tags/C/" style="font-size: 9.871215613394725px;" class="tag-cloud-link">C#</a>
     
-    <a href="../../../../tags/VS/" style="font-size: 9.509549013661534px;" class="tag-cloud-link">VS</a>
+    <a href="../../../tags/VS/" style="font-size: 15.375447203689202px;" class="tag-cloud-link">VS</a>
     
-    <a href="../../../../tags/Windows-Forms/" style="font-size: 11.74010330957043px;" class="tag-cloud-link">Windows Forms</a>
+    <a href="../../../tags/Windows-Forms/" style="font-size: 12.892019973374538px;" class="tag-cloud-link">Windows Forms</a>
     
-    <a href="../../../../tags/live2d/" style="font-size: 13.100804823497665px;" class="tag-cloud-link">live2d</a>
+    <a href="../../../tags/live2d/" style="font-size: 18.37312959274976px;" class="tag-cloud-link">live2d</a>
     
-    <a href="../../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 9.393580309860099px;" class="tag-cloud-link">公告</a>
+    <a href="../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 14.910842633672218px;" class="tag-cloud-link">公告</a>
     
-    <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 19.87642748028661px;" class="tag-cloud-link">算法</a>
+    <a href="../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.037965857875905px;" class="tag-cloud-link">算法</a>
     
-    <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 19.765769637582686px;" class="tag-cloud-link">总结</a>
+    <a href="../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 16.478700737942177px;" class="tag-cloud-link">总结</a>
     
 </div>
                 
@@ -625,7 +668,7 @@
 </div>
 </body>
 
-<script src="../../../../js/activate-power-mode.js"></script>
+<script src="../../../js/activate-power-mode.js"></script>
 
 <script>
 
@@ -668,18 +711,18 @@
 </script>
 <script>
     window.slideConfig = {
-      prefix: '../../../../imgs/slide/background',
+      prefix: '../../../imgs/slide/background',
       ext: 'jpg',
       maxCount: '7'
     }
 </script>
 
-<script src="../../../../js/hs.js"></script>
-<script src="../../../../js/blog.js"></script>
+<script src="../../../js/hs.js"></script>
+<script src="../../../js/blog.js"></script>
 
 
 
-<script src="../../../../js/oni.js"></script>
+<script src="../../../js/oni.js"></script>
 
 
 
