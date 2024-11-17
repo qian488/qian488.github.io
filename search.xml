@@ -3751,7 +3751,95 @@ ULL get(int l,int r)
 <pre><code class="cpp">//tree[N]存储堆中的值，tree[0]是根
 tree[N];
 </code></pre>
-<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><h3 id="树状数组-Binary-Indexed-Tree"><a href="#树状数组-Binary-Indexed-Tree" class="headerlink" title="树状数组(Binary Indexed Tree)"></a>树状数组(Binary Indexed Tree)</h3><p>利用数的二进制特征进行检索的树状结构</p>
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><pre><code class="cpp">struct segmenttree
+&#123;
+    int n;
+    vector&lt;int&gt; st, lazy;
+
+    void init(int _n)
+    &#123;
+        this-&gt;n = _n;
+        st.resize(4 * n, LLONG_MAX);
+        lazy.resize(4 * n, LLONG_MAX);
+    &#125;
+
+    void push(int start, int ending, int node)
+    &#123;
+        if (lazy[node] != LLONG_MAX)
+        &#123;
+            st[node] = min(lazy[node], st[node]);
+
+            if (start != ending)
+            &#123;
+                lazy[2 * node + 1] = min(lazy[2 * node + 1],lazy[node]);
+                lazy[2 * node + 2] = min(lazy[node], lazy[2 * node + 1]);
+            &#125;
+
+            lazy[node] = LLONG_MAX;
+        &#125;
+    &#125;
+
+    int query(int start, int ending, int l, int r, int node)
+    &#123;
+        push(start, ending, node);
+
+        if (start &gt; r || ending &lt; l)
+        &#123;
+            return LLONG_MAX;
+        &#125;
+
+        if (start &gt;= l &amp;&amp; ending &lt;= r)
+        &#123;
+            return st[node];
+        &#125;
+
+        int mid = (start + ending) / 2;
+
+        int q1 = query(start, mid, l, r, 2 * node + 1);
+        int q2 = query(mid + 1, ending, l, r, 2 * node + 2);
+
+        return min(q1, q2);
+    &#125;
+
+    void update(int start, int ending, int node, int l, int r, int value)
+    &#123;
+        push(start, ending, node);
+
+        if (start &gt; r || ending &lt; l)
+        &#123;
+            return;
+        &#125;
+
+        if (start &gt;= l &amp;&amp; ending &lt;= r)
+        &#123;
+            lazy[node] = min(lazy[node], value);
+            push(start, ending, node);            
+            return;
+        &#125;
+
+        int mid = (start + ending) / 2;
+
+        update(start, mid, 2 * node + 1, l, r, value);
+
+        update(mid + 1, ending, 2 * node + 2, l, r, value);
+
+        st[node] = min(st[node * 2 + 1], st[node * 2 + 2]);
+
+        return;
+    &#125;
+
+    int query(int l, int r)
+    &#123;
+        return query(0, n - 1, l, r, 0);
+    &#125;
+
+    void update(int l, int r, int x)
+    &#123;
+        update(0, n - 1, 0, l, r, x);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="树状数组-Binary-Indexed-Tree"><a href="#树状数组-Binary-Indexed-Tree" class="headerlink" title="树状数组(Binary Indexed Tree)"></a>树状数组(Binary Indexed Tree)</h3><p>利用数的二进制特征进行检索的树状结构</p>
 <p>主要用于对一个数组进行<strong>区间求和+点修</strong>或者<strong>区间修改+点查</strong></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122648324.png"></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122731502.png"></p>
@@ -3799,6 +3887,27 @@ void add(int x,int v)
 &#123;
     for(int i=x;i&lt;M;i+=lowbit(i))
         tr[i]+=v;
+&#125;
+</code></pre>
+<h3 id="ST表"><a href="#ST表" class="headerlink" title="ST表"></a>ST表</h3><p>ST 表（Sparse Table，稀疏表）是用于解决 <strong>可重复贡献问题</strong> 的数据结构。</p>
+<p>ST 表能较好的维护「可重复贡献」的区间信息（同时也应满足结合律），时间复杂度较低，代码量相对其他算法很小。但是，ST 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。</p>
+<pre><code class="cpp">// ST表
+
+template&lt;typename T&gt; vector&lt;vector&lt;T&gt;&gt; get_st(vector&lt;T&gt; &amp;v, T (*sel)(T a, T b)) &#123;
+    int n = v.size(), m = log2(n)+1;
+    vector&lt;vector&lt;T&gt;&gt; ret(m);
+    ret[0] = v;
+    for(int i=1;i&lt;m;i++) for(int j=0;j&lt;=n-(1&lt;&lt;i);j++) ret[i].push_back(sel(ret[i-1][j],ret[i-1][j+(1&lt;&lt;(i-1))]));
+    return ret;
+&#125;
+
+template&lt;typename T&gt; T st_queue(vector&lt;vector&lt;T&gt;&gt; &amp;st, int l, int r, T (*sel)(T a, T b)) &#123;
+    int lay = log2(r-l+1), wid=1&lt;&lt;lay;
+    return sel(st[lay][l],st[lay][r-wid+1]);
+&#125;
+
+int get_max(int a, int b) &#123;
+    return max(a,b);
 &#125;
 </code></pre>
 <h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><h2 id="递归与回溯"><a href="#递归与回溯" class="headerlink" title="递归与回溯"></a>递归与回溯</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>回溯是递归的副产品，只要有递归就会有回溯。</p>
@@ -5594,6 +5703,58 @@ string HtoO(string s)
     res=BtoO(res);
     return res;
 &#125;
+</code></pre>
+<h3 id="2-SAT问题"><a href="#2-SAT问题" class="headerlink" title="2_SAT问题"></a>2_SAT问题</h3><p>2-SAT，简单的说就是给出n个集合，每个集合有两个元素，已知若干个 &lt;a,b&gt;，表示 a与 b矛盾（其中 a与 b属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。</p>
+<p>2-SAT问题可以转化为求解强连通分量的问题，并使用图论中的算法进行求解。</p>
+<p>具体而言，可以通过构建一个有向图，其中每个变量对应两个节点（正面和否定），然后根据逻辑表达式构建有向边。</p>
+<p>如果变量 x 在子句 (x OR y) 中出现，那么添加一条从 ~x 的节点到 y 的节点的有向边。</p>
+<p>然后，对这个有向图进行强连通分量的计算，例如使用Tarjan算法。</p>
+<p>如果在同一个强连通分量中存在一个变量及其否定，那么该2-SAT问题无解。</p>
+<p>否则，对于每个强连通分量，选择一个节点并将其赋值为真，将它的否定节点赋值为假。</p>
+<p>这样得到的变量赋值就是满足原始逻辑表达式的解。</p>
+<pre><code class="cpp">struct TwoSat &#123;
+    int n;
+    std::vector&lt;std::vector&lt;int&gt;&gt; e;
+    std::vector&lt;bool&gt; ans;
+    TwoSat(int n) : n(n), e(2 * n), ans(n) &#123;&#125;
+    void addClause(int u, bool f, int v, bool g) &#123;
+        e[2 * u + !f].push_back(2 * v + g);
+        e[2 * v + !g].push_back(2 * u + f);
+    &#125;
+    bool satisfiable() &#123;
+        std::vector&lt;int&gt; id(2 * n, -1), dfn(2 * n, -1), low(2 * n, -1);
+        std::vector&lt;int&gt; stk;
+        int now = 0, cnt = 0;
+        std::function&lt;void(int)&gt; tarjan = [&amp;](int u) &#123;
+            stk.push_back(u);
+            dfn[u] = low[u] = now++;
+            for (auto v : e[u]) &#123;
+                if (dfn[v] == -1) &#123;
+                    tarjan(v);
+                    low[u] = std::min(low[u], low[v]);
+                &#125; else if (id[v] == -1) &#123;
+                    low[u] = std::min(low[u], dfn[v]);
+                &#125;
+            &#125;
+            if (dfn[u] == low[u]) &#123;
+                int v;
+                do &#123;
+                    v = stk.back();
+                    stk.pop_back();
+                    id[v] = cnt;
+                &#125; while (v != u);
+                ++cnt;
+            &#125;
+        &#125;;
+        for (int i = 0; i &lt; 2 * n; ++i) if (dfn[i] == -1) tarjan(i);
+        for (int i = 0; i &lt; n; ++i) &#123;
+            if (id[2 * i] == id[2 * i + 1]) return false;
+            ans[i] = id[2 * i] &gt; id[2 * i + 1];
+        &#125;
+        return true;
+    &#125;
+    std::vector&lt;bool&gt; answer() &#123; return ans; &#125;
+&#125;;
 </code></pre>
 ]]></content>
       <categories>

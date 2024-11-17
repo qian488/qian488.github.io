@@ -1440,7 +1440,95 @@ ULL get(int l,int r)
 <pre><code class="cpp">//tree[N]存储堆中的值，tree[0]是根
 tree[N];
 </code></pre>
-<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><h3 id="树状数组-Binary-Indexed-Tree"><a href="#树状数组-Binary-Indexed-Tree" class="headerlink" title="树状数组(Binary Indexed Tree)"></a>树状数组(Binary Indexed Tree)</h3><p>利用数的二进制特征进行检索的树状结构</p>
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><pre><code class="cpp">struct segmenttree
+&#123;
+    int n;
+    vector&lt;int&gt; st, lazy;
+
+    void init(int _n)
+    &#123;
+        this-&gt;n = _n;
+        st.resize(4 * n, LLONG_MAX);
+        lazy.resize(4 * n, LLONG_MAX);
+    &#125;
+
+    void push(int start, int ending, int node)
+    &#123;
+        if (lazy[node] != LLONG_MAX)
+        &#123;
+            st[node] = min(lazy[node], st[node]);
+
+            if (start != ending)
+            &#123;
+                lazy[2 * node + 1] = min(lazy[2 * node + 1],lazy[node]);
+                lazy[2 * node + 2] = min(lazy[node], lazy[2 * node + 1]);
+            &#125;
+
+            lazy[node] = LLONG_MAX;
+        &#125;
+    &#125;
+
+    int query(int start, int ending, int l, int r, int node)
+    &#123;
+        push(start, ending, node);
+
+        if (start &gt; r || ending &lt; l)
+        &#123;
+            return LLONG_MAX;
+        &#125;
+
+        if (start &gt;= l &amp;&amp; ending &lt;= r)
+        &#123;
+            return st[node];
+        &#125;
+
+        int mid = (start + ending) / 2;
+
+        int q1 = query(start, mid, l, r, 2 * node + 1);
+        int q2 = query(mid + 1, ending, l, r, 2 * node + 2);
+
+        return min(q1, q2);
+    &#125;
+
+    void update(int start, int ending, int node, int l, int r, int value)
+    &#123;
+        push(start, ending, node);
+
+        if (start &gt; r || ending &lt; l)
+        &#123;
+            return;
+        &#125;
+
+        if (start &gt;= l &amp;&amp; ending &lt;= r)
+        &#123;
+            lazy[node] = min(lazy[node], value);
+            push(start, ending, node);            
+            return;
+        &#125;
+
+        int mid = (start + ending) / 2;
+
+        update(start, mid, 2 * node + 1, l, r, value);
+
+        update(mid + 1, ending, 2 * node + 2, l, r, value);
+
+        st[node] = min(st[node * 2 + 1], st[node * 2 + 2]);
+
+        return;
+    &#125;
+
+    int query(int l, int r)
+    &#123;
+        return query(0, n - 1, l, r, 0);
+    &#125;
+
+    void update(int l, int r, int x)
+    &#123;
+        update(0, n - 1, 0, l, r, x);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="树状数组-Binary-Indexed-Tree"><a href="#树状数组-Binary-Indexed-Tree" class="headerlink" title="树状数组(Binary Indexed Tree)"></a>树状数组(Binary Indexed Tree)</h3><p>利用数的二进制特征进行检索的树状结构</p>
 <p>主要用于对一个数组进行<strong>区间求和+点修</strong>或者<strong>区间修改+点查</strong></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122648324.png"></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122731502.png"></p>
@@ -1488,6 +1576,27 @@ void add(int x,int v)
 &#123;
     for(int i=x;i&lt;M;i+=lowbit(i))
         tr[i]+=v;
+&#125;
+</code></pre>
+<h3 id="ST表"><a href="#ST表" class="headerlink" title="ST表"></a>ST表</h3><p>ST 表（Sparse Table，稀疏表）是用于解决 <strong>可重复贡献问题</strong> 的数据结构。</p>
+<p>ST 表能较好的维护「可重复贡献」的区间信息（同时也应满足结合律），时间复杂度较低，代码量相对其他算法很小。但是，ST 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。</p>
+<pre><code class="cpp">// ST表
+
+template&lt;typename T&gt; vector&lt;vector&lt;T&gt;&gt; get_st(vector&lt;T&gt; &amp;v, T (*sel)(T a, T b)) &#123;
+    int n = v.size(), m = log2(n)+1;
+    vector&lt;vector&lt;T&gt;&gt; ret(m);
+    ret[0] = v;
+    for(int i=1;i&lt;m;i++) for(int j=0;j&lt;=n-(1&lt;&lt;i);j++) ret[i].push_back(sel(ret[i-1][j],ret[i-1][j+(1&lt;&lt;(i-1))]));
+    return ret;
+&#125;
+
+template&lt;typename T&gt; T st_queue(vector&lt;vector&lt;T&gt;&gt; &amp;st, int l, int r, T (*sel)(T a, T b)) &#123;
+    int lay = log2(r-l+1), wid=1&lt;&lt;lay;
+    return sel(st[lay][l],st[lay][r-wid+1]);
+&#125;
+
+int get_max(int a, int b) &#123;
+    return max(a,b);
 &#125;
 </code></pre>
 <h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><h2 id="递归与回溯"><a href="#递归与回溯" class="headerlink" title="递归与回溯"></a>递归与回溯</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>回溯是递归的副产品，只要有递归就会有回溯。</p>
@@ -3284,6 +3393,58 @@ string HtoO(string s)
     return res;
 &#125;
 </code></pre>
+<h3 id="2-SAT问题"><a href="#2-SAT问题" class="headerlink" title="2_SAT问题"></a>2_SAT问题</h3><p>2-SAT，简单的说就是给出n个集合，每个集合有两个元素，已知若干个 &lt;a,b&gt;，表示 a与 b矛盾（其中 a与 b属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。</p>
+<p>2-SAT问题可以转化为求解强连通分量的问题，并使用图论中的算法进行求解。</p>
+<p>具体而言，可以通过构建一个有向图，其中每个变量对应两个节点（正面和否定），然后根据逻辑表达式构建有向边。</p>
+<p>如果变量 x 在子句 (x OR y) 中出现，那么添加一条从 ~x 的节点到 y 的节点的有向边。</p>
+<p>然后，对这个有向图进行强连通分量的计算，例如使用Tarjan算法。</p>
+<p>如果在同一个强连通分量中存在一个变量及其否定，那么该2-SAT问题无解。</p>
+<p>否则，对于每个强连通分量，选择一个节点并将其赋值为真，将它的否定节点赋值为假。</p>
+<p>这样得到的变量赋值就是满足原始逻辑表达式的解。</p>
+<pre><code class="cpp">struct TwoSat &#123;
+    int n;
+    std::vector&lt;std::vector&lt;int&gt;&gt; e;
+    std::vector&lt;bool&gt; ans;
+    TwoSat(int n) : n(n), e(2 * n), ans(n) &#123;&#125;
+    void addClause(int u, bool f, int v, bool g) &#123;
+        e[2 * u + !f].push_back(2 * v + g);
+        e[2 * v + !g].push_back(2 * u + f);
+    &#125;
+    bool satisfiable() &#123;
+        std::vector&lt;int&gt; id(2 * n, -1), dfn(2 * n, -1), low(2 * n, -1);
+        std::vector&lt;int&gt; stk;
+        int now = 0, cnt = 0;
+        std::function&lt;void(int)&gt; tarjan = [&amp;](int u) &#123;
+            stk.push_back(u);
+            dfn[u] = low[u] = now++;
+            for (auto v : e[u]) &#123;
+                if (dfn[v] == -1) &#123;
+                    tarjan(v);
+                    low[u] = std::min(low[u], low[v]);
+                &#125; else if (id[v] == -1) &#123;
+                    low[u] = std::min(low[u], dfn[v]);
+                &#125;
+            &#125;
+            if (dfn[u] == low[u]) &#123;
+                int v;
+                do &#123;
+                    v = stk.back();
+                    stk.pop_back();
+                    id[v] = cnt;
+                &#125; while (v != u);
+                ++cnt;
+            &#125;
+        &#125;;
+        for (int i = 0; i &lt; 2 * n; ++i) if (dfn[i] == -1) tarjan(i);
+        for (int i = 0; i &lt; n; ++i) &#123;
+            if (id[2 * i] == id[2 * i + 1]) return false;
+            ans[i] = id[2 * i] &gt; id[2 * i + 1];
+        &#125;
+        return true;
+    &#125;
+    std::vector&lt;bool&gt; answer() &#123; return ans; &#125;
+&#125;;
+</code></pre>
 
     </div>
 </article>
@@ -3422,25 +3583,25 @@ string HtoO(string s)
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/09/23/CS50x2023-week1-5%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%9C%89%E8%B6%A3%E7%9A%84%E7%A8%8B%E5%BA%8F/">CS50x2023_week1-5中一些有趣的程序</a>
+                    <a href="../../../../2024/10/20/CS%E8%87%AA%E5%AD%A6%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86%E6%80%BB%E7%BB%93/">CS自学资料收集总结</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/07/21/Godot%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">Godot快速上手</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="../../../../2024/01/19/Learning-Git-Branching-%E9%80%9A%E5%85%B3/">Learning Git Branching 通关</a>
+                    <a href="../../../../2024/09/05/Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%A6%82%E4%BD%95%E5%BC%80%E6%94%BE%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8%EF%BC%9F/">Hexo个人博客如何开放评论区使用？</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
                     <a href="../../../../2024/08/18/Unity-2D-Shader-Graph%E5%AE%9E%E7%8E%B0%E6%BA%B6%E8%A7%A3%E5%92%8C%E5%8F%91%E5%85%89%E6%80%9D%E8%B7%AF/">Unity 2D Shader Graph实现溶解和发光思路</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../../2024/01/17/VSC%E4%B8%8EGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">VSC与Git常用命令</a>
                 </span>
             </li>
             
@@ -3458,7 +3619,7 @@ string HtoO(string s)
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
+                    <a href="../../../../2024/08/15/%E5%9F%BA%E4%BA%8EVS%E4%BD%BF%E7%94%A8C-%E5%BC%80%E5%8F%91windows%E7%AA%97%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E5%B0%8F%E5%B7%A5%E5%85%B7-NumberPicker/">基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</a>
                 </span>
             </li>
             
@@ -3470,13 +3631,13 @@ string HtoO(string s)
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="">算法竞赛知识总结</a>
+                    <a href="../../../../2024/09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/10/24/C-%E5%9F%BA%E7%A1%80%E4%B8%80%E8%A7%88/">C#基础一览</a>
+                    <a href="">算法竞赛知识总结</a>
                 </span>
             </li>
             
@@ -3501,65 +3662,65 @@ string HtoO(string s)
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="../../../../tags/CS/" style="font-size: 12.455531751549074px;" class="tag-cloud-link">CS</a>
+    <a href="../../../../tags/CS/" style="font-size: 17.633861121859834px;" class="tag-cloud-link">CS</a>
     
-    <a href="../../../../tags/CS50/" style="font-size: 12.853419490696854px;" class="tag-cloud-link">CS50</a>
+    <a href="../../../../tags/CS50/" style="font-size: 12.275829888140818px;" class="tag-cloud-link">CS50</a>
     
-    <a href="../../../../tags/Godot/" style="font-size: 13.217954172808303px;" class="tag-cloud-link">Godot</a>
+    <a href="../../../../tags/Godot/" style="font-size: 13.928847660044422px;" class="tag-cloud-link">Godot</a>
     
-    <a href="../../../../tags/hexo/" style="font-size: 15.162670463834477px;" class="tag-cloud-link">hexo</a>
+    <a href="../../../../tags/hexo/" style="font-size: 12.156831014226686px;" class="tag-cloud-link">hexo</a>
     
-    <a href="../../../../tags/git/" style="font-size: 12.735992297077125px;" class="tag-cloud-link">git</a>
+    <a href="../../../../tags/git/" style="font-size: 8.53937603537128px;" class="tag-cloud-link">git</a>
     
-    <a href="../../../../tags/SD/" style="font-size: 13.52712659634755px;" class="tag-cloud-link">SD</a>
+    <a href="../../../../tags/SD/" style="font-size: 13.134276263438718px;" class="tag-cloud-link">SD</a>
     
-    <a href="../../../../tags/prompt/" style="font-size: 17.026342602995665px;" class="tag-cloud-link">prompt</a>
+    <a href="../../../../tags/prompt/" style="font-size: 11.379513521421135px;" class="tag-cloud-link">prompt</a>
     
-    <a href="../../../../tags/github/" style="font-size: 8.326405098088513px;" class="tag-cloud-link">github</a>
+    <a href="../../../../tags/github/" style="font-size: 16.37809027252858px;" class="tag-cloud-link">github</a>
     
-    <a href="../../../../tags/Typora/" style="font-size: 14.067580620005751px;" class="tag-cloud-link">Typora</a>
+    <a href="../../../../tags/Typora/" style="font-size: 19.67947246622163px;" class="tag-cloud-link">Typora</a>
     
-    <a href="../../../../tags/picGo/" style="font-size: 14.533793998291975px;" class="tag-cloud-link">picGo</a>
+    <a href="../../../../tags/picGo/" style="font-size: 18.796430128165596px;" class="tag-cloud-link">picGo</a>
     
-    <a href="../../../../tags/unity/" style="font-size: 11.226893865148138px;" class="tag-cloud-link">unity</a>
+    <a href="../../../../tags/unity/" style="font-size: 18.17593017832479px;" class="tag-cloud-link">unity</a>
     
-    <a href="../../../../tags/2D/" style="font-size: 11.841729571589307px;" class="tag-cloud-link">2D</a>
+    <a href="../../../../tags/2D/" style="font-size: 17.03566980095781px;" class="tag-cloud-link">2D</a>
     
-    <a href="../../../../tags/Shader/" style="font-size: 17.69608668225566px;" class="tag-cloud-link">Shader</a>
+    <a href="../../../../tags/Shader/" style="font-size: 11.95740457095191px;" class="tag-cloud-link">Shader</a>
     
-    <a href="../../../../tags/WebGl/" style="font-size: 11.38160730359526px;" class="tag-cloud-link">WebGl</a>
+    <a href="../../../../tags/WebGl/" style="font-size: 17.313004951997712px;" class="tag-cloud-link">WebGl</a>
     
-    <a href="../../../../tags/Galgame/" style="font-size: 17.721746379111313px;" class="tag-cloud-link">Galgame</a>
+    <a href="../../../../tags/Galgame/" style="font-size: 19.507017715242366px;" class="tag-cloud-link">Galgame</a>
     
-    <a href="../../../../tags/Naninovel/" style="font-size: 14.53905112431852px;" class="tag-cloud-link">Naninovel</a>
+    <a href="../../../../tags/Naninovel/" style="font-size: 18.140267734541034px;" class="tag-cloud-link">Naninovel</a>
     
-    <a href="../../../../tags/test/" style="font-size: 10.039984373130022px;" class="tag-cloud-link">test</a>
+    <a href="../../../../tags/test/" style="font-size: 11.389574617539163px;" class="tag-cloud-link">test</a>
     
-    <a href="../../../../tags/vsc/" style="font-size: 8.631869331943271px;" class="tag-cloud-link">vsc</a>
+    <a href="../../../../tags/vsc/" style="font-size: 9.54188064282133px;" class="tag-cloud-link">vsc</a>
     
-    <a href="../../../../tags/Vim/" style="font-size: 9.079130928848535px;" class="tag-cloud-link">Vim</a>
+    <a href="../../../../tags/Vim/" style="font-size: 12.31285506114866px;" class="tag-cloud-link">Vim</a>
     
-    <a href="../../../../tags/Linux/" style="font-size: 9.185293215593617px;" class="tag-cloud-link">Linux</a>
+    <a href="../../../../tags/Linux/" style="font-size: 14.793624766417283px;" class="tag-cloud-link">Linux</a>
     
-    <a href="../../../../tags/Anaconda/" style="font-size: 18.193498383614177px;" class="tag-cloud-link">Anaconda</a>
+    <a href="../../../../tags/Anaconda/" style="font-size: 8.038906761819572px;" class="tag-cloud-link">Anaconda</a>
     
-    <a href="../../../../tags/Pytorch/" style="font-size: 10.571002432512252px;" class="tag-cloud-link">Pytorch</a>
+    <a href="../../../../tags/Pytorch/" style="font-size: 17.50341322940792px;" class="tag-cloud-link">Pytorch</a>
     
-    <a href="../../../../tags/Deeplearn/" style="font-size: 17.381497604103558px;" class="tag-cloud-link">Deeplearn</a>
+    <a href="../../../../tags/Deeplearn/" style="font-size: 8.845560806120226px;" class="tag-cloud-link">Deeplearn</a>
     
-    <a href="../../../../tags/C/" style="font-size: 10.039095164150403px;" class="tag-cloud-link">C#</a>
+    <a href="../../../../tags/C/" style="font-size: 14.865970552730328px;" class="tag-cloud-link">C#</a>
     
-    <a href="../../../../tags/VS/" style="font-size: 16.86154418434971px;" class="tag-cloud-link">VS</a>
+    <a href="../../../../tags/VS/" style="font-size: 15.893119082248866px;" class="tag-cloud-link">VS</a>
     
-    <a href="../../../../tags/Windows-Forms/" style="font-size: 12.815735251932061px;" class="tag-cloud-link">Windows Forms</a>
+    <a href="../../../../tags/Windows-Forms/" style="font-size: 14.867098318737193px;" class="tag-cloud-link">Windows Forms</a>
     
-    <a href="../../../../tags/live2d/" style="font-size: 15.940024540752216px;" class="tag-cloud-link">live2d</a>
+    <a href="../../../../tags/live2d/" style="font-size: 16.213045000111975px;" class="tag-cloud-link">live2d</a>
     
-    <a href="../../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 16.408188085088643px;" class="tag-cloud-link">公告</a>
+    <a href="../../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 19.875808358543004px;" class="tag-cloud-link">公告</a>
     
-    <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.149087688364823px;" class="tag-cloud-link">算法</a>
+    <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 9.414201208961618px;" class="tag-cloud-link">算法</a>
     
-    <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 15.3091095738772px;" class="tag-cloud-link">总结</a>
+    <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 14.769774603279664px;" class="tag-cloud-link">总结</a>
     
 </div>
                 
