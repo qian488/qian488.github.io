@@ -5869,8 +5869,12 @@ string HtoO(string s)
     <content><![CDATA[<h2 id="AwithGameFramework"><a href="#AwithGameFramework" class="headerlink" title="AwithGameFramework"></a>AwithGameFramework</h2><p>我的游戏框架，不断完善ing</p>
 <h3 id="单例模式基类"><a href="#单例模式基类" class="headerlink" title="单例模式基类"></a>单例模式基类</h3><p>单例模式的核心思想是<strong>一个类只能有一个实例，并且提供一个全局的访问点来获取这个实例</strong>。</p>
 <p>单例模式分为饿汉式和懒汉式两种。</p>
-<p>饿汉式单例模式：<br>在程序一开始的时候就创建了单例对象。但这样一来，这些对象就会在程序一开始时就存在于内存之中，占据着一定的内存。</p>
-<p>懒汉式单例模式：<br>在用到单例对象的时候才会创建单例对象。</p>
+<ul>
+<li><p>饿汉式单例模式：<br>在程序一开始的时候就创建了单例对象。但这样一来，这些对象就会在程序一开始时就存在于内存之中，占据着一定的内存。</p>
+</li>
+<li><p>懒汉式单例模式：<br>在用到单例对象的时候才会创建单例对象。</p>
+</li>
+</ul>
 <p>一个游戏可能有很多管理类，都需要使用到单例，为避免重复代码，通过泛型可以管理不同类型的单例实例。</p>
 <pre><code class="csharp">public class BaseManager&lt;T&gt; where T : new()
 &#123;
@@ -6039,15 +6043,24 @@ public class MonoManager : BaseManager&lt;MonoManager&gt;
 &#125;
 </code></pre>
 <p>可以看出，我们这样做的目的，实际上是用一个MonoManager 的单例来裹住继承了Mono的Monoctrol。实际上无论使用Update还是开启协程等，都是使用的Monoctrol。这样的设计可以使得有一个全局的Mono供外部访问。</p>
-<p>外部可以随时添加和移除需要每帧调用的回调函数，进行帧更新事件管理。</p>
-<p>通过封装协程的启动和停止操作，允许外部在一个统一的管理器中处理所有协程。</p>
+<ul>
+<li><p>外部可以随时添加和移除需要每帧调用的回调函数，进行帧更新事件管理。</p>
+</li>
+<li><p>通过封装协程的启动和停止操作，允许外部在一个统一的管理器中处理所有协程。</p>
+</li>
+</ul>
 <p><strong>协程（Coroutine）</strong> 是一种用于在多个帧之间执行代码的机制，它使得你能够在 Unity 的主线程中暂停代码的执行，等待一段时间或者等待某些条件成立，然后继续执行。这使得协程在需要处理时间相关的任务（如动画、延迟操作、异步加载等）时非常有用。</p>
 <h3 id="事件中心模块"><a href="#事件中心模块" class="headerlink" title="事件中心模块"></a>事件中心模块</h3><p>框架的事件系统主要负责高效的方法调用与数据传递，实现各功能之间的解耦。</p>
 <p>通常在调用某个实例的方法时，必须先获得这个实例的引用或者新实例化一个对象。我们希望程序本身不去关注被调用的方法所依托的实例对象是否存在，通过事件系统做中转将功能的调用封装成事件，使用事件监听注册、移除和事件触发完成模块间的功能调用管理。</p>
 <p>基于 <strong>观察者设计模式</strong> ，我们可以设计一个事件中心管理系统来实现。</p>
-<p>访问其它脚本时，不直接访问，而是通过发送一条类似“命令”，让监听了这条“命令”的脚本自动执行对应的逻辑。</p>
-<p>让脚本向事件中心添加事件，监听对应的“命令”。<br>发送“命令”，事件中心就会通知监听了这条“命令”的脚本，让它们自动执行对应的逻辑。</p>
-<p>简单来说，事件中心就像是一个公告栏。它负责发布公告（事件），其他人关注了公告（监听事件），一旦公告内容如任务被实现（某个事件被触发），所有关注者（注册了该事件的监听器）就会执行相应的处理逻辑。</p>
+<ul>
+<li><p>访问其它脚本时，不直接访问，而是通过发送一条类似“命令”，让监听了这条“命令”的脚本自动执行对应的逻辑。</p>
+</li>
+<li><p>让脚本向事件中心添加事件，监听对应的“命令”。<br>发送“命令”，事件中心就会通知监听了这条“命令”的脚本，让它们自动执行对应的逻辑。</p>
+</li>
+<li><p>简单来说，事件中心就像是一个公告栏。它负责发布公告（事件），其他人关注了公告（监听事件），一旦公告内容如任务被实现（某个事件被触发），所有关注者（注册了该事件的监听器）就会执行相应的处理逻辑。</p>
+</li>
+</ul>
 <p>事件中心在系统中的作用是一个集中管理、发布和监听事件的地方，让各个组件之间的耦合度保持较低，只通过事件的形式进行通信。</p>
 <pre><code class="csharp">public class EventCenter : BaseManager&lt;EventCenter&gt;
 &#123;
@@ -6107,9 +6120,14 @@ public class MonoManager : BaseManager&lt;MonoManager&gt;
 &#125;
 </code></pre>
 <p>事件中心使用一个 <code>Dictionary</code> 存储事件名称和对应的事件信息。<code>Dictionary</code> 的键是事件的名称（<code>string</code> 类型），值是事件的封装信息（<code>IEventInfo</code> 类型），这样可以灵活支持不同类型的事件。</p>
-<p><strong>添加事件监听</strong>，如果事件已经存在于字典中，就将新的处理方法添加到现有事件的 <code>actions</code> 委托中；如果事件不存在，就创建一个新的 <code>EventInfo&lt;T&gt;</code> 并添加到字典中。</p>
-<p><strong>移除事件监听</strong>，如果事件存在，就从 <code>actions</code> 委托中移除对应的处理方法。</p>
-<p><strong>事件触发</strong>，如果事件已经在字典中注册，就通过 <code>actions</code> 委托触发事件，并传递事件信息（<code>info</code>）作为参数。</p>
+<ul>
+<li><p><strong>添加事件监听</strong>，如果事件已经存在于字典中，就将新的处理方法添加到现有事件的 <code>actions</code> 委托中；如果事件不存在，就创建一个新的 <code>EventInfo&lt;T&gt;</code> 并添加到字典中。</p>
+</li>
+<li><p><strong>移除事件监听</strong>，如果事件存在，就从 <code>actions</code> 委托中移除对应的处理方法。</p>
+</li>
+<li><p><strong>事件触发</strong>，如果事件已经在字典中注册，就通过 <code>actions</code> 委托触发事件，并传递事件信息（<code>info</code>）作为参数。</p>
+</li>
+</ul>
 <p><strong>有关<code>IEventInfo</code> 类型的实现</strong></p>
 <p>我们想要传递带有一个参数的事件，自然而然的想到泛型来表示，但是因为事件中心不是泛型类，直接使用泛型会报错。那么可以怎么思考？里氏替换原则，即子类可以替换父类而不会影响程序的正确性。因为C#中几乎所有的类型都可以追溯到<code>object</code>作为它们的最终基类。因此，可以使用object来存取。但是，这样会涉及拆箱装箱，增加内存开销和降低性能。那么怎么办？不能直接使用泛型，那就间接使用！创建一个泛型类，但是有个空接口作为基类。使用基类装子类，可以间接使用。</p>
 <pre><code class="csharp">public interface IEventInfo
@@ -6128,8 +6146,12 @@ public class EventInfo&lt;T&gt; : IEventInfo
 
 &#125;
 </code></pre>
-<p><strong><code>IEventInfo</code> 接口</strong> 是一个空接口，作为所有事件信息类的基类。它用于避免原来的 <code>object</code> 类型拆装箱问题，并使得不同类型的事件信息可以统一存储。</p>
-<p><strong><code>EventInfo&lt;T&gt;</code> 类</strong> 封装了一个带参数的事件信息，<code>T</code> 是事件触发时传递的参数类型。<code>actions</code> 是一个 <code>UnityAction&lt;T&gt;</code> 委托，用来存储所有注册的事件处理方法。构造函数中将事件处理方法添加到 <code>actions</code> 中。</p>
+<ul>
+<li><p><strong><code>IEventInfo</code> 接口</strong> 是一个空接口，作为所有事件信息类的基类。它用于避免原来的 <code>object</code> 类型拆装箱问题，并使得不同类型的事件信息可以统一存储。</p>
+</li>
+<li><p><strong><code>EventInfo&lt;T&gt;</code> 类</strong> 封装了一个带参数的事件信息，<code>T</code> 是事件触发时传递的参数类型。<code>actions</code> 是一个 <code>UnityAction&lt;T&gt;</code> 委托，用来存储所有注册的事件处理方法。构造函数中将事件处理方法添加到 <code>actions</code> 中。</p>
+</li>
+</ul>
 <p>类似的，我们还可以写一个不带参数的事件信息以及相关的事件监听等。</p>
 <p>完整示例代码</p>
 <pre><code class="csharp">using System.Collections;
@@ -6328,8 +6350,12 @@ public class MyScenesManager : BaseManager&lt;MyScenesManager&gt;
 </ul>
 <p>通过 <code>MyScenesManager</code> 模块，开发者能够方便地切换这两种加载方式，只需调用不同的方法 (<code>LoadScene</code> 或 <code>LoadSceneAsync</code>)，而无需关心内部的实现细节。</p>
 <h3 id="资源加载模块"><a href="#资源加载模块" class="headerlink" title="资源加载模块"></a>资源加载模块</h3><p>资源加载同样需要考虑同步和异步。</p>
-<p><strong>同步加载资源</strong>：<code>Load&lt;T&gt;</code> 方法同步加载资源，并判断资源类型。如果资源是 <code>GameObject</code>，会自动实例化；否则直接返回资源。</p>
-<p><strong>异步加载资源</strong>：<code>LoadAsync&lt;T&gt;</code> 方法异步加载资源，避免阻塞主线程。使用协程来加载资源，加载完成后通过回调函数通知调用者。</p>
+<ul>
+<li><p><strong>同步加载资源</strong>：<code>Load&lt;T&gt;</code> 方法同步加载资源，并判断资源类型。如果资源是 <code>GameObject</code>，会自动实例化；否则直接返回资源。</p>
+</li>
+<li><p><strong>异步加载资源</strong>：<code>LoadAsync&lt;T&gt;</code> 方法异步加载资源，避免阻塞主线程。使用协程来加载资源，加载完成后通过回调函数通知调用者。</p>
+</li>
+</ul>
 <p>在加载完成后，无论资源是 <code>GameObject</code> 还是其他类型，都会执行相应的处理（实例化或直接返回资源）。</p>
 <pre><code class="csharp">using System.Collections;
 using System.Collections.Generic;
@@ -6377,7 +6403,11 @@ public class ResourcesManager : BaseManager&lt;ResourcesManager&gt;
 <h3 id="缓存池模块"><a href="#缓存池模块" class="headerlink" title="缓存池模块"></a>缓存池模块</h3><p><strong>什么是对象池？对象池有什么用？</strong><br>频繁创建和销毁对象会造成性能的开销。</p>
 <p>创建对象的时候，系统会为这个对象开辟一片新的空间。销毁对象的时候，这个对象会变成内存垃圾，当内存垃圾达到一定程度，就会触发垃圾回收机制（及GC），清理内存垃圾，由于此时在清理垃圾，所以程序有可能就会变卡。</p>
 <p>为了改善这个问题，我们就可以使用对象池。使用了它之后，程序的性能就能得到提升不那么容易变卡。</p>
-<p><strong>对象池的原理</strong><br>1、当要创建对象的时候，不直接创建，而是先从对象池里面找，如果对象池里有这种类型的对象，就从对象池中取出来用。如果对象池里面没有这种类型的对象，才创建该对象。<br>2、当要销毁对象的时候，不直接销毁，而是把这个对象放进对象池里面存着，以便下一次创建对象时使用。</p>
+<p><strong>对象池的原理</strong></p>
+<ul>
+<li>当要创建对象的时候，不直接创建，而是先从对象池里面找，如果对象池里有这种类型的对象，就从对象池中取出来用。如果对象池里面没有这种类型的对象，才创建该对象。</li>
+<li>当要销毁对象的时候，不直接销毁，而是把这个对象放进对象池里面存着，以便下一次创建对象时使用。</li>
+</ul>
 <pre><code class="csharp">using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6833,9 +6863,14 @@ public class MusicManager : BaseManager&lt;MusicManager&gt;
 <p><strong>注意注意注意</strong>加载资源的路径结构一定要清晰</p>
 <h3 id="UI模块"><a href="#UI模块" class="headerlink" title="UI模块"></a>UI模块</h3><p>UI模块的封装，这里是基于UGUI</p>
 <p>不过，在写UIManager之前，应该先制作面板基类</p>
-<p><strong>面板管理</strong>：<code>BasePanel</code> 类负责管理和绑定所有 UI 组件，通过字典 <code>UIComponentDictionary</code> 来存储组件，以便快速访问和操作。</p>
-<p><strong>UI 组件的事件监听</strong>：通过遍历面板上的所有子组件，绑定适当的事件（如 <code>Button</code> 的点击事件，<code>Toggle</code> 的值改变事件），确保 UI 交互能够触发相应的逻辑。</p>
-<p><strong>扩展性</strong>：子类可以继承并覆盖 <code>ShowMe</code>、<code>HideMe</code>、<code>OnClick</code> 和 <code>OnValueChanged</code> 等方法，以实现面板的具体行为。</p>
+<ul>
+<li><p><strong>面板管理</strong>：<code>BasePanel</code> 类负责管理和绑定所有 UI 组件，通过字典 <code>UIComponentDictionary</code> 来存储组件，以便快速访问和操作。</p>
+</li>
+<li><p><strong>UI 组件的事件监听</strong>：通过遍历面板上的所有子组件，绑定适当的事件（如 <code>Button</code> 的点击事件，<code>Toggle</code> 的值改变事件），确保 UI 交互能够触发相应的逻辑。</p>
+</li>
+<li><p><strong>扩展性</strong>：子类可以继承并覆盖 <code>ShowMe</code>、<code>HideMe</code>、<code>OnClick</code> 和 <code>OnValueChanged</code> 等方法，以实现面板的具体行为。</p>
+</li>
+</ul>
 <pre><code class="csharp">using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7068,10 +7103,16 @@ public class UIManager : BaseManager&lt;UIManager&gt;
     &#125;
 &#125;
 </code></pre>
-<p><strong>UI 面板管理</strong>：<code>UIManager</code> 负责管理不同层级的 UI 面板的显示和隐藏，并通过 <code>panelDictionary</code> 存储当前显示的面板。</p>
-<p><strong>动态加载和显示面板</strong>：<code>ShowPanel</code> 方法动态加载并显示面板，支持指定层级和回调。</p>
-<p><strong>事件监听</strong>：通过 <code>AddCustomEventListener</code> 方法，UI 组件可以绑定自定义事件，处理用户交互。</p>
-<p><strong>UI 层级管理</strong>：面板显示时，可以选择将其放置在不同的层级中，如底层、中层、顶层等，方便管理 UI 的显示顺序。</p>
+<ul>
+<li><p><strong>UI 面板管理</strong>：<code>UIManager</code> 负责管理不同层级的 UI 面板的显示和隐藏，并通过 <code>panelDictionary</code> 存储当前显示的面板。</p>
+</li>
+<li><p><strong>动态加载和显示面板</strong>：<code>ShowPanel</code> 方法动态加载并显示面板，支持指定层级和回调。</p>
+</li>
+<li><p><strong>事件监听</strong>：通过 <code>AddCustomEventListener</code> 方法，UI 组件可以绑定自定义事件，处理用户交互。</p>
+</li>
+<li><p><strong>UI 层级管理</strong>：面板显示时，可以选择将其放置在不同的层级中，如底层、中层、顶层等，方便管理 UI 的显示顺序。</p>
+</li>
+</ul>
 <p>为了进行测试，我们需要制作一个测试面板作为预制体，放入Resources文件夹对应的路径下</p>
 <p>测试面板</p>
 <pre><code class="csharp">using System;
@@ -7193,6 +7234,7 @@ public class test : MonoBehaviour
 </code></pre>
 <p>音频和UI模块的加载资源和卸载资源应该都可以使用对象池优化，但是目前在考虑是直接在资源加载模块进行对象池优化还是在各自的模块分别使用？</p>
 <p>先鸽了。</p>
+<p>[项目地址](<a href="https://github.com/qian488/AwithGameFramework">qian488&#x2F;AwithGameFramework: 我的游戏框架</a>)</p>
 ]]></content>
       <tags>
         <tag>框架</tag>
