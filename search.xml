@@ -5867,6 +5867,27 @@ string HtoO(string s)
     <title>AwithGameFramework--我的游戏框架(基于Unity)</title>
     <url>/2024/11/21/AwithGameFramework-%E6%88%91%E7%9A%84%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6-%E5%9F%BA%E4%BA%8EUnity/</url>
     <content><![CDATA[<h2 id="AwithGameFramework"><a href="#AwithGameFramework" class="headerlink" title="AwithGameFramework"></a>AwithGameFramework</h2><p>我的游戏框架，不断完善ing</p>
+<p>目前包括的内容有：</p>
+<ul>
+<li><p><strong>单例模式基类</strong></p>
+</li>
+<li><p><strong>公共Mono模块</strong></p>
+</li>
+<li><p><strong>事件中心模块</strong></p>
+</li>
+<li><p><strong>场景切换模块</strong></p>
+</li>
+<li><p><strong>资源加载模块</strong></p>
+</li>
+<li><p><strong>缓存池模块</strong></p>
+</li>
+<li><p><strong>输入控制模块</strong></p>
+</li>
+<li><p><strong>音频管理模块</strong></p>
+</li>
+<li><p><strong>UI管理模块</strong></p>
+</li>
+</ul>
 <h3 id="单例模式基类"><a href="#单例模式基类" class="headerlink" title="单例模式基类"></a>单例模式基类</h3><p>单例模式的核心思想是<strong>一个类只能有一个实例，并且提供一个全局的访问点来获取这个实例</strong>。</p>
 <p>单例模式分为饿汉式和懒汉式两种。</p>
 <ul>
@@ -6483,7 +6504,7 @@ public class PoolManager : BaseManager&lt;PoolManager&gt;
 <ul>
 <li><strong>检查对象池</strong>：首先检查 <code>poolDictionary</code> 中是否已存在指定名称的对象池。如果池中已经存在，则调用池中的 <code>PushGameObject(go)</code> 方法将对象添加到池中。</li>
 <li><strong>创建新的池</strong>：如果池中没有指定名称的对象池，则会创建一个新的 <code>PoolData</code> 实例，并将新对象添加到池中。</li>
-<li>**<code>poolGO</code>**：<code>poolGO</code> 是一个空的 <code>GameObject</code>，用来承载池中的所有对象。每个对象池的对象会被组织在这个 <code>poolGO</code> 下，以便于场景管理和对象的生命周期控制。</li>
+<li><strong>poolGO</strong>：<code>poolGO</code> 是一个空的 <code>GameObject</code>，用来承载池中的所有对象。每个对象池的对象会被组织在这个 <code>poolGO</code> 下，以便于场景管理和对象的生命周期控制。</li>
 </ul>
 <pre><code class="csharp">using System.Collections;
 using System.Collections.Generic;
