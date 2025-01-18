@@ -1834,6 +1834,54 @@ Hires.fix放大算法:R-ESRGAN 4x+ Anime6B
 </li>
 </ol>
 <h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
+<h3 id="git常用用法"><a href="#git常用用法" class="headerlink" title="git常用用法"></a>git常用用法</h3><p>简单来说，就是，先去新建一个远程仓库，然后克隆到本地，如果没有将本机与自己的github账户链接，需要先配置好。</p>
+<h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><pre><code>git config --global user.name &quot;你的GitHub用户名&quot;
+git config --global user.email &quot;你的GitHub注册邮箱&quot;
+</code></pre>
+<p>没有报错，就是成功</p>
+<h4 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件"></a>生成ssh密钥文件</h4><pre><code>ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;
+</code></pre>
+<p>然后直接三个回车即可，默认不需要设置密码。</p>
+<p>输入以下命令获取密钥</p>
+<pre><code> cat ~/.ssh/id_rsa.pub
+</code></pre>
+<p>将显示的密钥复制，在Github仓库setting下Deploy Keys，公钥随便输入，密钥就填刚才生成的。</p>
+<h4 id="检测ssh是否成功"><a href="#检测ssh是否成功" class="headerlink" title="检测ssh是否成功"></a>检测ssh是否成功</h4><p>输入以下命令</p>
+<pre><code> ssh -T git@github.com
+</code></pre>
+<p>若出现successfully即为成功，若出现</p>
+<p>This key is not known by any other names.<br>Are you sure you want to continue connecting (yes&#x2F;no&#x2F;[fingerprint])?</p>
+<p>一般情况下，不用担心，输入yes，回车就可以了。</p>
+<p>这是一个安全特性，用于确保你连接到的主机是你预期的主机，而不是中间人攻击。这个提示的意思是，你的计算机之前没有连接过这个主机，因此无法验证其身份。你需要决定是否继续连接。</p>
+<p>你有以下选项：</p>
+<ol>
+<li>输入”yes”，继续连接到主机。这将更新你的<code>~/.ssh/known_hosts</code>文件，将主机的密钥添加到已知主机列表中。</li>
+<li>输入”no”，取消连接到主机。</li>
+</ol>
+<h4 id="最基本的命令"><a href="#最基本的命令" class="headerlink" title="最基本的命令"></a>最基本的命令</h4><p>配置一次过后，以后就是直接确定好分支，例如我想要修改main分支</p>
+<pre><code class="bash">git checkout main
+git pull
+git add .
+git commit -m &quot;本次提交的描述&quot;
+git push
+</code></pre>
+<p>一定一定一定在每次开发前，首先要拉取远程仓库，即git pull,开发完之后记得上传，尽量避免冲突，否则光解决冲突都得花很长时间。</p>
+<h4 id="关于合作"><a href="#关于合作" class="headerlink" title="关于合作"></a>关于合作</h4><p>合作开发最好约定好分支的作用，例如可以每个人自己单独开一个分支，自己的所有修改都在自己的分支，然后大体上完成阶段性任务再合并到主分支main，每次自己开发之前，每次先git merge main看看主分支有无更新（先在main分支要进行pull），有无与自己分支的冲突，有的话再自己分支解决冲突。</p>
+<pre><code class="bash">git pull
+git checkout &lt;你的分支名&gt;
+git merge main
+</code></pre>
+<p>解决冲突后并且完成开发后就提交到自己分支</p>
+<pre><code class="bash">git add .
+git commmit -m &quot;本次提交的描述&quot;
+git push
+</code></pre>
+<p>如果完成了阶段性开发，合并到main</p>
+<pre><code class="bash">git checkout main
+git merge &lt;你的分支名&gt;
+git push
+</code></pre>
+<p>虽然这样的方式简单粗暴的merge，但是相对来说比较容易理解。如果能够快速理解，merge仙人又何必不可？</p>
 ]]></content>
       <categories>
         <category>总结</category>
