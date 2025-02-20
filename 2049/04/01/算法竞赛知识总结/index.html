@@ -1271,7 +1271,48 @@ int query(char *str)
 </code></pre>
 <h4 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h4><pre><code class="cpp">//中心扩展法
 </code></pre>
-<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><h4 id="朴素并查集"><a href="#朴素并查集" class="headerlink" title="朴素并查集"></a>朴素并查集</h4><pre><code class="cpp">int p[N];//存储每个点的祖宗节点
+<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><pre><code class="cpp">struct DSU &#123;
+    std::vector&lt;int&gt; f, siz;
+    
+    DSU() &#123;&#125;
+    DSU(int n) &#123;
+        init(n);
+    &#125;
+    
+    void init(int n) &#123;
+        f.resize(n);
+        std::iota(f.begin(), f.end(), 0);
+        siz.assign(n, 1);
+    &#125;
+    
+    int find(int x) &#123;
+        while (x != f[x]) &#123;
+            x = f[x] = f[f[x]];
+        &#125;
+        return x;
+    &#125;
+    
+    bool same(int x, int y) &#123;
+        return find(x) == find(y);
+    &#125;
+    
+    bool merge(int x, int y) &#123;
+        x = find(x);
+        y = find(y);
+        if (x == y) &#123;
+            return false;
+        &#125;
+        siz[x] += siz[y];
+        f[y] = x;
+        return true;
+    &#125;
+    
+    int size(int x) &#123;
+        return siz[find(x)];
+    &#125;
+&#125;;
+</code></pre>
+<h4 id="朴素并查集"><a href="#朴素并查集" class="headerlink" title="朴素并查集"></a>朴素并查集</h4><pre><code class="cpp">int p[N];//存储每个点的祖宗节点
 
 //返回x的祖宗节点
 int find(int x)
@@ -1440,7 +1481,9 @@ ULL get(int l,int r)
 <pre><code class="cpp">//tree[N]存储堆中的值，tree[0]是根
 tree[N];
 </code></pre>
-<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><pre><code class="cpp">struct segmenttree
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>区间取最小值更新和区间最小值查询</p>
+<pre><code class="cpp">#define int long long
+struct segmenttree
 &#123;
     int n;
     vector&lt;int&gt; st, lazy;
@@ -1536,7 +1579,7 @@ tree[N];
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122911204.png"></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122932765.png"></p>
 <pre><code class="cpp">//董晓算法的板子
-int tree[N]；
+int tree[N];
 
 int lowbit(int x)&#123;return x&amp;-x;&#125;
 
@@ -1576,6 +1619,167 @@ void add(int x,int v)
 &#123;
     for(int i=x;i&lt;M;i+=lowbit(i))
         tr[i]+=v;
+&#125;
+</code></pre>
+<p>封装后直接使用</p>
+<p>点修区查</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+#define endl &#39;\n&#39;
+
+struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+
+void solve() &#123;
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    FenwickTree ft(n);
+
+    for (int i = 1; i &lt;= n; i++) &#123;
+        int val;
+        cin &gt;&gt; val;
+        ft.update(i, val);
+    &#125;
+
+    while (q--) &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        if (a == 0) &#123;
+            ft.update(b + 1, c);
+        &#125; else &#123;
+            cout &lt;&lt; ft.query(b + 1, c) &lt;&lt; endl;
+        &#125;
+    &#125;
+&#125;
+
+signed main() &#123;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin &gt;&gt; t;
+    while (t--) &#123;
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>区修点查</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+#define endl &#39;\n&#39;
+
+struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+
+void solve() &#123;
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    vector&lt;int&gt; a(n+1);
+    FenwickTree ft(n);
+
+    for (int i = 1; i &lt;= n; i++) cin&gt;&gt;a[i];
+
+    while (q--) &#123;
+        int op;
+        cin &gt;&gt; op;
+        if(op==1)&#123;
+            int l,r,x;
+            cin&gt;&gt;l&gt;&gt;r&gt;&gt;x;
+            ft.update(l,x);
+            ft.update(r+1,-x);
+        &#125;else&#123;
+            int x;
+            cin&gt;&gt;x;
+            cout&lt;&lt;a[x]+ft.query(x)&lt;&lt;endl;
+        &#125;
+    &#125;
+&#125;
+
+signed main() &#123;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin &gt;&gt; t;
+    while (t--) &#123;
+        solve();
+    &#125;
+    return 0;
 &#125;
 </code></pre>
 <h3 id="ST表"><a href="#ST表" class="headerlink" title="ST表"></a>ST表</h3><p>ST 表（Sparse Table，稀疏表）是用于解决 <strong>可重复贡献问题</strong> 的数据结构。</p>
@@ -3519,6 +3723,12 @@ string HtoO(string s)
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="../../../../2025/02/20/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%BF%AB%E9%80%9F%E5%A4%8D%E4%B9%A0%E6%9D%BF%E5%AD%90%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">算法竞赛快速复习板子（持续更新）</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="../../../../2024/12/07/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88Parsec-Todesk%EF%BC%8C%E8%AE%A9%E4%BD%A0%E4%B8%8A%E8%AF%BE%E4%B8%8D%E5%86%8D%E6%97%A0%E8%81%8A/">远程控制解决方案Parsec + Todesk，让你上课不再无聊</a>
                 </span>
             </li>
@@ -3559,12 +3769,6 @@ string HtoO(string s)
                 </span>
             </li>
             
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="../../../../2024/09/04/%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8A%A0%E4%B8%8A%E5%8F%AF%E7%88%B1%E7%9A%84live2d%E5%B0%8F%E4%BA%BA%EF%BC%9F/">如何给你的Hexo个人博客加上可爱的live2d小人？</a>
-                </span>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -3595,31 +3799,25 @@ string HtoO(string s)
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/07/03/Typora+picgo+github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA/">Typora+picgo+github搭建图床实现博客图片正常显示</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="../../../../2024/08/18/Unity-2D-Shader-Graph%E5%AE%9E%E7%8E%B0%E6%BA%B6%E8%A7%A3%E5%92%8C%E5%8F%91%E5%85%89%E6%80%9D%E8%B7%AF/">Unity 2D Shader Graph实现溶解和发光思路</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
                     <a href="../../../../2024/01/18/Unity%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90WebGl%E5%8F%91%E5%B8%83%E5%88%B0%E7%BD%91%E7%AB%99%E4%B8%8A%E5%88%86%E4%BA%AB%E4%BD%A0%E7%9A%84%E6%B8%B8%E6%88%8F%E7%BB%99%E5%B0%8F%E4%BC%99%E4%BC%B4%E6%B8%B8%E7%8E%A9/">Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/08/18/Unity%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95Galgame%E7%9A%84%E5%BC%80%E5%8F%91-%E4%BD%BF%E7%94%A8Naninovel%E6%8F%92%E4%BB%B6/">Unity实现简单Galgame的开发(使用Naninovel插件)</a>
+                    <a href="../../../../2024/08/23/Vim%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4/">Vim相关指令</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/07/26/%E5%88%9D%E8%A7%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E2%80%94%E2%80%94Anaconda%E5%92%8CPytorch%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">初见深度学习——Anaconda和Pytorch环境搭建</a>
+                    <a href="../../../../2024/07/25/%E5%88%9D%E8%A7%81Linux/">初见Linux</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../../2024/09/05/%E5%9F%BA%E4%BA%8EHexo%E4%B8%8Ediaspora%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E8%A1%A5%E5%85%85-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">基于Hexo与diaspora主题的博客美化补充(查缺补漏)</a>
                 </span>
             </li>
             
@@ -3631,13 +3829,19 @@ string HtoO(string s)
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2024/01/17/%E5%9F%BA%E4%BA%8Ehexo%E4%B8%8Egit%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/">基于Hexo与git的个人博客快速部署</a>
+                    <a href="../../../../2024/10/24/C-%E5%9F%BA%E7%A1%80%E4%B8%80%E8%A7%88/">C#基础一览</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="../../../../2050/03/14/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%B0%8F%E7%AB%99/">欢迎来到我的小站</a>
+                    <a href="../../../../2024/11/21/AwithGameFramework-%E6%88%91%E7%9A%84%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6-%E5%9F%BA%E4%BA%8EUnity/">AwithGameFramework--我的游戏框架(基于Unity)</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="../../../../2024/12/07/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88Parsec-Todesk%EF%BC%8C%E8%AE%A9%E4%BD%A0%E4%B8%8A%E8%AF%BE%E4%B8%8D%E5%86%8D%E6%97%A0%E8%81%8A/">远程控制解决方案Parsec + Todesk，让你上课不再无聊</a>
                 </span>
             </li>
             
@@ -3662,73 +3866,73 @@ string HtoO(string s)
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="../../../../tags/CS/" style="font-size: 9.514148776325047px;" class="tag-cloud-link">CS</a>
+    <a href="../../../../tags/CS/" style="font-size: 15.02869129480738px;" class="tag-cloud-link">CS</a>
     
-    <a href="../../../../tags/CS50/" style="font-size: 16.56560424195056px;" class="tag-cloud-link">CS50</a>
+    <a href="../../../../tags/CS50/" style="font-size: 13.006376586471863px;" class="tag-cloud-link">CS50</a>
     
-    <a href="../../../../tags/Godot/" style="font-size: 15.579877208511068px;" class="tag-cloud-link">Godot</a>
+    <a href="../../../../tags/Godot/" style="font-size: 19.11415300971812px;" class="tag-cloud-link">Godot</a>
     
-    <a href="../../../../tags/hexo/" style="font-size: 11.052634720127386px;" class="tag-cloud-link">hexo</a>
+    <a href="../../../../tags/hexo/" style="font-size: 12.536081651622336px;" class="tag-cloud-link">hexo</a>
     
-    <a href="../../../../tags/git/" style="font-size: 15.248051848507979px;" class="tag-cloud-link">git</a>
+    <a href="../../../../tags/git/" style="font-size: 19.680071053755164px;" class="tag-cloud-link">git</a>
     
-    <a href="../../../../tags/SD/" style="font-size: 14.861159737455681px;" class="tag-cloud-link">SD</a>
+    <a href="../../../../tags/SD/" style="font-size: 19.079731168507664px;" class="tag-cloud-link">SD</a>
     
-    <a href="../../../../tags/prompt/" style="font-size: 19.19362565678932px;" class="tag-cloud-link">prompt</a>
+    <a href="../../../../tags/prompt/" style="font-size: 15.335612109212965px;" class="tag-cloud-link">prompt</a>
     
-    <a href="../../../../tags/github/" style="font-size: 10.6067719568887px;" class="tag-cloud-link">github</a>
+    <a href="../../../../tags/github/" style="font-size: 14.036367808843877px;" class="tag-cloud-link">github</a>
     
-    <a href="../../../../tags/Typora/" style="font-size: 8.624385111076943px;" class="tag-cloud-link">Typora</a>
+    <a href="../../../../tags/Typora/" style="font-size: 16.149011172605974px;" class="tag-cloud-link">Typora</a>
     
-    <a href="../../../../tags/picGo/" style="font-size: 12.626034277442766px;" class="tag-cloud-link">picGo</a>
+    <a href="../../../../tags/picGo/" style="font-size: 11.435722911731055px;" class="tag-cloud-link">picGo</a>
     
-    <a href="../../../../tags/unity/" style="font-size: 17.647614908549173px;" class="tag-cloud-link">unity</a>
+    <a href="../../../../tags/unity/" style="font-size: 16.103730606552634px;" class="tag-cloud-link">unity</a>
     
-    <a href="../../../../tags/2D/" style="font-size: 12.129138421986589px;" class="tag-cloud-link">2D</a>
+    <a href="../../../../tags/2D/" style="font-size: 13.714108863649379px;" class="tag-cloud-link">2D</a>
     
-    <a href="../../../../tags/Shader/" style="font-size: 17.1444707000123px;" class="tag-cloud-link">Shader</a>
+    <a href="../../../../tags/Shader/" style="font-size: 19.866956935348643px;" class="tag-cloud-link">Shader</a>
     
-    <a href="../../../../tags/WebGl/" style="font-size: 8.843021215867044px;" class="tag-cloud-link">WebGl</a>
+    <a href="../../../../tags/WebGl/" style="font-size: 19.126676195692813px;" class="tag-cloud-link">WebGl</a>
     
-    <a href="../../../../tags/Galgame/" style="font-size: 13.964439886607314px;" class="tag-cloud-link">Galgame</a>
+    <a href="../../../../tags/Galgame/" style="font-size: 16.01906642726339px;" class="tag-cloud-link">Galgame</a>
     
-    <a href="../../../../tags/Naninovel/" style="font-size: 11.994808055307935px;" class="tag-cloud-link">Naninovel</a>
+    <a href="../../../../tags/Naninovel/" style="font-size: 14.106385372788264px;" class="tag-cloud-link">Naninovel</a>
     
-    <a href="../../../../tags/test/" style="font-size: 14.4928407102425px;" class="tag-cloud-link">test</a>
+    <a href="../../../../tags/test/" style="font-size: 18.21154178526128px;" class="tag-cloud-link">test</a>
     
-    <a href="../../../../tags/vsc/" style="font-size: 14.51383018475926px;" class="tag-cloud-link">vsc</a>
+    <a href="../../../../tags/vsc/" style="font-size: 19.01548831953338px;" class="tag-cloud-link">vsc</a>
     
-    <a href="../../../../tags/Vim/" style="font-size: 9.530963604499819px;" class="tag-cloud-link">Vim</a>
+    <a href="../../../../tags/Vim/" style="font-size: 17.805635284810876px;" class="tag-cloud-link">Vim</a>
     
-    <a href="../../../../tags/Linux/" style="font-size: 15.050683834823731px;" class="tag-cloud-link">Linux</a>
+    <a href="../../../../tags/Linux/" style="font-size: 18.90425657095261px;" class="tag-cloud-link">Linux</a>
     
-    <a href="../../../../tags/Anaconda/" style="font-size: 14.933356015933656px;" class="tag-cloud-link">Anaconda</a>
+    <a href="../../../../tags/Anaconda/" style="font-size: 18.88396475559362px;" class="tag-cloud-link">Anaconda</a>
     
-    <a href="../../../../tags/Pytorch/" style="font-size: 9.70434732291658px;" class="tag-cloud-link">Pytorch</a>
+    <a href="../../../../tags/Pytorch/" style="font-size: 11.999483112195385px;" class="tag-cloud-link">Pytorch</a>
     
-    <a href="../../../../tags/Deeplearn/" style="font-size: 18.536793244026917px;" class="tag-cloud-link">Deeplearn</a>
+    <a href="../../../../tags/Deeplearn/" style="font-size: 9.825855647600058px;" class="tag-cloud-link">Deeplearn</a>
     
-    <a href="../../../../tags/C/" style="font-size: 15.038644776147255px;" class="tag-cloud-link">C#</a>
+    <a href="../../../../tags/C/" style="font-size: 13.27435304489611px;" class="tag-cloud-link">C#</a>
     
-    <a href="../../../../tags/VS/" style="font-size: 15.473535412337572px;" class="tag-cloud-link">VS</a>
+    <a href="../../../../tags/VS/" style="font-size: 19.403127162898443px;" class="tag-cloud-link">VS</a>
     
-    <a href="../../../../tags/Windows-Forms/" style="font-size: 14.761935612323107px;" class="tag-cloud-link">Windows Forms</a>
+    <a href="../../../../tags/Windows-Forms/" style="font-size: 10.965574364243018px;" class="tag-cloud-link">Windows Forms</a>
     
-    <a href="../../../../tags/live2d/" style="font-size: 10.537440142002747px;" class="tag-cloud-link">live2d</a>
+    <a href="../../../../tags/live2d/" style="font-size: 16.50215979704053px;" class="tag-cloud-link">live2d</a>
     
-    <a href="../../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 10.620464661323126px;" class="tag-cloud-link">公告</a>
+    <a href="../../../../tags/%E5%85%AC%E5%91%8A/" style="font-size: 16.58239827981323px;" class="tag-cloud-link">公告</a>
     
-    <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 15.553584997825592px;" class="tag-cloud-link">算法</a>
+    <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 12.588125785388854px;" class="tag-cloud-link">算法</a>
     
-    <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 18.97590468578231px;" class="tag-cloud-link">总结</a>
+    <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="font-size: 16.955341454473828px;" class="tag-cloud-link">总结</a>
     
-    <a href="../../../../tags/%E6%A1%86%E6%9E%B6/" style="font-size: 15.265561800367347px;" class="tag-cloud-link">框架</a>
+    <a href="../../../../tags/%E6%A1%86%E6%9E%B6/" style="font-size: 11.735944606552984px;" class="tag-cloud-link">框架</a>
     
-    <a href="../../../../tags/Unity/" style="font-size: 15.621913654291577px;" class="tag-cloud-link">Unity</a>
+    <a href="../../../../tags/Unity/" style="font-size: 19.064874809431515px;" class="tag-cloud-link">Unity</a>
     
-    <a href="../../../../tags/parsec/" style="font-size: 18.262831046743415px;" class="tag-cloud-link">parsec</a>
+    <a href="../../../../tags/parsec/" style="font-size: 11.388701326911061px;" class="tag-cloud-link">parsec</a>
     
-    <a href="../../../../tags/todesk/" style="font-size: 12.013679283407686px;" class="tag-cloud-link">todesk</a>
+    <a href="../../../../tags/todesk/" style="font-size: 17.975669536289605px;" class="tag-cloud-link">todesk</a>
     
 </div>
                 

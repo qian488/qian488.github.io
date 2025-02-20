@@ -3631,7 +3631,48 @@ int query(char *str)
 </code></pre>
 <h4 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h4><pre><code class="cpp">//中心扩展法
 </code></pre>
-<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><h4 id="朴素并查集"><a href="#朴素并查集" class="headerlink" title="朴素并查集"></a>朴素并查集</h4><pre><code class="cpp">int p[N];//存储每个点的祖宗节点
+<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><pre><code class="cpp">struct DSU &#123;
+    std::vector&lt;int&gt; f, siz;
+    
+    DSU() &#123;&#125;
+    DSU(int n) &#123;
+        init(n);
+    &#125;
+    
+    void init(int n) &#123;
+        f.resize(n);
+        std::iota(f.begin(), f.end(), 0);
+        siz.assign(n, 1);
+    &#125;
+    
+    int find(int x) &#123;
+        while (x != f[x]) &#123;
+            x = f[x] = f[f[x]];
+        &#125;
+        return x;
+    &#125;
+    
+    bool same(int x, int y) &#123;
+        return find(x) == find(y);
+    &#125;
+    
+    bool merge(int x, int y) &#123;
+        x = find(x);
+        y = find(y);
+        if (x == y) &#123;
+            return false;
+        &#125;
+        siz[x] += siz[y];
+        f[y] = x;
+        return true;
+    &#125;
+    
+    int size(int x) &#123;
+        return siz[find(x)];
+    &#125;
+&#125;;
+</code></pre>
+<h4 id="朴素并查集"><a href="#朴素并查集" class="headerlink" title="朴素并查集"></a>朴素并查集</h4><pre><code class="cpp">int p[N];//存储每个点的祖宗节点
 
 //返回x的祖宗节点
 int find(int x)
@@ -3800,7 +3841,9 @@ ULL get(int l,int r)
 <pre><code class="cpp">//tree[N]存储堆中的值，tree[0]是根
 tree[N];
 </code></pre>
-<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><pre><code class="cpp">struct segmenttree
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>区间取最小值更新和区间最小值查询</p>
+<pre><code class="cpp">#define int long long
+struct segmenttree
 &#123;
     int n;
     vector&lt;int&gt; st, lazy;
@@ -3896,7 +3939,7 @@ tree[N];
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122911204.png"></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122932765.png"></p>
 <pre><code class="cpp">//董晓算法的板子
-int tree[N]；
+int tree[N];
 
 int lowbit(int x)&#123;return x&amp;-x;&#125;
 
@@ -3936,6 +3979,167 @@ void add(int x,int v)
 &#123;
     for(int i=x;i&lt;M;i+=lowbit(i))
         tr[i]+=v;
+&#125;
+</code></pre>
+<p>封装后直接使用</p>
+<p>点修区查</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+#define endl &#39;\n&#39;
+
+struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+
+void solve() &#123;
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    FenwickTree ft(n);
+
+    for (int i = 1; i &lt;= n; i++) &#123;
+        int val;
+        cin &gt;&gt; val;
+        ft.update(i, val);
+    &#125;
+
+    while (q--) &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        if (a == 0) &#123;
+            ft.update(b + 1, c);
+        &#125; else &#123;
+            cout &lt;&lt; ft.query(b + 1, c) &lt;&lt; endl;
+        &#125;
+    &#125;
+&#125;
+
+signed main() &#123;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin &gt;&gt; t;
+    while (t--) &#123;
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>区修点查</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+#define endl &#39;\n&#39;
+
+struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+
+void solve() &#123;
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    vector&lt;int&gt; a(n+1);
+    FenwickTree ft(n);
+
+    for (int i = 1; i &lt;= n; i++) cin&gt;&gt;a[i];
+
+    while (q--) &#123;
+        int op;
+        cin &gt;&gt; op;
+        if(op==1)&#123;
+            int l,r,x;
+            cin&gt;&gt;l&gt;&gt;r&gt;&gt;x;
+            ft.update(l,x);
+            ft.update(r+1,-x);
+        &#125;else&#123;
+            int x;
+            cin&gt;&gt;x;
+            cout&lt;&lt;a[x]+ft.query(x)&lt;&lt;endl;
+        &#125;
+    &#125;
+&#125;
+
+signed main() &#123;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin &gt;&gt; t;
+    while (t--) &#123;
+        solve();
+    &#125;
+    return 0;
 &#125;
 </code></pre>
 <h3 id="ST表"><a href="#ST表" class="headerlink" title="ST表"></a>ST表</h3><p>ST 表（Sparse Table，稀疏表）是用于解决 <strong>可重复贡献问题</strong> 的数据结构。</p>
@@ -7359,6 +7563,94 @@ app_proxy_port = 7890
       <tags>
         <tag>parsec</tag>
         <tag>todesk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法竞赛快速复习板子（持续更新）</title>
+    <url>/2025/02/20/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%BF%AB%E9%80%9F%E5%A4%8D%E4%B9%A0%E6%9D%BF%E5%AD%90%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="并查集-Disjoint-Set-Union"><a href="#并查集-Disjoint-Set-Union" class="headerlink" title="并查集(Disjoint Set Union)"></a>并查集(<a href="https://atcoder.jp/contests/practice2/tasks/practice2_a">Disjoint Set Union</a>)</h3><pre><code class="cpp">struct DSU &#123;
+    std::vector&lt;int&gt; f, siz;
+    
+    DSU() &#123;&#125;
+    DSU(int n) &#123;
+        init(n);
+    &#125;
+    
+    void init(int n) &#123;
+        f.resize(n);
+        std::iota(f.begin(), f.end(), 0);
+        siz.assign(n, 1);
+    &#125;
+    
+    int find(int x) &#123;
+        while (x != f[x]) &#123;
+            x = f[x] = f[f[x]];
+        &#125;
+        return x;
+    &#125;
+    
+    bool same(int x, int y) &#123;
+        return find(x) == find(y);
+    &#125;
+    
+    bool merge(int x, int y) &#123;
+        x = find(x);
+        y = find(y);
+        if (x == y) &#123;
+            return false;
+        &#125;
+        siz[x] += siz[y];
+        f[y] = x;
+        return true;
+    &#125;
+    
+    int size(int x) &#123;
+        return siz[find(x)];
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="树状数组（Fenwick-Tree）"><a href="#树状数组（Fenwick-Tree）" class="headerlink" title="树状数组（Fenwick Tree）"></a>树状数组（<a href="https://atcoder.jp/contests/practice2/tasks/practice2_b">Fenwick Tree</a>）</h3><pre><code class="cpp">struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
