@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>初见深度学习——Anaconda和Pytorch环境搭建 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>初见深度学习——Anaconda和Pytorch环境搭建</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/26
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Anaconda/" style="color: #00a596">Anaconda</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Pytorch/" style="color: #00bcd4">Pytorch</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Deeplearn/" style="color: #ffa2c4">Deeplearn</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要依据b站up小土堆的视频教程以及个人搭建经历总结而成的文字说明</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S5411X7FY?p=21&vd_source=212c67fc161f36062c5d44784ed8b749">视频指路</a></p>
+<p>一些需要知道的命令</p>
+<p><strong>创建虚拟环境:</strong></p>
+<pre><code>conda create -n 虚拟环境名字 python=版本
+</code></pre>
+<p><strong>激活虚拟环境:</strong></p>
+<pre><code>conda activate 虚拟环境名字
+</code></pre>
+<p><strong>关闭目前虚拟环境:</strong></p>
+<pre><code>conda deactivate
+</code></pre>
+<p><strong>罗列拥有的虚拟环境:</strong></p>
+<pre><code>conda env list
+</code></pre>
+<p><strong>罗列该环境下的包:</strong></p>
+<pre><code>conda list
+</code></pre>
+<h3 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/7df56c96c0e06b18c164aea4974fef9.png" alt="7df56c96c0e06b18c164aea4974fef9"></p>
+<p>Anaconda是一个大的环境管理工具，在其中可以创建多个相互隔离的虚拟环境，每个虚拟环境中，有对应的包(package)，其中就包括pytorch、tensorflow这些人工智能常客，而conda、pip是包管理工具，用于安装、运行和更新软件包及其依赖项。这就是他们之间的关系。为什么使用Anaconda的理由显而易见。可以方便的使用互不干扰的虚拟环境，方便各个项目的配置。因为，大多数情况下，对应的python版本那些都是不完全一样的，不同的版本有不同版本的torch包。</p>
+<p>pycharm是一个IDE，方便开发和进行调试代码的工具，使用的时候需要配置相对应的环境，才能使用环境下的内容以及解释python文件，这里的环境就是指前面提到的虚拟环境。</p>
+<p>CUDA driver是和GPU的驱动捆绑的，可用于加速运行运算的速度，而CUDA runtime就是虚拟环境中的版本，runtime的版本要小于driver。可以理解为driver是偏向于硬件的极限，runtime是软件的正常。</p>
+<h3 id="安装注意事项"><a href="#安装注意事项" class="headerlink" title="安装注意事项"></a>安装注意事项</h3><p>Anaconda直接去<a target="_blank" rel="noopener" href="https://www.anaconda.com/download/">官网</a>下载即可，然后就是确定设备的的算力，对应显卡驱动的版本，确定需要下载的CUDA runtime的版本对应的pytorch</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/cd30271562d8148b61fa4efa0aaf118.png" alt="cd30271562d8148b61fa4efa0aaf118"></p>
+<p>下载pytorch，也是去<a href="%5BPyTorch%5D(https://pytorch.org/)">官网</a>下载</p>
+<p>显卡算力可以去<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CUDA">维基</a>搜索查到</p>
+<p>显卡驱动可以在电脑的驱动查看，也可以在命令行输入</p>
+<pre><code>nvidia-smi
+</code></pre>
+<p>即可查看对应的版本</p>
+<p>由此，也确定了需要下载的cuda版本及对应的pytorch版本，注意，需要查看对应版本所需的python环境。</p>
+<p>接下来就是打开Anaconda的终端窗口，新建虚拟环境，指定python的版本，然后再使用pytorch官网下查询到的命令安装所需要的包及依赖，等待安装即可。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/7551c4f78a1d47a66686b7b79810a02.png" alt="7551c4f78a1d47a66686b7b79810a02"></p>
+<p>如果需要退出python，可以输入**exit()**退出</p>
+<p>在pycharm中创建项目时，注意选择已经配好的anaconda中创建的环境，不然会用不了相对应的包。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240820162035737.png" alt="image-20240820162035737"></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>至此，以及了解并完成了环境的配置，就可以去学习啦。</p>
+<p>学习资料推荐唯一真神<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1if4y147hS/?spm_id_from=333.337.search-card.all.click&vd_source=212c67fc161f36062c5d44784ed8b749">李沐老师</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,3595 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>算法竞赛知识总结 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>算法竞赛知识总结</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/21
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                总结
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h1><p>算法学习的记录，以c++为示例</p>
+<p>模板也是一步一步迭代更新</p>
+<p>板子也不全是我自己原创的，应该站在巨人的肩膀上，因此，网络上我习惯用的板子也收集</p>
+<p>我觉得比较好的内容都收集起来</p>
+<p>【emmm，总感觉做成合集的话，好像不怎么适合观看，之后会以分块的形式，现在已经是合集的内容就不更改了，懒得删】</p>
+<span id="more"></span>
+
+<h2 id="时空复杂度分析"><a href="#时空复杂度分析" class="headerlink" title="时空复杂度分析"></a>时空复杂度分析</h2><p>理论基础，做题的时候首先观察数据范围，确定解决方案的大致时间复杂度，再思考用什么数据结构，能用什么算法。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240404104429301.png" alt="image-20240404104429301"></p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong>时间复杂度</strong></h3><p>大O,算法导论给出的解释：<strong>大O用来表示上界的</strong>，当用它作为算法的最坏情况运行时间的上界，就是对任意数据输入的运行时间的上界。</p>
+<p><strong>整体测试数据整理如下：</strong></p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20201208231559175-20230310124325152.png" alt="程序超时1"></p>
+<p>其中，递归算法的时间复杂度本质上是要看: <strong>递归的次数 * 每次递归中的操作次数</strong>。</p>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p><strong>空间复杂度是考虑程序运行时占用内存的大小，而不是可执行文件的大小。</strong></p>
+<p>其中，<strong>递归算法的空间复杂度 &#x3D; 每次递归的空间复杂度 * 递归深度</strong></p>
+<h2 id="读入与输出"><a href="#读入与输出" class="headerlink" title="读入与输出"></a>读入与输出</h2><pre><code class="cpp">//scanf()和printf()较快
+//cin和cout较慢
+//加速cin和cout
+#define ios &#123;ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);&#125;
+//在输入输出量大的时候，需要使用scanf()和printf()
+</code></pre>
+<h2 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h2><p>二分法经常写乱，主要是因为<strong>对区间的定义没有想清楚，区间的定义就是不变量</strong>。要在二分查找的过程中，保持不变量，就是在while寻找中每一次边界的处理都要坚持根据区间的定义来操作，这就是<strong>循环不变量</strong>规则。</p>
+<p>写二分法，区间的定义一般为两种，左闭右闭即[left, right]，或者左闭右开即[left, right)。</p>
+<p><strong>二分法第一种写法</strong></p>
+<p>第一种写法，我们定义 target 是在一个在左闭右闭的区间里，<strong>也就是[left, right] （这个很重要非常重要）</strong>。</p>
+<p>区间的定义这就决定了二分法的代码应该如何写，<strong>因为定义target在[left, right]区间，所以有如下两点：</strong></p>
+<ul>
+<li>while (left &lt;&#x3D; right) 要使用 &lt;&#x3D; ，因为left &#x3D;&#x3D; right是有意义的，所以使用 &lt;&#x3D;</li>
+<li>if (nums[middle] &gt; target) right 要赋值为 middle - 1，因为当前这个nums[middle]一定不是target，那么接下来要查找的左区间结束下标位置就是 middle - 1</li>
+</ul>
+<p>例如在数组：1,2,3,4,7,9,10中查找元素2，如图所示：</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210311153055723.jpg" alt="704.二分查找"></p>
+<p>代码如下：（详细注释）</p>
+<pre><code class="cpp">// 版本一
+class Solution &#123;
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int left = 0;
+        int right = nums.size() - 1; // 定义target在左闭右闭的区间里，[left, right]
+        while (left &lt;= right) &#123; // 当left==right，区间[left, right]依然有效，所以用 &lt;=
+            int middle = left + ((right - left) / 2);// 防止溢出 等同于(left + right)/2
+            if (nums[middle] &gt; target) &#123;
+                right = middle - 1; // target 在左区间，所以[left, middle - 1]
+            &#125; else if (nums[middle] &lt; target) &#123;
+                left = middle + 1; // target 在右区间，所以[middle + 1, right]
+            &#125; else &#123; // nums[middle] == target
+                return middle; // 数组中找到目标值，直接返回下标
+            &#125;
+        &#125;
+        // 未找到目标值
+        return -1;
+    &#125;
+&#125;;
+</code></pre>
+<ul>
+<li>时间复杂度：O(log n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<p><strong>二分法第二种写法</strong></p>
+<p>如果说定义 target 是在一个在左闭右开的区间里，也就是[left, right) ，那么二分法的边界处理方式则截然不同。</p>
+<p>有如下两点：</p>
+<ul>
+<li>while (left &lt; right)，这里使用 &lt; ,因为left &#x3D;&#x3D; right在区间[left, right)是没有意义的</li>
+<li>if (nums[middle] &gt; target) right 更新为 middle，因为当前nums[middle]不等于target，去左区间继续寻找，而寻找区间是左闭右开区间，所以right更新为middle，即：下一个查询区间不会去比较nums[middle]</li>
+</ul>
+<p>在数组：1,2,3,4,7,9,10中查找元素2，如图所示：（<strong>注意和方法一的区别</strong>）</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210311153123632.jpg" alt="704.二分查找1"></p>
+<p>代码如下：（详细注释）</p>
+<pre><code class="cpp">// 版本二
+class Solution &#123;
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int left = 0;
+        int right = nums.size(); // 定义target在左闭右开的区间里，即：[left, right)
+        while (left &lt; right) &#123; // 因为left == right的时候，在[left, right)是无效的空间，所以使用 &lt;
+            int middle = left + ((right - left) &gt;&gt; 1);
+            if (nums[middle] &gt; target) &#123;
+                right = middle; // target 在左区间，在[left, middle)中
+            &#125; else if (nums[middle] &lt; target) &#123;
+                left = middle + 1; // target 在右区间，在[middle + 1, right)中
+            &#125; else &#123; // nums[middle] == target
+                return middle; // 数组中找到目标值，直接返回下标
+            &#125;
+        &#125;
+        // 未找到目标值
+        return -1;
+    &#125;
+&#125;;
+</code></pre>
+<ul>
+<li>时间复杂度：O(log n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/a060be287b82a5db42c67884310c20c-1712122104056-2.png"></p>
+<h4 id="整数二分"><a href="#整数二分" class="headerlink" title="整数二分"></a>整数二分</h4><pre><code class="cpp">bool check(int x)
+&#123;//检查x是否满足某种性质
+    /*...*/
+&#125;
+
+//区间[l,r]划分成[l,mid]和[mid+1,r]时
+int bsearch_1(int l,int r)
+&#123;
+    while(l&lt;r)
+    &#123;
+        int mid=l+r&gt;&gt;1;
+        if(check(mid)) r=mid;
+        else l=mid+1;
+    &#125;
+    return l;
+&#125;
+//区间[l,r]划分为[l,mid-1]和[mid,r]时
+int bsearch_2(int l,int r)
+&#123;
+    while(l&lt;r)
+    &#123;
+        int mid=l+r&gt;&gt;1;
+        if(check(mid)) l=mid;
+        else r=mid-1;
+    &#125;
+    return l;
+&#125;
+</code></pre>
+<pre><code class="cpp">//相较于上一个板子，我更喜欢这个板子
+int find_max(vector&lt;int&gt; num,int q)
+&#123;//最大化查找
+    int l=0,r=num.size();
+    while(l+1&lt;r)
+    &#123;
+        int mid=l+r&gt;&gt;1;
+        if(num[mid]&lt;=q)
+        &#123;l=mid;&#125;
+        else
+        &#123;r=mid;&#125;
+    &#125;
+    return l;
+&#125;
+
+int find_min(vector&lt;int&gt; num,int q)
+&#123;//最小化查找
+    int l=0,r=num.size();
+    while(l+1&lt;r)
+    &#123;
+        int mid=l+r&gt;&gt;1;
+        if(num[mid]&gt;=q)
+        &#123;r=mid;&#125;
+        else
+        &#123;l=mid;&#125;
+    &#125;
+    return r;
+&#125;
+</code></pre>
+<h4 id="浮点数二分"><a href="#浮点数二分" class="headerlink" title="浮点数二分"></a>浮点数二分</h4><pre><code class="cpp">bool check(double x)
+&#123;//检查x是否满足某种性质
+    /*...*/
+&#125;
+
+double bsearch_3(double l,double r)
+&#123;
+    const double eps=1e-6;//eps表示精度，取决于题目对精度的要求
+    while(r-l&gt;eps)
+    &#123;
+        double mid =(l+r)/2;
+        if(check(mid)) r=mid;
+        else l=mid;
+    &#125;
+    return l;
+&#125;
+</code></pre>
+<h3 id="二分答案"><a href="#二分答案" class="headerlink" title="二分答案"></a>二分答案</h3><p>其实，二分答案就是二分查找加上check,关键在于check函数的题目要求，来找到答案</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/c9ea2092eb1cda60abe6b32e73e29d8.jpg" alt="c9ea2092eb1cda60abe6b32e73e29d8"></p>
+<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330111437526.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330111728952.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330111818379.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330111852559.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330111944213.png"></p>
+<h2 id="常用库函数"><a href="#常用库函数" class="headerlink" title="常用库函数"></a>常用库函数</h2><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="常用排序"><a href="#常用排序" class="headerlink" title="常用排序"></a>常用排序</h3><p><strong>利用stl的sort()函数</strong></p>
+<p>sort() 函数有 2 种用法，其语法格式分别为：</p>
+<pre><code class="cpp">//对 [first, last) 区域内的元素做默认的升序排序
+void sort (RandomAccessIterator first, RandomAccessIterator last);
+//按照指定的 comp 排序规则，对 [first, last) 区域内的元素进行排序
+void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+</code></pre>
+<p>其中，first 和 last 都为随机访问迭代器，它们的组合 [first, last) 用来指定要排序的目标区域；另外在第 2 种格式中，comp 可以是 C++ STL 标准库提供的排序规则（比如 std::greater），也可以是自定义的排序规则。</p>
+<h4 id="使用sort对数组排序"><a href="#使用sort对数组排序" class="headerlink" title="使用sort对数组排序"></a>使用sort对数组排序</h4><pre><code class="cpp">#include&lt;algorithm&gt;
+
+vector&lt;int&gt; v;
+sort(v.begin(),v.end());
+
+int a[N];
+sort(a,a+n);
+</code></pre>
+<p><strong>例子</strong></p>
+<p>使用 STL 标准库提供的排序规则</p>
+<pre><code class="cpp">int main()&#123;
+    int arr[] = &#123;2,6,3,5,4,8,1,0,9,10&#125;;
+    sort(arr, arr+10, std::greater&lt;int&gt;());
+    for(int i = 0;i &lt; 10;i++)
+        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; endl;
+    sort(arr, arr+10, std::less&lt;int&gt;());
+    for(int i = 0;i &lt; 10;i++)
+        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+&#125;
+// out
+/*
+10 9 8 6 5 4 3 2 1 0
+0 1 2 3 4 5 6 8 9 10
+*/
+</code></pre>
+<p>使用自定义比较器</p>
+<pre><code class="cpp">bool cmp(const int a, const int b)&#123;
+    return a &lt; b;
+&#125;
+int main()&#123;
+    int arr[] = &#123;2,6,3,5,4,8,1,0,9,10&#125;;
+    sort(arr, arr+10, cmp);
+    for(int i = 0;i &lt; 10;i++)
+        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+&#125;
+// out
+/*
+0 1 2 3 4 5 6 8 9 10
+*/
+</code></pre>
+<p>使用 lambda 表达式自定义比较器</p>
+<pre><code class="cpp">int main()&#123;
+    int arr[] = &#123;2,6,3,5,4,8,1,0,9,10&#125;;
+    sort(arr, arr+10, [](const int a, const int b)&#123;
+         return a &lt; b;
+         &#125;);
+    for(int i = 0;i &lt; 10;i++)
+        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+&#125;
+// out
+/*
+0 1 2 3 4 5 6 8 9 10
+*/
+</code></pre>
+<h4 id="使用sort对map排序"><a href="#使用sort对map排序" class="headerlink" title="使用sort对map排序"></a>使用sort对map排序</h4><p>map是用来存放&lt;key, value&gt;键值对的数据结构，可以很方便快速的根据key查到相应的value，map本身的实现方式内含了比较器的设置，只要我们在map初始化的时候传入比较器，即可完成对应的排序。</p>
+<p>定义包含水果及其个数的map，按照水果名称字典序进行排序 （按key排序）</p>
+<pre><code class="cpp">#include&lt;map&gt;
+
+using namespace std;
+
+int main()&#123;
+    map&lt;string, int, less&lt;string&gt;&gt; msi;
+    msi[&quot;apple&quot;] = 5;
+    msi[&quot;watermelon&quot;] = 2;
+    msi[&quot;pear&quot;] = 3;
+    msi[&quot;peach&quot;] = 6;
+    msi[&quot;cherry&quot;] = 10;
+
+    for(auto item: msi)
+        cout &lt;&lt; item.first &lt;&lt; &quot; &quot; &lt;&lt; item.second &lt;&lt; endl;
+
+    return 0;
+&#125;
+// out
+/*
+apple 5
+cherry 10
+peach 6
+pear 3
+watermelon 2
+*/
+</code></pre>
+<p>定义包含水果及其个数的map，按照水果个数进行排序，当水果个数相同时，按照水果名称字典序排序 （将map转为vector进行排序）</p>
+<pre><code class="cpp">bool cmp(const pair&lt;string, int&gt;&amp; a, const pair&lt;string, int&gt;&amp; b)&#123;
+    if(a.second &lt; b.second) return true;
+    else if(a.second == b.second) return a.first &lt; b.first;
+    else return false;
+&#125;
+int main()&#123;
+    map&lt;string, int&gt; msi;
+    msi[&quot;apple&quot;] = 5;
+    msi[&quot;watermelon&quot;] = 2;
+    msi[&quot;pear&quot;] = 3;
+    msi[&quot;peach&quot;] = 5;
+    msi[&quot;cherry&quot;] = 10;
+
+    vector&lt;pair&lt;string, int&gt;&gt; vpi(msi.begin(), msi.end());
+    sort(vpi.begin(), vpi.end(), cmp);
+
+    for(auto item: vpi)&#123;
+        cout &lt;&lt; item.first &lt;&lt; &quot; &quot; &lt;&lt; item.second &lt;&lt; endl;
+    &#125;
+
+    return 0;
+&#125;
+// out
+/*
+watermelon 2
+pear 3
+apple 5
+peach 5
+cherry 10
+*/
+</code></pre>
+<h4 id="O-nlogn"><a href="#O-nlogn" class="headerlink" title="O(nlogn)"></a>O(nlogn)</h4><h5 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h5><pre><code class="cpp">void quick_sort(int q[],int l,int r)
+&#123;
+    if(l&gt;=r) return;
+    
+    int i=l-1,j=r+1,x=q[l+r&gt;&gt;1];
+    while(i&lt;j)
+    &#123;
+        do i++;while(q[i]&lt;x);
+        do j--;while(q[j]&gt;x);
+        if(i&lt;j) swap(q[i],q[j]);
+    &#125;
+    quick_sort(q,l,j),quick_sort(q,j+1,r);
+&#125;
+</code></pre>
+<h5 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h5><pre><code class="cpp">void merge_sort(int q[],int l,int r)
+&#123;
+    if(l&gt;=r) return;
+    
+    int mid = l+r&gt;&gt;1;
+    merge_sort(q,l,mid);
+    merge_sort(q,mid+1,r);
+    
+    int k=0,i=l,j=mid+1;
+    while(i&lt;=mid&amp;&amp;j&lt;=r)
+    &#123;
+        if(q[i]&lt;q[j]) 
+        &#123;
+            tmp[k++]=q[i++];
+        &#125;
+        else
+        &#123;
+            tmp[k++]=q[j++];
+        &#125;
+        
+    &#125;
+    
+    while(i&lt;=mid) tmp[k++]=q[i++];
+    while(j&lt;=r) tmp[k++]=q[j++];
+    
+    for(i=l,j=0;i&lt;=r;i++,j++) q[i]=tmp[j];
+&#125;
+</code></pre>
+<h3 id="基于比较的排序-8个"><a href="#基于比较的排序-8个" class="headerlink" title="基于比较的排序(8个)"></a>基于比较的排序(8个)</h3><p>所有的不稳定都可以转化为稳定(按照数值顺序为首位,下标顺序为次位)</p>
+<h4 id="1-直接插入排序"><a href="#1-直接插入排序" class="headerlink" title="1.直接插入排序"></a>1.直接插入排序</h4><p><strong>做法:相当于每次把元素插入有序位置</strong><br><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:整个数组都有序，只执行外层循环，O(n)
+2.平均情况:O(n^2)
+3.最坏情况:O(n^2)
+</code></pre>
+<p><strong>辅助空间复杂度:O(1)</strong></p>
+<p><strong>稳定</strong></p>
+<p><strong>代码:</strong></p>
+<pre><code class="cpp">void insert_sort()
+&#123;
+        //由于是从头往后做，前面做过的都是有序的，只需要找到合适位置，将后面整体往后移一位，在有序位置插入t
+        for(int i=1;i&lt;n;i++) //q[0]只有一个数，有序
+        &#123;
+                int t=q[i],j=i;
+
+                while(j&amp;&amp;q[j-1]&gt;t)
+                &#123;
+                        q[j]=q[j-1];
+                        j--;
+                &#125;
+                q[j]=t;
+        &#125;
+&#125;
+</code></pre>
+<h4 id="2-折半插入排序"><a href="#2-折半插入排序" class="headerlink" title="2.折半插入排序"></a>2.折半插入排序</h4><p><strong>直接插入排序的不明显优化：用二分找到第一个&gt;t的位置,优化了比较次数(O(n)-&gt;O(logn))，但是没有优化移动次数</strong><br><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:整个数组都有序，只执行外层循环，里面都continue，O(n)
+2.平均情况:O(n^2)
+3.最坏情况:O(n^2)
+</code></pre>
+<p><strong>辅助空间复杂度:O(1)</strong></p>
+<p><strong>稳定</strong></p>
+<p><strong>代码:</strong></p>
+<pre><code class="cpp">void binary_insert_sort()
+&#123;
+        for(int i=1;i&lt;n;i++)
+        &#123;
+                int t=q[i];
+                if(q[i]&gt;=q[i-1]) continue;
+                //二分出第一个&gt;t的元素，将此之后的所有元素往后移动一位，再将t插到当前有序位置
+                int l=0,r=i-1;
+                while(l&lt;r)
+                &#123;
+                        int mid=l+r&gt;&gt;1;
+                        if(q[mid]&gt;t) r=mid;
+                        else l=mid+1;
+                &#125;
+                for(int j=i-1;j&gt;=r;j--)
+                        q[j+1]=q[j];
+                q[r]=t;
+        &#125;
+&#125;
+</code></pre>
+<h4 id="3-冒泡排序"><a href="#3-冒泡排序" class="headerlink" title="3.冒泡排序"></a>3.冒泡排序</h4><p><strong>做法:每次从后往前处理逆序对，把第i小的元素放i位，最多n-1次之后就有序，因为n-1次后，剩下的最后一个数一定是最大的</strong><br><strong>优化:可以通过交换次数进行优化，如果某一次没有交换一次，说明已经有序，直接break出去</strong><br><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:整个数组都有序，第一次就break,O(n)
+2.平均情况:O(n^2)
+3.最坏情况:每次使逆序对-1，最坏有n^2个逆序对，O(n^2)
+</code></pre>
+<p><strong>辅助空间复杂度:O(1)</strong></p>
+<p><strong>稳定</strong></p>
+<p><strong>代码:</strong></p>
+<pre><code class="cpp">void bubble_sort()
+&#123;
+        for(int i=0;i&lt;n-1;i++)//最多执行n-1次，n-1次后剩下的一个数一定是最大的
+        &#123;
+                bool has_swap=false;//做优化，如果某次没有交换过一次，说明有序，直接break
+                for(int j=n-1;j&gt;i;j--)//前i个元素有序(0~i-1),只需要比较后面的，又因为每次比较j与j-1，所以j&gt;i
+                &#123;
+                        if(q[j]&lt;q[j-1])
+                        &#123;
+                                swap(q[j],q[j-1]);
+                                has_swap=true;
+                        &#125;
+                &#125;
+                if(!has_swap) break;
+        &#125;
+&#125;
+</code></pre>
+<h4 id="4-简单-选择排序——最朴素的做法，所以也最慢"><a href="#4-简单-选择排序——最朴素的做法，所以也最慢" class="headerlink" title="4.(简单)选择排序——最朴素的做法，所以也最慢^+^"></a>4.(简单)选择排序——最朴素的做法，所以也最慢^+^</h4><p><strong>区别:冒泡排序可以看成是选择排序的优化</strong><br><strong>做法:选择排序不是处理逆序对，而是最朴素德每次找到第i小的元素，与第i位上的元素互换</strong><br><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:O(n^2)
+2.平均情况:O(n^2)
+3.最坏情况:O(n^2)
+</code></pre>
+<p><strong>辅助空间复杂度:O(1)</strong></p>
+<p><strong>不稳定，如2(1) 2(2) 1,排序后1 2（2） 2（1)，相对位置发生了变化</strong></p>
+<p><strong>代码:</strong></p>
+<pre><code class="cpp">void select_sort()
+&#123;
+        for(int i=0;i&lt;n-1;i++)//也是最多只需要n-1次，n-1次后剩下的一个元素就是最大的
+        &#123;
+                int k=i;
+                for(int j=i+1;j&lt;n;j++)//前面i个有序(0~i-1),所以从i开始往后面找最小,进行交换
+                        if(q[j]&lt;q[k])
+                                k=j;
+                swap(q[i],q[k]);
+        &#125;
+&#125;
+</code></pre>
+<h4 id="5-希尔排序——第一个把排序最坏时间复杂度降到O-n-2-之下的"><a href="#5-希尔排序——第一个把排序最坏时间复杂度降到O-n-2-之下的" class="headerlink" title="5.希尔排序——第一个把排序最坏时间复杂度降到O(n^2)之下的"></a>5.希尔排序——第一个把排序最坏时间复杂度降到O(n^2)之下的</h4><p><strong>做法:</strong></p>
+<pre><code class="cpp">1.每次把所有元素分组，每一组下标都是等差数列，公差d称之为增量，每组的公差d相同
+
+2.每组内部做插入排序
+
+3.以此类推，组内插入排序，不断细化公差d，直到为d为1
+
+当d为n/2,n/4,n/8...,1时，时间复杂度最坏O(n^2)
+当d为n/3,n/9,n/27,...,1时，时间复杂度O(n^(3/2))
+</code></pre>
+<p><strong>原因:借助插入排序对于部分有序的序列排序效果好的特性进行优化</strong></p>
+<p><strong>时间复杂度</strong></p>
+<pre><code class="cpp">根据d的划分来看的，种类多
+大体上O(n(3/2))
+</code></pre>
+<p><strong>辅助空间复杂度:O(1)</strong></p>
+<p><strong>不稳定，因为会进行分组</strong></p>
+<p><strong>代码:</strong></p>
+<pre><code class="cpp">void shell_sort()
+&#123;
+        for(int d=n/2;d;d/=2)//枚举公差, for(int d=n/3;d;d==2?d=1:d/=3),并不是每一个都会除到1，所以要特判
+        &#123;
+                for(int start=0;start&lt;d;start++)//枚举起点，起点只会在1-d之间，对应下表就是0-d-1
+                &#123;
+                        for(int i=start+d;i&lt;n;i+=d)//枚举组内做插入排序，第一个元素有序,所以起点start+d
+                        &#123;
+                                int t=q[i],j=i;
+                                while(j&gt;start&amp;&amp;q[j-d]&gt;t)//起点位start
+                                &#123;
+                                        q[j]=q[j-d];
+                                        j-=d;//公差为d
+                                &#125;
+                                q[j]=t;
+                        &#125;
+                &#125;
+        &#125;
+&#125;
+</code></pre>
+<h4 id="6-快速排序-和归并排序一样，基于分治-且快排和哈希一般不考虑最坏情况时间复杂度"><a href="#6-快速排序-和归并排序一样，基于分治-且快排和哈希一般不考虑最坏情况时间复杂度" class="headerlink" title="6.快速排序(和归并排序一样，基于分治),且快排和哈希一般不考虑最坏情况时间复杂度"></a>6.快速排序(和归并排序一样，基于分治),且快排和哈希一般不考虑最坏情况时间复杂度</h4><p><strong>做法:1.找分界值通常x&#x3D;q[l+r&gt;&gt;1] 2.用分界值把区间分为左右两端，使左&lt;&#x3D;x,x,x&lt;&#x3D;右 3.递归排序左右两段</strong><br><strong>这里与一些老教材不同，AcWing的模板不能保证排完序后中间那个数就是x，而一些老版的教材可以保证这一点</strong></p>
+<p><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:O(nlogn)
+2.平均情况:O(nlogn)
+3.最坏情况:O(n^2)
+</code></pre>
+<p><strong>空间复杂度:由于需要调用系统栈，所以O(logn)</strong></p>
+<p><strong>不稳定,因为在划分时，等于x的元素即可能在前，也可能在后</strong><br><strong>代码</strong></p>
+<pre><code class="cpp">void quick_sort(int q[],int l,int r)
+&#123;
+        if(l&gt;=r) return ;
+        int i=l-1,j=r+1,x=q[l+r&gt;&gt;1];
+
+        while(i&lt;j)//双指针算法
+        &#123;
+                do i++;while(q[i]&lt;x);
+                do j--;while(q[j]&gt;x);
+                if(i&lt;j) swap(q[i],q[j]);
+        &#125;
+        quick_sort(q,l,j),quick_sort(q,j+1,r);
+        //递归的分界点，取j时,x不能为q[r],取q[l+r&gt;&gt;1];取i时，x不能取q[l],也不能取q[l+r&gt;&gt;1]，要取q[l+r+1&gt;&gt;1]
+&#125;
+</code></pre>
+<h4 id="7-堆排序"><a href="#7-堆排序" class="headerlink" title="7.堆排序"></a>7.堆排序</h4><p><strong>down(i)</strong></p>
+<pre><code>递归处理使以i为父节点的树满足大根堆/小根堆的定义方式，不满足就往下;满足就不变
+</code></pre>
+<p><strong>删除堆顶操作</strong></p>
+<pre><code>并不是真的delete，而是放到heap的size之外去
+先于最后一个数heap[size]互换，再删除heap[size](就是size--，让我们索引不到，但实际还在数组中)
+最后由于刚刚上来的数不一定是最值，所以需要down(1)使满足堆的递归定义
+</code></pre>
+<p><strong>做法:</strong></p>
+<pre><code>建立小根堆或大根堆
+
+大根堆:每次删除堆顶（将堆顶删除,就是最后一个数替换堆顶），然后heap的size-1，表示不再管q[]中的最后一个数,最后记得down(1)，因为最后一个数不能保证是此时heap中最大的数
+
+小根堆:可以每次先输出/用辅助函数存下来，再删除堆顶；或者和大根堆一样操作，然后逆序输出
+</code></pre>
+<p><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:O(nlogn)
+2.平均情况:O(nlogn)
+3.最坏情况:O(nlogn)
+</code></pre>
+<p><strong>辅助空间复杂度:O(logn),因为要用递归</strong></p>
+<p><strong>不稳定,第一个会与最后一个交换，相等就不稳定了</strong></p>
+<p><strong>代码:</strong></p>
+<pre><code class="cpp">//可用大根堆，可用小根堆
+void down(int u)
+&#123;
+        int t=u;
+        if(2*u&lt;=sz &amp;&amp; q[2*u]&gt;q[t]) t=2*u;//用小根堆就改成&lt;
+        if(2*u+1&lt;=sz &amp;&amp; q[2*u+1]&gt;q[t]) t=2*u+1;//用小根堆就改成&lt;
+        if(u!=t)
+        &#123;
+                swap(q[u],q[t]);
+                down(t);
+        &#125;
+&#125;
+void heap_sort()
+&#123;
+        sz=n;
+        for(int i=n/2;i;i--)
+                down(i);
+        for(int i=0;i&lt;n-1;i++)
+        &#123;
+        //可以选择倒着输出q[]
+        //也可以在删的时候输出小根堆的堆顶q[1]，由于只输出了n-1次,出循环后再输出q[1]就行
+                swap(q[1],q[sz]);
+                sz--;
+                down(1);
+        &#125;
+
+&#125;
+</code></pre>
+<h4 id="8-归并排序-基于分治"><a href="#8-归并排序-基于分治" class="headerlink" title="8.归并排序(基于分治)"></a>8.归并排序(基于分治)</h4><p><strong>做法:1.找分界点mid&#x3D;(l+r)&#x2F;2 2.用分界点把区间分为左右两端，递归处理这两段 3.二路归并</strong></p>
+<p><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:O(nlogn)
+2.平均情况:O(nlogn)
+3.最坏情况:O(nlogn)
+</code></pre>
+<p><strong>空间复杂度:由于需要调用系统栈和辅助数组，所以O(logn+n) -&gt; O(n)</strong></p>
+<p><strong>稳定</strong><br><strong>代码</strong></p>
+<pre><code class="cpp">void merge_sort(int q[],int l,int r)
+&#123;
+        if(l&gt;=r) return ;
+
+        int mid=l+r&gt;&gt;1;
+        merge_sort(q,l,mid),merge_sort(q,mid+1,r);
+
+        int k=0,i=l,j=mid+1;
+        while(i&lt;=mid&amp;&amp;j&lt;=r)
+        &#123;
+                if(q[i]&lt;=q[j]) tmp[k++]=q[i++];
+                else tmp[k++]=q[j++];
+        &#125;
+
+        while(i&lt;=mid) tmp[k++]=q[i++];
+        while(j&lt;=r) tmp[k++]=q[j++];
+
+        for(i=l,j=0;i&lt;=r;i++,j++)
+                q[i]=tmp[j];
+&#125;
+</code></pre>
+<h3 id="非比较排序"><a href="#非比较排序" class="headerlink" title="非比较排序"></a>非比较排序</h3><h4 id="1-桶排序-又叫计数排序"><a href="#1-桶排序-又叫计数排序" class="headerlink" title="1.桶排序(又叫计数排序)"></a>1.桶排序(又叫计数排序)</h4><p><strong>桶:实际上就是开数组，存储每个数值出现的次数，所以数组的大小取决于数值的大小</strong><br><strong>a[i]的位置取决于小于a[i]的数量+i左边等于a[i]的数量,所以可以想到用前缀和的思想来求位置</strong></p>
+<p><strong>此时存在一个区别:有没有相等的数</strong></p>
+<pre><code>1.如果所有数都不相等，可以直接从前往后做,位置为s[a[i]]-1
+2.如果存在相等的数x，则需要从后往前摆放，s[x]-1,s[x]--,组合起来:--s[x]
+
+这里s[x]-1是这么想的:假设第一个大于x的数为y,y的位置为s[x]
+则最后一个x为s[x]-1,让后往前x的数量-1，所以s[x]--
+</code></pre>
+<p><strong>思想:用桶+辅助数组直接把每个数摆放的应该放的位置，并保证相对位置不变</strong><br><strong>做法:为了保证相对顺序，倒着摆放</strong></p>
+<p><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:O(n+m)
+2.平均情况:O(n+m)
+3.最坏情况:O(n+m)
+</code></pre>
+<p><strong>空间复杂度:由于要求统计数值的个数和求数值数量的前缀和，以及辅助数组，所以O(n+m)</strong></p>
+<p><strong>稳定:倒着排保证的相对位置</strong><br><strong>代码</strong></p>
+<pre><code class="cpp">void bucket_sort()
+&#123;
+        for(int i=0;i&lt;n;i++)    s[q[i]]++;//记录数组中每个数值的数量
+        for(int i=1;i&lt;N;i++)    s[i]+=s[i-1];//对每个数的数量求前缀和
+        //因为s[]的大小取决去桶的数量，也就是数组中数的大小
+        for(int i=n-1;i&gt;=0;i--) w[--s[q[i]]]=q[i];//避免相同的x相对位置乱序，倒着摆放，最后一个x的位置为s[x]-1，完事s[x]--
+        //相当于位置为--s[x],所以就是w[--s[q[i]]]=q[i]
+        for(int i=0;i&lt;n;i++) q[i]=w[i];
+&#125;
+</code></pre>
+<h4 id="2-基数排序"><a href="#2-基数排序" class="headerlink" title="2.基数排序"></a>2.基数排序</h4><p><strong>实际上就是一个多关键字排序，这个多关键字是把a[i]化为r进制的每一位(估计数值范围，范围内用什么进制都可以)</strong></p>
+<p><strong>做法：</strong></p>
+<pre><code>1.可以从高位递归到低位，需要用到系统栈;
+2.可以从低位到高位枚举，由于桶排序是稳定的，所以基数排序也是稳定的
+</code></pre>
+<p><strong>思想:用桶+辅助数组直接把每个数摆放的应该放的位置，并保证相对位置不变</strong><br><strong>做法:为了保证相对顺序，倒着摆放</strong></p>
+<p><strong>时间复杂度</strong></p>
+<pre><code class="cpp">1.最好情况:O(k(n+r)),k为a[i]分为r进制的位数
+2.平均情况:O(k(n+r)),k为a[i]分为r进制的位数
+3.最坏情况:O(k(n+r)),k为a[i]分为r进制的位数
+</code></pre>
+<p><strong>空间复杂度:由于要求统计数值的个数和求数值数量的前缀和，以及辅助数组，所以O(n+m)</strong></p>
+<p><strong>稳定:从低到高做桶排序，每次高位都是以低位为基础，如果高位相同，则按照低位的相对位置排，所以稳定</strong><br><strong>代码</strong></p>
+<pre><code class="cpp">void radix_sort(int d,int r)//d表示关键字的位数,r表示r进制
+&#123;
+        int radix=1;
+        for(int i=1;i&lt;=d;i++)//枚举每一位,从低位到高位,由于每次都是在上次的基础上再桶排序，所以稳定
+        &#123;
+                for(int j=0;j&lt;r;j++) s[j]=0;//可以直接用memset
+
+                for(int j=0;j&lt;n;j++) s[q[j]/radix%r]++;
+
+                for(int j=1;j&lt;r;j++) s[j]+=s[j-1];
+
+                for(int j=n-1;j&gt;=0;j--) w[--s[q[j]/radix%r]]=q[j];
+
+                for(int j=0;j&lt;n;j++) q[j]=w[j];
+                radix*=r;
+
+        &#125;
+&#125;
+</code></pre>
+<h3 id="外部排序-外存里的排序，主要取决于读取次数"><a href="#外部排序-外存里的排序，主要取决于读取次数" class="headerlink" title="外部排序(外存里的排序，主要取决于读取次数)"></a>外部排序(外存里的排序，主要取决于读取次数)</h3><p><strong>做法:</strong></p>
+<pre><code>1. 置换选择排序(在内存中预处理出m个有序序列,m可能很大，大到内存存不下)
+2. 再利用Huffman思想(每次去k个最短的序列)，使用败者树将k个序列合并成一个序列,k个序列归并
+   所以读写时间复杂度为O(logk m)
+3. 以此类推直到m个序列合并成1个序列
+</code></pre>
+<p>为了减少O(logk m)的读取时间复杂度，有两种方法</p>
+<pre><code>1. k增加，当时要权衡归并是内存对k的限制
+
+2. m减小，用置换选择排序来生成更长的序列，从而使m减小
+</code></pre>
+<p><strong>置换选择排序(内排序)主要有两种实现方法</strong></p>
+<pre><code>1. 堆排序
+拿小根堆为例
+如当前序列读到x，此时堆顶为a
+1.1 先输出a
+1.2 if(x&gt;a)
+        插到堆顶，down(1)
+    if(x&lt;a) 
+        不能放到堆顶,因为输出的序列要保持有序，直接插x到堆顶，下一次输出x会有a、x的序列，但是这是逆序的
+        正确做法:把最后一个元素heap[size]放到堆顶，dowm(1),再将x放到最后元素的位置,up(size)
+1.3 当堆为空时，就不能再操作，形成了一个升序序列，长度大概为2m
+    再重新开文件做上述步骤，得到m个升序序列
+
+2. 败者树(对胜者树排序的优化，优化IO次数) 
+</code></pre>
+<p><strong>每次从m段有序序列中选k段，合并成一段，可以用Huffman树的思想来优化，相当于k进制的Huffman树<br>每合并k段，形成1段，所以每次减少k-1段，如果(m-1)%(k-1)!&#x3D;0,则加0(也叫虚段)</strong></p>
+<p><strong>k路归并时每次需要找到k个序列的最小值经行比较<br>可以用对来维护，而每次堆删除元素和插入比a更小的数，比较慢，删除——down(1),插入x(x&lt;a)——down(1)+up(size)<br>所以可以将堆优化为胜者树</strong></p>
+<p><strong>胜者树:结构是堆,但是从下往上建立</strong><br><img src="https://cdn.acwing.com/media/article/image/2022/08/11/140994_9368d2ea19-1.jpg" alt="1.jpg"></p>
+<p><strong>败者树:结构是堆，但是从下往上建立</strong><br><img src="https://cdn.acwing.com/media/article/image/2022/08/11/140994_e551870119-2.jpg" alt="2.jpg"></p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="数组（array）"><a href="#数组（array）" class="headerlink" title="数组（array）"></a>数组（array）</h3><p><strong>数组是存放在连续内存空间上的相同类型数据的集合。</strong></p>
+<p>两点注意的是</p>
+<ul>
+<li><strong>数组下标都是从0开始的。</strong></li>
+<li><strong>数组内存空间的地址是连续的</strong></li>
+</ul>
+<p>正是<strong>因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。</strong></p>
+<p><strong>数组的元素是不能删的，只能覆盖。</strong></p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是一种通过指针串联在一起的线性结构。算法竞赛中主要使用数组模拟链表。</p>
+<h4 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a><strong>单链表</strong></h4><p>每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。</p>
+<p>链表的入口节点称为链表的头结点也就是head。指针域只能指向节点的下一个节点。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806194529815.png" alt="链表1"></p>
+<pre><code class="cpp">// 单链表
+struct ListNode &#123;
+    int val;  // 节点上存储的元素
+    ListNode *next;  // 指向下一个节点的指针
+    ListNode(int x) : val(x), next(NULL) &#123;&#125;  // 节点的构造函数
+&#125;;
+</code></pre>
+<p>不定义构造函数行不行，答案是可以的，C++默认生成一个构造函数。</p>
+<h4 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a><strong>双链表</strong></h4><p> 每一个节点有两个指针域，一个指向下一个节点，一个指向上一个节点。</p>
+<p>双链表 既可以向前查询也可以向后查询。<img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806194559317.png" alt="链表2"></p>
+<h4 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a><strong>循环链表</strong></h4><p>循环链表，顾名思义，就是链表首尾相连。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806194629603.png" alt="链表4"></p>
+<h4 id="数组模拟链表"><a href="#数组模拟链表" class="headerlink" title="数组模拟链表"></a>数组模拟链表</h4><p><strong>单链表</strong></p>
+<pre><code class="cpp">//head存储链表头，e[]存储节点值，ne[]存储节点的next指针，idx表示当前索引用到了哪个节点
+int head,e[N],ne[N],idx;
+
+//初始化
+void init()
+&#123;
+    head=-1;
+    idx=0;
+&#125;
+//头插法
+//在链表头插入一个数a
+void insert(int a)
+&#123;
+    e[idx]=a,ne[idx]=head,head=idx++;
+&#125;
+
+//将x插到下标是k的点后面
+void add(int k,int x)
+&#123;
+    e[idx]=x;
+    ne[idx]=ne[k];
+    ne[k]=idx++;
+&#125;
+
+//将下标是k的点后面的点删掉
+void remove(int k)
+&#123;
+    ne[k]=ne[ne[k]];
+&#125;
+
+//将头节点删除，需要保证头节点存在
+void remove()
+&#123;
+    head=ne[head];
+&#125;
+</code></pre>
+<p><strong>双链表</strong></p>
+<pre><code class="cpp">//e[]表示节点的值，l[]表示节点的左指针，r[]表示节点的右指针，idx表示当前索引用到了哪个节点
+int e[N],l[N],r[N],idx;
+
+//初始化
+void init()
+&#123;
+    //0是左端点，1是右端点
+    r[0]=1,l[1]=0;
+    idx=2;
+&#125;
+
+//在节点a的右边插入一个数x
+void insert(int a,int x)
+&#123;
+    e[idx]=x;
+    l[idx]=a,r[idx]=r[a];
+    l[r[a]]=idx,r[a]=idx++;
+&#125;
+//在节点a的左边插入一个数x可以调用右边插入的方法
+insert(l[k],x);
+
+//删除节点a
+void remove(int a)
+&#123;
+    l[r[a]]=l[a];
+    r[l[a]]=r[a];
+&#125;
+</code></pre>
+<h3 id="栈-stack"><a href="#栈-stack" class="headerlink" title="栈(stack)"></a>栈(stack)</h3><h4 id="STL中的栈"><a href="#STL中的栈" class="headerlink" title="STL中的栈"></a>STL中的栈</h4><h5 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h5><pre><code class="cpp">size()//栈的大小
+empty()//判断栈是否为空
+push()//向栈顶插入一个元素
+top()//返回栈顶元素
+pop()//弹出栈顶元素
+</code></pre>
+<h4 id="数组模拟栈"><a href="#数组模拟栈" class="headerlink" title="数组模拟栈"></a>数组模拟栈</h4><h5 id="普通栈"><a href="#普通栈" class="headerlink" title="普通栈"></a>普通栈</h5><pre><code class="cpp">//tt表示栈顶
+int stk[N],tt=0;
+
+//向栈顶插入一个数
+stk[++tt]=x;
+
+//从栈顶弹出一个数
+tt--;
+
+//栈顶的值
+stk[tt];
+
+//判断栈是否为空
+if(tt&gt;0)
+&#123;
+    not empty
+&#125;
+</code></pre>
+<h5 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h5><p>常见模型：找出每个数左边离它最近的比它大&#x2F;小的数</p>
+<pre><code class="cpp">int tt=0;
+for(int i=1;i&lt;=n;i++)
+&#123;
+    while(tt&amp;&amp;check(stk[tt],i)) tt--;
+    stk[++tt]=i;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330092717494.png"></p>
+<h3 id="队列-queue"><a href="#队列-queue" class="headerlink" title="队列(queue)"></a>队列(queue)</h3><h4 id="STL中的队列"><a href="#STL中的队列" class="headerlink" title="STL中的队列"></a>STL中的队列</h4><h5 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h5><pre><code class="cpp">size()
+empty()
+push()//向队尾插入一个元素
+front()//返回队头元素
+back()//返回队尾元素
+pop()//弹出队头元素
+</code></pre>
+<h5 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h5><p>优先队列，默认是大根堆</p>
+<pre><code class="cpp">push()//插入一个元素
+top()//返回堆顶元素
+pop()//弹出堆顶元素    
+</code></pre>
+<p>定义成小根堆 </p>
+<pre><code class="cpp">priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt;&gt; q;
+</code></pre>
+<h5 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h5><p>双端队列</p>
+<pre><code class="cpp">size()
+empty()
+clear()
+front()/back()
+push_back()/pop_back()
+push_front()/pop_front()
+begin()/end()
+[]
+</code></pre>
+<h4 id="数组模拟队列"><a href="#数组模拟队列" class="headerlink" title="数组模拟队列"></a>数组模拟队列</h4><h5 id="普通队列"><a href="#普通队列" class="headerlink" title="普通队列"></a>普通队列</h5><pre><code class="cpp">//hh表示队头，tt表示队尾
+int q[N],hh=0,tt=-1;
+
+//向队尾插入一个数
+q[++tt]=x;
+
+//从队头弹出一个数
+hh++;
+
+//队头的值
+q[hh];
+
+//队尾的值
+q[tt];
+
+//判断队列是否为空
+if(hh&lt;=tt)
+&#123;
+    not empty
+&#125;
+</code></pre>
+<h5 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h5><pre><code class="cpp">//hh表示队头，tt表示队尾的后一个位置
+int q[N],hh=0,tt=0;
+
+//向队尾插入一个数
+q[tt++]=x;
+if(tt==N) tt=0;
+
+//从队头弹出一个数
+hh++;
+if(hh==N) hh=0;
+
+//队头的值
+q[hh];
+
+//判断队列是否为空
+if(hh!=tt)
+&#123;
+    
+&#125;
+</code></pre>
+<h5 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h5><p>常见模型：找出滑动窗口中的最大值&#x2F;最小值</p>
+<pre><code class="cpp">int hh=0,tt=-1;
+for(int i=0;i&lt;n;i++)
+&#123;
+    while(hh&lt;=tt&amp;&amp;check_out(q[hh])) hh++;//判断队头是否滑出窗口
+    while(hh&lt;=tt&amp;&amp;check(q[tt],i)) tt--;
+    q[++tt]=i;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330092619779.png"></p>
+<h3 id="堆-heap"><a href="#堆-heap" class="headerlink" title="堆(heap)"></a>堆(heap)</h3><p>手写堆的基本操作</p>
+<pre><code class="cpp">1.插入一个数
+    heap[++size]=x;up(size);
+2.求集合中最小值
+    heap[1]
+3.删除最小值
+    heap[1]=heap[size];size--;down(1);
+4.删除任意元素
+    heap[k]=heap[size];size--;down(k);up(k);
+5.修改任意元素
+    heap[k]=x;down(k);up(k);
+</code></pre>
+<p>手写堆的实现</p>
+<pre><code class="cpp">//h[N]存储堆中的值，h[1]是堆顶，x的左儿子是2x,右儿子是2x+1
+//ph[k]存储第k个的点是 第几个插入的
+//hp[k]存储堆中下标是k的点是第几个插入的
+int h[N],ph[N],hp[N],size;
+
+//交换两个点及其映射关系
+void heap_swap(int a,int b)
+&#123;
+    swap(ph[hp[a]],ph[hp[b]]);
+    swap(hp[a],hp[b]);
+    swap(h[a],h[b]);
+&#125;
+
+void down(int u)
+&#123;
+    int t=u;
+    if(u*2&lt;=size&amp;&amp;h[u*2]&lt;h[t]) t=u*2;
+    if(u*2+1&lt;=size&amp;&amp;h[u*2+1]&lt;h[t]) t=u*2+1;
+    if(u!=t)
+    &#123;
+        heap_swap(u,t);
+        down(t);
+    &#125;
+&#125;
+
+void up(int u)
+&#123;
+    while(u/2&amp;&amp;h[u]&lt;h[u/2])
+    &#123;
+        heap_swap(u,u/2);
+        u&gt;&gt;1;
+    &#125;
+&#125;
+
+//O(n)建堆
+for(int i=n/2;i;i--) down(i);
+</code></pre>
+<p>用stl库的priority_queue</p>
+<h3 id="字符串（string）"><a href="#字符串（string）" class="headerlink" title="字符串（string）"></a>字符串（string）</h3><h4 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330094444867.png"></p>
+<p>next[i]的值表示下标为i的字符前的字符串最长相等前后缀的长度。也表示该处字符不匹配时应该回溯到的字符的下标。</p>
+<pre><code class="cpp">//求next数组
+//s[]是模式串，p[]是模板串，n是s的长度，m是p的长度
+for(int i=2,j=0;i&lt;=m;i++)
+&#123;
+    while(j&amp;&amp;p[i]!=p[j+1]) j=ne[j];
+    if(p[i]==p[j+1]) j++;
+    ne[i]=j;
+&#125;
+
+//匹配
+for(int i=1,j=0;i&lt;=n;i++)
+&#123;
+    while(j&amp;&amp;s[i]!=p[j+1]) j=ne[j];
+    if(s[i]==p[j+1]) j++;
+    if(j==m)
+    &#123;
+        j=ne[j];
+        //匹配成功后的逻辑
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330095633341.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330095416938.png"></p>
+<h4 id="exkmp-z函数"><a href="#exkmp-z函数" class="headerlink" title="exkmp(z函数)"></a>exkmp(z函数)</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240505174121590.png" alt="image-20240505174121590"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240505174216916.png" alt="image-20240505174216916"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240505174251919.png" alt="image-20240505174251919"></p>
+<pre><code class="cpp">
+</code></pre>
+<h4 id="tire树"><a href="#tire树" class="headerlink" title="tire树"></a>tire树</h4><pre><code class="cpp">int son[N][26],cnt[N],idx;
+//son[][]存储树中每个节点的子节点
+//cnt[]存储以每个节点结尾的单词数量
+//0号点是根节点也是空节点
+
+//插入一个字符串
+void insert(char *str)
+&#123;
+    int p=0;
+    for(int i=0;str[i];i++)
+    &#123;
+        int u=str[i]-&#39;a&#39;;
+        if(!son[p][u]) son[p][u]=++idx;
+        p=son[p][u];
+    &#125;
+    cnt[p++];
+&#125;
+
+//查询字符串出现的次数
+int query(char *str)
+&#123;
+    int p=0;
+    for(int i=0;str[i];i++)
+    &#123;
+        int u=str[i]-&#39;a&#39;;
+        if(!son[p][u]) return 0;
+        p=son[p][u];
+    &#125;
+    return cnt[p];
+&#125;
+</code></pre>
+<h4 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h4><pre><code class="cpp">//中心扩展法
+</code></pre>
+<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><pre><code class="cpp">struct DSU &#123;
+    std::vector&lt;int&gt; f, siz;
+    
+    DSU() &#123;&#125;
+    DSU(int n) &#123;
+        init(n);
+    &#125;
+    
+    void init(int n) &#123;
+        f.resize(n);
+        std::iota(f.begin(), f.end(), 0);
+        siz.assign(n, 1);
+    &#125;
+    
+    int find(int x) &#123;
+        while (x != f[x]) &#123;
+            x = f[x] = f[f[x]];
+        &#125;
+        return x;
+    &#125;
+    
+    bool same(int x, int y) &#123;
+        return find(x) == find(y);
+    &#125;
+    
+    bool merge(int x, int y) &#123;
+        x = find(x);
+        y = find(y);
+        if (x == y) &#123;
+            return false;
+        &#125;
+        siz[x] += siz[y];
+        f[y] = x;
+        return true;
+    &#125;
+    
+    int size(int x) &#123;
+        return siz[find(x)];
+    &#125;
+&#125;;
+</code></pre>
+<h4 id="朴素并查集"><a href="#朴素并查集" class="headerlink" title="朴素并查集"></a>朴素并查集</h4><pre><code class="cpp">int p[N];//存储每个点的祖宗节点
+
+//返回x的祖宗节点
+int find(int x)
+&#123;
+    if(p[x]!=x) p[x]=find(p[x]);
+    return p[x];
+&#125;
+
+//初始化，假定节点编号是1~n
+for(int i=1;i&lt;=n;i++) p[i]=i;
+
+//合并a和b所在的两个集合
+p[find(a)]=find(b);
+</code></pre>
+<h4 id="维护size的并查集"><a href="#维护size的并查集" class="headerlink" title="维护size的并查集"></a>维护size的并查集</h4><pre><code class="cpp">int p[N],sz[N];//存储每个点的祖宗节点
+
+//返回x的祖宗节点
+int find(int x)&#123;
+    if(p[x]!=x) p[x]=find(p[x]);
+    return p[x];
+&#125;
+
+void init(int n)&#123;
+    //初始化，假定节点编号是1~n
+    for(int i=1;i&lt;=n;i++)&#123; 
+        p[i]=i;
+        sz[i]=1;
+    &#125;
+&#125;
+
+void merge(int a,int b)&#123;
+    int pa=find(a),pb=find(b);
+    if (pa != pb) &#123;
+        if (sz[pa] &lt; sz[pb]) &#123;
+            swap(pa, pb);
+        &#125;
+        p[pb] = pa;
+        sz[pa] += sz[pb];
+    &#125;
+&#125;
+</code></pre>
+<h4 id="维护到祖宗节点距离的并查集"><a href="#维护到祖宗节点距离的并查集" class="headerlink" title="维护到祖宗节点距离的并查集"></a>维护到祖宗节点距离的并查集</h4><pre><code class="cpp">int p[N],d[N];
+//p[]存储每个点的祖宗节点，d[x]存储x到p[x]的距离
+
+//返回x的祖宗节点
+int find(int x)
+&#123;
+    if(p[x]!=x)
+    &#123;
+        int u=find(p[x]);
+        d[x]+=d[p[x]];
+        p[x]=u;
+    &#125;
+    return p[x];
+&#125;
+
+//初始化，假定节点是1~n
+for(int i=1;i&lt;=n;i++)
+&#123;
+    p[i]=i;
+    d[i]=0;
+&#125;
+
+//合并a和b所在的集合
+p[find(a)]=find(b);
+d[find(a)]=distance;//根据具体问题，初始化find(a)的偏移量
+</code></pre>
+<h3 id="Hash表"><a href="#Hash表" class="headerlink" title="Hash表"></a>Hash表</h3><p>哈希表是根据关键码的值而直接进行访问的数据结构。</p>
+<p><strong>一般哈希表都是用来快速判断一个元素是否出现集合里。</strong></p>
+<p>当我们想使用哈希法来解决问题的时候，我们一般会选择如下三种数据结构。</p>
+<ul>
+<li>数组</li>
+<li>set （集合）</li>
+<li>map(映射)</li>
+</ul>
+<h4 id="一般哈希"><a href="#一般哈希" class="headerlink" title="一般哈希"></a>一般哈希</h4><h5 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h5><pre><code class="cpp">int h[N],e[N],ne[N],idx;
+
+//向哈希表中插入一个数
+void insert(int x)
+&#123;
+    int k=(x%N+N)%N;
+    e[idx]=x;
+    ne[idx]=h[k];
+    h[k]=idx++;
+&#125;
+
+//在哈希表中查询某个数是否存在
+bool find(int x)
+&#123;
+    int k=(x%N+N)%N;
+    for(int i=h[k];i!=-1;i=ne[i])
+    &#123;
+        if(e[i]==x) return true;
+    &#125;
+    return false;
+&#125;
+</code></pre>
+<h5 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h5><pre><code class="cpp">int h[N];
+
+//如果x在哈希表中，返回x的下标；如果不在，返回x应该插入的位置
+int find(int x)
+&#123;
+    int t=(x%N+N)%N;
+    while(h[t]！=null&amp;&amp;h[t]!=x)
+    &#123;
+        t++;
+        if(t==N) t=0;
+    &#125;
+    return t;
+&#125;
+</code></pre>
+<h4 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h4><p>核心思想：将字符串看成P进制数，P的经验值是131或者13331，取这两个值的冲突概率低</p>
+<p>小技巧：取模的数用2^64，这样直接用unsigned long long存储，溢出的结果就是取模的结果</p>
+<pre><code class="cpp">typedef unsigned long long ULL;
+ULL h[N],p[N];//h[k]存储字符串前k个字母的哈希值，p[k]存储 P^k mod 2^64
+
+//初始化
+p[0]=1;
+for(int i=1;i&lt;=n;i++)
+&#123;
+    h[i]=h[i-1]*P+str[i];
+    p[i]=p[i-1]*P;
+&#125;
+
+//计算子串str[l,r]的哈希值
+ULL get(int l,int r)
+&#123;
+    return h[r]-h[l-1]*p[r-l+1];
+&#125;
+</code></pre>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="满二叉树"><a href="#满二叉树" class="headerlink" title="满二叉树"></a><strong>满二叉树</strong></h4><p>满二叉树：如果一棵二叉树只有度为0的结点和度为2的结点，并且度为0的结点在同一层上，则这棵二叉树为满二叉树。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806185805576.png" alt="img"></p>
+<p>这棵二叉树为满二叉树，也可以说深度为k，有2^k-1个节点的二叉树。</p>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>什么是完全二叉树？</p>
+<p>完全二叉树的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层（h从1开始），则该层包含 1~ 2^(h-1) 个节点。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200920221638903.png" alt="img"></p>
+<p><strong>优先级队列其实是一个堆，堆就是一棵完全二叉树，同时保证父子节点的顺序关系。</strong></p>
+<h4 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h4><p>二叉搜索树是有数值的，<strong>二叉搜索树是一个有序树</strong>。</p>
+<ul>
+<li>若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；</li>
+<li>若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；</li>
+<li>它的左、右子树也分别为二叉排序树</li>
+</ul>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806190304693.png" alt="img"></p>
+<h4 id="平衡二叉搜索树"><a href="#平衡二叉搜索树" class="headerlink" title="平衡二叉搜索树"></a>平衡二叉搜索树</h4><p>平衡二叉搜索树：又被称为AVL（Adelson-Velsky and Landis）树，且具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806190511967.png" alt="img"></p>
+<p>最后一棵 不是平衡二叉树，因为它的左右两个子树的高度差的绝对值超过了1。</p>
+<p><strong>C++中map、set、multimap，multiset的底层实现都是平衡二叉搜索树</strong>，所以map、set的增删操作时间时间复杂度是logn，注意我这里没有说unordered_map、unordered_set，unordered_map、unordered_set底层实现是哈希表。</p>
+<h4 id="二叉树的存储"><a href="#二叉树的存储" class="headerlink" title="二叉树的存储"></a>二叉树的存储</h4><p><strong>二叉树可以链式存储，也可以顺序存储。</strong></p>
+<p>那么链式存储方式就用指针， 顺序存储的方式就是用数组。</p>
+<p>顾名思义就是顺序存储的元素在内存是连续分布的，而链式存储则是通过指针把分布在各个地址的节点串联一起。</p>
+<p>链式存储如图：</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/2020092019554618.png" alt="img"></p>
+<pre><code class="cpp">struct TreeNode &#123;
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;
+&#125;;
+</code></pre>
+<p>链式存储是大家很熟悉的一种方式，那么我们来看看如何顺序存储呢？</p>
+<p>其实就是用数组来存储二叉树，顺序存储的方式如图：</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200920200429452.png" alt="img"></p>
+<p>用数组来存储二叉树如何遍历的呢？</p>
+<p><strong>如果父节点的数组下标是 i，那么它的左孩子就是 i * 2 + 1，右孩子就是 i * 2 + 2。</strong></p>
+<pre><code class="cpp">//tree[N]存储堆中的值，tree[0]是根
+tree[N];
+</code></pre>
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>区间取最小值更新和区间最小值查询</p>
+<pre><code class="cpp">#define int long long
+struct segmenttree
+&#123;
+    int n;
+    vector&lt;int&gt; st, lazy;
+
+    void init(int _n)
+    &#123;
+        this-&gt;n = _n;
+        st.resize(4 * n, LLONG_MAX);
+        lazy.resize(4 * n, LLONG_MAX);
+    &#125;
+
+    void push(int start, int ending, int node)
+    &#123;
+        if (lazy[node] != LLONG_MAX)
+        &#123;
+            st[node] = min(lazy[node], st[node]);
+
+            if (start != ending)
+            &#123;
+                lazy[2 * node + 1] = min(lazy[2 * node + 1],lazy[node]);
+                lazy[2 * node + 2] = min(lazy[node], lazy[2 * node + 1]);
+            &#125;
+
+            lazy[node] = LLONG_MAX;
+        &#125;
+    &#125;
+
+    int query(int start, int ending, int l, int r, int node)
+    &#123;
+        push(start, ending, node);
+
+        if (start &gt; r || ending &lt; l)
+        &#123;
+            return LLONG_MAX;
+        &#125;
+
+        if (start &gt;= l &amp;&amp; ending &lt;= r)
+        &#123;
+            return st[node];
+        &#125;
+
+        int mid = (start + ending) / 2;
+
+        int q1 = query(start, mid, l, r, 2 * node + 1);
+        int q2 = query(mid + 1, ending, l, r, 2 * node + 2);
+
+        return min(q1, q2);
+    &#125;
+
+    void update(int start, int ending, int node, int l, int r, int value)
+    &#123;
+        push(start, ending, node);
+
+        if (start &gt; r || ending &lt; l)
+        &#123;
+            return;
+        &#125;
+
+        if (start &gt;= l &amp;&amp; ending &lt;= r)
+        &#123;
+            lazy[node] = min(lazy[node], value);
+            push(start, ending, node);            
+            return;
+        &#125;
+
+        int mid = (start + ending) / 2;
+
+        update(start, mid, 2 * node + 1, l, r, value);
+
+        update(mid + 1, ending, 2 * node + 2, l, r, value);
+
+        st[node] = min(st[node * 2 + 1], st[node * 2 + 2]);
+
+        return;
+    &#125;
+
+    int query(int l, int r)
+    &#123;
+        return query(0, n - 1, l, r, 0);
+    &#125;
+
+    void update(int l, int r, int x)
+    &#123;
+        update(0, n - 1, 0, l, r, x);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="树状数组-Binary-Indexed-Tree"><a href="#树状数组-Binary-Indexed-Tree" class="headerlink" title="树状数组(Binary Indexed Tree)"></a>树状数组(Binary Indexed Tree)</h3><p>利用数的二进制特征进行检索的树状结构</p>
+<p>主要用于对一个数组进行<strong>区间求和+点修</strong>或者<strong>区间修改+点查</strong></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122648324.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122731502.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122829557.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122911204.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240226122932765.png"></p>
+<pre><code class="cpp">//董晓算法的板子
+int tree[N];
+
+int lowbit(int x)&#123;return x&amp;-x;&#125;
+
+void change(int x,int k)//向后修
+&#123;//这里的N开大了，实际上是n
+    while(x&lt;=N) tree[x]+=k,x+=lowbit(x);
+&#125;
+
+int query(int x)//向前查
+&#123;
+    int t=0;
+    while(x) t+=tree[x],x-=lowbit(x);
+    return t;
+&#125;
+
+int query(int l,int r)//区间和==前缀和之差
+&#123;
+    return query(r)-query(l-1);
+&#125;
+
+//ACWing板子
+int tr[M]
+int lowbit(int x)
+&#123;
+    return x&amp;-x;
+&#125;
+
+int query(int x)
+&#123;
+    int res = 0;
+    for(int i=x;i;i-=lowbit(i))
+        res+=tr[i];
+    return res;
+&#125;
+
+void add(int x,int v)
+&#123;
+    for(int i=x;i&lt;M;i+=lowbit(i))
+        tr[i]+=v;
+&#125;
+</code></pre>
+<p>封装后直接使用</p>
+<p>点修区查</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+#define endl &#39;\n&#39;
+
+struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+
+void solve() &#123;
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    FenwickTree ft(n);
+
+    for (int i = 1; i &lt;= n; i++) &#123;
+        int val;
+        cin &gt;&gt; val;
+        ft.update(i, val);
+    &#125;
+
+    while (q--) &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        if (a == 0) &#123;
+            ft.update(b + 1, c);
+        &#125; else &#123;
+            cout &lt;&lt; ft.query(b + 1, c) &lt;&lt; endl;
+        &#125;
+    &#125;
+&#125;
+
+signed main() &#123;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin &gt;&gt; t;
+    while (t--) &#123;
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>区修点查</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+#define endl &#39;\n&#39;
+
+struct FenwickTree &#123;
+    vector&lt;int&gt; tree;
+    int n;
+
+    FenwickTree() &#123;&#125;
+    FenwickTree(int n) &#123;
+        init(n);
+    &#125;
+
+    void init(int n) &#123;
+        this-&gt;n = n;
+        tree.resize(n + 1, 0);
+    &#125;
+
+    int lowbit(int x) &#123;
+        return x &amp; -x;
+    &#125;
+
+    void update(int x, int k) &#123;
+        while (x &lt;= n) &#123;
+            tree[x] += k;
+            x += lowbit(x);
+        &#125;
+    &#125;
+
+    int query(int x) &#123;
+        int res = 0;
+        while (x &gt; 0) &#123;
+            res += tree[x];
+            x -= lowbit(x);
+        &#125;
+        return res;
+    &#125;
+
+    int query(int l, int r) &#123;
+        return query(r) - query(l - 1);
+    &#125;
+&#125;;
+
+void solve() &#123;
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    vector&lt;int&gt; a(n+1);
+    FenwickTree ft(n);
+
+    for (int i = 1; i &lt;= n; i++) cin&gt;&gt;a[i];
+
+    while (q--) &#123;
+        int op;
+        cin &gt;&gt; op;
+        if(op==1)&#123;
+            int l,r,x;
+            cin&gt;&gt;l&gt;&gt;r&gt;&gt;x;
+            ft.update(l,x);
+            ft.update(r+1,-x);
+        &#125;else&#123;
+            int x;
+            cin&gt;&gt;x;
+            cout&lt;&lt;a[x]+ft.query(x)&lt;&lt;endl;
+        &#125;
+    &#125;
+&#125;
+
+signed main() &#123;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin &gt;&gt; t;
+    while (t--) &#123;
+        solve();
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h3 id="ST表"><a href="#ST表" class="headerlink" title="ST表"></a>ST表</h3><p>ST 表（Sparse Table，稀疏表）是用于解决 <strong>可重复贡献问题</strong> 的数据结构。</p>
+<p>ST 表能较好的维护「可重复贡献」的区间信息（同时也应满足结合律），时间复杂度较低，代码量相对其他算法很小。但是，ST 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。</p>
+<pre><code class="cpp">// ST表
+
+template&lt;typename T&gt; vector&lt;vector&lt;T&gt;&gt; get_st(vector&lt;T&gt; &amp;v, T (*sel)(T a, T b)) &#123;
+    int n = v.size(), m = log2(n)+1;
+    vector&lt;vector&lt;T&gt;&gt; ret(m);
+    ret[0] = v;
+    for(int i=1;i&lt;m;i++) for(int j=0;j&lt;=n-(1&lt;&lt;i);j++) ret[i].push_back(sel(ret[i-1][j],ret[i-1][j+(1&lt;&lt;(i-1))]));
+    return ret;
+&#125;
+
+template&lt;typename T&gt; T st_queue(vector&lt;vector&lt;T&gt;&gt; &amp;st, int l, int r, T (*sel)(T a, T b)) &#123;
+    int lay = log2(r-l+1), wid=1&lt;&lt;lay;
+    return sel(st[lay][l],st[lay][r-wid+1]);
+&#125;
+
+int get_max(int a, int b) &#123;
+    return max(a,b);
+&#125;
+</code></pre>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><h2 id="递归与回溯"><a href="#递归与回溯" class="headerlink" title="递归与回溯"></a>递归与回溯</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>回溯是递归的副产品，只要有递归就会有回溯。</p>
+<p><strong>回溯的本质是穷举，穷举所有可能，然后选出我们想要的答案</strong>，如果想让回溯法高效一些，可以加一些剪枝的操作，但也改不了回溯法就是穷举的本质。</p>
+<p>回溯法，一般可以解决如下几种问题：</p>
+<ul>
+<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
+<li>切割问题：一个字符串按一定规则有几种切割方式</li>
+<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
+<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
+<li>棋盘问题：N皇后，解数独等等</li>
+</ul>
+<p><strong>回溯法解决的问题都可以抽象为树形结构</strong>，回溯法解决的都是在集合中递归查找子集，<strong>集合的大小就构成了树的宽度，递归的深度，都构成的树的深度</strong>。</p>
+<p>递归就要有终止条件，所以必然是一棵高度有限的树（N叉树）。</p>
+<p>如图：</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210130173631174.png" alt="回溯算法理论基础"></p>
+<p>注意图中，我特意举例集合大小和孩子的数量是相等的！</p>
+<p>回溯函数遍历过程伪代码如下：</p>
+<pre><code class="text">for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;
+    处理节点;
+    backtracking(路径，选择列表); // 递归
+    回溯，撤销处理结果
+&#125;
+</code></pre>
+<p>for循环就是遍历集合区间，可以理解一个节点有多少个孩子，这个for循环就执行多少次。</p>
+<p>backtracking这里自己调用自己，实现递归。</p>
+<p>大家可以从图中看出<strong>for循环可以理解是横向遍历，backtracking（递归）就是纵向遍历</strong>，这样就把这棵树全遍历完了，一般来说，搜索叶子节点就是找的其中一个结果了。</p>
+<p>分析完过程，回溯算法模板框架如下：</p>
+<pre><code class="text">void backtracking(参数) &#123;
+    if (终止条件) &#123;
+        存放结果;
+        return;
+    &#125;
+
+    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;
+        处理节点;
+        backtracking(路径，选择列表); // 递归
+        回溯，撤销处理结果
+    &#125;
+&#125;
+</code></pre>
+<h2 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h2><p>数论的题很多时候是需要数学定理，结论以及证明。</p>
+<h3 id="质数与约数"><a href="#质数与约数" class="headerlink" title="质数与约数"></a>质数与约数</h3><h4 id="试除法判定质数"><a href="#试除法判定质数" class="headerlink" title="试除法判定质数"></a>试除法判定质数</h4><pre><code class="cpp">bool is_prime(int x)
+&#123;
+    if(x&lt;2) return false;
+    for(int i=2;i&lt;=x/i;i++)
+    &#123;
+        if(x%i==0) return false;
+    &#125;
+    return true;
+&#125;
+</code></pre>
+<h4 id="试除法分解质因数"><a href="#试除法分解质因数" class="headerlink" title="试除法分解质因数"></a>试除法分解质因数</h4><pre><code class="cpp">void divide(int x)
+&#123;
+    for(int i=1;i&lt;=x/i;i++)
+    &#123;
+        if(x%i==0)
+        &#123;
+            int s=0;
+            while(x%i==0) x/=i,s++;
+            cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;endl;
+        &#125;
+    &#125;
+    if(x&gt;1) cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;1&lt;&lt;endl;
+    cout&lt;&lt;endl;
+&#125;
+</code></pre>
+<h4 id="朴素筛法求素数"><a href="#朴素筛法求素数" class="headerlink" title="朴素筛法求素数"></a>朴素筛法求素数</h4><pre><code class="cpp">int primes[N],cnt;//primes[]存储所有素数
+bool vis[N];//vis[x]存储x是否被筛掉
+
+void get_primes(int x)
+&#123;
+    for(int i=2;i&lt;=n;i++)
+    &#123;
+        if(vis[i]) continue;
+        primes[cnt++]=i;
+        for(int j=i;j&lt;=n;j+=i) vis[j]=true;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="线性筛法求素数"><a href="#线性筛法求素数" class="headerlink" title="线性筛法求素数"></a>线性筛法求素数</h4><pre><code class="cpp">int primes[N],cnt;//primes[]存储所有素数
+bool vis[N];//vis[x]存储x是否被筛掉
+
+void get_primes(int n)
+&#123;
+    for(int i=2;i&lt;=n;i++)
+    &#123;
+        if(!vis[i]) primes[cnt++]=i;
+        for(int j=0;primes[j]&lt;=n/i;j++)
+        &#123;
+            vis[primes[j]*i]=true;
+            if(i%primes[j]==0) break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="试除法求所有约数"><a href="#试除法求所有约数" class="headerlink" title="试除法求所有约数"></a>试除法求所有约数</h4><pre><code class="cpp">vector&lt;int&gt; get_divisors(int x)
+&#123;
+    vector&lt;int&gt; res;
+    for(int i=1;i&lt;=x/i;i++)
+    &#123;
+        if(x%i==0)
+        &#123;
+            res.push_back(i);
+            if(i!=x/i) res.push_back(x/i);
+        &#125;
+    &#125;
+    sort(res.begin(),res.end());
+    return res;
+&#125;
+</code></pre>
+<h4 id="约数个数和约数之和"><a href="#约数个数和约数之和" class="headerlink" title="约数个数和约数之和"></a>约数个数和约数之和</h4><p>如果有N&#x3D;${p_1}^{c_1}<em>{p_2}^{c_2}</em>…*{p_k}^{c_k}$</p>
+<p>约数个数：$(c_1+1)<em>(c_2+1)</em>…*(c_k+1)$</p>
+<p>约数之和：$({p_1}^0+{p_1}^1+…+{p_1}^{c_1})*…({p_k}^0+{p_k}^1+…+{p_k}^{c_k})$</p>
+<h4 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h4><pre><code class="cpp">int gcd(int a,int b)
+&#123;
+    return b?gcd(b,a%b):a;
+&#125;
+</code></pre>
+<h4 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h4><pre><code class="cpp">//求x,y，使得ax+by=gcd(a,b)
+int exgcd(int a,int b,int &amp;x,int &amp;y)
+&#123;
+    if(!b)
+    &#123;
+        x=1;y=0;
+        return a;
+    &#125;
+    int d=exgcd(b,a%b,y,x);
+    y-=(a/b)*x;
+    return d;
+&#125;
+</code></pre>
+<h3 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h3><h4 id="朴素求欧拉函数"><a href="#朴素求欧拉函数" class="headerlink" title="朴素求欧拉函数"></a>朴素求欧拉函数</h4><pre><code class="cpp">int phi(int x)
+&#123;
+    int res=x;
+    for(int i=2;i&lt;=x/i;i++)
+    &#123;
+        if(x%i==0)
+        &#123;
+            res=res/i*(i-1);
+            while(x%i==0) x/=i;
+        &#125;
+    &#125;
+    if(x&gt;1) res=res/x*(x-1);
+    return res;
+&#125;
+</code></pre>
+<h4 id="筛法求欧拉函数"><a href="#筛法求欧拉函数" class="headerlink" title="筛法求欧拉函数"></a>筛法求欧拉函数</h4><pre><code class="cpp">int primes[N],cnt;//primes存储所有素数
+int euler[N];//存储每一个数的欧拉函数
+bool vis[N];//vis[x]存储x是否被筛掉
+
+void get_eulers(int n)
+&#123;
+    euler[1]=1;
+    for(int i=2;i&lt;=n;i++)
+    &#123;
+        if(!vis[i])
+        &#123;
+            primes[cnt++]=i;
+            euler[i]=i-1;
+        &#125;
+    &#125;
+    for(int j=0;primes[j]&lt;=n/i;j++)
+    &#123;
+        int t=primes[j]*i;
+        vis[t]=true;
+        if(i%primes[j]==0)
+        &#123;
+            euler[t]=euler[i]*primes[j];
+            break;
+        &#125;
+        euler[t]=euler[i]*(primes[j]-1);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><h3 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h3><h3 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h3><pre><code class="cpp">// a[N][N]是增广矩阵
+int gauss()
+&#123;
+    int c, r;
+    for (c = 0, r = 0; c &lt; n; c ++ )
+    &#123;
+        int t = r;
+        for (int i = r; i &lt; n; i ++ )   // 找到绝对值最大的行
+            if (fabs(a[i][c]) &gt; fabs(a[t][c]))
+                t = i;
+
+        if (fabs(a[t][c]) &lt; eps) continue;
+
+        for (int i = c; i &lt;= n; i ++ ) swap(a[t][i], a[r][i]);      // 将绝对值最大的行换到最顶端
+        for (int i = n; i &gt;= c; i -- ) a[r][i] /= a[r][c];      // 将当前上的首位变成1
+        for (int i = r + 1; i &lt; n; i ++ )       // 用当前行将下面所有的列消成0
+            if (fabs(a[i][c]) &gt; eps)
+                for (int j = n; j &gt;= c; j -- )
+                    a[i][j] -= a[r][j] * a[i][c];
+
+        r ++ ;
+    &#125;
+
+    if (r &lt; n)
+    &#123;
+        for (int i = r; i &lt; n; i ++ )
+            if (fabs(a[i][n]) &gt; eps)
+                return 2; // 无解
+        return 1; // 有无穷多组解
+    &#125;
+
+    for (int i = n - 1; i &gt;= 0; i -- )
+        for (int j = i + 1; j &lt; n; j ++ )
+            a[i][n] -= a[i][j] * a[j][n];
+
+    return 0; // 有唯一解
+&#125;
+</code></pre>
+<h3 id="组合计数"><a href="#组合计数" class="headerlink" title="组合计数"></a>组合计数</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/40572741-3470-412c-b208-039a8df38911-3350490.jpg"></p>
+<h4 id="递归法求组合数"><a href="#递归法求组合数" class="headerlink" title="递归法求组合数"></a>递归法求组合数</h4><pre><code class="cpp">// c[a][b] 表示从a个苹果中选b个的方案数
+for (int i = 0; i &lt; N; i ++ )
+    for (int j = 0; j &lt;= i; j ++ )
+        if (!j) c[i][j] = 1;
+        else c[i][j] = (c[i - 1][j] + c[i - 1][j - 1]) % mod;
+</code></pre>
+<h4 id="通过预处理逆元的方式求组合数"><a href="#通过预处理逆元的方式求组合数" class="headerlink" title="通过预处理逆元的方式求组合数"></a>通过预处理逆元的方式求组合数</h4><p>首先预处理出所有阶乘取模的余数<code>fact[N]</code>，以及所有阶乘取模的逆元<code>infact[N]</code><br>如果取模的数是质数，可以用费马小定理求逆元</p>
+<pre><code class="cpp">int qmi(int a, int k, int p)    // 快速幂模板
+&#123;
+    int res = 1;
+    while (k)
+    &#123;
+        if (k &amp; 1) res = (LL)res * a % p;
+        a = (LL)a * a % p;
+        k &gt;&gt;= 1;
+    &#125;
+    return res;
+&#125;
+
+// 预处理阶乘的余数和阶乘逆元的余数
+fact[0] = infact[0] = 1;
+for (int i = 1; i &lt; N; i ++ )
+&#123;
+    fact[i] = (LL)fact[i - 1] * i % mod;
+    infact[i] = (LL)infact[i - 1] * qmi(i, mod - 2, mod) % mod;
+&#125;
+</code></pre>
+<h4 id="Lucas定理"><a href="#Lucas定理" class="headerlink" title="Lucas定理"></a>Lucas定理</h4><p>若p是质数，则对于任意整数 $1 &lt;&#x3D; m &lt;&#x3D; n$，有：<br>    $C_n^m &#x3D; C_{n%p}^{m%p} * C_{n &#x2F; p}^{m &#x2F; p} (%p)$</p>
+<pre><code class="cpp">
+int qmi(int a, int k)       // 快速幂模板
+&#123;
+    int res = 1;
+    while (k)
+    &#123;
+        if (k &amp; 1) res = (LL)res * a % p;
+        a = (LL)a * a % p;
+        k &gt;&gt;= 1;
+    &#125;
+    return res;
+&#125;
+
+
+int C(int a, int b)     // 通过定理求组合数C(a, b)
+&#123;
+    int res = 1;
+    for (int i = 1, j = a; i &lt;= b; i ++, j -- )
+    &#123;
+        res = (LL)res * j % p;
+        res = (LL)res * qmi(i, p - 2) % p;
+    &#125;
+    return res;
+&#125;
+
+
+int lucas(LL a, LL b)
+&#123;
+    if (a &lt; p &amp;&amp; b &lt; p) return C(a, b);
+    return (LL)C(a % p, b % p) * lucas(a / p, b / p) % p;
+&#125;
+</code></pre>
+<h4 id="分解质因数法求组合数"><a href="#分解质因数法求组合数" class="headerlink" title="分解质因数法求组合数"></a>分解质因数法求组合数</h4><p>当我们需要求出组合数的真实值，而非对某个数的余数时，分解质因数的方式比较好用：</p>
+<ol>
+<li>筛法求出范围内的所有质数</li>
+<li>通过$$ C_a^b &#x3D; \frac{a!(a - b)!}{b!}$$ 这个公式求出每个质因子的次数。 $n! $中$p$的次数是$$ \frac{n}{p} + \frac{n}{p^2}+ \frac{n}{p^3} + …$$</li>
+<li>用高精度乘法将所有质因子相乘</li>
+</ol>
+<pre><code class="cpp">int primes[N], cnt;     // 存储所有质数
+int sum[N];     // 存储每个质数的次数
+bool st[N];     // 存储每个数是否已被筛掉
+
+
+void get_primes(int n)      // 线性筛法求素数
+&#123;
+    for (int i = 2; i &lt;= n; i ++ )
+    &#123;
+        if (!st[i]) primes[cnt ++ ] = i;
+        for (int j = 0; primes[j] &lt;= n / i; j ++ )
+        &#123;
+            st[primes[j] * i] = true;
+            if (i % primes[j] == 0) break;
+        &#125;
+    &#125;
+&#125;
+
+
+int get(int n, int p)       // 求n！中的次数
+&#123;
+    int res = 0;
+    while (n)
+    &#123;
+        res += n / p;
+        n /= p;
+    &#125;
+    return res;
+&#125;
+
+
+vector&lt;int&gt; mul(vector&lt;int&gt; a, int b)       // 高精度乘低精度模板
+&#123;
+    vector&lt;int&gt; c;
+    int t = 0;
+    for (int i = 0; i &lt; a.size(); i ++ )
+    &#123;
+        t += a[i] * b;
+        c.push_back(t % 10);
+        t /= 10;
+    &#125;
+
+    while (t)
+    &#123;
+        c.push_back(t % 10);
+        t /= 10;
+    &#125;
+    
+    return c;
+
+&#125;
+
+get_primes(a);  // 预处理范围内的所有质数
+
+for (int i = 0; i &lt; cnt; i ++ )     // 求每个质因数的次数
+&#123;
+    int p = primes[i];
+    sum[i] = get(a, p) - get(b, p) - get(a - b, p);
+&#125;
+
+vector&lt;int&gt; res;
+res.push_back(1);
+
+for (int i = 0; i &lt; cnt; i ++ )     // 用高精度乘法将所有质因子相乘
+    for (int j = 0; j &lt; sum[i]; j ++ )
+        res = mul(res, primes[i]);
+</code></pre>
+<h3 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h3><p>给定n个0和n个1，它们按照某种顺序排成长度为2n的序列，满足任意前缀中0的个数都不少于1的个数的序列的数量为：$$ Cat(n) &#x3D; \frac{C_{2n}^n}{(n + 1)}$$</p>
+<h3 id="简单博弈论"><a href="#简单博弈论" class="headerlink" title="简单博弈论"></a>简单博弈论</h3><h4 id="NIM游戏"><a href="#NIM游戏" class="headerlink" title="NIM游戏"></a>NIM游戏</h4><p>给定N堆物品，第i堆物品有$A_i$个。两名玩家轮流行动，每次可以任选一堆，取走任意多个物品，可把一堆取光，但不能不取。取走最后一件物品者获胜。两人都采取最优策略，问先手是否必胜。</p>
+<p>我们把这种游戏称为NIM博弈。把游戏过程中面临的状态称为局面。整局游戏第一个行动的称为先手，第二个行动的称为后手。若在某一局面下无论采取何种行动，都会输掉游戏，则称该局面必败。<br>所谓采取最优策略是指，若在某一局面下存在某种行动，使得行动后对面面临必败局面，则优先采取该行动。同时，这样的局面被称为必胜。我们讨论的博弈问题一般都只考虑理想情况，即两人均无失误，都采取最优策略行动时游戏的结果。<br>NIM博弈不存在平局，只有先手必胜和先手必败两种情况。</p>
+<p>定理： NIM博弈先手必胜，当且仅当 $A_1$ ^$A_2$ ^ … ^ $A_n$ !&#x3D; 0</p>
+<!--符号^表示异或-->
+
+<h4 id="公平组合游戏ICG"><a href="#公平组合游戏ICG" class="headerlink" title="公平组合游戏ICG"></a>公平组合游戏ICG</h4><p>若一个游戏满足：</p>
+<p>1.由两名玩家交替行动；<br>2.在游戏进程的任意时刻，可以执行的合法行动与轮到哪名玩家无关；<br>3.不能行动的玩家判负；<br>则称该游戏为一个公平组合游戏。<br>NIM博弈属于公平组合游戏，但城建的棋类游戏，比如围棋，就不是公平组合游戏。因为围棋交战双方分别只能落黑子和白子，胜负判定也比较复杂，不满足条件2和条件3。</p>
+<h4 id="有向图游戏"><a href="#有向图游戏" class="headerlink" title="有向图游戏"></a>有向图游戏</h4><p>给定一个有向无环图，图中有一个唯一的起点，在起点上放有一枚棋子。两名玩家交替地把这枚棋子沿有向边进行移动，每次可以移动一步，无法移动者判负。该游戏被称为有向图游戏。<br>任何一个公平组合游戏都可以转化为有向图游戏。具体方法是，把每个局面看成图中的一个节点，并且从每个局面向沿着合法行动能够到达的下一个局面连有向边。</p>
+<h4 id="Mex运算"><a href="#Mex运算" class="headerlink" title="Mex运算"></a>Mex运算</h4><p>设S表示一个非负整数集合。定义$mex(S)$为求出不属于集合S的最小非负整数的运算，即：<br>$mex(S) &#x3D; min(x)$, x属于自然数，且x不属于S</p>
+<h4 id="SG函数"><a href="#SG函数" class="headerlink" title="SG函数"></a>SG函数</h4><p>在有向图游戏中，对于每个节点x，设从x出发共有k条有向边，分别到达节点$y_1, y_2, …, y_k$，定义$$SG(x)$$为x的后继节点$y_1, y_2, …, y_k$ 的SG函数值构成的集合再执行$$mex(S)$$运算的结果，即：<br>$SG(x) &#x3D; mex({SG(y_1), SG(y_2), …, SG(y_k)})$<br>特别地，整个有向图游戏G的SG函数值被定义为有向图游戏起点s的SG函数值，即$SG(G) &#x3D; SG(s)$。</p>
+<h4 id="有向图游戏的和"><a href="#有向图游戏的和" class="headerlink" title="有向图游戏的和"></a>有向图游戏的和</h4><p>设$$G_1, G_2, …, G_m $$是m个有向图游戏。定义有向图游戏G，它的行动规则是任选某个有向图游戏$G_i$，并在$G_i$上行动一步。G被称为有向图游戏$$G_1, G_2, …, G_m$$的和。<br>有向图游戏的和的SG函数值等于它包含的各个子游戏SG函数值的异或和，即：<br>$SG(G) &#x3D; SG(G_1)$ ^ $SG(G_2) $^ … ^ $SG(G_m)$</p>
+<p>定理<br>有向图游戏的某个局面必胜，当且仅当该局面对应节点的SG函数值大于0。<br>有向图游戏的某个局面必败，当且仅当该局面对应节点的SG函数值等于0。</p>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><p>图论的题核心在与如何将题目的图建出来。</p>
+<h3 id="树与图的存储"><a href="#树与图的存储" class="headerlink" title="树与图的存储"></a>树与图的存储</h3><p>树是一种特殊的图，与图的存储方式相同</p>
+<p>无向图是可以看成存了两个方向的有向图</p>
+<p>对于无向图中的边ab,存储两条有向边a-&gt;b,b-&gt;a</p>
+<p><strong>稠密图用邻接矩阵，稀疏图用邻接表</strong></p>
+<h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4><pre><code class="cpp">g[a][b]; //存储边a-&gt;b
+    
+vector&lt;int&gt; e[N];
+</code></pre>
+<h4 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h4><pre><code class="cpp">//对于每个点k,开一个单链表，存储k所有可以走到的点。h[k]存储这个单链表的头节点
+int h[N],e[N],ne[N],idx;
+
+//添加一条边a-&gt;b
+void insert(int a,int b)
+&#123;
+    e[idx]=b,ne[idx]=h[a],h[a]=idx++;
+&#125;
+
+//初始化
+idx=0;
+memset(h,-1,sizeof h);
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330110648123.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330104035427.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330104125039.png" alt="image-20240330104125039"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330104301116.png" alt="image-20240330104301116"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330105525376.png" alt="image-20240330105525376"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330105714998.png" alt="image-20240330105714998"></p>
+<h3 id="树与图的遍历"><a href="#树与图的遍历" class="headerlink" title="树与图的遍历"></a>树与图的遍历</h3><p>时间复杂度O(n+m),n表示点数，m表示边数</p>
+<h4 id="深度优先搜索-DFS"><a href="#深度优先搜索-DFS" class="headerlink" title="深度优先搜索(DFS)"></a>深度优先搜索(DFS)</h4><p>一条路走到底</p>
+<pre><code class="cpp">void dfs(int u)
+&#123;
+    vis[u]=true;//vis[u]表示点u已经被遍历过
+    //点u就是被搜到的点
+    for(int i=h[u];i!=-1;i=ne[i])
+    &#123;//遍历邻接表
+        int j=e[i];
+        if(!vis[j]) dfs(j);//没搜过的结点就继续dfs
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330112444523.png" alt="image-20240330112444523"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330112707567.png" alt="image-20240330112707567"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330112927066.png" alt="image-20240330112927066"></p>
+<p><strong>迷宫问题</strong></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330113258853.png" alt="image-20240330113258853"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330113407706.png" alt="image-20240330113407706"></p>
+<p>走迷宫</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330115306923.png" alt="image-20240330115306923"></p>
+<p><strong>跳马问题</strong></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330113652507.png" alt="image-20240330113652507"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330113751250.png" alt="image-20240330113751250"></p>
+<p><strong>八皇后问题</strong></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330114033809.png" alt="image-20240330114033809"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330114118779.png" alt="image-20240330114118779"></p>
+<p>思路1</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330114832803.png" alt="image-20240330114832803"></p>
+<p>思路2</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330115026016.png" alt="image-20240330115026016"></p>
+<h4 id="宽度优先搜索-BFS"><a href="#宽度优先搜索-BFS" class="headerlink" title="宽度优先搜索(BFS)"></a>宽度优先搜索(BFS)</h4><p>每个分叉先走旁边，每次搜索的位置都是距离当前节点最近的点。因此，BFS是具有最短路的性质的。队列保证本层搜完才进入下一层。</p>
+<p>手写队列</p>
+<pre><code class="cpp">void bfs()&#123;
+    queue&lt;int&gt; q;
+    vis[1]=true;//表示1号点已经被遍历过
+    q.push(1);//标记该点被搜，并入队
+
+    while(q.size())
+    &#123;//队列不空就一直循环
+        int t=q.front();//队头就是搜的点
+        q.pop();//取出顶点，处理下一个点
+
+        for(int i=h[t];i!=-1;i=ne[i])
+        &#123;//遍历邻接表
+            int j=e[i];
+            if(!vis[j])
+            &#123;//没搜过的结点就入队
+                vis[j]=true;//表示点j已经被遍历过
+                q.push(j);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>使用stl的queue容器</p>
+<p>题目：走迷宫</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+const int N=110;
+typedef pair&lt;int,int&gt; PII;
+int map[N][N],mark[N][N];//map存图，mark标记是否搜过，这里兼顾了走了多远
+int dx[4]=&#123;-1,0,1,0&#125;,dy[4]=&#123;0,1,0,-1&#125;,n,m,ans;
+void bfs()
+&#123;
+    memset(mark,-1,sizeof mark);//初始化，表示没来过
+    queue&lt;PII&gt;q;
+    q.push(&#123;0,0&#125;);//起点入队
+    mark[0][0]=0;
+    while(!q.empty())
+    &#123;
+        PII top=q.front();//以队列中的每个元素为起点
+        for(int i=0;i&lt;4;i++)//向四个方向搜索
+        &#123;
+            int nex=top.first+dx[i],ney=top.second+dy[i];//下一个点
+            if(nex&gt;=0&amp;&amp;nex&lt;n&amp;&amp;ney&gt;=0&amp;&amp;ney&lt;m&amp;&amp;mark[nex][ney]==-1&amp;&amp;map[nex][ney]==0)
+            &#123;//位置合法且未搜索过
+                mark[nex][ney]=mark[top.first][top.second]+1;//标记
+                q.push(&#123;nex,ney&#125;);//入队，之后要在该节点为起点搜那一层
+            &#125;
+        &#125;
+        q.pop();//当前结点的所有搜索结束，这个点就出队
+    &#125;
+    cout&lt;&lt;mark[n-1][m-1];//最先走到的就是最短路，因为mark标记了走过的路不会再走，所以每个点记录的路程都是最短路
+&#125;
+int main()
+&#123;
+    cin&gt;&gt;n&gt;&gt;m;
+    for(int i=0;i&lt;n;i++)
+    &#123;
+        for(int j=0;j&lt;m;j++)
+        &#123;
+            scanf(&quot;%d&quot;,&amp;map[i][j]);
+        &#125;
+    &#125;
+    bfs();
+&#125;
+</code></pre>
+<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>首先要确定<strong>图是有向无环图才有拓扑序</strong></p>
+<p>时间复杂度O(n+m)</p>
+<pre><code class="cpp">bool topsort()
+&#123;
+    int hh=0,tt=-1;
+    
+    //d[i]存储点的入度
+    for(int i=1;i&lt;=n;i++)
+    &#123;
+        if(!d[i]) q[++tt]=i;
+    &#125;
+    
+    while(hh&lt;=tt)
+    &#123;
+        int t=q[hh++];
+        
+        for(int i=h[t];i!=-1;i=ne[i])
+        &#123;
+            int j=ne[i];
+            if(--d[j]==0) q[++tt]=j;
+        &#125;
+    &#125;
+    
+    //如果所有点都入队了，说明存在拓扑序，否则不存在
+    return tt=n-1;
+&#125;
+</code></pre>
+<h4 id="朴素拓扑排序"><a href="#朴素拓扑排序" class="headerlink" title="朴素拓扑排序"></a>朴素拓扑排序</h4><pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+//拓扑排序模板
+const int N = 100010;
+int n, m;
+int h[N], e[N], ne[N], idx = 0;
+int q[N], d[N];
+
+void add(int a,int b)
+&#123;
+    e[idx] = b, ne[idx] = h[a], h[a] = idx++;
+&#125;
+
+void init()
+&#123;
+    idx = 0;
+    memset(h, -1, sizeof h);
+&#125;
+
+void topsort()
+&#123;
+    int hh=0,tt=-1;
+
+    for (int i = 1; i &lt;= n; i++)
+    &#123;//看题目的结点是从0开始还是从1开始
+        //cout&lt;&lt;d[i]&lt;&lt;&quot; &quot;;
+        if (!d[i])
+        &#123;
+            q[++tt] = i;
+            //cout&lt;&lt;i&lt;&lt;&quot; &quot;;
+        &#125;
+        
+    &#125;
+
+    while (hh&lt;=tt)
+    &#123;
+        int t = q[hh++];
+        //cout&lt;&lt;t&lt;&lt;&quot; &quot;;
+
+        for (int i = h[t]; i != -1; i=ne[i])
+        &#123;
+            int j = e[i];
+            if (--d[j]==0)
+            &#123;
+                q[++tt] = j;
+            &#125;
+            
+        &#125;
+        
+    &#125;
+    // return tt=n-1;
+    //如果需要判断有无拓扑序
+&#125;
+int main()
+&#123;
+    init();
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= m; i++)
+    &#123;
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        add(a, b);
+        d[b]++;
+    &#125;
+    /*
+    for (auto i:d)
+    &#123;
+        cout&lt;&lt;i&lt;&lt;&quot; &quot;;
+    &#125;
+    */
+    topsort();
+    for (int i = 0; i &lt; n; i++) 
+    &#123;
+        cout &lt;&lt; q[i] &lt;&lt; &quot; &quot;;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h4 id="字典序拓扑排序"><a href="#字典序拓扑排序" class="headerlink" title="字典序拓扑排序"></a>字典序拓扑排序</h4><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+//字典序拓扑排序
+const int N = 100010;
+int n, m;
+int h[N], e[N], ne[N], idx = 0;
+int d[N];
+vector&lt;int&gt; ans;
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;  // 优先队列，按照从小到大的顺序出队
+
+void add(int a, int b)
+&#123;
+    e[idx] = b, ne[idx] = h[a], h[a] = idx++;
+&#125;
+
+void init()
+&#123;
+    idx = 0;
+    memset(h, -1, sizeof h);
+&#125;
+
+void topsort()
+&#123;
+    for (int i = 0; i &lt; n; i++)
+    &#123;
+        if (!d[i])
+        &#123;
+            pq.push(i);
+        &#125;
+    &#125;
+
+    while (!pq.empty())
+    &#123;
+        int t = pq.top();
+        pq.pop();
+        //t就是拓扑序列的数
+        cout &lt;&lt; t &lt;&lt; &quot; &quot;;
+        // ans.push_back(t);
+        for (int i = h[t]; i != -1; i = ne[i])
+        &#123;
+            int j = e[i];
+            if (--d[j] == 0)
+            &#123;
+                pq.push(j);
+            &#125;
+        &#125;
+    &#125;
+    // return ans.size()==n;
+&#125;
+
+int main()
+&#123;
+    init();
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= m; i++)
+    &#123;
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        add(a, b);
+        d[b]++;
+    &#125;
+
+    topsort();
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240325111736784.png" alt="image-20240325111736784"></p>
+<h4 id="朴素dijkstra算法"><a href="#朴素dijkstra算法" class="headerlink" title="朴素dijkstra算法"></a>朴素dijkstra算法</h4><p>基于贪心</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240325112518533.png" alt="image-20240325112518533"></p>
+<pre><code class="cpp">int g[N][N];//存储每条边
+int dist[N];//存储1号点到每个点的最短距离
+bool vis[N];//存储每个点的最短路是否已经确定
+
+//求1号点到n号点的最短路，不存在则返回-1
+int dijkstra()
+&#123;
+    memset(dist,0x3f,sizeof dist);
+    dist[1]=0;
+    
+    for(int i=0;i&lt;n-1;i++)
+    &#123;
+        int t=-1;//在还未确定最短路的点中寻找距离最小的点
+        for(int j=1;j&lt;=n;j++)
+        &#123;
+            if(!vis[j]&amp;&amp;t==-1||dist[t]&gt;dist[j]) t=j;
+        &#125;
+        
+        //用t更新其他点的距离
+        for(int j=1;j&lt;=n;j++)
+        &#123;
+            dist[j]=min(dist[j],dist[t]+g[t][j]);
+        &#125;
+        
+        vis[t]=true;
+    &#125;
+    
+    if(dist[n]==0x3f3f3f3f) return -1;
+    return dist[n];
+&#125;
+</code></pre>
+<h4 id="堆优化版dijkstra算法"><a href="#堆优化版dijkstra算法" class="headerlink" title="堆优化版dijkstra算法"></a>堆优化版dijkstra算法</h4><pre><code class="cpp">typedef pair&lt;int,int&gt; PII;
+
+int n;//点的数量
+int h[N],w[N],e[N],ne[N],idx;//邻接表存所有边
+int dist[N];//存储所有点到1号点的距离
+bool vis[N];//存储每个点的最短距离是否已确定
+
+//求1号点到n号点的最短距离，如果不存在，返回-1
+int dijkstra()
+&#123;
+    memset(dist,0x3f,sizeof dist);
+    dist[1]=0;
+    priority_queue&lt;PII,vector&lt;PII&gt;,greater&lt;PII&gt;&gt; heap;
+    heap.push(&#123;0,1&#125;);//first存储距离，second存储节点编号
+    
+    while(heap.size())
+    &#123;
+        auto t=heap.top();
+        heap.pop();
+        
+        int ver=t.second,distance=t.first;
+        
+        if(!vis[ver]) continue;
+        vis[ver]=true;
+        
+        for(int i=h[ver];i!=-1;i=ne[i])
+        &#123;
+            int j=e[i];
+            if(dist[j]&gt;distance+w[i])
+            &#123;
+                dist[i]=distance+w[i];
+                heap.push(&#123;dist[j],j&#125;);
+            &#125;
+        &#125;
+    &#125;
+    if(dist[n]==0x3f3f3f3f) return -1;
+    return dist[n];
+&#125;
+</code></pre>
+<h4 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h4><p>基于动态规划</p>
+<pre><code class="cpp">int n,m;//n表示点数，m表示边数
+int dist[N];//dist[x]存储1到x的最短路距离
+
+struct Edge//边，a表示出点，b表示入点，w表示边的权重
+&#123;
+    int a,b,w;
+&#125;edges[M];
+
+//求1到n的最短路距离，如果无法走到，则返回-1
+int bellman_ford()
+&#123;
+    memset(dist,0x3f,sizeof dist);
+    dist[1]=0;
+    
+    //如果第n次迭代任然会松弛三角不等式，就说明存在一条长度是n+1的最短路径。
+    //由抽屉原理，路径中至少存在两个相同的点，说明图中存在负权回路
+    for(int i=0;i&lt;n;i++)
+    &#123;
+        for(int j=0;j&lt;m;j++)
+        &#123;
+            int a=edges[j].a,b=edges[j].b,w=edges[j].w;
+            if(dist[b]&gt;dist[a]+w)
+            &#123;
+                dist[b]=dist[a]+w;
+            &#125;
+        &#125;
+    &#125;
+    
+    if(dist[n]&gt;0x3f3f3f3f/2) return -1;
+    return dist[n];
+&#125;
+</code></pre>
+<h4 id="spfa算法-队列优化的Bellman-Ford"><a href="#spfa算法-队列优化的Bellman-Ford" class="headerlink" title="spfa算法(队列优化的Bellman-Ford)"></a>spfa算法(队列优化的Bellman-Ford)</h4><pre><code class="cpp">int n;//总点数
+int h[N],w[N],e[N],ne[N],idx;//邻接表存储所有边
+int dist[N];//存储每个点到1号点的最短距离
+bool vis[N];//存储每个点是否在队列中
+
+//求1号点到n号点的最短路距离，如果从1号点无法走到n号点，返回-1
+int spfa()
+&#123;
+    memset(dist,0x3f,sizeof dist);
+    dist[1]=0;
+    
+    queue&lt;int&gt; q;
+    q.push(1);
+    vis[1]=true;
+    
+    while(q.size())
+    &#123;
+        auto t=q.front();
+        q.pop();
+        
+        vis[t]=false;
+        
+        for(int i=h[t];i!=-1;i=ne[i])
+        &#123;
+            int j=e[i];
+            if(dist[j]&gt;dist[t]+w[i])
+            &#123;
+                dist[j]=dist[t]+w[i];
+                if(!vis[j])//如果队列中已存在j,则不需要重复将j插入
+                &#123;
+                    q.push(j);
+                    vis[j]=true;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    
+    if(dist[n]==0x3f3f3f3f) return -1;
+    return dist[n];
+&#125;
+</code></pre>
+<h4 id="spfa判断图中是否存在负环"><a href="#spfa判断图中是否存在负环" class="headerlink" title="spfa判断图中是否存在负环"></a>spfa判断图中是否存在负环</h4><pre><code class="cpp">int n;//总点数
+int h[N],w[N],e[N],ne[N],idx;//邻接表存所有边
+int dist[N],cnt[N];//dist[]存储1到x的最短路距离，cnt[]存储1到x的最短路中经过的点数
+bool vis[N];//存储每个点是否在队列中
+
+//如果存在负环，返回true，否则返回false
+bool spfa()
+&#123;
+    //不需要初始化dist数组
+    //原理：如果某条最短路上有n个点(除了自己)，那么加上自己一共有n+1点，由抽屉原理，一定有两个点相同，所有存在环。
+    
+    queue&lt;int&gt; q;
+    for(int i=1;i&lt;=n;i++)
+    &#123;
+        q.push(i);
+        vis[i]=true;
+    &#125;
+    
+    while(q.size())
+    &#123;
+        auto t=q.front();
+        q.pop();
+        
+        vis[t]=false;
+        
+        for(int i=h[t];i!=-1;i=ne[i])
+        &#123;
+            int j=e[i];
+            if(dist[j]&gt;dist[t]+w[i])
+            &#123;
+                dist[j]=dist[t]+w[i];
+                cnt[j]=cnt[t]+1;
+                if(cnt[j]&gt;=n) return true;//如果从1到x的最短路中包含至少n个点(不包括自己)，则说明存在环
+                if(!vis[j])
+                &#123;
+                    q.push(j);
+                    vis[j]=true;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    
+    return false;
+&#125;
+</code></pre>
+<h4 id="Floyd算法"><a href="#Floyd算法" class="headerlink" title="Floyd算法"></a>Floyd算法</h4><pre><code class="cpp">//初始化
+for(int i=1;i&lt;=n;i++)
+&#123;
+    for(int j=1;j&lt;=n;j++)
+    &#123;
+        if(i==j) d[i][j]=0;
+        else d[i][j]=INF;//INF是一个极大的数
+    &#125;
+&#125;
+
+//算法结束后，d[a][b]表示a到b的最短距离
+void floyd()
+&#123;
+    for(int k=1;k&lt;=n;k++)
+    &#123;
+        for(int i=1;i&lt;=n;i++)
+        &#123;
+            for(int j=1;j&lt;=n;j++)
+            &#123;
+                d[i][j]=min(d[i][j],d[i][k]+d[k][j]);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/ce9cfa74-2c40-47b1-b7e4-1f923b3d50ab-3350490.jpg" alt="image"></p>
+<h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><pre><code class="cpp">int n;//n表示点数
+int g[N][N];//邻接矩阵，存储所有边
+int dist[N];//存储其他点到当前最小生成树的距离
+bool vis[N];//存储每个点是否已经在生成树中
+
+//如果图不联通，返回INF(0x3f3f3f3f),否则返回最小生成树的树边权重之和
+int prim()
+&#123;
+    memset(dist,0x3f,sizeof dist);
+    
+    int res=0;
+    for(int i=0;i&lt;n;i++)
+    &#123;
+        int t=-1;
+        for(int j=1;j&lt;=n;j++)
+        &#123;
+            if(!vis[j]&amp;&amp;(t==-1||dist[t]&gt;dist[j])) t=j;
+        &#125;
+        if(i&amp;&amp;dist[t]==INF) return INF;
+        
+        if(i) res+=dist[t];
+        vis[t]=true;
+        
+        for(int j=1;j&lt;=n;j++) dist[j]=min(dist[j],g[t][j]);
+    &#125;
+    
+    return res;
+&#125;
+</code></pre>
+<h4 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h4><pre><code class="cpp">int n,m;//n是点数，m是边数
+int p[N];//并查集父节点数组
+
+struct Edge//存储边
+&#123;
+    int a,b,w;
+    
+    bool operator&lt;(const Edge &amp;W)const&#123;
+        return w&lt;W.w;
+    &#125;
+&#125;edges[M];
+
+int find(int x)//并查集核心操作
+&#123;
+    if(p[x]!=x) p[x]=find(p[x]);
+    return p[x];
+&#125;
+
+int kruskal()
+&#123;
+    sort(edges,edges+m);
+    
+    for(int i=1;i&lt;=n;i++) p[i]=i;//并查集初始化
+    
+    int res=0,cnt=0;
+    for(int i=0;i&lt;m;i++)
+    &#123;
+        int a=edges[i].a,b=edges[i].b,w=edges[i].w;
+        
+        a=find(a),b=find(b);
+        if(a!=b)//如果两个连通块不连通，就合并
+        &#123;
+            p[a]=b;
+            res+=w;
+            cnt++;
+        &#125;
+    &#125;
+    
+    if(cnt&lt;n-1) return INF;
+    return res;
+&#125;
+</code></pre>
+<h3 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h3><h4 id="染色法判别二分图"><a href="#染色法判别二分图" class="headerlink" title="染色法判别二分图"></a>染色法判别二分图</h4><pre><code class="cpp">int n;//n表示点数
+int h[N],e[N],ne[N],idx;//邻接表存储图
+int color[N];//表示每个点的颜色，-1表示未染色，0表示白色，1表示黑色
+
+//u表示当前节点，c表示当前点的颜色
+bool dfs(int u,int c)
+&#123;
+    color[u]=c;
+    for(int i=h[u];i!=-1;i=ne[i])
+    &#123;
+        int j=e[i];
+        if(color[j]==-1)
+        &#123;
+            if(!dfs(j,!c)) return false;
+        &#125;
+        else if(color[j]==c) return false;
+    &#125;
+    
+    return true;
+&#125;
+
+bool check()
+&#123;
+    memset(color,-1,sizeof color);
+    bool flag=true;
+    for(int i=1;i&lt;=n;i++)
+    &#123;
+        if(!dfs(i,0))
+        &#123;
+            flag=false;
+            break;
+        &#125;
+    &#125;
+    return flag;
+&#125;
+</code></pre>
+<h4 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h4><pre><code class="cpp">int n1,n2;//n1表示第一个集合中的点数，n2表示第二个集合中的点数
+int h[N],e[N],ne[N],idx;//邻接表 存储所有边，匈牙利算法只会用到第二个集合指向第一个集合的边，所以只用存一个方向的边
+int match[N];//存储第二个集合中每个点当前匹配的第一个集合中的点是哪个
+bool vis[N];//表示第二个集合中每个点是否已经被遍历过
+
+bool find(int x)
+&#123;
+    for(int i=h[x];i!=-1;i=ne[i])
+    &#123;
+        int j=e[i];
+        if(!vis[j])
+        &#123;
+            vis[j]=true;
+            if(match[j]==0||find(match[j]))
+            &#123;
+                match[j]=x;
+                return true;
+            &#125;
+        &#125;
+    &#125;
+    
+    return false;
+&#125;
+
+//求最大匹配数，依次枚举第一个集合中的每一个点能否匹配第二个集合中的点
+int res=0;
+for(int i=1;i&lt;=n1;i++)
+&#123;
+    memset(vis,false,sizeod vis);
+    if(find(i)) res++;
+&#125;
+</code></pre>
+<h3 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h3><h3 id="最近公共祖先-LCA"><a href="#最近公共祖先-LCA" class="headerlink" title="最近公共祖先(LCA)"></a>最近公共祖先(LCA)</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411192436042.png" alt="image-20240411192436042"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411192532773.png" alt="image-20240411192532773"></p>
+<h4 id="倍增算法"><a href="#倍增算法" class="headerlink" title="倍增算法"></a>倍增算法</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411165758963.png" alt="image-20240411165758963"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411171342005.png" alt="image-20240411171342005"></p>
+<pre><code class="cpp">const int N=5e5+10;
+int n,m,s;//n表示树的结点个数，m表示询问个数，s表示树根节点的序号
+vector&lt;int&gt; e[N];//使用邻接矩阵存，这个需要scanf()+printf()才可以过洛谷3379
+int dep[N],fa[N][20];
+void dfs(int u,int father)&#123;
+    dep[u]=dep[father]+1;
+    //向上跳1、2、4...步的祖先
+    fa[u][0]=father;
+    for(int i=1;i&lt;=19;i++)&#123;
+        fa[u][i]=fa[fa[u][i-1]][i-1];
+    &#125;
+    for(int v:e[u])&#123;
+        if(v!=father) dfs(v,u);
+    &#125;
+&#125;
+
+int lca(int u,int v)&#123;
+    if(dep[u]&lt;dep[v]) swap(u,v);
+    //先跳到同一层
+    for(int i=19;i&gt;=0;i--)&#123;
+        if(dep[fa[u][i]]&gt;=dep[v]) u=fa[u][i];
+    &#125;
+    if(u==v) return v;
+    //再跳到LCA的下一层
+    for(int i=19;i&gt;=0;i--)&#123;
+        if(fa[u][i]!=fa[v][i])&#123;
+            u=fa[u][i];
+            v=fa[v][i];
+        &#125;
+    &#125;
+    return fa[u][0];
+&#125;
+int main()&#123;
+  scanf(&quot;%d%d%d&quot;, &amp;n,&amp;m,&amp;s);
+  for(int i=1; i&lt;n; i++)&#123;
+    scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+    add(a,b); 
+    add(b,a);
+  &#125;
+  dfs(s, 0);
+  while(m--)&#123;
+    scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
+    printf(&quot;%d\n&quot;,lca(a, b));
+  &#125;
+  return 0;
+&#125;
+
+//优化方案
+const int N=5e5+10,M=2*N; 
+int n,m,s,a,b;
+int dep[N],fa[N][22];
+int h[N],to[M],ne[M],tot;//使用邻接表存
+void add(int a, int b)&#123;
+  to[++tot]=b,ne[tot]=h[a],h[a]=tot;
+&#125;
+void dfs(int x, int f)&#123;
+  dep[x]=dep[f]+1; 
+  fa[x][0]=f;
+  for(int i=0; i&lt;=20; i++)&#123;//遍历邻接表
+      fa[x][i+1]=fa[fa[x][i]][i];
+  &#125; 
+     
+  for(int i=h[x]; i; i=ne[i])&#123;
+      if(to[i]!=f) dfs(to[i], x);
+  &#125;
+&#125;
+int lca(int x, int y)&#123;
+  if(dep[x]&lt;dep[y]) swap(x, y);
+  for(int i=20; ~i; i--)&#123;
+      if(dep[fa[x][i]]&gt;=dep[y]) x=fa[x][i];
+  &#125;
+  if(x==y) return y;
+  for(int i=20; ~i; i--)&#123;
+      if(fa[x][i]!=fa[y][i]) x=fa[x][i],y=fa[y][i];
+  &#125;  
+  return fa[x][0];
+&#125;
+int main()&#123;
+  cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+  for(int i=1; i&lt;n; i++)&#123;
+    cin&gt;&gt;a&gt;&gt;b;
+    add(a,b); 
+    add(b,a);
+  &#125;
+  dfs(s, 0);
+  while(m--)&#123;
+    cin&gt;&gt;a&gt;&gt;b;
+    cout&lt;&lt;lca(a,b)&lt;&lt;endl;
+  &#125;
+  return 0;
+&#125;
+</code></pre>
+<h4 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411171603576.png" alt="image-20240411171603576"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411172758138.png" alt="image-20240411172758138"></p>
+<pre><code class="cpp">const int N=5e5+10;
+M=2*N;
+int n,m,s;
+vector&lt;int&gt; e[N];
+vector&lt;pair&lt;int,int&gt;&gt; query[N];
+int fa[N],vis[N],ans[M];
+int find(int x)&#123;
+    if(fa[x]!=x) fa[x]=find(fa[x]);
+    return fa[x];
+&#125;
+void tarjan(int u)
+&#123;
+    vis[u]=true;//入u时，标记u
+    for(auto v:e[u])&#123;
+        if(!vis[v])&#123;
+            tarjan(v);
+            fa[v]=u;//回u时，v指向u
+        &#125;
+    &#125;
+    //离u时，枚举LCA
+    for(auto q:query[u])&#123;
+        int v=q.first,i=q.second;
+        if(vis[v]) ans[i]=find(v);
+    &#125;
+&#125;
+int main()
+&#123;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+    int a,b;
+    for(int i=1; i&lt;n; i++)&#123;
+      cin&gt;&gt;a&gt;&gt;b;//存图
+      e[a].push_back(b);
+      e[b].push_back(a);
+    &#125;
+    for(int i=1;i&lt;=m;i++)&#123;
+      cin&gt;&gt;a&gt;&gt;b;//存查询
+      query[a].push_back(&#123;b,i&#125;);
+      query[b].push_back(&#123;a,i&#125;);
+     &#125;
+    for(int i=1;i&lt;=N;i++)fa[i]=i;//并查集初始化
+    tarjan(s);
+    for(int i=1; i&lt;=m; i++)&#123;
+        cout&lt;&lt;ans[i]&lt;&lt;endl;
+    &#125;
+  return 0;
+&#125;
+</code></pre>
+<h4 id="树链剖分"><a href="#树链剖分" class="headerlink" title="树链剖分"></a>树链剖分</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411192057737.png" alt="image-20240411192057737"></p>
+<pre><code class="cpp">vector&lt;int&gt; e[N];
+int fa[N],dep[N],son[N],sz[N];
+int top[N];
+void dfs1(int u,int father)&#123;//搞出fa,dep,son
+    fa[u]=father,dep[u]=dep[father]+1,sz[u]=1;
+    for(int v:e[u])&#123;
+        if(v==father) continue;
+        dfs1(v,u);
+        sz[u]+=sz[v];
+        if(sz[son[u]]&lt;sz[v]) son[u]=v;
+    &#125;
+&#125;
+void dfs2(int u,int t)&#123;//搞出top
+    top[u]=t;//记录链头
+    if(!son[u]) return;//无重儿子返回
+    dfs2(son[u],t);//搜重儿子
+    for(int v:e[u])&#123;
+        if(v==fa[u]||v==son[u]) continue;
+        dfs2(v,v);//搜轻儿子
+    &#125;
+&#125;
+int lca(int u,int v)&#123;
+    while(top[u]!=top[v])&#123;
+        if(dep[top[u]]&lt;dep[top[v]]) swap(u,v);
+        u=fa[top[u]];
+    &#125;
+    return dep[u]&lt;dep[v]?u:v;
+&#125;
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;
+    int a, b;
+    for (int i = 1; i &lt; n; i++)&#123;
+        cin &gt;&gt; a &gt;&gt; b;
+        e[a].push_back(b);
+        e[b].push_back(a);
+    &#125;
+    dfs1(s, 0);
+    dfs2(s, s);
+    while (m--)&#123;
+        cin &gt;&gt; a &gt;&gt; b;
+        cout &lt;&lt; lca(a, b) &lt;&lt; endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><h2 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h2><h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h2><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>如果某一问题有很多重叠子问题，使用动态规划是最有效的。</p>
+<p>动态规划中每一个状态一定是由上一个状态推导出来的。</p>
+<p><strong>对于动态规划问题，拆解为如下五步曲</strong></p>
+<ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序</li>
+<li>举例推导dp数组</li>
+</ol>
+<p><strong>找问题的最好方式就是把dp数组打印出来，看看究竟是不是按照自己思路推导的！</strong></p>
+<p><strong>分析框架</strong></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240402104638583.png" alt="image-20240402104638583"></p>
+<p><strong>记忆化搜索</strong></p>
+<h4 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330075950562.png" alt="image-20240330075950562"></p>
+<h4 id="线性DP"><a href="#线性DP" class="headerlink" title="线性DP"></a>线性DP</h4><p><strong>数字三角形模型</strong></p>
+<p>摘花生</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330075925758.png" alt="image-20240330075925758"></p>
+<p><strong>最长上升子序列模型(LIS)</strong></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330090737129.png" alt="image-20240330090737129"></p>
+<h4 id="区间DP"><a href="#区间DP" class="headerlink" title="区间DP"></a>区间DP</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412230731618.png" alt="image-20240412230731618"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412230707607.png" alt="image-20240412230707607"></p>
+<h4 id="计数类DP"><a href="#计数类DP" class="headerlink" title="计数类DP"></a>计数类DP</h4><h4 id="数位统计DP"><a href="#数位统计DP" class="headerlink" title="数位统计DP"></a>数位统计DP</h4><h4 id="状态压缩DP"><a href="#状态压缩DP" class="headerlink" title="状态压缩DP"></a>状态压缩DP</h4><h4 id="树形DP"><a href="#树形DP" class="headerlink" title="树形DP"></a>树形DP</h4><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><p>单峰的情况下，才有贪心的可能性</p>
+<p><strong>总选择局部最优解，以获得全局最优解</strong></p>
+<p>贪心算法一般分为如下四步：</p>
+<ul>
+<li>将问题分解为若干个子问题</li>
+<li>找出适合的贪心策略</li>
+<li>求解每一个子问题的最优解</li>
+<li>将局部最优解堆叠成全局最优解</li>
+</ul>
+<p>这个四步其实过于理论化了，平时在做贪心类的题目，很难去按照这四步去思考。</p>
+<p>做题的时候，只要想清楚 局部最优 是什么，如果推导出全局最优，其实就够了。</p>
+<p><strong>如何验证可不可以用贪心算法呢？</strong></p>
+<p><strong>最好用的策略就是举反例，如果想不到反例，那么就试一试贪心吧</strong>。</p>
+<p>如果认为举例子得出的结论不靠谱，想要严格的数学证明。</p>
+<p>一般数学证明有如下两种方法：</p>
+<ul>
+<li>数学归纳法</li>
+<li>反证法</li>
+</ul>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>一一枚举结果。</p>
+<h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><p>将问题分解，分而治之。</p>
+<p>将一个复杂的问题，分成两个或多个相似的子问题，在把子问题分成更小的子问题，直到更小的子问题可以简单求解，求解子问题，则原问题的解则为子问题解的合并。</p>
+<p>当出现满足以下条件的问题：</p>
+<ul>
+<li>原始问题可以分成多个相似的子问题</li>
+<li>子问题可以很简单的求解</li>
+<li>原始问题的解是子问题解的合并</li>
+<li>各个子问题是相互独立的，不包含相同的子问题</li>
+</ul>
+<p><strong>分治的解题策略：</strong></p>
+<ul>
+<li>第一步：分解，将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题</li>
+<li>第二步：解决，解决各个子问题</li>
+<li>第三步：合并，将各个子问题的解合并为原问题的解</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="高精度"><a href="#高精度" class="headerlink" title="高精度"></a>高精度</h3><h4 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a>高精度加法</h4><pre><code class="cpp">vector&lt;int&gt; add(vector&lt;int&gt; &amp;A,vector&lt;int&gt; &amp;B)
+&#123;//C=A+B,满足A&gt;=0,B&gt;=0
+    if(A.size()&lt;B.size()) return add(B,A);
+    
+    vector&lt;int&gt; C;
+    int t=0;
+    for(int i=0;i&lt;A.size();i++)
+    &#123;
+        t+=A[i];
+        if(i&lt;B.size()) t+=B[i];
+        C.push_back(t%10);
+        t/=10;
+    &#125;
+    
+    if(t) C.push_back(t);
+    return C;
+&#125;
+</code></pre>
+<h4 id="高精度减法"><a href="#高精度减法" class="headerlink" title="高精度减法"></a>高精度减法</h4><pre><code class="cpp">vector&lt;int&gt; div(vector&lt;int&gt; &amp;A,vector&lt;int&gt; &amp;B)
+&#123;//C=A-B,满足A&gt;=B,A&gt;=0,B&gt;=0
+    vector&lt;int&gt; C;
+    for(int i=0,t=0;i&lt;A.size();i++)
+    &#123;
+        t=A[i]-t;
+        if(i&lt;B.size()) t-=B[i];
+        C.push_back((t+10)%10);
+        if(t&lt;0) t=1;
+        else t=0;
+    &#125;
+    
+    while(C.size()&gt;1&amp;&amp;C.back()==0) C.pop_back();
+    return C;
+&#125;
+</code></pre>
+<h4 id="高精度乘低精度"><a href="#高精度乘低精度" class="headerlink" title="高精度乘低精度"></a>高精度乘低精度</h4><pre><code class="cpp">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A,int b)
+&#123;//C=A*b,满足A&gt;=0,b&gt;0
+    vector&lt;int&gt; C;
+    int t=0;
+    for(int i=0;i&lt;A.size()||t;i++)
+    &#123;
+        if(i&lt;A.size()) t+=A[i]*b;
+        C.push_back(t%10);
+        t/=10;
+    &#125;
+    
+    return C;
+&#125;
+</code></pre>
+<h4 id="高精度除以低精度"><a href="#高精度除以低精度" class="headerlink" title="高精度除以低精度"></a>高精度除以低精度</h4><pre><code class="cpp">vector&lt;int&gt; div(vector&lt;int&gt; &amp;A,int b,int &amp;r)
+&#123;//A/b=C...r,满足A&gt;=0,b&gt;0
+    vector&lt;int&gt; C;
+    r=0;
+    for(int i=A.size()-1;i&gt;=0;i--)
+    &#123;
+        r=r*10+A[i];
+        C.push_back(r/b);
+        r%=b;
+    &#125;
+    reverse(C.begin(),C.end());
+    while(C.size()&gt;1&amp;&amp;C.back()==0) C.pop_back();
+    return C;
+&#125;
+</code></pre>
+<h4 id="高精度乘高精度"><a href="#高精度乘高精度" class="headerlink" title="高精度乘高精度"></a>高精度乘高精度</h4><pre><code class="cpp">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A,vector&lt;int&gt; &amp;B)
+&#123;//C=A*B,满足A&gt;=0,B&gt;=0
+    vector&lt;int&gt; C(A.size()+B.size(),0);
+    
+    int t=0;
+    for(int i=0;i&lt;A.size();i++)
+    &#123;
+        for(int j=0;j&lt;B.size();j++)
+        &#123;
+            t+=A[i]*B[i]+C[i+j];
+            C[i+j]=t%10;
+            t/=10;
+        &#125;
+        int k=B.size();
+        if(t)
+        &#123;
+            C[i+k]=t%10;
+            t/=10;
+            k++;
+        &#125;
+    &#125;
+    while(C[C.size()-1]==0&amp;&amp;C.size()&gt;1) C.pop_back();
+    
+    return C;
+&#125;
+</code></pre>
+<h4 id="高精度如何输入输出数据？"><a href="#高精度如何输入输出数据？" class="headerlink" title="高精度如何输入输出数据？"></a>高精度如何输入输出数据？</h4><p>以字符串输入，逆序存入数组，逆序输出数组</p>
+<pre><code class="cpp">using namespace std;
+//以高精度乘高精度举例
+int main()
+&#123;
+    string a,b;
+    cin&gt;&gt;a&gt;&gt;b;
+    vector&lt;int&gt; A,B;
+    for(int i=a.size()-1;i&gt;=0;i--) A.push_back(a[i]-&#39;0&#39;);
+    for(int i=b.size()-1;i&gt;=0;i--) B.push_back(b[i]-&#39;0&#39;);
+    
+    vector&lt;int&gt; C=mul(A,B);
+    for(int i=C.size()-1;i&gt;=0;i--) printf(&quot;%d&quot;,C[i]);
+    
+    return 0;
+&#125;
+</code></pre>
+<h4 id="阶乘之和"><a href="#阶乘之和" class="headerlink" title="阶乘之和"></a>阶乘之和</h4><pre><code class="cpp">//length为所求的阶乘（答案）的位数，n为求1到n的阶乘之和
+string Bigfact(int length,int n)
+&#123;
+    int a[length]=&#123;0&#125;,sum[length]=&#123;0&#125;;//a数组放阶乘，sum数组放阶乘之和，这两个数组一定要初始化；
+    a[0]=1;//1的阶乘为1
+    sum[0]=1;//1的阶乘没有可加了，所以阶乘之和为1
+    if(n==1) return &quot;1&quot;;
+    for(int i=2;i&lt;=n;i++)
+    &#123;
+        //计算从1到i的阶乘之和
+        for(int j=0;j&lt;length;j++)&#123;a[j]*=i;&#125;//计算i的阶乘，每一位上都要乘以i，因为没有去除0的操作，所以数位为零的就不用管，依旧是0
+        for(int j=0;j&lt;length;j++)
+        &#123;//length其实代表的是那一个数最多有多少位；
+            if(a[j]&gt;=10)
+            &#123;//当一位数大于10或者等于10的时候就不是一位数了，是两位，所以要往前进一
+                a[j+1]+=a[j]/10;//进位运算把十位往前进一位
+                a[j]%=10;//留下个位
+            &#125;
+            sum[j]+=a[j];//相当于每一个位对应相加
+            if(sum[j]&gt;=10)
+            &#123;
+              sum[j+1]++;//进位运算：和乘法不一样，两个一位数相加只能进一，例如6+8=12，进1留2，乘法则可以进更多，例如：4*6=24，进2留4
+              sum[j]-=10;//加法留个位就可以用减10
+            &#125;
+        &#125;
+    &#125;
+    int p=length-1;//数组下标是用长度减一；
+    while(sum[p]==0)p--;//删除默认值为0的，意思就是00001111变成1111从右往左是第一位
+    string ans=&quot;&quot;;
+    while(p&gt;=0)&#123;ans+=sum[p]+&#39;0&#39;;p--;&#125;//从最高位开始输出：p--来控制往后输出；意思就是从最高位输出到最后一位，例如：1435，先输出千位1然后百位4十位3依次类推
+    return ans;
+&#125;
+</code></pre>
+<h3 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h3><p>常用小技巧，快速求幂</p>
+<h4 id="朴素快速幂"><a href="#朴素快速幂" class="headerlink" title="朴素快速幂"></a>朴素快速幂</h4><pre><code class="cpp">//求m^k mod p 时间复杂度O(logk)
+ll qmi(int m,int k,int p)
+&#123;
+    ll res=1%p,t=m;
+    while(k)
+    &#123;
+        if(k&amp;1) res=res*t%p;
+        t=t*t%p;
+        k&gt;&gt;=1;
+    &#125;
+    return res;
+&#125;
+</code></pre>
+<h4 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h4><h3 id="前缀和与差分"><a href="#前缀和与差分" class="headerlink" title="前缀和与差分"></a>前缀和与差分</h3><p>前缀和与差分互为逆运算</p>
+<h4 id="一维前缀和"><a href="#一维前缀和" class="headerlink" title="一维前缀和"></a>一维前缀和</h4><p>s[i]&#x3D;a[1]+a[2]+…+a[i];<br>a[l]+…+a[r]&#x3D;s[r]-s[l-1];</p>
+<pre><code class="cpp">cin&gt;&gt;a[i];
+a[i]+=a[i];//不保留原数组
+
+s[i]=s[i-1]+a[i];//保留原数组，开新数组存前缀和
+
+sum[l,r]//求[l,r]的区间和
+s[r]-s[l-1]
+</code></pre>
+<h4 id="二维前缀和"><a href="#二维前缀和" class="headerlink" title="二维前缀和"></a>二维前缀和</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412091859673.png" alt="image-20240412091859673"></p>
+<p>s[i,j]&#x3D;第i行第j列格子左上部分所有元素之和<br>以(x1,y1)为左上角，（x2,y2）为右下角的子矩阵和<br>s[x2,y2]-s[x1-1,y2]-s[x2,y1-1]+s[x1-1,y1-1]</p>
+<pre><code class="cpp">cin&gt;&gt;a[i][j];    
+a[i][j]+=a[i-1][j]+a[i][j-1]-a[i-1][j-1];//不保留原数组
+
+s[i][j]=s[i-1][j]+s[i][j-1]-s[i-1][j-1]+a[i][j];//保留原数组，开新数组存前缀和
+
+//以(x1,y1)为左上角，（x2,y2）为右下角的子矩阵和
+s[x2][y2]-s[x1-1][y2]-s[x2][y1-1]+s[x1-1][y1-1]
+</code></pre>
+<h4 id="前缀异或"><a href="#前缀异或" class="headerlink" title="前缀异或"></a>前缀异或</h4><p>前缀异或s[i] &#x3D; s[i - 1] ^ a[i]。</p>
+<p>每个 s[i] 的值等于前 i 个数字的异或结果。</p>
+<p>由于异或运算的逆运算是它本身，也就是说两次异或同一个数最后结果不变，即(a ^ b) ^ b &#x3D; a，则每次询问(l,r)区间，输出s[r]^s[l-1]。</p>
+<pre><code class="cpp">for (int i = 1; i &lt;= n;i++)&#123;
+    cin &gt;&gt; a[i];
+    s[i] = s[i - 1] ^ a[i]; // 前缀异或
+&#125;
+</code></pre>
+<h4 id="树上前缀和"><a href="#树上前缀和" class="headerlink" title="树上前缀和"></a>树上前缀和</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411225334753.png" alt="image-20240411225334753"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411225722085.png" alt="image-20240411225722085"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411225801406.png" alt="image-20240411225801406"></p>
+<pre><code class="cpp">//s[x]表示起点到x的前缀和
+//(x,y)的路径和
+//点前缀和
+s[x]+s[y]-s[lca]-s[fa[lca]]
+//边前缀和
+s[x]+s[y]-2*s[lca]
+</code></pre>
+<h4 id="一维差分"><a href="#一维差分" class="headerlink" title="一维差分"></a>一维差分</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412094459188.png" alt="image-20240412094459188"></p>
+<pre><code class="cpp">//给区间[l,r]中每个数加上c
+void insert(int l,int r,int c)
+&#123;
+    b[l]+=c,b[r+1]-=c;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412095128286.png" alt="image-20240412095128286"></p>
+<h4 id="二维差分"><a href="#二维差分" class="headerlink" title="二维差分"></a>二维差分</h4><pre><code class="cpp">//以(x1,y1)为左上角，（x2,y2）为右下角的子矩阵所有元素加上c
+void insert(int x1,int y1,int x2,int y2,int c)
+&#123;
+    b[x1,y1]+=c;
+    b[x2+1,y1]-=c;
+    b[x1,y2+1]-=c;
+    b[x2+1,y2+1]+=c;
+&#125;
+</code></pre>
+<h4 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411223716522.png" alt="image-20240411223716522"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411223812930.png" alt="image-20240411223812930"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411230329114.png" alt="image-20240411230329114"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240411224337257.png" alt="image-20240411224337257"></p>
+<pre><code class="cpp">//初态树上权为0，对（x,y）路径均做+1操作
+//点差分
+d[x]++;
+d[y]++;
+d[lca]--;
+d[fa[lca]]--;
+//边差分
+d[x]++;
+d[y]++;
+d[lca]-=2;
+</code></pre>
+<h3 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h3><p>将离散的数据映射到一个小区间内</p>
+<p>对数据直接mod一个数也相当于将数据映射在这个区间内</p>
+<p><strong>1.排序</strong></p>
+<p><strong>2.去重</strong></p>
+<p><strong>3.查找</strong></p>
+<pre><code class="cpp">vector&lt;int&gt; alls;//存储所有待离散化的值
+sort(alls.begin(),alls.end());//排序
+alls.erase(unique(alls.begin(),alls.end()),alls.end());//去重
+//二分求出对应离散化的值
+int find(int x)
+&#123;//找到第一个大于等于x的位置
+    int l=0,r=alls.size()-1;
+    while(l&lt;r)
+    &#123;
+        int mid=l+r&gt;&gt;1;
+        if(alls[mid]&gt;=x) r=mid;
+        else l=mid+1;
+    &#125;
+    return r+1;//映射到1,2,3...n
+&#125;
+</code></pre>
+<h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>先暴力模拟，然后看i和j有什么单调关系，再套模板将时间复杂度降低</p>
+<p>常见问题分类：</p>
+<p>(1)对于一个序列，用两个指针维护一段区间</p>
+<p>(2)对于两个序列，维护某种次序，比如归并排序中合并两个有序序列的操作</p>
+<pre><code class="cpp">for(int i=0,j=0;i&lt;n;i++)
+&#123;
+    while(j&lt;i&amp;&amp;check(i,j)) j++;
+    
+    //具体问题的逻辑
+&#125;
+</code></pre>
+<h3 id="区间合并"><a href="#区间合并" class="headerlink" title="区间合并"></a>区间合并</h3><pre><code class="cpp">//将所有存在交集的区间合并
+#define Pll pair&lt;long long,long long&gt;
+void merge(vector&lt;Pll&gt; &amp;segs)
+&#123;
+    vector&lt;Pll&gt; res;
+    
+    sort(segs.begin(),segs.end());
+    
+    int st=-2e9,ed=-2e9;
+    for(auto seg:segs)
+    &#123;
+        if(ed&lt;seg.first)
+        &#123;
+            if(st!=-2e9) res.push_back(&#123;st,ed&#125;);
+            st=seg.first,ed=seg.second;
+        &#125;
+        else
+        &#123;
+            ed=max(ed,seg.second);
+        &#125;
+    &#125;
+    
+    if(st!=-2e9) res.push_back(&#123;st,ed&#125;);
+    
+    segs=res;
+&#125;
+</code></pre>
+<h3 id="有关闰年天数的计算与表达"><a href="#有关闰年天数的计算与表达" class="headerlink" title="有关闰年天数的计算与表达"></a>有关闰年天数的计算与表达</h3><pre><code class="cpp">bool is_leap(int year)
+&#123;
+    return (year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0);
+&#125;
+
+int return_days(int year, int month)
+&#123;
+    int days[] = &#123;31, (int)(is_leap(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31&#125;;
+    return days[month - 1];
+&#125;
+</code></pre>
+<h3 id="补前导零"><a href="#补前导零" class="headerlink" title="补前导零"></a>补前导零</h3><p>setw() 函数只对紧接着的输出产生作用。</p>
+<p><strong>当后面紧跟着的输出字段长度小于 n 的时候，在该字段前面用空格补齐，当输出字段长度大于 n 时，全部整体输出。</strong></p>
+<pre><code class="cpp">// 开头设置宽度为 4，后面的 runoob 字符长度大于 4，所以不起作用
+cout &lt;&lt; setw(4) &lt;&lt; &quot;runoob&quot; &lt;&lt; endl;
+// 中间位置设置宽度为 4，后面的 runoob 字符长度大于 4，所以不起作用
+cout &lt;&lt; &quot;runoob&quot; &lt;&lt; setw(4) &lt;&lt; &quot;runoob&quot; &lt;&lt; endl;
+// 开头设置间距为 14，后面 runoob 字符数为6，前面补充 8 个空格 
+cout &lt;&lt; setw(14) &lt;&lt; &quot;runoob&quot; &lt;&lt; endl;
+// 中间位置设置间距为 14 ，后面 runoob 字符数为6，前面补充 8 个空格 
+cout &lt;&lt; &quot;runoob&quot; &lt;&lt; setw(14) &lt;&lt; &quot;runoob&quot; &lt;&lt; endl;
+</code></pre>
+<p>setw() 默认填充的内容为空格，可以 setfill() 配合使用设置其他字符填充。</p>
+<pre><code class="cpp">//补前导零实现
+cout &lt;&lt; setfill(&#39;0&#39;)  &lt;&lt; setw(5) &lt;&lt; 1 &lt;&lt; endl;
+</code></pre>
+<h3 id="向上取整、四舍五入"><a href="#向上取整、四舍五入" class="headerlink" title="向上取整、四舍五入"></a>向上取整、四舍五入</h3><pre><code class="cpp">//向上取整
+//对一个数/n后向上取整
+ll Solve(ll X)
+&#123;
+    ll result = X / n;
+    if (X &gt; 0 &amp;&amp; X % n != 0) result += 1;
+    //cout &lt;&lt; result &lt;&lt; endl;
+    return result;
+&#125;
+
+//范围小的话
+ll x;
+x=(x+n-1)/n;
+cout&lt;&lt;x&lt;&lt;endl;
+
+//四舍五入，没有小数
+double kk=1.5;
+//kk=1.5;
+cout&lt;&lt;(int)(kk+0.5)&lt;&lt;&quot;\%&quot;&lt;&lt;endl;
+
+//四舍五入，有小数
+double a=1.235; 
+double b=1.234;
+printf(&quot;printf:a=%.2lf\n&quot;,a);
+printf(&quot;printf:b=%.2lf\n&quot;,b);
+cout&lt;&lt;&quot;cout:a=&quot;;
+cout&lt;&lt;fixed&lt;&lt;setprecision(2)&lt;&lt;a&lt;&lt;endl;
+cout&lt;&lt;&quot;cout:b=&quot;;
+cout&lt;&lt;fixed&lt;&lt;setprecision(2)&lt;&lt;b&lt;&lt;endl;
+</code></pre>
+<h3 id="判断回文"><a href="#判断回文" class="headerlink" title="判断回文"></a>判断回文</h3><pre><code class="cpp">//判断一个数是否回文
+bool isPalindrome(ll n)
+&#123;//将整个数取反后看和原来的数是否相同
+    ll t = n, num = 0;
+    while (t != 0)&#123;
+        num = num * 10 + t % 10;
+        t /= 10;
+    &#125;
+    if (num==n) return true;
+    else return false;
+&#125;
+//判断字符串是否回文
+bool is_palin(const string s)
+&#123;//双指针，一头一尾比较，直到中间两个（奇数的话就是同一个）都是相等
+    int i = 0, j = strlen(s) - 1;
+    while (i &lt;= j)
+        if (s[i++] != s[j--]) return false;
+    return true;
+&#125;
+</code></pre>
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><p>注：这里的k进制主要指<strong>2 ，8，10，16</strong>之间的转换</p>
+<p><strong>二进制B,八进制O,十进制D,十六进制H</strong></p>
+<p>k进制转十进制：从低位到高位，按权展开</p>
+<p>以二进制转十进制为例</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240409163548081.png" alt="image-20240409163548081"></p>
+<p>十进制转k进制：除k取余，余数为该位权上的数，而商继续除以k，余数又为上一个位权上的数，这个步骤一直持续下去，直到商为0为止，最后读数时候，从最后一个余数读起，一直到最前面的一个余数。</p>
+<p>以十进制转二进制为例</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240409160948902.png" alt="image-20240409160948902"></p>
+<pre><code class="cpp">int k;
+//k进制转十进制
+ll ktoD(string s)
+&#123;
+    ll res=0,t=1;
+    for(int i=s.size()-1;i&gt;=0;i--)
+    &#123;
+        if(s[i]&gt;=&#39;0&#39;&amp;&amp;s[i]&lt;=&#39;9&#39;) res=res+(s[i]-&#39;0&#39;)*t;
+        else res=res+(s[i]-&#39;A&#39;+10)*t;
+        
+        t=t*k;
+    &#125;
+    return res;
+&#125;
+//十进制转k进制
+string Dtok(ll n)
+&#123;
+    string res=&quot;&quot;,tt=&quot;0123456789ABCDEF&quot;;
+    ll x;
+    while(n)&#123;
+        x=n%k;
+        res=tt[x]+res;
+        n/=k;
+    &#125;
+    if(res==&quot;&quot;) res=&quot;0&quot;;
+    return res;
+&#125;
+</code></pre>
+<p>二进制、八进制、十六进制互转</p>
+<p>​                                                        <strong>二转八：取三合一</strong>        **二转十六：取四合一 **       <strong>八转二：一分为三</strong>        <strong>十六转二：一分为四</strong></p>
+<p>​                                                                                 八转十六：八转二，再二转十六        十六转八：十六转二，再二转八</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240409162350945.png" alt="image-20240409162350945"></p>
+<pre><code class="cpp">//八转二
+string OtoB(string s)
+&#123;   
+    // 存储0~7 八进制对应的 3位二进制
+    string tt[8] = &#123;&quot;000&quot;,&quot;001&quot;,&quot;010&quot;,&quot;011&quot;,&quot;100&quot;,&quot;101&quot;,&quot;110&quot;,&quot;111&quot;&#125;;
+    string res; //res存放二进制答案
+    // 8进制 ——&gt; 2 进制：将每一位8进制转换为3位的2进制（通过数字对应数组直接获取！）然后拼接
+    for(int i = 0; i &lt; s.size(); i ++)
+    &#123;
+        int x = s[i] - &#39;0&#39;; // 找到每一位8进制所对应的2进制表示
+        res += tt[x]; // 拼接
+    &#125;
+    // 清除前导0
+    while(res[0] == &#39;0&#39; &amp;&amp; res.size() &gt; 1)//注：当8进制为000时，转成二进制后也为0，此时不能把000全部清除掉，要保留一个0！
+    &#123;
+        res.erase(0, 1);
+    &#125;
+    return res;
+&#125;
+//二转十六
+// 将4位的二进制转成10进制整数，再对应变为16进制符号：0~9 -&gt; &#39;0&#39;~&#39;9&#39;; 10~15 -&gt; &#39;A&#39;~&#39;F&#39; 
+char get_num(string s)
+&#123;
+    ll res = 0, t = 1;
+    // 从最低位按权展开，转换为10进制
+    // 10进制在转为16进制
+    for(int i = s.size() - 1; i &gt;= 0; i --)
+    &#123;
+        res = res + (s[i] - &#39;0&#39;) * t;
+        t = t * 2;
+    &#125;
+    //10进制转16进制： 0~9 -&gt; &#39;0&#39;~&#39;9&#39;; 10~15 -&gt; &#39;A&#39;~&#39;F&#39;
+    char c; // 存放结果
+    if(res &lt; 10) c = res + &#39;0&#39;;
+    else c = res + &#39;A&#39; - 10;
+    return c;
+&#125;
+string BtoH(string s)
+&#123;   
+    string res=&quot;&quot;; // 存放二进制
+    // 看是否需要补零
+    int len=s.size();
+    if(len % 2 == 1) s = &quot;000&quot; + s;
+    else if(len % 2 == 2) s = &quot;00&quot; + s;
+    else if(len % 2 == 3) s = &quot;0&quot; + s;
+    // 每每截取4位二进制数：substr(i, 4)截取字符串，i += 4
+    for(int i = 0; i &lt; len; i += 4)
+    &#123;
+        string t;
+        t = s.substr(i, 4);
+        // 将4位二进制转换为16进制，输出
+        res+=get_num(t);
+    &#125;
+    return res;
+&#125;
+
+//十六转二
+string HtoB(string s)
+&#123;
+    string tt[16]=&#123;&quot;0000&quot;,&quot;0001&quot;,&quot;0010&quot;,&quot;0011&quot;,&quot;0100&quot;,&quot;0101&quot;,&quot;0110&quot;,&quot;0111&quot;,&quot;1000&quot;,&quot;1001&quot;,&quot;1010&quot;,&quot;1011&quot;,&quot;1100&quot;,&quot;1101&quot;,&quot;1110&quot;,&quot;1111&quot;&#125;;
+//求： 将每位16进制转为对应的4为二进制
+//1. 将s[i]转换为0~15对应的整数，再求对应的4位2进制（技巧：通过数组下标获取对应二进制）
+//2. 最终清除二进制字符串的前导0
+    string res; // s存放16进制; res存放2进制答案
+    for(int i = 0; i &lt; s.size(); i ++)
+    &#123;
+        //1. 将s[i]转换为0~15对应的整数
+        int x;
+        if(s[i] &gt;= &#39;0&#39; &amp;&amp; s[i] &lt;= &#39;9&#39;) x = s[i] - &#39;0&#39;; // 如果是0~9
+        else x = s[i] - &#39;A&#39; + 10;
+        //1. 用字符串拼接16进制所对应表示的2进制
+        res += tt[x];
+    &#125;
+    //2. 最后清除前导0
+    while(res[0] == &#39;0&#39; &amp;&amp; res.size() &gt; 1)//当16进制为0000时，转成二进制后也为0，此时不能把0000全部清除掉，要保留一个0！
+    &#123;
+        res.erase(0,1);
+    &#125;
+    return res;
+&#125;
+//二转八
+// 将3位的二进制(一定是0~7) 转成 10进制整数 对应的8进制必定也是：0 ~ 7
+ll num(string s)
+&#123;
+    ll t = 1, res = 0;
+    // 从最低位按权展开，转换为10进制
+    for(int i = s.size() - 1; i &gt;= 0; i --)
+    &#123;
+        res = res + (s[i] - &#39;0&#39;) * t;
+        t = t * 2;
+    &#125;
+    return res;
+&#125;
+string BtoO(string s)
+&#123;
+    string res=&quot;&quot;; // res存放答案
+    // 看是否需要补0
+    int len=s.size();
+    if(len % 3 == 1) s = &quot;00&quot; + s;
+    else if(len % 3 == 2) s = &quot;0&quot; + s;
+    // 截取3位二进制，转为对应的八进制，输出
+    for(int i = 0; i &lt; len; i += 3)
+    &#123;
+        string t;
+        t = s.substr(i, 3);
+        // 将每3位二进制转为八进制并输出
+        res+=num(t)+&#39;0&#39;;
+    &#125;
+    return res;
+&#125;
+//八转十六
+string OtoH(string s)
+&#123;
+    string res;
+    res=OtoB(s);
+    res=BtoH(res);
+    return res;
+&#125;
+//十六转八
+string HtoO(string s)
+&#123;
+    string res;
+    res=HtoB(s);
+    res=BtoO(res);
+    return res;
+&#125;
+</code></pre>
+<h3 id="2-SAT问题"><a href="#2-SAT问题" class="headerlink" title="2_SAT问题"></a>2_SAT问题</h3><p>2-SAT，简单的说就是给出n个集合，每个集合有两个元素，已知若干个 &lt;a,b&gt;，表示 a与 b矛盾（其中 a与 b属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。</p>
+<p>2-SAT问题可以转化为求解强连通分量的问题，并使用图论中的算法进行求解。</p>
+<p>具体而言，可以通过构建一个有向图，其中每个变量对应两个节点（正面和否定），然后根据逻辑表达式构建有向边。</p>
+<p>如果变量 x 在子句 (x OR y) 中出现，那么添加一条从 ~x 的节点到 y 的节点的有向边。</p>
+<p>然后，对这个有向图进行强连通分量的计算，例如使用Tarjan算法。</p>
+<p>如果在同一个强连通分量中存在一个变量及其否定，那么该2-SAT问题无解。</p>
+<p>否则，对于每个强连通分量，选择一个节点并将其赋值为真，将它的否定节点赋值为假。</p>
+<p>这样得到的变量赋值就是满足原始逻辑表达式的解。</p>
+<pre><code class="cpp">struct TwoSat &#123;
+    int n;
+    std::vector&lt;std::vector&lt;int&gt;&gt; e;
+    std::vector&lt;bool&gt; ans;
+    TwoSat(int n) : n(n), e(2 * n), ans(n) &#123;&#125;
+    void addClause(int u, bool f, int v, bool g) &#123;
+        e[2 * u + !f].push_back(2 * v + g);
+        e[2 * v + !g].push_back(2 * u + f);
+    &#125;
+    bool satisfiable() &#123;
+        std::vector&lt;int&gt; id(2 * n, -1), dfn(2 * n, -1), low(2 * n, -1);
+        std::vector&lt;int&gt; stk;
+        int now = 0, cnt = 0;
+        std::function&lt;void(int)&gt; tarjan = [&amp;](int u) &#123;
+            stk.push_back(u);
+            dfn[u] = low[u] = now++;
+            for (auto v : e[u]) &#123;
+                if (dfn[v] == -1) &#123;
+                    tarjan(v);
+                    low[u] = std::min(low[u], low[v]);
+                &#125; else if (id[v] == -1) &#123;
+                    low[u] = std::min(low[u], dfn[v]);
+                &#125;
+            &#125;
+            if (dfn[u] == low[u]) &#123;
+                int v;
+                do &#123;
+                    v = stk.back();
+                    stk.pop_back();
+                    id[v] = cnt;
+                &#125; while (v != u);
+                ++cnt;
+            &#125;
+        &#125;;
+        for (int i = 0; i &lt; 2 * n; ++i) if (dfn[i] == -1) tarjan(i);
+        for (int i = 0; i &lt; n; ++i) &#123;
+            if (id[2 * i] == id[2 * i + 1]) return false;
+            ans[i] = id[2 * i] &gt; id[2 * i + 1];
+        &#125;
+        return true;
+    &#125;
+    std::vector&lt;bool&gt; answer() &#123; return ans; &#125;
+&#125;;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

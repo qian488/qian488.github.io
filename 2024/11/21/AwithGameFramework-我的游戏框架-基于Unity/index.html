@@ -1,0 +1,1625 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AwithGameFramework--我的游戏框架(基于Unity) | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>AwithGameFramework--我的游戏框架(基于Unity)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/21
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%A1%86%E6%9E%B6/" style="color: #ff7d73">框架</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #00bcd4">Unity</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="AwithGameFramework"><a href="#AwithGameFramework" class="headerlink" title="AwithGameFramework"></a>AwithGameFramework</h2><p>我的游戏框架，不断完善ing</p>
+<p>目前包括的内容有：</p>
+<ul>
+<li><p><strong>单例模式基类</strong></p>
+</li>
+<li><p><strong>公共Mono模块</strong></p>
+</li>
+<li><p><strong>事件中心模块</strong></p>
+</li>
+<li><p><strong>场景切换模块</strong></p>
+</li>
+<li><p><strong>资源加载模块</strong></p>
+</li>
+<li><p><strong>缓存池模块</strong></p>
+</li>
+<li><p><strong>输入控制模块</strong></p>
+</li>
+<li><p><strong>音频管理模块</strong></p>
+</li>
+<li><p><strong>UI管理模块</strong></p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="单例模式基类"><a href="#单例模式基类" class="headerlink" title="单例模式基类"></a>单例模式基类</h3><p>单例模式的核心思想是<strong>一个类只能有一个实例，并且提供一个全局的访问点来获取这个实例</strong>。</p>
+<p>单例模式分为饿汉式和懒汉式两种。</p>
+<ul>
+<li><p>饿汉式单例模式：<br>在程序一开始的时候就创建了单例对象。但这样一来，这些对象就会在程序一开始时就存在于内存之中，占据着一定的内存。</p>
+</li>
+<li><p>懒汉式单例模式：<br>在用到单例对象的时候才会创建单例对象。</p>
+</li>
+</ul>
+<p>一个游戏可能有很多管理类，都需要使用到单例，为避免重复代码，通过泛型可以管理不同类型的单例实例。</p>
+<pre><code class="csharp">public class BaseManager&lt;T&gt; where T : new()
+&#123;
+    private static T instance;
+    public static T GetInstance()
+    &#123;
+        if (instance == null)
+        &#123;
+            instance = new T();
+        &#125;
+        return instance; 
+    &#125;
+&#125;
+</code></pre>
+<p>约束 <code>where T : new()</code> 表明，<code>T</code> 类型必须具备一个无参构造函数。这样的好处就是可以自动创建实例，保证实例化。</p>
+<p>注意，该代码实现没有继承MonoBehaviour，所以update等相关的生命周期函数不能使用。这会比较麻烦。</p>
+<p>如果要继承MonoBehaviour的单例，可以如下实现</p>
+<pre><code class="csharp">using UnityEngine;
+
+// 继承了mono的单例模式对象 需要自己保证唯一性 即不能多次挂载
+public class SingletonMono&lt;T&gt; : MonoBehaviour where T : MonoBehaviour
+&#123;
+    private static T instance;
+    public static T GetInstance()
+    &#123;
+        // 继承了Mono的脚本 不能够直接new
+        // 直接拖拽或者Addcomponent U3d内部会去实现
+        return instance; 
+    &#125;
+
+    // 子类需重写awake
+    protected virtual void Awake()
+    &#123;
+        instance = this as T;
+    &#125;
+&#125;
+</code></pre>
+<p>注意，继承了Mono的脚本，不能够直接new，直接拖拽或者Addcomponent，需要自己保证唯一性，即不能多次挂载，这会破坏单例模式。因此，可以优化。</p>
+<pre><code class="csharp">// 继承了mono的单例模式对象 但自动添加脚本
+public class SingletonAutoMono&lt;T&gt; : MonoBehaviour where T : MonoBehaviour
+&#123;
+    private static T instance;
+    public static T GetInstance()
+    &#123;
+        if (instance == null)
+        &#123;
+            GameObject go = new GameObject();
+            go.name = typeof(T).ToString();
+            DontDestroyOnLoad(go);
+            instance = go.AddComponent&lt;T&gt;();
+        &#125;
+        return instance;
+    &#125;
+
+&#125;
+</code></pre>
+<p>除了继承Mono，实现单例来使用，还可以将Mono封装起来，实现一个公共的Mono,供全局访问。</p>
+<h3 id="公共Mono模块"><a href="#公共Mono模块" class="headerlink" title="公共Mono模块"></a>公共Mono模块</h3><p>封装一个公共的Mono模块，很明显是要实现一个单例，但在此之前，需要思考，怎么将Update等函数在不继承Mono的类中使用？我们可以使用事件机制提供动态添加和移除帧更新事件的能力。允许外部在每帧调用时注册和注销更新方法。</p>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class MonoControl : MonoBehaviour
+&#123;
+    private event UnityAction updateEvent;
+
+    void Start()
+    &#123;
+        DontDestroyOnLoad(this.gameObject);
+    &#125;
+
+    void Update()
+    &#123;
+        if (updateEvent != null)
+        &#123;
+            updateEvent();
+        &#125;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 给外部提供 添加帧更新事件
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;function&quot;&gt;&lt;/param&gt;
+    public void AddUpdateListener(UnityAction function)
+    &#123;
+        updateEvent += function;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 给外部提供 移除帧更新事件
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;function&quot;&gt;&lt;/param&gt;
+    public void RemoveUpdateListener(UnityAction function) 
+    &#123; 
+        updateEvent -= function; 
+    &#125;
+&#125;
+</code></pre>
+<p>这里以最常用的Update举例，但是fixedupdate等亦可以如法炮制。</p>
+<p>接下来，就是进行公共Mono的封装。</p>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using UnityEngine;
+using UnityEngine.Events;
+
+/// &lt;summary&gt;
+/// 公共Mono管理
+/// &lt;/summary&gt;
+public class MonoManager : BaseManager&lt;MonoManager&gt;
+&#123;
+    private MonoControl controller;
+
+    public MonoManager()
+    &#123;
+        // 单例保证了MonoControl对象的唯一性
+        GameObject go = new GameObject(&quot;MonoController&quot;);
+        controller = go.AddComponent&lt;MonoControl&gt;();
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 给外部提供 添加帧更新事件
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;function&quot;&gt;&lt;/param&gt;
+    public void AddUpdateListener(UnityAction function)
+    &#123;
+        controller.AddUpdateListener(function);
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 给外部提供 移除帧更新事件
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;function&quot;&gt;&lt;/param&gt;
+    public void RemoveUpdateListener(UnityAction function)
+    &#123;
+        controller.RemoveUpdateListener(function);
+    &#125;
+
+    #region 协程相关
+    public Coroutine StartCoroutine(string methodName)
+    &#123;
+        return controller.StartCoroutine(methodName);
+    &#125;
+
+    public Coroutine StartCoroutine(string methodName, [DefaultValue(&quot;null&quot;)] object value)
+    &#123;
+        return controller.StartCoroutine(methodName, value);
+    &#125;
+
+    public Coroutine StartCoroutine(IEnumerator routine)
+    &#123;
+        return controller.StartCoroutine(routine);
+    &#125;
+
+    public void StopCoroutine(IEnumerator routine)
+    &#123;
+        controller.StopCoroutine(routine);
+    &#125;
+
+    public void StopCoroutine(Coroutine routine)
+    &#123;
+        controller.StopCoroutine(routine);
+    &#125;
+    #endregion
+&#125;
+</code></pre>
+<p>可以看出，我们这样做的目的，实际上是用一个MonoManager 的单例来裹住继承了Mono的Monoctrol。实际上无论使用Update还是开启协程等，都是使用的Monoctrol。这样的设计可以使得有一个全局的Mono供外部访问。</p>
+<ul>
+<li><p>外部可以随时添加和移除需要每帧调用的回调函数，进行帧更新事件管理。</p>
+</li>
+<li><p>通过封装协程的启动和停止操作，允许外部在一个统一的管理器中处理所有协程。</p>
+</li>
+</ul>
+<p><strong>协程（Coroutine）</strong> 是一种用于在多个帧之间执行代码的机制，它使得你能够在 Unity 的主线程中暂停代码的执行，等待一段时间或者等待某些条件成立，然后继续执行。这使得协程在需要处理时间相关的任务（如动画、延迟操作、异步加载等）时非常有用。</p>
+<h3 id="事件中心模块"><a href="#事件中心模块" class="headerlink" title="事件中心模块"></a>事件中心模块</h3><p>框架的事件系统主要负责高效的方法调用与数据传递，实现各功能之间的解耦。</p>
+<p>通常在调用某个实例的方法时，必须先获得这个实例的引用或者新实例化一个对象。我们希望程序本身不去关注被调用的方法所依托的实例对象是否存在，通过事件系统做中转将功能的调用封装成事件，使用事件监听注册、移除和事件触发完成模块间的功能调用管理。</p>
+<p>基于 <strong>观察者设计模式</strong> ，我们可以设计一个事件中心管理系统来实现。</p>
+<ul>
+<li><p>访问其它脚本时，不直接访问，而是通过发送一条类似“命令”，让监听了这条“命令”的脚本自动执行对应的逻辑。</p>
+</li>
+<li><p>让脚本向事件中心添加事件，监听对应的“命令”。<br>发送“命令”，事件中心就会通知监听了这条“命令”的脚本，让它们自动执行对应的逻辑。</p>
+</li>
+<li><p>简单来说，事件中心就像是一个公告栏。它负责发布公告（事件），其他人关注了公告（监听事件），一旦公告内容如任务被实现（某个事件被触发），所有关注者（注册了该事件的监听器）就会执行相应的处理逻辑。</p>
+</li>
+</ul>
+<p>事件中心在系统中的作用是一个集中管理、发布和监听事件的地方，让各个组件之间的耦合度保持较低，只通过事件的形式进行通信。</p>
+<pre><code class="csharp">public class EventCenter : BaseManager&lt;EventCenter&gt;
+&#123;
+    // key 事件名字
+    // value 监听事件的委托函数
+    // 用基类装子类 想要使用泛型 开一个空接口 封装一个泛型 原因：避免原来的object类型拆装箱
+    private Dictionary&lt;string, IEventInfo&gt; evenDictionary = new Dictionary&lt;string, IEventInfo&gt;();
+
+    /// &lt;summary&gt;
+    /// 添加事件监听
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventName&quot;&gt;事件名字&lt;/param&gt;
+    /// &lt;param name=&quot;action&quot;&gt;处理事件的委托函数&lt;/param&gt;
+    public void AddEventListener&lt;T&gt;(string eventName, UnityAction&lt;T&gt; action)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo&lt;T&gt;).actions += action;
+        &#125;
+        else
+        &#123;
+            evenDictionary.Add(eventName, new EventInfo&lt;T&gt;(action));
+        &#125;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 移除事件监听
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventName&quot;&gt;事件名字&lt;/param&gt;
+    /// &lt;param name=&quot;action&quot;&gt;对应之前添加的委托函数&lt;/param&gt;
+    public void RemoveEventListener&lt;T&gt;(string eventName, UnityAction&lt;T&gt; action)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo&lt;T&gt;).actions -= action;
+        &#125;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 事件触发
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventName&quot;&gt;哪个名字的事件触发&lt;/param&gt;
+    /// &lt;param name=&quot;info&quot;&gt;委托函数附带的信息&lt;/param&gt;
+    public void EventTrigger&lt;T&gt;(string eventName,T info)
+    &#123;
+        if(evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo&lt;T&gt;).actions?.Invoke(info);
+        &#125;
+
+    &#125;
+
+    public void Clear()
+    &#123;
+        evenDictionary.Clear();
+    &#125;
+&#125;
+</code></pre>
+<p>事件中心使用一个 <code>Dictionary</code> 存储事件名称和对应的事件信息。<code>Dictionary</code> 的键是事件的名称（<code>string</code> 类型），值是事件的封装信息（<code>IEventInfo</code> 类型），这样可以灵活支持不同类型的事件。</p>
+<ul>
+<li><p><strong>添加事件监听</strong>，如果事件已经存在于字典中，就将新的处理方法添加到现有事件的 <code>actions</code> 委托中；如果事件不存在，就创建一个新的 <code>EventInfo&lt;T&gt;</code> 并添加到字典中。</p>
+</li>
+<li><p><strong>移除事件监听</strong>，如果事件存在，就从 <code>actions</code> 委托中移除对应的处理方法。</p>
+</li>
+<li><p><strong>事件触发</strong>，如果事件已经在字典中注册，就通过 <code>actions</code> 委托触发事件，并传递事件信息（<code>info</code>）作为参数。</p>
+</li>
+</ul>
+<p><strong>有关<code>IEventInfo</code> 类型的实现</strong></p>
+<p>我们想要传递带有一个参数的事件，自然而然的想到泛型来表示，但是因为事件中心不是泛型类，直接使用泛型会报错。那么可以怎么思考？里氏替换原则，即子类可以替换父类而不会影响程序的正确性。因为C#中几乎所有的类型都可以追溯到<code>object</code>作为它们的最终基类。因此，可以使用object来存取。但是，这样会涉及拆箱装箱，增加内存开销和降低性能。那么怎么办？不能直接使用泛型，那就间接使用！创建一个泛型类，但是有个空接口作为基类。使用基类装子类，可以间接使用。</p>
+<pre><code class="csharp">public interface IEventInfo
+&#123;
+
+&#125;
+// 传递泛型参数
+public class EventInfo&lt;T&gt; : IEventInfo
+&#123;
+    public UnityAction&lt;T&gt; actions;
+
+    public EventInfo(UnityAction&lt;T&gt; action)
+    &#123;
+        actions += action;
+    &#125;
+
+&#125;
+</code></pre>
+<ul>
+<li><p><strong><code>IEventInfo</code> 接口</strong> 是一个空接口，作为所有事件信息类的基类。它用于避免原来的 <code>object</code> 类型拆装箱问题，并使得不同类型的事件信息可以统一存储。</p>
+</li>
+<li><p><strong><code>EventInfo&lt;T&gt;</code> 类</strong> 封装了一个带参数的事件信息，<code>T</code> 是事件触发时传递的参数类型。<code>actions</code> 是一个 <code>UnityAction&lt;T&gt;</code> 委托，用来存储所有注册的事件处理方法。构造函数中将事件处理方法添加到 <code>actions</code> 中。</p>
+</li>
+</ul>
+<p>类似的，我们还可以写一个不带参数的事件信息以及相关的事件监听等。</p>
+<p>完整示例代码</p>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+#region 事件信息封装 基类装子类
+public interface IEventInfo
+&#123;
+
+&#125;
+// 传递泛型参数
+public class EventInfo&lt;T&gt; : IEventInfo
+&#123;
+    public UnityAction&lt;T&gt; actions;
+
+    public EventInfo(UnityAction&lt;T&gt; action)
+    &#123;
+        actions += action;
+    &#125;
+
+&#125;
+// 不传递参数
+public class EventInfo : IEventInfo
+&#123;
+    public UnityAction actions;
+
+    public EventInfo(UnityAction action)
+    &#123;
+        actions += action;
+    &#125;
+
+&#125;
+#endregion
+
+/// &lt;summary&gt;
+/// 事件中心 单例模式对象
+/// 观察者设计模式
+/// &lt;/summary&gt;
+public class EventCenter : BaseManager&lt;EventCenter&gt;
+&#123;
+    // key 事件名字
+    // value 监听事件的委托函数
+    // 用基类装子类 想要使用泛型 开一个空接口 封装一个泛型 原因：避免原来的object类型拆装箱
+    private Dictionary&lt;string, IEventInfo&gt; evenDictionary = new Dictionary&lt;string, IEventInfo&gt;();
+
+    #region 事件监听
+    /// &lt;summary&gt;
+    /// 添加事件监听
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventName&quot;&gt;事件名字&lt;/param&gt;
+    /// &lt;param name=&quot;action&quot;&gt;处理事件的委托函数&lt;/param&gt;
+    public void AddEventListener&lt;T&gt;(string eventName, UnityAction&lt;T&gt; action)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo&lt;T&gt;).actions += action;
+        &#125;
+        else
+        &#123;
+            evenDictionary.Add(eventName, new EventInfo&lt;T&gt;(action));
+        &#125;
+    &#125;
+
+    public void AddEventListener(string eventName, UnityAction action)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo).actions += action;
+        &#125;
+        else
+        &#123;
+            evenDictionary.Add(eventName, new EventInfo(action));
+        &#125;
+    &#125;
+    #endregion
+
+    #region 移除事件监听
+    /// &lt;summary&gt;
+    /// 移除事件监听
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventName&quot;&gt;事件名字&lt;/param&gt;
+    /// &lt;param name=&quot;action&quot;&gt;对应之前添加的委托函数&lt;/param&gt;
+    public void RemoveEventListener&lt;T&gt;(string eventName, UnityAction&lt;T&gt; action)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo&lt;T&gt;).actions -= action;
+        &#125;
+    &#125;
+    public void RemoveEventListener(string eventName, UnityAction action)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo).actions -= action;
+        &#125;
+    &#125;
+    #endregion
+
+    #region 事件触发
+    /// &lt;summary&gt;
+    /// 事件触发
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventName&quot;&gt;哪个名字的事件触发&lt;/param&gt;
+    /// &lt;param name=&quot;info&quot;&gt;委托函数附带的信息&lt;/param&gt;
+    public void EventTrigger&lt;T&gt;(string eventName,T info)
+    &#123;
+        if(evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo&lt;T&gt;).actions?.Invoke(info);
+        &#125;
+
+    &#125;
+    public void EventTrigger(string eventName)
+    &#123;
+        if (evenDictionary.ContainsKey(eventName))
+        &#123;
+            (evenDictionary[eventName] as EventInfo).actions?.Invoke();
+        &#125;
+
+    &#125;
+    #endregion
+
+    public void Clear()
+    &#123;
+        evenDictionary.Clear();
+    &#125;
+&#125;
+</code></pre>
+<p>这里仅封装了无参和一个参数的事件，同理还可以实现两个甚至三个参数的事件。</p>
+<p>如这个实现两个参数的例子</p>
+<pre><code class="csharp">public class EventInfo&lt;T0,T1&gt; : IEventInfo
+&#123;
+    public UnityAction&lt;T0,T1&gt; actions;
+
+    public EventInfo(UnityAction&lt;T0,T1&gt; action)
+    &#123;
+        actions += action;
+    &#125;
+
+&#125;
+
+public void AddEventListener&lt;T0,T1&gt;(string eventName, UnityAction&lt;T0,T1&gt; action)&#123;
+    if (evenDictionary.ContainsKey(eventName))
+    &#123;
+        (evenDictionary[eventName] as EventInfo&lt;T0,T1&gt;).actions += action;
+    &#125;
+    else
+    &#123;
+        evenDictionary.Add(eventName, new EventInfo&lt;T0,T1&gt;(action));
+    &#125;
+&#125;
+</code></pre>
+<h3 id="场景切换模块"><a href="#场景切换模块" class="headerlink" title="场景切换模块"></a>场景切换模块</h3><p>在游戏开发中，场景的切换是非常常见的操作。通过将场景切换的逻辑封装在一个单独的模块中（<code>MyScenesManager</code>），可以让场景切换的操作变得更加简洁和一致。开发者只需要调用这个模块的方法即可实现场景加载，而不需要重复编写加载代码。这样可以使得场景管理更加集中化，便于后续维护和扩展。</p>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
+/// &lt;summary&gt;
+/// 场景切换模块
+/// &lt;/summary&gt;
+public class MyScenesManager : BaseManager&lt;MyScenesManager&gt;
+&#123;
+    // 同步加载场景
+    public void LoadScene(string sceneName,UnityAction function)
+    &#123;
+        SceneManager.LoadScene(sceneName);
+        function();
+    &#125;
+
+    // 异步加载场景
+    public void LoadSceneAsync(string sceneName, UnityAction function)
+    &#123;
+        MonoManager.GetInstance().StartCoroutine(ReallyLoadSceneAsync(sceneName, function));
+    &#125;
+
+    private IEnumerator ReallyLoadSceneAsync(string sceneName,UnityAction function)
+    &#123;
+        AsyncOperation ao = SceneManager.LoadSceneAsync(sceneName);
+        while(ao.isDone)
+        &#123;
+            EventCenter.GetInstance().EventTrigger(&quot;Loading&quot;,ao.progress);
+            yield return ao.progress;
+        &#125;
+        function();
+    &#125;
+&#125;
+</code></pre>
+<p>场景的加载有两种主要方式：<strong>同步加载</strong> 和 <strong>异步加载</strong>。同步加载会阻塞当前线程，直到场景完全加载。而异步加载则允许游戏在加载新场景时继续执行其他任务（如显示加载画面、播放过渡动画等）。</p>
+<ul>
+<li><strong>同步加载</strong>：适用于加载较小的场景或不需要用户交互的情况。</li>
+<li><strong>异步加载</strong>：适用于需要加载较大场景，或者在加载过程中需要与玩家交互（如显示进度条或加载动画）的情况。</li>
+</ul>
+<p>通过 <code>MyScenesManager</code> 模块，开发者能够方便地切换这两种加载方式，只需调用不同的方法 (<code>LoadScene</code> 或 <code>LoadSceneAsync</code>)，而无需关心内部的实现细节。</p>
+<h3 id="资源加载模块"><a href="#资源加载模块" class="headerlink" title="资源加载模块"></a>资源加载模块</h3><p>资源加载同样需要考虑同步和异步。</p>
+<ul>
+<li><p><strong>同步加载资源</strong>：<code>Load&lt;T&gt;</code> 方法同步加载资源，并判断资源类型。如果资源是 <code>GameObject</code>，会自动实例化；否则直接返回资源。</p>
+</li>
+<li><p><strong>异步加载资源</strong>：<code>LoadAsync&lt;T&gt;</code> 方法异步加载资源，避免阻塞主线程。使用协程来加载资源，加载完成后通过回调函数通知调用者。</p>
+</li>
+</ul>
+<p>在加载完成后，无论资源是 <code>GameObject</code> 还是其他类型，都会执行相应的处理（实例化或直接返回资源）。</p>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class ResourcesManager : BaseManager&lt;ResourcesManager&gt;
+&#123;
+    // 同步加载资源
+    public T Load&lt;T&gt;(string name) where T : Object
+    &#123;
+        T res = Resources.Load&lt;T&gt;(name);
+        if (res is GameObject)
+        &#123;
+            return GameObject.Instantiate(res);
+        &#125;
+        else
+        &#123;
+            return res;
+        &#125;
+    &#125;
+
+    // 异步加载资源
+    public void LoadAsync&lt;T&gt;(string name,UnityAction&lt;T&gt; callback) where T : Object
+    &#123;
+        MonoManager.GetInstance().StartCoroutine(ReallyLoadAsync(name, callback));
+    &#125;
+
+    private IEnumerator ReallyLoadAsync&lt;T&gt;(string name, UnityAction&lt;T&gt; callback) where T : Object
+    &#123;
+        ResourceRequest request = Resources.LoadAsync&lt;T&gt;(name);
+        yield return request;
+
+        if(request.asset is GameObject)
+        &#123;
+            callback(GameObject.Instantiate(request.asset) as T);
+        &#125;
+        else
+        &#123;
+            callback(request.asset as T);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="缓存池模块"><a href="#缓存池模块" class="headerlink" title="缓存池模块"></a>缓存池模块</h3><p><strong>什么是对象池？对象池有什么用？</strong><br>频繁创建和销毁对象会造成性能的开销。</p>
+<p>创建对象的时候，系统会为这个对象开辟一片新的空间。销毁对象的时候，这个对象会变成内存垃圾，当内存垃圾达到一定程度，就会触发垃圾回收机制（及GC），清理内存垃圾，由于此时在清理垃圾，所以程序有可能就会变卡。</p>
+<p>为了改善这个问题，我们就可以使用对象池。使用了它之后，程序的性能就能得到提升不那么容易变卡。</p>
+<p><strong>对象池的原理</strong></p>
+<ul>
+<li>当要创建对象的时候，不直接创建，而是先从对象池里面找，如果对象池里有这种类型的对象，就从对象池中取出来用。如果对象池里面没有这种类型的对象，才创建该对象。</li>
+<li>当要销毁对象的时候，不直接销毁，而是把这个对象放进对象池里面存着，以便下一次创建对象时使用。</li>
+</ul>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+/// &lt;summary&gt;
+/// 缓存池模块
+/// &lt;/summary&gt;
+public class PoolManager : BaseManager&lt;PoolManager&gt;
+&#123;
+    public Dictionary&lt;string,PoolData&gt; poolDictionary = new Dictionary&lt;string, PoolData&gt;();
+
+    private GameObject poolGO;
+    /// &lt;summary&gt;
+    /// 获取池中对象
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public void GetGameObject(string name,UnityAction&lt;GameObject&gt; callback)
+    &#123;
+        if (poolDictionary.ContainsKey(name) &amp;&amp; poolDictionary[name].poolList.Count &gt; 0)
+        &#123;
+            callback(poolDictionary[name].GetGameObject());
+        &#125;
+        else
+        &#123;
+            ResourcesManager.GetInstance().LoadAsync&lt;GameObject&gt;(name, (go) =&gt;
+            &#123;
+                go.name = name;
+                callback(go);
+            &#125;);
+        &#125;
+    &#125;
+    /// &lt;summary&gt;
+    /// 将对象压入池中
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;go&quot;&gt;&lt;/param&gt;
+    public void PushGameObject(string name,GameObject go)
+    &#123;
+        if(poolGO == null) poolGO = new GameObject(&quot;Pool&quot;);
+
+        if (poolDictionary.ContainsKey(name))
+        &#123;
+            poolDictionary[name].PushGameObject(go);
+        &#125;
+        else
+        &#123;
+            poolDictionary.Add(name, new PoolData(go,poolGO));
+        &#125;
+    &#125;
+
+    public void Clear()
+    &#123;
+        poolDictionary.Clear();
+        poolGO = null;
+    &#125;
+&#125;
+</code></pre>
+<p><strong><code>GetGameObject</code> 方法 - 从对象池获取对象</strong></p>
+<p>这个方法的作用是从缓存池中获取一个对象。具体流程如下：</p>
+<ul>
+<li><p><strong>检查对象池</strong>：首先检查 <code>poolDictionary</code> 中是否已经有指定名称的对象池（<code>poolDictionary[name]</code>），并且该池中是否有可用的对象（即池中有剩余的对象）。</p>
+</li>
+<li><p><strong>池中有对象</strong>：如果对象池存在且池中有剩余的对象，就从池中取出一个对象，调用 <code>callback(poolDictionary[name].GetGameObject())</code> 返回给调用者。</p>
+</li>
+<li><p><strong>池中没有对象</strong>：如果池中没有对象，则调用 <code>ResourcesManager.GetInstance().LoadAsync&lt;GameObject&gt;</code> 异步加载指定名称的资源。如果加载成功，则将加载的资源作为一个新的对象返回，并将其添加到池中。加载完成后的回调 <code>callback(go)</code> 会被调用，返回加载的 <code>GameObject</code>。</p>
+<p><strong>异步加载</strong>：使用异步加载 (<code>LoadAsync</code>) 可以避免阻塞主线程，从而提高性能，尤其是当对象较大或者需要较长加载时间时。</p>
+</li>
+</ul>
+<p><strong><code>PushGameObject</code> 方法 - 将对象压入对象池</strong></p>
+<p>该方法将一个对象放回池中，供以后使用。具体流程如下：</p>
+<ul>
+<li><strong>检查对象池</strong>：首先检查 <code>poolDictionary</code> 中是否已存在指定名称的对象池。如果池中已经存在，则调用池中的 <code>PushGameObject(go)</code> 方法将对象添加到池中。</li>
+<li><strong>创建新的池</strong>：如果池中没有指定名称的对象池，则会创建一个新的 <code>PoolData</code> 实例，并将新对象添加到池中。</li>
+<li><strong>poolGO</strong>：<code>poolGO</code> 是一个空的 <code>GameObject</code>，用来承载池中的所有对象。每个对象池的对象会被组织在这个 <code>poolGO</code> 下，以便于场景管理和对象的生命周期控制。</li>
+</ul>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// &lt;summary&gt;
+/// fatherGameObject 是这一类对象的容器 父节点
+/// poolList 是池中的对象容器
+/// &lt;/summary&gt;
+public class PoolData
+&#123; 
+    public GameObject fatherGameObject;
+    public List&lt;GameObject&gt; poolList;
+
+    public PoolData(GameObject go, GameObject poolGO)
+    &#123;
+        fatherGameObject = new GameObject(go.name);
+        fatherGameObject.transform.parent = poolGO.transform;
+        poolList = new List&lt;GameObject&gt;() &#123; &#125;;
+        PushGameObject(go);
+    &#125;
+
+    public void PushGameObject(GameObject go)
+    &#123;
+        go.SetActive(false);
+        poolList.Add(go);
+        go.transform.parent = fatherGameObject.transform;
+    &#125;
+
+    // 默认拿取第一个
+    public GameObject GetGameObject()
+    &#123;
+        GameObject go = poolList[0];
+        poolList.RemoveAt(0);
+        go.SetActive(true);
+        go.transform.parent = null;
+        return go;
+    &#125;
+&#125;
+</code></pre>
+<p><code>PoolData</code> 是一个用于管理对象池的类，负责存储池中的对象并提供获取和归还对象的功能。</p>
+<p>每个对象池有一个父节点 <code>fatherGameObject</code>，所有池中的对象都作为这个父节点的子物体进行管理，确保对象在场景中的组织结构。</p>
+<p>对象池使用 <code>List&lt;GameObject&gt;</code> 来存储池中的所有对象，支持按需获取和归还对象。</p>
+<p>当从池中获取对象时，对象会被激活，并从池中移除；当对象归还池时，它会被禁用，并添加回池中。</p>
+<h3 id="输入控制模块"><a href="#输入控制模块" class="headerlink" title="输入控制模块"></a>输入控制模块</h3><p>通过前面的公共mono和事件中心，我们可以很容易实现输入控制模块的封装管理。</p>
+<pre><code class="csharp">using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class InputManager : BaseManager&lt;InputManager&gt;
+&#123;
+    private bool isStart = false;
+    public InputManager()
+    &#123;
+        MonoManager.GetInstance().AddUpdateListener(MyUpdate);
+    &#125;
+
+    public void StartOREndCheck(bool isOpen)
+    &#123;
+        isStart = isOpen;
+    &#125;
+
+    private void CheckKeyCode(KeyCode key)
+    &#123;
+        if (Input.GetKeyDown(key))
+        &#123;
+            EventCenter.GetInstance().EventTrigger(&quot;KeyDown&quot;,key);
+        &#125;
+        if (Input.GetKeyUp(key))
+        &#123;
+            EventCenter.GetInstance().EventTrigger(&quot;KeyUp&quot;,key);
+        &#125;
+    &#125;
+
+    private void MyUpdate()
+    &#123;
+        if (!isStart) return;
+
+        CheckKeyCode(KeyCode.W);
+        CheckKeyCode(KeyCode.A);
+        CheckKeyCode(KeyCode.S);
+        CheckKeyCode(KeyCode.D);
+        CheckKeyCode(KeyCode.Q);
+        CheckKeyCode(KeyCode.E);
+        CheckKeyCode(KeyCode.R);
+        CheckKeyCode(KeyCode.T);
+        CheckKeyCode(KeyCode.V);
+        CheckKeyCode(KeyCode.M);
+    &#125;
+&#125;
+</code></pre>
+<p>这个 <code>InputManager</code> 类的设计目的是将键盘输入的管理模块化，并通过事件驱动的方式将按键事件传递出去。事件中心 (<code>EventCenter</code>) 负责监听并处理这些事件，从而解耦了输入检测和响应的具体实现。</p>
+<ul>
+<li><strong>输入管理</strong>：通过集中管理所有输入事件（如按键按下和释放），简化了游戏中多个地方对输入的处理。</li>
+<li><strong>事件驱动</strong>：利用事件中心发布按键事件，可以让游戏中的其他部分订阅这些事件，并根据需要进行响应。这种方式避免了将输入逻辑直接写入每个需要响应的地方，减少了代码耦合。</li>
+<li><strong>启停控制</strong>：通过 <code>StartOREndCheck</code> 方法控制输入监听的开启与关闭，增加了灵活性。例如，可以在游戏暂停时停止监听输入，或在某些场景中禁止输入。</li>
+</ul>
+<p>简单测试如下</p>
+<pre><code class="csharp">public class InputTest : MonoBehaviour
+&#123;
+    // Start is called before the first frame update
+    void Start()
+    &#123;
+        InputManager.GetInstance().StartOREndCheck(true);
+
+        EventCenter.GetInstance().AddEventListener&lt;KeyCode&gt;(&quot;KeyDown&quot;, CheckInputDown);
+        EventCenter.GetInstance().AddEventListener&lt;KeyCode&gt;(&quot;KeyUp&quot;, CheckInputUp);
+    &#125;
+
+    private void CheckInputUp(KeyCode key)
+    &#123;
+        switch(key)
+        &#123;
+            case KeyCode.W:
+                Debug.Log(&quot;W Dwon&quot;);
+                break;
+            case KeyCode.A:
+                Debug.Log(&quot;A Dwon&quot;);
+                break;
+            case KeyCode.S:
+                Debug.Log(&quot;S Dwon&quot;);
+                break;
+            case KeyCode.D:
+                Debug.Log(&quot;D Dwon&quot;);
+                break;
+            case KeyCode.Q:
+                Debug.Log(&quot;Q Down&quot;);
+                break;
+            case KeyCode.E:
+                Debug.Log(&quot;E Down&quot;);
+                break;
+            case KeyCode.R:
+                Debug.Log(&quot;R Down&quot;);
+                break;
+            case KeyCode.T:
+                Debug.Log(&quot;T Down&quot;);
+                MusicManager.GetInstance().StopBGM();
+                Debug.Log(&quot;StopBGM&quot;);
+                break;
+            case KeyCode.V:
+                Debug.Log(&quot;V Down&quot;);
+                MusicManager.GetInstance().PauseBGM();
+                Debug.Log(&quot;PauseBGM&quot;);
+                break;
+            case KeyCode.M:
+                Debug.Log(&quot;M Down&quot;);
+                MusicManager.GetInstance().PlayBGM(&quot;For River - Piano (Johnny&#39;s Version)&quot;);
+                Debug.Log(&quot;PlayBGM&quot;);
+                break;
+        &#125;
+    &#125;
+
+    private void CheckInputDown(KeyCode key)
+    &#123;
+        switch (key)
+        &#123;
+            case KeyCode.W:
+                Debug.Log(&quot;W Up&quot;);
+                break;
+            case KeyCode.A:
+                Debug.Log(&quot;A Up&quot;);
+                break;
+            case KeyCode.S:
+                Debug.Log(&quot;S Up&quot;);
+                break;
+            case KeyCode.D:
+                Debug.Log(&quot;D Up&quot;);
+                break;
+            case KeyCode.Q:
+                Debug.Log(&quot;Q Up&quot;);
+                break;
+            case KeyCode.E:
+                Debug.Log(&quot;E Up&quot;);
+                break;
+            case KeyCode.R:
+                Debug.Log(&quot;R Up&quot;);
+                break;
+            case KeyCode.T:
+                Debug.Log(&quot;T Up&quot;);
+                break;
+            case KeyCode.V:
+                Debug.Log(&quot;V Up&quot;);
+                break;
+            case KeyCode.M:
+                Debug.Log(&quot;M Up&quot;);
+                break;
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<p>代码中部分涉及MusicManager是我用于测试音频模块的内容，可以忽略。</p>
+<h3 id="音频管理模块"><a href="#音频管理模块" class="headerlink" title="音频管理模块"></a>音频管理模块</h3><p>基本上绝大多数游戏都是需要音频的，而且，一般而言，音频主要分三类，背景音乐、音效、角色声音。因此，我们主要封装这部分内容。同样是管理者，故继承BaseManager实现单例。</p>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class MusicManager : BaseManager&lt;MusicManager&gt;
+&#123;
+    private AudioSource BGM = null;
+    private float BGMValue = 1f;
+
+    private GameObject SFXGO = null;
+    private List&lt;AudioSource&gt; SFXList = new List&lt;AudioSource&gt;();
+    private float SFXValue = 1f;
+
+    private GameObject VoiceGO = null;
+    private List&lt;AudioSource&gt; VoiceList = new List&lt;AudioSource&gt;();
+    private float VoiceValue = 1f;
+
+    public MusicManager()
+    &#123;
+        MonoManager.GetInstance().AddUpdateListener(Update);
+    &#125;
+
+    private void Update()
+    &#123;
+        for(int i = SFXList.Count - 1; i &gt;= 0; i--)
+        &#123;
+            if (!SFXList[i].isPlaying)
+            &#123;
+                GameObject.Destroy(SFXList[i]);
+                SFXList.RemoveAt(i);
+            &#125;
+        &#125;
+
+        for (int i = VoiceList.Count - 1; i &gt;= 0; i--)
+        &#123;
+            if (!VoiceList[i].isPlaying)
+            &#123;
+                GameObject.Destroy(VoiceList[i]);
+                VoiceList.RemoveAt(i);
+            &#125;
+        &#125;
+    &#125;
+
+    #region BGM -- 背景音乐
+    public void PlayBGM(string name)
+    &#123;
+        if (BGM == null)
+        &#123;
+            GameObject go = new GameObject();
+            go.name = &quot;BGM&quot;;
+            BGM = go.AddComponent&lt;AudioSource&gt;();
+        &#125;
+
+        ResourcesManager.GetInstance().LoadAsync&lt;AudioClip&gt;(&quot;Music/BGM/&quot; + name, (clip) =&gt;
+        &#123;
+            BGM.clip = clip;
+            BGM.volume = BGMValue;
+            BGM.loop = true;
+            BGM.Play();
+        &#125;);
+    &#125;
+
+    public void PauseBGM()
+    &#123;
+        if (BGM == null) return;
+        BGM.Pause();
+    &#125;
+
+    public void StopBGM() 
+    &#123;
+        if (BGM == null) return;
+        BGM.Stop();
+    &#125;
+
+    public void ChangeBGMValue(float value)
+    &#123;
+        BGMValue = value;
+        if (BGM == null) return;
+        BGM.volume = BGMValue;
+    &#125;
+    #endregion
+
+    #region SFX -- 音效
+    public void PlaySFX(string name, bool isloop, UnityAction&lt;AudioSource&gt; callback = null)
+    &#123;
+        if(SFXGO == null)
+        &#123;
+            SFXGO = new GameObject();
+            SFXGO.name = name;
+        &#125;
+
+        ResourcesManager.GetInstance().LoadAsync&lt;AudioClip&gt;(&quot;Music/SFX/&quot; + name, (clip) =&gt;
+        &#123;
+            AudioSource SFX = SFXGO.AddComponent&lt;AudioSource&gt;();
+            SFX.clip = clip;
+            SFX.volume = SFXValue;
+            SFX.loop = isloop;
+            SFX.Play();
+            SFXList.Add(SFX);
+
+            if (callback != null)
+            &#123;
+                callback(SFX);
+            &#125;
+        &#125;);
+    &#125;
+
+    public void StopSFX(AudioSource SFX)
+    &#123;
+        if (SFXList.Contains(SFX))
+        &#123;
+            SFXList.Remove(SFX);
+            SFX.Stop();
+            GameObject.Destroy(SFX);
+        &#125;
+    &#125;
+
+    public void ChangeSFXValue(float value)
+    &#123;
+        SFXValue = value;
+        for (int i = 0; i &lt; SFXList.Count; i++)
+        &#123;
+            SFXList[i].volume = SFXValue;
+        &#125;
+    &#125;
+    #endregion
+
+    #region Voice -- 角色音频
+    public void PlayVoice(string name, bool isloop, UnityAction&lt;AudioSource&gt; callback = null)
+    &#123;
+        if (VoiceGO == null)
+        &#123;
+            VoiceGO = new GameObject();
+            VoiceGO.name = name;
+        &#125;
+
+        ResourcesManager.GetInstance().LoadAsync&lt;AudioClip&gt;(&quot;Music/Voice/&quot; + name, (clip) =&gt;
+        &#123;
+            AudioSource voice = VoiceGO.AddComponent&lt;AudioSource&gt;();
+            voice.clip = clip;
+            voice.volume = VoiceValue;
+            voice.loop = isloop;
+            voice.Play();
+            VoiceList.Add(voice);
+
+            if (callback != null)
+            &#123;
+                callback(voice);
+            &#125;
+        &#125;);
+    &#125;
+
+    public void StopVoice(AudioSource voice)
+    &#123;
+        if (VoiceList.Contains(voice))
+        &#123;
+            VoiceList.Remove(voice);
+            voice.Stop();
+            GameObject.Destroy(voice);
+        &#125;
+    &#125;
+
+    public void ChangeVoiceValue(float value)
+    &#123;
+        VoiceValue = value;
+        for (int i = 0; i &lt; VoiceList.Count; i++)
+        &#123;
+            VoiceList[i].volume = VoiceValue;
+        &#125;
+    &#125;
+    #endregion
+
+&#125;
+</code></pre>
+<p><code>MusicManager</code> 类是一个音频管理器，用来集中管理背景音乐、音效和角色语音的播放控制。它包括：</p>
+<ul>
+<li>异步加载音频资源。</li>
+<li>播放、暂停、停止音频。</li>
+<li>控制音量。</li>
+<li>自动清理已经停止播放的音效和语音，避免内存泄漏。</li>
+</ul>
+<p><strong>注意注意注意</strong>加载资源的路径结构一定要清晰</p>
+<h3 id="UI模块"><a href="#UI模块" class="headerlink" title="UI模块"></a>UI模块</h3><p>UI模块的封装，这里是基于UGUI</p>
+<p>不过，在写UIManager之前，应该先制作面板基类</p>
+<ul>
+<li><p><strong>面板管理</strong>：<code>BasePanel</code> 类负责管理和绑定所有 UI 组件，通过字典 <code>UIComponentDictionary</code> 来存储组件，以便快速访问和操作。</p>
+</li>
+<li><p><strong>UI 组件的事件监听</strong>：通过遍历面板上的所有子组件，绑定适当的事件（如 <code>Button</code> 的点击事件，<code>Toggle</code> 的值改变事件），确保 UI 交互能够触发相应的逻辑。</p>
+</li>
+<li><p><strong>扩展性</strong>：子类可以继承并覆盖 <code>ShowMe</code>、<code>HideMe</code>、<code>OnClick</code> 和 <code>OnValueChanged</code> 等方法，以实现面板的具体行为。</p>
+</li>
+</ul>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+/// &lt;summary&gt;
+/// 面板基类
+/// &lt;/summary&gt;
+public class BasePanel : MonoBehaviour
+&#123;
+    // 里氏转换原则 使用基类装各种子类
+    private Dictionary&lt;string,List&lt;UIBehaviour&gt;&gt; UIComponentDictionary = new Dictionary&lt;string,List&lt;UIBehaviour&gt;&gt;();
+
+    protected virtual void Awake()
+    &#123;
+        FindChildrenUIComponent&lt;Button&gt;();
+        FindChildrenUIComponent&lt;Image&gt;();
+        FindChildrenUIComponent&lt;Text&gt;();
+        FindChildrenUIComponent&lt;Toggle&gt;();
+        FindChildrenUIComponent&lt;Slider&gt;();
+        FindChildrenUIComponent&lt;ScrollRect&gt;();
+        FindChildrenUIComponent&lt;InputField&gt;();
+    &#125;
+
+    public virtual void ShowMe() &#123; &#125;
+    public virtual void HideMe() &#123; &#125;
+
+    protected virtual void OnClick(string name) &#123; &#125;
+    protected virtual void OnValueChanged(string name,bool value) &#123; &#125;
+
+    protected T GetUIComponent&lt;T&gt;(string name) where T : UIBehaviour
+    &#123;
+        if (UIComponentDictionary.ContainsKey(name))
+        &#123;
+            for (int i = 0; i &lt; UIComponentDictionary[name].Count; i++)
+            &#123;
+                if (UIComponentDictionary[name][i] is T)
+                &#123;
+                    return UIComponentDictionary[name][i] as T;
+                &#125;
+            &#125;
+        &#125;
+        
+        return null;
+    &#125;
+
+    private void FindChildrenUIComponent&lt;T&gt;() where T : UIBehaviour
+    &#123;
+        T[] Components = this.GetComponentsInChildren&lt;T&gt;();
+        for (int i = 0; i &lt; Components.Length; i++)
+        &#123;
+            string itemName = Components[i].gameObject.name;
+            if (UIComponentDictionary.ContainsKey(itemName))
+            &#123;
+                UIComponentDictionary[itemName].Add(Components[i]);
+            &#125;
+            else
+            &#123;
+                UIComponentDictionary.Add(itemName, new List&lt;UIBehaviour&gt;() &#123; Components[i] &#125;);
+            &#125;
+
+            if (Components[i] is Button)
+            &#123;
+                (Components[i] as Button).onClick.AddListener(() =&gt;
+                &#123;
+                    OnClick(itemName);
+                &#125;);
+            &#125;
+            else if (Components[i] is Toggle)
+            &#123;
+                (Components[i] as Toggle).onValueChanged.AddListener((value) =&gt;
+                &#123;
+                    OnValueChanged(name, value);
+                &#125;);
+            &#125;
+
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><code>FindChildrenUIComponent&lt;T&gt;</code> 方法用于查找当前面板（即 <code>GameObject</code>）的所有子对象中指定类型的 UI 组件，并将它们添加到 <code>UIComponentDictionary</code> 字典中。</p>
+<p><code>GetComponentsInChildren&lt;T&gt;()</code> 方法返回所有子对象中类型为 <code>T</code> 的组件。</p>
+<p>这里比较巧妙的是，像Button.onClick.AddListener()这个方法是要接受一个无参的函数，才能进行监听。但是通过匿名函数Lambdav表达式，用一个无参函数包裹一个含参函数，就可以间接实现传递信息。在这里的作用是传递当前Button的名字，使得这个信息传递给子类，即子类重写父类的时候，就可以判断是哪个Button发生了点击。</p>
+<p>在找到每个组件后，它会根据组件的类型（如 <code>Button</code> 或 <code>Toggle</code>）绑定事件监听器：</p>
+<ul>
+<li>如果是 <code>Button</code>，绑定 <code>onClick</code> 事件，点击按钮时调用 <code>OnClick</code> 方法。</li>
+<li>如果是 <code>Toggle</code>，绑定 <code>onValueChanged</code> 事件，切换选项时调用 <code>OnValueChanged</code> 方法。</li>
+</ul>
+<pre><code class="csharp">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+
+public enum E_UI_Layer
+&#123;
+    Bot,
+    Mid,
+    Top,
+    Syestem,
+&#125;
+
+public class UIManager : BaseManager&lt;UIManager&gt;
+&#123;
+    public Dictionary&lt;string,BasePanel&gt; panelDictionary = new Dictionary&lt;string,BasePanel&gt;();
+
+    private Transform bot;
+    private Transform mid;
+    private Transform top;
+    private Transform system;
+
+    public RectTransform canvas;
+
+    public UIManager()
+    &#123;
+        GameObject go = ResourcesManager.GetInstance().Load&lt;GameObject&gt;(&quot;UI/Canvas&quot;);
+        canvas = go.transform as RectTransform;
+        GameObject.DontDestroyOnLoad(go);
+
+        bot = canvas.Find(&quot;Bot&quot;);
+        mid = canvas.Find(&quot;Mid&quot;);
+        top = canvas.Find(&quot;Top&quot;);
+        system = canvas.Find(&quot;System&quot;);
+
+        go = ResourcesManager.GetInstance().Load&lt;GameObject&gt;(&quot;UI/EventSystem&quot;);
+        GameObject.DontDestroyOnLoad(go);
+    &#125;
+
+    public Transform GetUILayerFather(E_UI_Layer layer)
+    &#123;
+        switch(layer)
+        &#123;
+            case E_UI_Layer.Bot:
+                return this.bot;
+            case E_UI_Layer.Mid:
+                return this.mid;
+            case E_UI_Layer.Top:
+                return this.top;
+            case E_UI_Layer.Syestem:
+                return this.system;
+        &#125;
+        return null;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 显示面板
+    /// &lt;/summary&gt;
+    /// &lt;typeparam name=&quot;T&quot;&gt;面板脚本类型&lt;/typeparam&gt;
+    /// &lt;param name=&quot;panelName&quot;&gt;面板名字&lt;/param&gt;
+    /// &lt;param name=&quot;layer&quot;&gt;面板所在层级&lt;/param&gt;
+    /// &lt;param name=&quot;callback&quot;&gt;面板创建后所作的事&lt;/param&gt;
+    public void ShowPanel&lt;T&gt;(string panelName, E_UI_Layer layer = E_UI_Layer.Mid, UnityAction&lt;T&gt; callback = null) where T : BasePanel 
+    &#123;
+        if (panelDictionary.ContainsKey(panelName))
+        &#123;
+            panelDictionary[panelName].ShowMe();
+            if (callback != null)
+            &#123;
+                callback(panelDictionary[panelName] as T);
+            &#125;
+            return;
+        &#125;
+
+        ResourcesManager.GetInstance().LoadAsync&lt;GameObject&gt;(&quot;UI/&quot; + panelName, (go) =&gt;
+        &#123;
+            Transform father = bot;
+            switch(layer)
+            &#123;
+                case E_UI_Layer.Mid:
+                    father = mid;
+                    break;
+                case E_UI_Layer.Top:
+                    father = top;
+                    break;
+                case E_UI_Layer.Syestem:
+                    father = top;
+                    break;
+            &#125;
+            go.transform.SetParent(father);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+            (go.transform as RectTransform).offsetMax = Vector2.one;
+            (go.transform as RectTransform).offsetMin = Vector2.one;
+
+            T panel = go.GetComponent&lt;T&gt;();
+            if(callback != null) callback(panel);
+            panel.ShowMe();
+            panelDictionary.Add(panelName, panel);
+        &#125;);
+    &#125;
+
+    public void HidePanel(string panelName)
+    &#123;
+        if (panelDictionary.ContainsKey(panelName))
+        &#123;
+            panelDictionary[panelName].HideMe();
+            GameObject.Destroy(panelDictionary[panelName].gameObject);
+            panelDictionary.Remove(panelName);
+        &#125;
+    &#125;
+
+    public T GetPanel&lt;T&gt;(string panelName) where T : BasePanel
+    &#123;
+        if (panelDictionary.ContainsKey(panelName))
+        &#123;
+            return panelDictionary[panelName] as T;
+        &#125;
+        return null;
+    &#125;
+
+    /// &lt;summary&gt;
+    /// 给控件增添自定义事件
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;UIComponent&quot;&gt;控件对象&lt;/param&gt;
+    /// &lt;param name=&quot;type&quot;&gt;事件类型&lt;/param&gt;
+    /// &lt;param name=&quot;callback&quot;&gt;事件的回调&lt;/param&gt;
+    public static void AddCustomEventListener(UIBehaviour UIComponent, EventTriggerType type, UnityAction&lt;BaseEventData&gt; callback)
+    &#123;
+        EventTrigger eventTrigger = UIComponent.GetComponent&lt;EventTrigger&gt;();
+        if (eventTrigger == null)
+        &#123;
+            eventTrigger = UIComponent.gameObject.AddComponent&lt;EventTrigger&gt;();
+        &#125;
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = type;
+        entry.callback.AddListener(callback);
+
+        eventTrigger.triggers.Add(entry);
+    &#125;
+&#125;
+</code></pre>
+<ul>
+<li><p><strong>UI 面板管理</strong>：<code>UIManager</code> 负责管理不同层级的 UI 面板的显示和隐藏，并通过 <code>panelDictionary</code> 存储当前显示的面板。</p>
+</li>
+<li><p><strong>动态加载和显示面板</strong>：<code>ShowPanel</code> 方法动态加载并显示面板，支持指定层级和回调。</p>
+</li>
+<li><p><strong>事件监听</strong>：通过 <code>AddCustomEventListener</code> 方法，UI 组件可以绑定自定义事件，处理用户交互。</p>
+</li>
+<li><p><strong>UI 层级管理</strong>：面板显示时，可以选择将其放置在不同的层级中，如底层、中层、顶层等，方便管理 UI 的显示顺序。</p>
+</li>
+</ul>
+<p>为了进行测试，我们需要制作一个测试面板作为预制体，放入Resources文件夹对应的路径下</p>
+<p>测试面板</p>
+<pre><code class="csharp">using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class testpanel : BasePanel
+&#123;
+    protected override void Awake()
+    &#123;
+        base.Awake();
+
+    &#125;
+    // Start is called before the first frame update
+    void Start()
+    &#123;
+        //GetUIComponent&lt;Button&gt;(&quot;ButtonStart&quot;).onClick.AddListener(ClickStart);
+        //GetUIComponent&lt;Button&gt;(&quot;ButtonQuit&quot;).onClick.AddListener(ClickQiut);
+
+        UIManager.AddCustomEventListener(GetUIComponent&lt;Button&gt;(&quot;ButtonStart&quot;), EventTriggerType.PointerEnter, (data) =&gt;
+        &#123;
+            Debug.Log(&quot;进入ButtonStart&quot;);
+        &#125;);
+        UIManager.AddCustomEventListener(GetUIComponent&lt;Button&gt;(&quot;ButtonStart&quot;), EventTriggerType.PointerExit, (data) =&gt;
+        &#123;
+            Debug.Log(&quot;离开ButtonStart&quot;);
+        &#125;);
+    &#125;
+
+    protected override void OnClick(string name)
+    &#123;
+        switch(name)
+        &#123;
+            case &quot;ButtonStart&quot;:
+                Debug.Log(&quot;Start被点击&quot;);
+                break;
+            case &quot;ButtonQuit&quot;:
+                Debug.Log(&quot;Quit被点击&quot;);
+                break;
+        &#125;
+    &#125;
+
+    protected override void OnValueChanged(string name, bool value)
+    &#123;
+
+    &#125;
+
+    private void ClickQiut()
+    &#123;
+        Debug.Log(&quot;Quit&quot;);
+    &#125;
+
+    private void ClickStart()
+    &#123;
+        Debug.Log(&quot;Start&quot;);
+    &#125;
+
+    // Update is called once per frame
+    void Update()
+    &#123;
+        
+    &#125;
+
+    public void InitInfo()
+    &#123;
+        Debug.Log(&quot;初始化面板数据&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>那么究竟如何使用这个UIManager?</p>
+<pre><code class="csharp">using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class test : MonoBehaviour
+&#123;
+    // Start is called before the first frame update
+    void Start()
+    &#123;
+        UIManager.GetInstance().ShowPanel&lt;testpanel&gt;(&quot;testpanel&quot;,E_UI_Layer.Mid,ShowPanelOver);
+    &#125;
+
+    private void ShowPanelOver(testpanel panel)
+    &#123;
+        panel.InitInfo();
+        Invoke(&quot;DelayHideTestPanel&quot;, 3);
+    &#125;
+
+    private void DelayHideTestPanel()
+    &#123;
+        UIManager.GetInstance().HidePanel(&quot;testpanel&quot;);
+    &#125;
+
+    // Update is called once per frame
+    void Update()
+    &#123;
+        if (Input.GetMouseButtonDown(0))
+        &#123;
+            PoolManager.GetInstance().GetGameObject(&quot;Test/Cube&quot;, (go) =&gt;
+            &#123;
+                go.transform.localScale = Vector3.one * 2;
+                UIManager.GetInstance().ShowPanel&lt;testpanel&gt;(&quot;testpanel&quot;, E_UI_Layer.Mid, ShowPanelOver);
+            &#125;);
+        &#125;
+
+        if (Input.GetMouseButtonDown(1))
+        &#123;
+            PoolManager.GetInstance().GetGameObject(&quot;Test/Sphere&quot;, (go) =&gt; 
+            &#123; 
+                go.transform.localScale = Vector3.one * 2; 
+            &#125;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>音频和UI模块的加载资源和卸载资源应该都可以使用对象池优化，但是目前在考虑是直接在资源加载模块进行对象池优化还是在各自的模块分别使用？</p>
+<p>先鸽了。</p>
+<p>[项目地址](<a target="_blank" rel="noopener" href="https://github.com/qian488/AwithGameFramework">qian488&#x2F;AwithGameFramework: 我的游戏框架</a>)</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

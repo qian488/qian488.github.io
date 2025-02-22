@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker) | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/15
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/C/" style="color: #00bcd4">C#</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/VS/" style="color: #00a596">VS</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Windows-Forms/" style="color: #00bcd4">Windows Forms</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要是突然间好奇，想写个带图形界面的简单工具看看，然后参考微软官方的资料，写了一个极其简陋的抽号器，文末有下载链接。</p>
+<span id="more"></span>
+
+<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><p>因为这真的很简单，所以就三步走。</p>
+<h4 id="第一步-创建项目"><a href="#第一步-创建项目" class="headerlink" title="第一步 创建项目"></a>第一步 创建项目</h4><p>根据微软官方文档，创建Windows窗体应用项目。</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/visualstudio/ide/create-csharp-winform-visual-studio?view=vs-2022">使用 C# 创建 Windows 窗体应用 - Visual Studio (Windows) | Microsoft Learn</a></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818232511943.png" alt="image-20240818232511943"></p>
+<h4 id="第二步-布置控件"><a href="#第二步-布置控件" class="headerlink" title="第二步 布置控件"></a>第二步 布置控件</h4><p>拖动工具栏的控件到窗体中。</p>
+<p>如果没有看见工具箱，可以在左上角的<strong>视图</strong>找到<strong>工具箱</strong>，等一会儿加载，就能够看见。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818233346228.png" alt="image-20240818233346228"></p>
+<p>我这里用到的控件就是Label用于展示文本，TextBox文本框获取随机数的范围，Button控制开始与暂停，Timer控制随机数展示的间隔。</p>
+<h4 id="第三步-编写脚本"><a href="#第三步-编写脚本" class="headerlink" title="第三步 编写脚本"></a>第三步 编写脚本</h4><p>为Button写一个用于在指定范围生成随机数的脚本，双击Button控件可快速转到按钮点击的方法中。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818235237599.png" alt="image-20240818235237599"></p>
+<pre><code class="csharp">private void startStopButton_Click(object sender, EventArgs e)
+&#123;
+    if (!isRolling)
+    &#123;
+        // 开始滚动
+        if (int.TryParse(minValueTextBox.Text, out minValue) &amp;&amp;
+            int.TryParse(maxValueTextBox.Text, out maxValue) &amp;&amp;
+            minValue &lt;= maxValue)
+        &#123;
+            isRolling = true;
+            startStopButton.Text = &quot;Stop&quot;;
+            timer.Start();
+        &#125;
+        else
+        &#123;
+            MessageBox.Show(&quot;请输入有效的范围！&quot;);
+        &#125;
+    &#125;
+    else
+    &#123;
+        // 停止滚动并显示结果
+        isRolling = false;
+        startStopButton.Text = &quot;Start&quot;;
+        timer.Stop();
+        int result = int.Parse(rollingNumberLabel.Text);
+        ShowResult(result);
+    &#125;
+&#125;
+</code></pre>
+<p>注意引入Timer的时候，需指明是form下的，不然编译器可能不知道。</p>
+<p>以及，一般建议不直接在form上直接进行编写，开一个新窗口继承form，然后将你的内容写进去。这样的好处就是区分开直接自己写和拖动控件智能自动生成的部分。</p>
+<p>提示timer的有关编写。</p>
+<pre><code class="csharp">public Form1()
+&#123;
+    InitializeComponent();
+    timer = new System.Windows.Forms.Timer();
+    timer.Interval = 50; // 数字滚动的速度
+    timer.Tick += Timer_Tick;
+&#125;
+</code></pre>
+<p>Timer_Tick只消写好随机数，并将数值赋值给显示的label即可，这样就可以实现点击按钮后，开始不断随机数显示，直到点击stop时，停止新一轮的随机数。</p>
+<h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p>点击start，按钮的文本变成stop，开始抽数，再次点击stop，确定最终的数。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/78d394e1e03545f0ffe204f0564d796.png" alt="78d394e1e03545f0ffe204f0564d796"></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这种算<del>图形化？(bushi</del>反正就是比较简单的，基本不用什么基础也能进行开发，快去玩吧。当然如果看到这里你的电脑还没有这个简单的抽号器的话，那也可以点击这里的链接直接下载下来使用。文件夹<strong>NumberPicker\bin\Debug\net6.0-windows</strong>下的<strong>NumberPicker.exe</strong>就是最终的程序。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/qian488/SomeTools">抽号器下载</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

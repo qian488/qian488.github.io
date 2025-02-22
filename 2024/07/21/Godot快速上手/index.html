@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Godot快速上手 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Godot快速上手</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/21
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Godot/" style="color: #00bcd4">Godot</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。</p>
+<p>为什么写这篇文章，主要是记录一下Godot游戏引擎的使用体验。</p>
+<p>我跟着的教程是油管游戏开发大神<strong>Brackeys</strong>的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LOhfqjmasi0&t=85s">How to make a vedio game</a></p>
+<p>至此，这篇文章于你的作用可能就结束了，因为他的视频教程真的非常棒，非常酷，跟着做就可以完成一款简单的2d平台跳跃游戏。</p>
+<p><del>怎么感觉好像这篇文章不怎么必要写，不管哩，写都写了</del></p>
+<p>接下来，简单讲讲Godot的优点与不足</p>
+<span id="more"></span>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><h4 id="编辑器和脚本高度一致化"><a href="#编辑器和脚本高度一致化" class="headerlink" title="编辑器和脚本高度一致化"></a>编辑器和脚本高度一致化</h4><p>一致化到极致了，因为它的编辑器就是用它的脚本实现的，就是说Godot编辑器本身就是一个游戏。 </p>
+<p>所以可以轻松用脚本来控制它的编辑器，比如在编辑器中直接看代码运行效果。</p>
+<p>另外也可以在运行游戏的过程中实现许多编辑器中的功能，比如动态生成一些东西，或者将运行时的东西反保存到编辑器中。</p>
+<p>虽然这些不算什么新鲜功能，比如后者rpg maker都能做到，前者unity想弄也可以（虽然无比麻烦和拉胯）。但godot的特点因为是高度一致化，所以学习成本还挺低的。</p>
+<h4 id="合并概念，组件-对象，场景-对象"><a href="#合并概念，组件-对象，场景-对象" class="headerlink" title="合并概念，组件&#x3D;对象，场景&#x3D;对象"></a>合并概念，组件&#x3D;对象，场景&#x3D;对象</h4><p>我这里是拿unity里的概念来对比说的。 在Unity里的话，首先是分了很多的场景Scene，场景里会有许多的对象Object，一个对象上挂许多的组件Component。每个Component对应一类功能，比如物理运动、碰撞盒、音频、位图、动画……</p>
+<p>而在Godot里，<strong>所有的这一切，都算是对象</strong>。</p>
+<p>场景本身其实就是一个对象，所以可以场景套场景，或者一下实例化好几个场景。其实Unity虽然设计了场景这种东西，但用的时候，似乎许多项目并没按它设计的那种来用，因为限制很多，而且有许多不可控因素，使用方式反而更倾向Godot的这种设计。 另外就是，组件也是对象。把一个带功能的对象作为子对象挂在一个对象上，这个对象就有了这个功能。这个子对象，既算是组件，也是一个对象。这一点和Unity风格不同，初见可能觉得不太习惯，但用了会儿发现是非常美妙的。<del>（也有可能是我本来也没怎么学好Unity）</del></p>
+<p>Godot的这种合并概念的设计，大大地简化了开发，也弱化了限制，非常酷。</p>
+<h4 id="树形文档查找"><a href="#树形文档查找" class="headerlink" title="树形文档查找"></a>树形文档查找</h4><p>快速查找对象功能，查找直接用的是路径名称，非常方便也非常快速。它一切概念都合并成了对象，所以使用这种快速查找可以快速找到一切对象（场景、组件）。这个风格贯彻着整个游戏开发的始终。</p>
+<h3 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h3><p>相对于UE和Unity，它的学习资料实在是太少了，社区生态也并没有发展起来，编辑器的功能相对来说也还是薄弱。</p>
+<p>确实准确来说，我也不太懂其他方面，我只能说对于初学者而言，体验到的就是这些方面。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Godot还是蛮不错的感觉，至少在跟着<strong>Brackeys</strong>的教程做的时候感觉很简单、很爽。<del>（不排除是因为大神教学牛逼）</del>个人认为该引擎适用于做些独立小游戏这类的，未来学习资料多了，社区发展起来，还是不错的一个选择。至少这种，所有东西都看成Node的理念，我喜欢。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

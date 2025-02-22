@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>VSC与Git常用命令 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>VSC与Git常用命令</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/17
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                总结
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/git/" style="color: #ffa2c4">git</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/test/" style="color: #00bcd4">test</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/vsc/" style="color: #03a9f4">vsc</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="VSC终端基础"><a href="#VSC终端基础" class="headerlink" title="VSC终端基础"></a>VSC终端基础</h2><ol>
+<li><p>清除终端</p>
+<p><code>clear</code></p>
+</li>
+<li><p>列出当前目录中的文件和文件夹</p>
+<p><code>ls</code></p>
+</li>
+<li><p>切换指定目录</p>
+<p><code>cd &lt;目录路径&gt;</code></p>
+</li>
+<li><p>返回上一级目录</p>
+<p><code>cd ..</code></p>
+</li>
+<li><p>创建新文件夹</p>
+<p><code>mkdir &lt;文件夹名&gt;</code></p>
+</li>
+<li><p>创建新文件</p>
+<p><code>touch &lt;文件名&gt;</code></p>
+</li>
+<li><p>打开文件</p>
+<p><code>code &lt;文件名&gt;</code></p>
+</li>
+<li><p>删除文件</p>
+<p><code>rm &lt;文件名&gt;</code></p>
+</li>
+<li><p>删除文件夹</p>
+<p><code>rm -r &lt;文件夹名&gt;</code></p>
+</li>
+<li><p>查找文件</p>
+<p><code>find &lt;目录路径&gt; -name &lt;文件名&gt;</code></p>
+</li>
+<li><p>查找文件内容</p>
+<p><code>grep &lt;搜索内容&gt; &lt;文件名&gt;</code></p>
+</li>
+</ol>
+<h2 id="Git版本控制"><a href="#Git版本控制" class="headerlink" title="Git版本控制"></a>Git版本控制</h2><ol>
+<li><p>初始化Git仓库</p>
+<p><code>git init</code></p>
+</li>
+<li><p>克隆远程仓库到本地</p>
+<p><code>git clone &lt;远程仓库地址&gt;</code></p>
+</li>
+<li><p>添加文件到暂存区</p>
+<p><code>git add &lt;文件名&gt;</code></p>
+</li>
+<li><p>添加所有修改文件到暂存区</p>
+<p><code>git add .</code></p>
+</li>
+<li><p>提交暂存区文件到版本库</p>
+<p><code>git commit -m &quot;提交信息&quot;</code></p>
+</li>
+<li><p>查看当前仓库状态</p>
+<p><code>git status</code></p>
+</li>
+<li><p>查看文件修改差异</p>
+<p><code>git diff &lt;文件名&gt;</code></p>
+</li>
+<li><p>查看提交历史</p>
+<p><code>git log</code></p>
+</li>
+<li><p>创建新分支</p>
+<p><code>git branch &lt;分支名&gt;</code></p>
+</li>
+<li><p>切换到指定分支</p>
+<p><code>git checkout &lt;分支名&gt;</code></p>
+</li>
+<li><p>合并指定分支到当前分支</p>
+<p><code>git merge &lt;分支名&gt;</code></p>
+</li>
+<li><p>拉取远程仓库更新</p>
+<p><code>git pull</code></p>
+</li>
+<li><p>推送本地提交到远程仓库</p>
+<p><code>git push</code></p>
+</li>
+<li><p>查看远程仓库地址</p>
+<p><code>git remote -v</code></p>
+</li>
+<li><p>删除分支</p>
+<p><code>git branch -d &lt;分支名&gt;</code></p>
+</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h2><p><em>Git</em>是一个分布式版本控制系统，用于跟踪文件和代码的变化，并支持多人协同开发。</p>
+<h3 id="git常用用法"><a href="#git常用用法" class="headerlink" title="git常用用法"></a>git常用用法</h3><p>简单来说，就是，先去新建一个远程仓库，然后克隆到本地，如果没有将本机与自己的github账户链接，需要先配置好。</p>
+<h4 id="部署Git全局配置"><a href="#部署Git全局配置" class="headerlink" title="部署Git全局配置"></a>部署Git全局配置</h4><pre><code>git config --global user.name &quot;你的GitHub用户名&quot;
+git config --global user.email &quot;你的GitHub注册邮箱&quot;
+</code></pre>
+<p>没有报错，就是成功</p>
+<h4 id="生成ssh密钥文件"><a href="#生成ssh密钥文件" class="headerlink" title="生成ssh密钥文件"></a>生成ssh密钥文件</h4><pre><code>ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;
+</code></pre>
+<p>然后直接三个回车即可，默认不需要设置密码。</p>
+<p>输入以下命令获取密钥</p>
+<pre><code> cat ~/.ssh/id_rsa.pub
+</code></pre>
+<p>将显示的密钥复制，在Github仓库setting下Deploy Keys，公钥随便输入，密钥就填刚才生成的。</p>
+<h4 id="检测ssh是否成功"><a href="#检测ssh是否成功" class="headerlink" title="检测ssh是否成功"></a>检测ssh是否成功</h4><p>输入以下命令</p>
+<pre><code> ssh -T git@github.com
+</code></pre>
+<p>若出现successfully即为成功，若出现</p>
+<p>This key is not known by any other names.<br>Are you sure you want to continue connecting (yes&#x2F;no&#x2F;[fingerprint])?</p>
+<p>一般情况下，不用担心，输入yes，回车就可以了。</p>
+<p>这是一个安全特性，用于确保你连接到的主机是你预期的主机，而不是中间人攻击。这个提示的意思是，你的计算机之前没有连接过这个主机，因此无法验证其身份。你需要决定是否继续连接。</p>
+<p>你有以下选项：</p>
+<ol>
+<li>输入”yes”，继续连接到主机。这将更新你的<code>~/.ssh/known_hosts</code>文件，将主机的密钥添加到已知主机列表中。</li>
+<li>输入”no”，取消连接到主机。</li>
+</ol>
+<h4 id="最基本的命令"><a href="#最基本的命令" class="headerlink" title="最基本的命令"></a>最基本的命令</h4><p>配置一次过后，以后就是直接确定好分支，例如我想要修改main分支</p>
+<pre><code class="bash">git checkout main
+git pull
+git add .
+git commit -m &quot;本次提交的描述&quot;
+git push
+</code></pre>
+<p>一定一定一定在每次开发前，首先要拉取远程仓库，即git pull,开发完之后记得上传，尽量避免冲突，否则光解决冲突都得花很长时间。</p>
+<h4 id="关于合作"><a href="#关于合作" class="headerlink" title="关于合作"></a>关于合作</h4><p>合作开发最好约定好分支的作用，例如可以每个人自己单独开一个分支，自己的所有修改都在自己的分支，然后大体上完成阶段性任务再合并到主分支main，每次自己开发之前，每次先git merge main看看主分支有无更新（先在main分支要进行pull），有无与自己分支的冲突，有的话再自己分支解决冲突。</p>
+<pre><code class="bash">git pull
+git checkout &lt;你的分支名&gt;
+git merge main
+</code></pre>
+<p>解决冲突后并且完成开发后就提交到自己分支</p>
+<pre><code class="bash">git add .
+git commmit -m &quot;本次提交的描述&quot;
+git push
+</code></pre>
+<p>如果完成了阶段性开发，合并到main</p>
+<pre><code class="bash">git checkout main
+git merge &lt;你的分支名&gt;
+git push
+</code></pre>
+<p>虽然这样的方式简单粗暴的merge，但是相对来说比较容易理解。如果能够快速理解，merge仙人又何必不可？</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

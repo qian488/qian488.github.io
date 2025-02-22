@@ -1,0 +1,1244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CS50x2023_week1-5中一些有趣的程序 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>CS50x2023_week1-5中一些有趣的程序</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/23
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                分享
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/CS50/" style="color: #00a596">CS50</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>虽然说是week1-5的分享，但是，其实好玩的主要集中在week4 menory和week5 data-structures。前三章也不是说不好，只是我不太感兴趣而已。week3 Algorithms并没有什么算法的实现，只是三个模拟。<del>（算法的真谛是大模拟）</del>简单说说week4-5有什么好玩的。在这两章的Lab和Problem set可以实现<strong>读取wav文件并将音频声音变大</strong>、<strong>bmp图片的样式处理(包括变颜色、灰度化、棕褐色滤镜、水平镜像、模糊处理、边缘检测)<strong>、</strong>恢复jpg图片数据</strong>、<strong>反转wav音频</strong>、<strong>随机血型遗传模拟</strong>、<strong>拼写检查器</strong>。</p>
+<span id="more"></span>
+
+<h3 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h3><p>编写一个程序来修改音频文件的音量。</p>
+<p><strong>WAV文件</strong></p>
+<p>WAV文件是表示音频的常用文件格式。WAV文件将音频存储为一系列“样本”：代表特定时间点上某个音频信号值的数字。WAV文件以一个44字节的“头文件”开始，其中包含有关文件本身的信息，包括文件大小、每秒样本数和每个样本的大小。在头文件之后，WAV文件包含一系列样本，每个样本是一个单独的2字节（16位）整数，代表特定时间点上的音频信号。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193819759.png" alt="image-20240923193819759"></p>
+<p>通过给定的因子缩放每个样本值可以改变音频的音量。例如，将每个样本值乘以2.0，将使原始音频的音量翻倍。同时，将每个样本乘以0.5，将使音量减半。</p>
+<p>到目前为止，我们已经在C语言中看到了许多不同类型的数据，包括<code>int</code>、<code>bool</code>、<code>char</code>、<code>double</code>、<code>float</code>和<code>long</code>。在名为<code>stdint.h</code>的头文件中，声明了许多其他类型，这些类型允许我们非常精确地定义整数的大小（以位为单位）和符号（有符号或无符号）。在这个实验中，有两种类型特别有用。</p>
+<ul>
+<li><code>uint8_t</code>是一种存储8位无符号（即非负）整数的类型。我们可以将WAV文件头的每个字节视为<code>uint8_t</code>值。</li>
+<li><code>int16_t</code>是一种存储16位有符号（即正或负）整数的类型。我们可以将WAV文件中的每个音频样本视为<code>int16_t</code>值。</li>
+</ul>
+<pre><code class="c">// Modifies the volume of an audio file
+
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// 这个就是文件读写
+
+// Number of bytes in .wav header
+const int HEADER_SIZE = 44;
+
+int main(int argc, char *argv[])
+&#123;
+    // Check command-line arguments
+    if (argc != 4)
+    &#123;
+        printf(&quot;Usage: ./volume input.wav output.wav factor\n&quot;);
+        return 1;
+    &#125;
+
+    // Open files and determine scaling factor
+    FILE *input = fopen(argv[1], &quot;rb&quot;);
+    if (input == NULL)
+    &#123;
+        printf(&quot;Could not open file.\n&quot;);
+        return 1;
+    &#125;
+
+    FILE *output = fopen(argv[2], &quot;wb&quot;);
+    if (output == NULL)
+    &#123;
+        printf(&quot;Could not open file.\n&quot;);
+        return 1;
+    &#125;
+
+    float factor = atof(argv[3]);
+
+    // TODO: Copy header from input file to output file
+    uint8_t header[HEADER_SIZE];
+    // Your program should first read the header from the input file and write the header to the output file. Recall that this header is always exactly 44 bytes long.
+    fread(header, sizeof(uint8_t), HEADER_SIZE, input);
+    fwrite(header, sizeof(uint8_t), HEADER_SIZE, output);
+
+    // TODO: Read samples from input file and write updated data to output file
+    int16_t buffer;
+    while (fread(&amp;buffer, sizeof(int16_t), 1, input))
+    &#123;
+        // factor is the amount by which the volume of the original audio file should be scaled
+        buffer *= factor;
+        fwrite(&amp;buffer, sizeof(int16_t), 1, output);
+    &#125;
+    // Close files
+    fclose(input);
+    fclose(output);
+&#125;
+</code></pre>
+<p>编译好后，输入</p>
+<pre><code class="bash">./volume input.wav output.wav 2.0
+</code></pre>
+<p>即可运行</p>
+<p>好玩</p>
+<h3 id="helpers"><a href="#helpers" class="headerlink" title="helpers"></a>helpers</h3><p>实现一个程序，根据以下要求将过滤器应用于BMP文件。</p>
+<p><strong>图像过滤</strong></p>
+<p>过滤图像到底意味着什么？你可以将过滤图像视为采取一些原始图像的像素，并以某种方式修改每个像素，使得在结果图像中出现特定的效果。</p>
+<p><strong>位图</strong></p>
+<p>也许最简单的表示图像的方式是使用像素（即点）的网格，每个像素可以有不同的颜色。对于黑白图像，因此每个像素需要1位，0可以代表黑色，1可以代表白色，如下所示。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193318894.png" alt="image-20240923193318894"></p>
+<p>从这个意义上说，图像只是位图（即位的映射）。对于更丰富多彩的图像，每个像素只需要更多的位。支持“24位色”的文件格式使用每个像素24位。（BMP实际上支持1、4、8、16、24和32位色。）</p>
+<p>24位BMP使用8位表示像素颜色中的红色量，8位表示绿色量，8位表示蓝色量。如果你听说过RGB颜色，那就是：红色、绿色、蓝色。</p>
+<p>如果BMP中某个像素的R、G和B值分别是十六进制的<code>0xff</code>、<code>0x00</code>和<code>0x00</code>，那么该像素完全是红色的，因为<code>0xff</code>（十进制中的<code>255</code>）意味着“很多红色”，而<code>0x00</code>和<code>0x00</code>分别意味着“没有绿色”和“没有蓝色”。</p>
+<p><strong>技术上的位图</strong></p>
+<p>回想一下，文件只是按某种方式排列的位序列。那么，24位BMP文件本质上只是位的序列，（几乎）每24位代表某个像素的颜色。但BMP文件还包含一些“元数据”，比如图像的高度和宽度。这些元数据以两个数据结构的形式存储在文件开头，通常被称为“头文件”，不要与C的头文件混淆。（顺便说一下，这些头文件随着时间的推移已经发展。这个问题使用的是微软BMP格式的最新版本，4.0，它首次亮相是在Windows 95中。）</p>
+<p>其中第一个头文件，称为<code>BITMAPFILEHEADER</code>，长14字节。（回想一下，1字节等于8位。）第二个头文件，称为<code>BITMAPINFOHEADER</code>，长40字节。紧接着这些头文件之后是实际的位图：字节数组，其中三元组代表像素的颜色。然而，BMP以相反的顺序存储这些三元组（即BGR），先是8位蓝色，然后是8位绿色，再是8位红色。（有些BMP也将整个位图以相反的顺序存储，图像的顶行在BMP文件的末尾。但我们在这个系列的问题中存储BMP，每个位图的顶行在前，底行在后。）换句话说，如果我们将上面的1位笑脸转换为24位笑脸，用红色代替黑色，24位BMP将如下存储这个位图，其中<code>0000ff</code>表示红色，<code>ffffff</code>表示白色；我们用红色突出显示所有<code>0000ff</code>的实例。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193410002.png" alt="image-20240923193410002"></p>
+<p>因为我们从左到右、从上到下以8列的方式呈现这些位，你实际上可以退后一步看到红色的笑脸。</p>
+<p>为了明确，回想一下，一个十六进制数字代表4位。因此，十六进制中的<code>ffffff</code>实际上在二进制中表示为<code>111111111111111111111111</code>。</p>
+<p>注意，你可以将位图表示为像素的二维数组：图像是一个由行组成的数组，每行本身是一个像素数组。事实上，这就是我们在这个系列问题中选择表示位图图像的方式。</p>
+<p><strong>BMP头文件</strong></p>
+<pre><code class="c">// BMP-related data types based on Microsoft&#39;s own
+
+#include &lt;stdint.h&gt;
+
+/**
+ * Common Data Types
+ *
+ * The data types in this section are essentially aliases for C/C++
+ * primitive data types.
+ *
+ * Adapted from http://msdn.microsoft.com/en-us/library/cc230309.aspx.
+ * See http://en.wikipedia.org/wiki/Stdint.h for more on stdint.h.
+ */
+typedef uint8_t  BYTE;
+typedef uint32_t DWORD;
+typedef int32_t  LONG;
+typedef uint16_t WORD;
+
+/**
+ * BITMAPFILEHEADER
+ *
+ * The BITMAPFILEHEADER structure contains information about the type, size,
+ * and layout of a file that contains a DIB [device-independent bitmap].
+ *
+ * Adapted from http://msdn.microsoft.com/en-us/library/dd183374(VS.85).aspx.
+ */
+typedef struct
+&#123;
+    WORD   bfType;
+    DWORD  bfSize;
+    WORD   bfReserved1;
+    WORD   bfReserved2;
+    DWORD  bfOffBits;
+&#125; __attribute__((__packed__))
+BITMAPFILEHEADER;
+
+/**
+ * BITMAPINFOHEADER
+ *
+ * The BITMAPINFOHEADER structure contains information about the
+ * dimensions and color format of a DIB [device-independent bitmap].
+ *
+ * Adapted from http://msdn.microsoft.com/en-us/library/dd183376(VS.85).aspx.
+ */
+typedef struct
+&#123;
+    DWORD  biSize;
+    LONG   biWidth;
+    LONG   biHeight;
+    WORD   biPlanes;
+    WORD   biBitCount;
+    DWORD  biCompression;
+    DWORD  biSizeImage;
+    LONG   biXPelsPerMeter;
+    LONG   biYPelsPerMeter;
+    DWORD  biClrUsed;
+    DWORD  biClrImportant;
+&#125; __attribute__((__packed__))
+BITMAPINFOHEADER;
+
+/**
+ * RGBTRIPLE
+ *
+ * This structure describes a color consisting of relative intensities of
+ * red, green, and blue.
+ *
+ * Adapted from http://msdn.microsoft.com/en-us/library/aa922590.aspx.
+ */
+typedef struct
+&#123;
+    BYTE  rgbtBlue;
+    BYTE  rgbtGreen;
+    BYTE  rgbtRed;
+&#125; __attribute__((__packed__))
+RGBTRIPLE;
+</code></pre>
+<h4 id="天蓝色"><a href="#天蓝色" class="headerlink" title="天蓝色"></a>天蓝色</h4><p><strong>算法实现</strong></p>
+<pre><code class="c">void colorize(int height, int width, RGBTRIPLE image[height][width])
+&#123;
+    // Change all black pixels to a color of your choosing
+    for (int i = 0; i &lt; height; i++)
+    &#123;
+        for (int j = 0; j &lt; width; j++)
+        &#123;
+            if (image[i][j].rgbtRed == 0 &amp;&amp; image[i][j].rgbtGreen == 0 &amp;&amp; image[i][j].rgbtBlue == 0)
+            &#123;
+                image[i][j].rgbtRed = 135;
+                image[i][j].rgbtGreen = 205;
+                image[i][j].rgbtBlue = 250;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>如果真爱有颜色，那一定是蓝色！！！</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923194859323.png" alt="image-20240923194859323"></p>
+<h4 id="灰度化"><a href="#灰度化" class="headerlink" title="灰度化"></a>灰度化</h4><p>一种常见的过滤器是“灰度”过滤器，我们将图像转换为黑白。这是怎么做的呢？</p>
+<p>回想一下，如果红色、绿色和蓝色值都设置为0x00（0的十六进制），那么像素就是黑色的。如果所有值都设置为0xff（255的十六进制），那么像素就是白色的。只要红色、绿色和蓝色值都相等，结果就会是黑色-白色谱上的不同灰度，值越高意味着越浅的色调（更接近白色），值越低意味着更深的色调（更接近黑色）。</p>
+<p>因此，要将像素转换为灰度，我们只需要确保红色、绿色和蓝色值都相同。但我们怎么知道要将它们设置为什么值呢？嗯，如果原始的红色、绿色和蓝色值都相当高，那么新值也应该相当高。如果原始值都很低，那么新值也应该很低。</p>
+<p>事实上，为了确保新图像的每个像素与旧图像具有相同的一般亮度或暗度，我们可以取红色、绿色和蓝色值的平均值，以确定新像素的灰度。</p>
+<p>如果你将这应用到图像的每个像素上，结果将是转换为灰度的图像。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">// 灰度化
+// Convert image to grayscale
+void grayscale(int height, int width, RGBTRIPLE image[height][width])
+&#123;
+    for (int i = 0; i &lt; height; i++)
+    &#123;
+        for (int j = 0; j &lt; width; j++)
+        &#123;
+            int red = image[i][j].rgbtRed;
+            int green = image[i][j].rgbtGreen;
+            int blue = image[i][j].rgbtBlue;
+            double average = 0.299 * red + 0.587 * green + 0.114 * blue;
+            // double average = (red + green + blue)/3.0;
+            image[i][j].rgbtBlue=average;
+            image[i][j].rgbtGreen=average;
+            image[i][j].rgbtRed=average;
+        &#125;
+        
+    &#125;
+    
+    return;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923195259169.png" alt="image-20240923195259169"></p>
+<h4 id="深褐色"><a href="#深褐色" class="headerlink" title="深褐色"></a>深褐色</h4><p>大多数图像编辑程序都支持“深褐色”过滤器，它通过使整个图像看起来有点红棕色，赋予图像一种过时的感觉。</p>
+<p>通过采取每个像素，并根据原始的三个值计算新的红色、绿色和蓝色值，可以将图像转换为深褐色。</p>
+<p>有许多算法可以将图像转换为深褐色，但对于这个问题，我们将要求你使用以下算法。对于每个像素，深褐色颜色值应根据下面的原始颜色值计算。</p>
+<pre><code class="c">  sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue
+  sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue
+  sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue
+</code></pre>
+<p>当然，这些公式的结果可能不是整数，但每个值都可以四舍五入到最近的整数。公式的结果也可能是大于255的数字，8位颜色值的最大值。在这种情况下，红色、绿色和蓝色值应该限制在255。因此，我们可以保证结果的红色、绿色和蓝色值是0到255之间的整数。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">// 棕褐色
+// Convert image to sepia
+void sepia(int height, int width, RGBTRIPLE image[height][width])
+&#123;
+    for (int i = 0; i &lt; height; i++)
+    &#123;
+        for (int j = 0; j &lt; width; j++)
+        &#123;
+            int originalRed = image[i][j].rgbtRed;
+            int originalGreen = image[i][j].rgbtGreen;
+            int originalBlue = image[i][j].rgbtBlue;
+            int sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue;
+            int sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue;
+            int sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue;
+            // 确保颜色值在 0 到 255 之间
+            sepiaRed = sepiaRed &gt; 255 ? 255 : (sepiaRed &lt; 0 ? 0 : sepiaRed);
+            sepiaGreen = sepiaGreen &gt; 255 ? 255 : (sepiaGreen &lt; 0 ? 0 : sepiaGreen);
+            sepiaBlue = sepiaBlue &gt; 255 ? 255 : (sepiaBlue &lt; 0 ? 0 : sepiaBlue);
+            image[i][j].rgbtBlue = sepiaBlue;
+            image[i][j].rgbtGreen = sepiaGreen;
+            image[i][j].rgbtRed = sepiaRed;
+        &#125;
+        
+    &#125;
+    
+    return;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923195358364.png" alt="image-20240923195358364"></p>
+<h4 id="水平镜像"><a href="#水平镜像" class="headerlink" title="水平镜像"></a>水平镜像</h4><p>请注意，原始图像的所有原始像素仍然会出现在镜像图像中，只是这些像素可能在图像中重新排列到不同的位置。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">// 水平翻转
+// Reflect image horizontally
+void reflect(int height, int width, RGBTRIPLE image[height][width])
+&#123;
+    for (int i = 0; i &lt; height; i++)
+    &#123;
+        for (int j = 0; j &lt; (width/2); j++)
+        &#123;
+            RGBTRIPLE temp = image[i][j];
+            image[i][j]=image[i][width-j-1];
+            image[i][width-j-1] = temp;
+        &#125;
+        
+    &#125;
+    
+    return;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923201033527.png" alt="image-20240923201033527"></p>
+<p><strong>小插曲</strong></p>
+<p>因为这里使用的文件是bmp文件，所以还写了一个其他格式的文件转换为bmp的c程序，但是总是要么毁损0kb要么就三重影。。。然后搜了搜，python导包后两句代码解决。。。</p>
+<pre><code class="python">import cv2
+
+if __name__ == &quot;__main__&quot;:
+    img = cv2.imread(&quot;输入文件名&quot;)
+    cv2.imwrite(&quot;输出文件名&quot;, img)
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923200226814.png" alt="image-20240923200226814"></p>
+<h4 id="模糊"><a href="#模糊" class="headerlink" title="模糊"></a>模糊</h4><p>有许多方法可以创建模糊或软化图像的效果。对于这个问题，我们将使用“盒式模糊”，它通过采取每个像素，并为每个颜色值，通过平均邻近像素的颜色值，给它一个新的值。</p>
+<p>考虑以下像素网格，我们已经对每个像素进行了编号。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193500188.png" alt="image-20240923193500188"></p>
+<p>每个像素的新值将是原始像素1行和1列内所有像素值的平均值（形成一个3x3的盒子）。例如，像素6的每种颜色值将通过平均原始颜色值的像素1、2、3、5、6、7、9、10和11获得（注意像素6本身包含在平均值中）。同样，像素11的颜色值将通过平均像素6、7、8、10、11、12、14、15和16的原始颜色值获得。</p>
+<p>对于像像素15这样的边缘或角落像素，我们仍然寻找1行和1列内的所有像素：在这种情况下，像素10、11、12、14、15和16。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">// 模糊
+// Blur image
+void blur(int height, int width, RGBTRIPLE image[height][width])
+&#123;
+    RGBTRIPLE temp[height][width];
+
+    for (int i = 0; i &lt; height; i++)&#123;
+        for (int j = 0; j &lt; width; j++)&#123;
+            double sumR=0,sumG=0,sumB=0,cnt=0;
+
+            for(int row=-1;row&lt;=1;row++)&#123;
+                for(int col=-1;col&lt;=1;col++)&#123;
+                    if((i+row&lt;0)||(i+row&gt;=height)||(j+col&lt;0)||(j+col&gt;=width)) continue;
+                    sumR += image[i+row][j+col].rgbtRed;
+                    sumG += image[i+row][j+col].rgbtGreen;
+                    sumB += image[i+row][j+col].rgbtBlue;
+                    cnt++;
+                &#125;
+            &#125;
+
+            if(cnt&gt;0)&#123;
+                temp[i][j].rgbtRed = sumR/cnt;
+                temp[i][j].rgbtGreen = sumG/cnt;
+                temp[i][j].rgbtBlue = sumB/cnt;
+            &#125;else&#123;
+                temp[i][j]=image[i][j];
+            &#125;
+
+        &#125;
+        
+    &#125;
+
+    for(int i=0;i&lt;height;i++)&#123;
+        for(int j=0;j&lt;width;j++)&#123;
+            image[i][j]=temp[i][j];
+        &#125;
+    &#125;
+             
+    return;
+&#125;
+</code></pre>
+<p>不知道为什么同一张到这里就不能正常生成图片，直接0kb，但是用原本的例子又可以正常实现。暂时没搞懂<del>（之后也不一定会去搞清楚）</del></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923201558117.png" alt="image-20240923201558117"></p>
+<p>左边原图，右边模糊处理过后</p>
+<h4 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h4><p>在图像处理的人工智能算法中，经常有助于检测图像中的边缘：在图像中创建一个对象与另一个对象之间的边界的线。实现这种效果的一种方法是对图像应用Sobel算子。</p>
+<p>像图像模糊一样，边缘检测也通过采取每个像素，并根据围绕该像素的3x3网格中的像素来修改它。但不仅仅是采取这九个像素的平均值，Sobel算子通过采取周围像素的加权和来计算每个像素的新值。由于物体之间的边缘可能在垂直和水平方向上发生，你实际上会计算两个加权和：一个用于检测x方向上的边缘，一个用于检测y方向上的边缘。特别是，你将使用以下两个“核”：</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923193543691.png" alt="image-20240923193543691"></p>
+<p>如何解释这些核？简而言之，对于每个像素的三种颜色值，我们将计算两个值<code>Gx</code>和<code>Gy</code>。例如，要计算一个像素的红色通道值的<code>Gx</code>，我们将采取围绕像素的九个像素的原始红色值，将它们每个乘以<code>Gx</code>核中的相应值，并取结果值的总和。</p>
+<p>为什么选择这些特定的核值？例如，在<code>Gx</code>方向上，我们将目标像素右侧的像素乘以正数，将目标像素左侧的像素乘以负数。当我们取总和时，如果右侧的像素与左侧的像素颜色相似，结果将接近0（数字抵消）。但如果右侧的像素与左侧的像素非常不同，那么结果值将非常正或非常负，表明颜色的变化很可能是由于物体之间的边界。对于计算y方向上的边缘，也是类似的论点。</p>
+<p>使用这些核，我们可以为一个像素的红色、绿色和蓝色通道生成一个<code>Gx</code>和<code>Gy</code>值。但每个通道只能取一个值，而不是两个：所以我们需要某种方式将<code>Gx</code>和<code>Gy</code>合并成一个单一的值。Sobel过滤器算法通过计算<code>Gx^2 + Gy^2</code>的平方根将Gx和Gy合并成最终值。由于通道值只能取0到255的整数值，确保结果值四舍五入到最近的整数，并限制在255以内！</p>
+<p>那么如何处理图像边缘或角落的像素呢？处理边缘像素有很多方法，但对于这个问题，我们将要求你将图像视为如果图像边缘有1像素的纯黑色边框：因此，尝试访问图像边缘之外的像素应该被视为纯黑色像素（红色、绿色和蓝色每个的值为0）。这将有效地忽略我们计算Gx和Gy的那些像素。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">// Detect edges
+void edges(int height, int width, RGBTRIPLE image[height][width])
+&#123;
+    RGBTRIPLE temp[height][width];
+
+    int gx[3][3] = &#123;&#123;-1, 0, 1&#125;, &#123;-2, 0, 2&#125;, &#123;-1, 0, 1&#125;&#125;;
+    int gy[3][3] = &#123;&#123;-1, -2, -1&#125;, &#123;0, 0, 0&#125;, &#123;1, 2, 1&#125;&#125;;
+
+    for (int i = 0; i &lt; height; i++)
+    &#123;
+        for (int j = 0; j &lt; width; j++)
+        &#123;
+            int gxBlue = 0;
+            int gyBlue = 0;
+            int gxGreen = 0;
+            int gyGreen = 0;
+            int gxRed = 0;
+            int gyRed = 0;
+
+            for (int row = -1; row &lt; 2; row++)
+            &#123;
+                for (int col = -1; col &lt; 2; col++)
+                &#123;
+                    if (i + row &lt; 0 || i + row &gt;= height)continue;
+                    if (j + col &lt; 0 || j + col &gt;= width)continue;
+
+                    gxBlue += image[i + row][j + col].rgbtBlue * gx[row + 1][col + 1];
+                    gyBlue += image[i + row][j + col].rgbtBlue * gy[row + 1][col + 1];
+                    gxGreen += image[i + row][j + col].rgbtGreen * gx[row + 1][col + 1];
+                    gyGreen += image[i + row][j + col].rgbtGreen * gy[row + 1][col + 1];
+                    gxRed += image[i + row][j + col].rgbtRed * gx[row + 1][col + 1];
+                    gyRed += image[i + row][j + col].rgbtRed * gy[row + 1][col + 1];
+                &#125;
+            &#125;
+
+            int blue = round(sqrt(gxBlue * gxBlue + gyBlue * gyBlue));
+            int green = round(sqrt(gxGreen * gxGreen + gyGreen * gyGreen));
+            int red = round(sqrt(gxRed * gxRed + gyRed * gyRed));
+
+            temp[i][j].rgbtBlue = (blue &gt; 255) ? 255 : blue;
+            temp[i][j].rgbtGreen = (green &gt; 255) ? 255 : green;
+            temp[i][j].rgbtRed = (red &gt; 255) ? 255 : red;
+        &#125;
+    &#125;
+
+    for (int i = 0; i &lt; height; i++)
+    &#123;
+        for (int j = 0; j &lt; width; j++)
+        &#123;
+           image[i][j]=temp[i][j];
+        &#125;
+    &#125;
+
+    return ;
+&#125;
+</code></pre>
+<p>和模糊一样的问题，也是0kb，但是官方给的图片可以正常。。。应该算正常吧？。。。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923201921276.png" alt="image-20240923201921276"></p>
+<h3 id="recover"><a href="#recover" class="headerlink" title="recover"></a>recover</h3><p>实现一个程序，从取证镜像中恢复JPEG文件</p>
+<p>在这个问题之前，我们过去几天在校园里拍了很多照片，都被保存在数字相机的存储卡上作为JPEG格式。不幸的是，我们不知怎么的全部删除了！幸运的是，在计算机世界中，“删除”往往并不意味着“删除”，而更像是“遗忘”。尽管相机坚称存储卡现在是空的，我们非常确定这不是真的。事实上，我们希望（或者说期待！）你能为我们编写一个程序来恢复这些照片！</p>
+<p>尽管JPEG比BMP更复杂，但JPEG有“签名”，字节模式可以将其与其他文件格式区分开来。具体来说，JPEG的前三个字节是：</p>
+<pre><code class="c">0xff 0xd8 0xff
+</code></pre>
+<p>从第一个字节到第三个字节，从左到右。与此同时，第四个字节可以是 <code>0xe0</code>、<code>0xe1</code>、<code>0xe2</code>、<code>0xe3</code>、<code>0xe4</code>、<code>0xe5</code>、<code>0xe6</code>、<code>0xe7</code>、<code>0xe8</code>、<code>0xe9</code>、<code>0xea</code>、<code>0xeb</code>、<code>0xec</code>、<code>0xed</code>、<code>0xee</code> 或 <code>0xef</code>。换句话说，第四个字节的前四位是 <code>1110</code>。</p>
+<p>如果你在已知用于存储照片的媒体上找到了这四个连续的字节模式（例如，我的存储卡），它们就标志着一个JPEG的开始。公平地说，你可能会在某些磁盘上纯粹偶然遇到这些模式，因此数据恢复并不是一门精确的科学。</p>
+<p>幸运的是，数码相机倾向于在存储卡上连续存储照片，每张照片都紧随之前拍摄的照片之后存储。因此，一个JPEG的开始通常标志着另一个JPEG的结束。然而，数码相机通常使用FAT文件系统初始化存储卡，其“块大小”是512字节（B）。这意味着这些相机只在512B的单位上写入这些卡。因此，一个1MB（即1,048,576B）的照片在存储卡上占用了1048576 ÷ 512 &#x3D; 2048个“块”。但即使是一个比它小一个字节（即1,048,575B）的照片也是如此！磁盘上浪费的空间称为“闲置空间”。取证调查人员经常在闲置空间中寻找可疑数据的残余。</p>
+<p>所有这些细节的含义是，你，作为调查人员，可能可以编写一个程序，迭代我的存储卡的副本，寻找JPEG的签名。每次你找到一个签名，你可以打开一个新的文件进行写入，并开始用我的存储卡上的字节填充该文件，只有在遇到另一个签名时才关闭该文件。此外，你不必一次读取存储卡上的一个字节，你可以为了效率一次读取512个字节到缓冲区。由于FAT，你可以相信JPEG的签名将是“块对齐”的。也就是说，你只需要在块的前四个字节中寻找这些签名。</p>
+<p>当然，JPEG可以跨越连续的块。否则，没有JPEG可以大于512B。但JPEG的最后一个字节可能不会正好落在块的末尾。回想一下闲置空间的可能性。但不用担心。因为这张存储卡在我开始拍照时是全新的，很可能被制造商“清零”（即，用0填充），在这种情况下，任何闲置空间将用0填充。如果你恢复的JPEG中包含了这些尾随的0，那是可以的；它们仍然可以查看。</p>
+<p>现在，我只有一张存储卡，但你们有很多！所以我提前创建了一个存储卡的“取证镜像”，将其内容一个字节接一个字节地存储在一个名为<code>card.raw</code>的文件中。为了不让你不必要地迭代数百万个0，我只镜像了存储卡的前几兆字节。但你最终会发现镜像包含50个JPEG。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;
+
+typedef uint8_t BYTE;
+ 
+int main(int argc, char *argv[])
+&#123;
+    if (argc != 2)
+    &#123;
+        printf(&quot;Usage: ./recover IMAGE\n&quot;);
+        return 1;
+    &#125;
+
+    FILE *input = fopen(argv[1], &quot;rb&quot;);
+    if (input == NULL)
+    &#123;
+        printf(&quot;Could not open file.\n&quot;);
+        return 1;
+    &#125;
+
+    BYTE buffer[512];
+    char filename[10];
+    int cnt = 0;
+    FILE *output = NULL;
+
+    while (fread(buffer, 1, 512, input) == 512)&#123;
+        if (buffer[0] == 0xff &amp;&amp; buffer[1] == 0xd8 &amp;&amp; buffer[2] == 0xff &amp;&amp; (buffer[3] &amp; 0xf0) == 0xe0)
+        &#123;
+            if (cnt &gt; 0) fclose(output);
+
+            sprintf(filename, &quot;%03i.jpg&quot;, cnt);
+            output = fopen(filename, &quot;wb&quot;);
+            cnt++;
+        &#125;
+
+        if(cnt &gt; 0) fwrite(buffer, 1, 512, output);
+    &#125;
+
+    fclose(input);
+    fclose(output);
+    return 0;
+&#125;
+</code></pre>
+<p>恢复后</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923202241936.png" alt="image-20240923202241936"></p>
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h3><p>实现一个程序，按照以下要求反转一个WAV文件。</p>
+<p>在Electric Light Orchestra的“Fire on High”中，音乐的前一分钟有点不对劲。如果你仔细听，它听起来就像是音频在倒播。事实证明，如果你将这首歌的开头部分倒过来播放，你会听到以下内容：</p>
+<p>“音乐可以反转。时间不可以。回头，回头！”</p>
+<p>可怕，对吧？这是一种叫做“倒置录音”的技术，或者在音乐中隐藏信息，只有在歌曲倒播时才能听到。许多艺术家都使用（或被怀疑使用）这种技术在他们的歌曲中。为了能够对我们自己的倒置录音进行调查，我们要求你编写一个程序，可以为我们反转WAV文件！</p>
+<p>与MP3音频文件不同，WAV文件是未压缩的。这使得文件更容易编辑和操作，这对于手头的任务非常有用。</p>
+<p><strong>WAV头文件</strong></p>
+<pre><code class="c">// BMP-related data types based on Microsoft&#39;s own
+
+#include &lt;stdint.h&gt;
+
+// These data types are essentially aliases for C/C++ primitive data types.
+// Adapted from http://msdn.microsoft.com/en-us/library/cc230309.aspx.
+// See https://en.wikipedia.org/wiki/C_data_types#stdint.h for more on stdint.h.
+
+typedef uint8_t   BYTE;
+typedef uint16_t  WORD;
+typedef uint32_t  DWORD;
+
+// The WAVHEADER structure contains information about the type, size,
+// and layout of a file that contains audio samples.
+// Adapted from http://soundfile.sapp.org/doc/WaveFormat/.
+
+typedef struct
+&#123;
+    BYTE   chunkID[4];
+    DWORD  chunkSize;
+    BYTE   format[4];
+    BYTE   subchunk1ID[4];
+    DWORD  subchunk1Size;
+    WORD   audioFormat;
+    WORD   numChannels;
+    DWORD  sampleRate;
+    DWORD  byteRate;
+    WORD   blockAlign;
+    WORD   bitsPerSample;
+    BYTE   subchunk2ID[4];
+    DWORD  subchunk2Size;
+&#125; __attribute__((__packed__))
+WAVHEADER;
+</code></pre>
+<p>用户能够反转他们给定的WAV文件，并创建一个新的WAV文件，包含反转后的音频。为了简单起见，我们将处理的文件限制为WAV格式。</p>
+<p><strong>算法实现</strong></p>
+<pre><code class="c">#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#include &quot;wav.h&quot;
+
+int check_format(WAVHEADER header);
+int get_block_size(WAVHEADER header);
+
+int main(int argc, char *argv[])
+&#123;
+    // Ensure proper usage
+    if (argc != 3)
+    &#123;
+        printf(&quot;Error: usage ./reverse.c &lt;input_file&gt; &lt;output_file&gt;&quot;);
+        return 1;
+    &#125;
+
+    // Open input file for reading
+     FILE *inputfile = fopen(argv[1], &quot;rb&quot;);
+    if (inputfile == NULL)
+    &#123;
+        printf(&quot;Error: can&#39;t open file&quot;);
+        return 1;
+    &#125;
+
+    // Read header
+    WAVHEADER header;
+    fread(&amp;header, sizeof(WAVHEADER), 1, inputfile);
+
+
+    // Use check_format to ensure WAV format
+    if (check_format(header) == 0)
+    &#123;
+        printf(&quot;Error: file type not supported&quot;);
+        return 1;
+    &#125;
+
+    // Open output file for writing
+    FILE *outputfile = fopen(argv[2], &quot;wb&quot;);
+    if (outputfile == NULL)
+    &#123;
+        return 1;
+    &#125;
+
+    // Write header to file
+    fwrite(&amp;header, sizeof(WAVHEADER), 1, outputfile);
+
+    // Use get_block_size to calculate size of block
+    int block_size = get_block_size(header);
+
+    // Write reversed audio to file
+    fseek(inputfile, block_size * -1, SEEK_END);
+    while (ftell(inputfile) &gt;= 44)
+    &#123;
+        BYTE sound_piece[block_size];
+        fread(sound_piece, block_size, 1, inputfile);
+        fwrite(sound_piece, block_size, 1, outputfile);
+        fseek(inputfile, block_size * 2 * -1, SEEK_CUR);
+    &#125;
+
+    fclose(inputfile);
+    fclose(outputfile);
+
+    return 0;
+&#125;
+
+int check_format(WAVHEADER header)
+&#123;
+    if (header.format[0] == &#39;W&#39; &amp;&amp; header.format[1] == &#39;A&#39; &amp;&amp; header.format[2] == &#39;V&#39; &amp;&amp; header.format[3] == &#39;E&#39;)
+    &#123;
+        return 1;
+    &#125;
+    return 0;
+&#125;
+
+int get_block_size(WAVHEADER header)
+&#123;
+    int bytesPerSample = header.bitsPerSample / 8;
+    return header.numChannels * bytesPerSample;
+&#125;
+</code></pre>
+<p>编译后输入</p>
+<pre><code>./reverse input.wav output.wav
+</code></pre>
+<p>即可获得反转后的音频</p>
+<h3 id="inheritance"><a href="#inheritance" class="headerlink" title="inheritance"></a>inheritance</h3><p>模拟一个家庭成员的血型遗传。</p>
+<p>一个人的血型由两个等位基因（即，基因的不同形式）决定。可能的三种等位基因是A、B和O，每个人有两种（可能相同，也可能不同）。孩子的每个父母随机传递他们的两个血型等位基因中的一个给孩子。因此，可能的血型组合有：OO, OA, OB, AO, AA, AB, BO, BA和BB。</p>
+<p>例如，如果一个父母血型为AO，另一个父母血型为BB，那么孩子的可能血型将是AB和OB，具体取决于从每个父母那里接收到的等位基因。同样，如果一个父母血型为AO，另一个为OB，那么孩子的可能血型将是AO, OB, AB和OO。</p>
+<pre><code class="c">// Simulate genetic inheritance of blood type
+
+#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+// 建树
+
+// Each person has two parents and two alleles
+typedef struct person
+&#123;
+    struct person *parents[2];
+    char alleles[2];
+&#125;
+person;
+
+const int GENERATIONS = 3;
+const int INDENT_LENGTH = 4;
+
+person *create_family(int generations);
+void print_family(person *p, int generation);
+void free_family(person *p);
+char random_allele();
+
+int main(void)
+&#123;
+    // Seed random number generator
+    srand(time(0));
+
+    // Create a new family with three generations
+    person *p = create_family(GENERATIONS);
+
+    // Print family tree of blood types
+    print_family(p, 0);
+
+    // Free memory
+    free_family(p);
+&#125;
+
+// Create a new individual with `generations`
+person *create_family(int generations)
+&#123;
+    // TODO: Allocate memory for new person
+    person *new_person = (person*)malloc(sizeof(person*));
+
+    // If there are still generations left to create
+    if (generations &gt; 1)
+    &#123;
+        // Create two new parents for current person by recursively calling create_family
+        person *parent0 = create_family(generations - 1);
+        person *parent1 = create_family(generations - 1);
+
+        // TODO: Set parent pointers for current person
+        new_person-&gt;parents[0] = parent0;
+        new_person-&gt;parents[1] = parent1;
+
+        // TODO: Randomly assign current person&#39;s alleles based on the alleles of their parents
+        new_person-&gt;alleles[0] = parent0-&gt;alleles[rand()%2];
+        new_person-&gt;alleles[1] = parent1-&gt;alleles[rand()%2];
+
+    &#125;
+
+    // If there are no generations left to create
+    else
+    &#123;
+        // TODO: Set parent pointers to NULL
+        new_person-&gt;parents[0] = NULL;
+        new_person-&gt;parents[1] = NULL;
+        // TODO: Randomly assign alleles
+        new_person-&gt;alleles[0] = random_allele();
+        new_person-&gt;alleles[1] = random_allele();
+
+    &#125;
+
+    // TODO: Return newly created person
+    return new_person;
+&#125;
+
+// Free `p` and all ancestors of `p`.
+void free_family(person *p)
+&#123;
+    // TODO: Handle base case
+    if (p == NULL)
+    &#123;
+        return;
+    &#125;
+    
+    // TODO: Free parents recursively
+    free_family(p-&gt;parents[0]);
+    free_family(p-&gt;parents[1]);
+
+    // TODO: Free child
+    free(p);
+
+&#125;
+
+// Print each family member and their alleles.
+void print_family(person *p, int generation)
+&#123;
+    // Handle base case
+    if (p == NULL)
+    &#123;
+        return;
+    &#125;
+
+    // Print indentation
+    for (int i = 0; i &lt; generation * INDENT_LENGTH; i++)
+    &#123;
+        printf(&quot; &quot;);
+    &#125;
+
+    // Print person
+    if (generation == 0)
+    &#123;
+        printf(&quot;Child (Generation %i): blood type %c%c\n&quot;, generation, p-&gt;alleles[0], p-&gt;alleles[1]);
+    &#125;
+    else if (generation == 1)
+    &#123;
+        printf(&quot;Parent (Generation %i): blood type %c%c\n&quot;, generation, p-&gt;alleles[0], p-&gt;alleles[1]);
+    &#125;
+    else
+    &#123;
+        for (int i = 0; i &lt; generation - 2; i++)
+        &#123;
+            printf(&quot;Great-&quot;);
+        &#125;
+        printf(&quot;Grandparent (Generation %i): blood type %c%c\n&quot;, generation, p-&gt;alleles[0], p-&gt;alleles[1]);
+    &#125;
+
+    // Print parents of current generation
+    print_family(p-&gt;parents[0], generation + 1);
+    print_family(p-&gt;parents[1], generation + 1);
+&#125;
+
+// Randomly chooses a blood type allele.
+char random_allele()
+&#123;
+    int r = rand() % 3;
+    if (r == 0)
+    &#123;
+        return &#39;A&#39;;
+    &#125;
+    else if (r == 1)
+    &#123;
+        return &#39;B&#39;;
+    &#125;
+    else
+    &#123;
+        return &#39;O&#39;;
+    &#125;
+&#125;
+</code></pre>
+<p>实际上就是建一个树</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923203156840.png" alt="image-20240923203156840"></p>
+<h3 id="speller"><a href="#speller" class="headerlink" title="speller"></a>speller</h3><p>在这个问题中，你将实现一个程序，使用哈希表对文件进行拼写检查</p>
+<p>这个实际上就是链表+哈希，主要完成四个函数。但是由于给的speller.c文件使用的计算时间的函数是基于Unix的，而我是在Windows上运行，搞了好一会儿才转换过来。</p>
+<p><strong>speller.c</strong></p>
+<pre><code class="c">#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &quot;dictionary.h&quot;
+
+// Default dictionary
+#define DICTIONARY &quot;dictionaries/large&quot;
+
+// Prototype
+double calculate(clock_t start, clock_t end);
+
+int main(int argc, char *argv[])
+&#123;
+    // Check for correct number of args
+    if (argc != 2 &amp;&amp; argc != 3)
+    &#123;
+        printf(&quot;Usage: ./speller [DICTIONARY] text\n&quot;);
+        return 1;
+    &#125;
+
+    // Benchmarks
+    double time_load = 0.0, time_check = 0.0, time_size = 0.0, time_unload = 0.0;
+
+    // Determine dictionary to use
+    char *dictionary = (argc == 3) ? argv[1] : DICTIONARY;
+
+    // Load dictionary
+    clock_t start = clock();
+    bool loaded = load(dictionary);
+    clock_t end = clock();
+
+    // Exit if dictionary not loaded
+    if (!loaded)
+    &#123;
+        printf(&quot;Could not load %s.\n&quot;, dictionary);
+        return 1;
+    &#125;
+
+    // Calculate time to load dictionary
+    time_load = calculate(start, end);
+
+    // Try to open text
+    char *text = (argc == 3) ? argv[2] : argv[1];
+    FILE *file = fopen(text, &quot;r&quot;);
+    if (file == NULL)
+    &#123;
+        printf(&quot;Could not open %s.\n&quot;, text);
+        unload();
+        return 1;
+    &#125;
+
+    // Prepare to report misspellings
+    printf(&quot;\nMISSPELLED WORDS\n\n&quot;);
+
+    // Prepare to spell-check
+    int index = 0, misspellings = 0, words = 0;
+    char word[LENGTH + 1];
+
+    // Spell-check each word in text
+    char c;
+    while (fread(&amp;c, sizeof(char), 1, file))
+    &#123;
+        // Allow only alphabetical characters and apostrophes
+        if (isalpha(c) || (c == &#39;\&#39;&#39; &amp;&amp; index &gt; 0))
+        &#123;
+            word[index] = c;
+            index++;
+
+            if (index &gt; LENGTH)
+            &#123;
+                while (fread(&amp;c, sizeof(char), 1, file) &amp;&amp; isalpha(c));
+                index = 0;
+            &#125;
+        &#125;
+        else if (isdigit(c))
+        &#123;
+            while (fread(&amp;c, sizeof(char), 1, file) &amp;&amp; isalnum(c));
+            index = 0;
+        &#125;
+        else if (index &gt; 0)
+        &#123;
+            word[index] = &#39;\0&#39;;
+            words++;
+
+            start = clock();
+            bool misspelled = !check(word);
+            end = clock();
+
+            time_check += calculate(start, end);
+
+            if (misspelled)
+            &#123;
+                printf(&quot;%s\n&quot;, word);
+                misspellings++;
+            &#125;
+
+            index = 0;
+        &#125;
+    &#125;
+
+    if (ferror(file))
+    &#123;
+        fclose(file);
+        printf(&quot;Error reading %s.\n&quot;, text);
+        unload();
+        return 1;
+    &#125;
+
+    fclose(file);
+
+    // Determine dictionary&#39;s size
+    start = clock();
+    unsigned int n = size();
+    end = clock();
+    time_size = calculate(start, end);
+
+    // Unload dictionary
+    start = clock();
+    bool unloaded = unload();
+    end = clock();
+
+    if (!unloaded)
+    &#123;
+        printf(&quot;Could not unload %s.\n&quot;, dictionary);
+        return 1;
+    &#125;
+
+    time_unload = calculate(start, end);
+
+    // Report benchmarks
+    printf(&quot;\nWORDS MISSPELLED:     %d\n&quot;, misspellings);
+    printf(&quot;WORDS IN DICTIONARY:  %d\n&quot;, n);
+    printf(&quot;WORDS IN TEXT:        %d\n&quot;, words);
+    printf(&quot;TIME IN load:         %.2f\n&quot;, time_load);
+    printf(&quot;TIME IN check:        %.2f\n&quot;, time_check);
+    printf(&quot;TIME IN size:         %.2f\n&quot;, time_size);
+    printf(&quot;TIME IN unload:       %.2f\n&quot;, time_unload);
+    printf(&quot;TIME IN TOTAL:        %.2f\n\n&quot;,
+           time_load + time_check + time_size + time_unload);
+
+    // Success
+    return 0;
+&#125;
+
+// Returns number of seconds between start and end
+double calculate(clock_t start, clock_t end)
+&#123;
+    return ((double)(end - start)) / CLOCKS_PER_SEC;
+&#125;
+</code></pre>
+<p><strong>dictionary.c</strong></p>
+<pre><code class="c">// Implements a dictionary&#39;s functionality
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;ctype.h&gt;
+
+#include &quot;dictionary.h&quot;
+
+// 读文件暂存到链表中，load就是读文件构建链表，unload就是释放链表
+// 链表+哈希
+
+// Represents a node in a hash table
+typedef struct node
+&#123;
+    char word[LENGTH + 1];
+    struct node *next;
+&#125;
+node;
+
+// Choose number of buckets in hash table
+#define N 100005
+
+int loaded_size = 0;
+// Hash table
+node *table[N];
+
+// Returns true if word is in dictionary, else false
+bool check(const char *word)
+&#123;
+    for (node *tmp = table[hash(word)]; tmp != NULL; tmp = tmp-&gt;next)
+    &#123;
+        // Your implementation of check must be case-insensitive.
+        if (strcasecmp(word, tmp-&gt;word) == 0) // 找到返回真
+        &#123;
+            return true;
+        &#125;
+    &#125;
+    return false;
+&#125;
+
+// Hashes word to a number
+unsigned int hash(const char *word)
+&#123;
+    unsigned long long int hash = 0;
+    unsigned long long int prime = 131;
+
+    for (int i = 0; i &lt; strlen(word); i++) &#123;
+        hash = (hash * prime + tolower(word[i])) % N;
+    &#125;
+
+    return (unsigned int)hash;
+&#125;
+
+// Loads dictionary into memory, returning true if successful, else false
+bool load(const char *dictionary)
+&#123;
+     FILE *file = fopen(dictionary, &quot;rb&quot;);
+    if (file == NULL) return false;
+
+    char word[LENGTH + 1];
+
+    while (fscanf(file, &quot;%s&quot;, word) != EOF)
+    &#123;
+        node *n = malloc(sizeof(node));
+        if (n == NULL) return false;
+
+        strcpy(n-&gt;word, word);
+        n-&gt;next = table[hash(word)];
+        table[hash(word)] = n;
+        loaded_size++;
+    &#125;
+
+    fclose(file);
+    return true;
+&#125;
+
+// Returns number of words in dictionary if loaded, else 0 if not yet loaded
+unsigned int size(void)
+&#123;
+    return loaded_size;
+&#125;
+
+// Unloads dictionary from memory, returning true if successful, else false
+bool unload(void)
+&#123;
+    for (int i = 0; i &lt; N; i++)
+    &#123;
+        node *n = table[i];
+
+        while (n != NULL)
+        &#123;
+            node *tmp = n;
+            n = n-&gt;next;
+            free(tmp);
+        &#125;
+
+        if (n == NULL &amp;&amp; i == N - 1) return true;
+    &#125;
+    return false;
+&#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240923203811861.png" alt="image-20240923203811861"></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>自学路上，唯有坚持</p>
+<p>这一切，没有学分，没有绩点，没有老师，没有同学</p>
+<p>没有DDL是一件很可怕的事</p>
+<p>但要坚定信念–你在变强</p>
+<p>如果对其中的程序感兴趣，而中途又缺乏什么资料的话，可以去<a target="_blank" rel="noopener" href="https://github.com/qian488/Life_Long_Learning/tree/main/CS50_Start/CS50x2023_MySolution">这里</a>获取。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

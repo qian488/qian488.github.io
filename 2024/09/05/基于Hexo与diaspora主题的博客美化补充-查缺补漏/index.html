@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>基于Hexo与diaspora主题的博客美化补充(查缺补漏) | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>基于Hexo与diaspora主题的博客美化补充(查缺补漏)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/5
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/hexo/" style="color: #ff7d73">hexo</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文会不断更新<del>大概</del>反正就是查缺补漏，感觉有什么可以补的就加上去，其实目前已经能够自定义大部分内容了，可以将网站做成自己大致喜欢的样子。</p>
+<span id="more"></span>
+
+<h3 id="增加友链界面"><a href="#增加友链界面" class="headerlink" title="增加友链界面"></a>增加友链界面</h3><p>在blog文件夹下打开终端，新建一个页面</p>
+<pre><code class="bash">hexo new page links
+</code></pre>
+<p>进入<strong>source</strong>文件夹下的<strong>links</strong>文件夹，打开<code>index.md</code></p>
+<p>写入以下代码，其实就是一段css再接上几个div</p>
+<pre><code class="css">&lt;div class=&quot;post-body&quot;&gt;
+   &lt;div id=&quot;links&quot;&gt;
+      &lt;style&gt;
+         .links-content&#123;
+         margin-top:1rem;
+         &#125;
+         .link-navigation::after &#123;
+         content: &quot; &quot;;
+         display: block;
+         clear: both;
+         &#125;
+         .card &#123;
+         width: 45%;
+         font-size: 1rem;
+         padding: 10px 20px;
+         border-radius: 4px;
+         transition-duration: 0.15s;
+         margin-bottom: 1rem;
+         display:flex;
+         &#125;
+         .card:nth-child(odd) &#123;
+         float: left;
+         &#125;
+         .card:nth-child(even) &#123;
+         float: right;
+         &#125;
+         .card:hover &#123;
+         transform: scale(1.1);
+         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+         &#125;
+         .card a &#123;
+         border:none;
+         &#125;
+         .card .ava &#123;
+         width: 3rem!important;
+         height: 3rem!important;
+         margin:0!important;
+         margin-right: 1em!important;
+         border-radius:4px;
+         &#125;
+         .card .card-header &#123;
+         font-style: italic;
+         overflow: hidden;
+         width: 100%;
+         &#125;
+         .card .card-header a &#123;
+         font-style: normal;
+         color: #2bbc8a;
+         font-weight: bold;
+         text-decoration: none;
+         &#125;
+         .card .card-header a:hover &#123;
+         color: #d480aa;
+         text-decoration: none;
+         &#125;
+         .card .card-header .info &#123;
+         font-style:normal;
+         color:#a3a3a3;
+         font-size:14px;
+         min-width: 0;
+         overflow: hidden;
+         white-space: nowrap;
+         &#125;
+      &lt;/style&gt;
+      &lt;div class=&quot;links-content&quot;&gt;
+         &lt;div class=&quot;link-navigation&quot;&gt;
+            &lt;div class=&quot;card&quot;&gt;
+               &lt;img class=&quot;ava&quot; src=&quot;图标地址&quot; /&gt;
+               &lt;div class=&quot;card-header&quot;&gt;
+                  &lt;div&gt;
+                     &lt;a href=&quot;域名&quot;&gt;名称&lt;/a&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;info&quot;&gt;网站描述&lt;/div&gt;
+               &lt;/div&gt;
+            &lt;/div&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>之后在每次<code>hexo g</code>时，就会生成一个<code>links/index.html</code>文件。同时由于它不在<code>source/_posts</code>文件中，hexo不会把它当成一篇新博客加入首页。</p>
+<p>需要增加友链，就复制粘贴多个以下内容即可</p>
+<pre><code class="css">            &lt;div class=&quot;card&quot;&gt;
+               &lt;img class=&quot;ava&quot; src=&quot;图标地址&quot; /&gt;
+               &lt;div class=&quot;card-header&quot;&gt;
+                  &lt;div&gt;
+                     &lt;a href=&quot;域名&quot;&gt;名称&lt;/a&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;info&quot;&gt;网站描述&lt;/div&gt;
+               &lt;/div&gt;
+            &lt;/div&gt;
+</code></pre>
+<p>然后进入主题的配置文件<code>_config.yml</code>中找到<code>menu</code>部分，加一行即可</p>
+<pre><code>友链: /links
+</code></pre>
+<p>友链界面就添加好了，生成部署后就能看见效果。</p>
+<h3 id="增加关于界面"><a href="#增加关于界面" class="headerlink" title="增加关于界面"></a>增加关于界面</h3><p>关于界面和友链界面一样，在blog文件夹下打开终端，新建一个页面</p>
+<pre><code>hexo new page about
+</code></pre>
+<p>在进入主题的配置文件<code>_config.yml</code>中找到<code>menu</code>部分，加一行</p>
+<pre><code> 关于： /about
+</code></pre>
+<p>然后就可以在进入<strong>source</strong>文件夹下的<strong>about</strong>文件夹，打开<code>index.md</code></p>
+<p>在里面写内容即可，如果需要个性化，找一个感觉不错的css作业抄，然后改文字内容即可</p>
+<h3 id="修改网站图标等信息"><a href="#修改网站图标等信息" class="headerlink" title="修改网站图标等信息"></a>修改网站图标等信息</h3><p>diaspora主题的logo等信息都是一张张图片，进入<strong>source</strong>文件夹下的<strong>img</strong>内</p>
+<p>将自己想要跟换的图片放进去，重命名，替换掉原有的图片，即可完成替换</p>
+<p><code>favicon.png</code>就是网站小图标</p>
+<p><code>logo.png</code>就是博客上显示的字样图标</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>学无止境，不断进步。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

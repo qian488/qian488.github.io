@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Typora+picgo+github搭建图床实现博客图片正常显示 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Typora+picgo+github搭建图床实现博客图片正常显示</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/3
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/github/" style="color: #03a9f4">github</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Typora/" style="color: #ffa2c4">Typora</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/picGo/" style="color: #00a596">picGo</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很久之前就做好的内容，但是由于各种各样的因素，鸽了挺久，现在补上。</p>
+<p>这里只是提供一种解决方案，解决问题的方法不止一种，利用善于利用搜索可以获得更多解决方案。</p>
+<span id="more"></span>
+
+<h3 id="博客图片无法显示的原因"><a href="#博客图片无法显示的原因" class="headerlink" title="博客图片无法显示的原因"></a>博客图片无法显示的原因</h3><p>如标题而言，这篇文章就要讲述的就是之前的基于hexo快速搭建的个人博客中，文章的图片无法正常显示的问题。</p>
+<p>在Typora中，图片是写的路径位置，但当把文章上传到博客编辑的时候，博客是无法访问本地图片的路径的，所以在博客上的图片不能正常显示。不过，博客能访问网上图片的路径，因此只需要把图片上传到一个网页里面存放，然后在写博客的时候就可以直接正常使用。这就是图床的功能，简单来说就是你需要将图片上传到网上，以至于可以找到实现链接显示。</p>
+<p>考虑到简单的博客搭建，再加上先前的个人博客就是利用github pages实现，已经接触过GitHub，故而，我们接着利用GitHub。<del>使劲薅</del></p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="第一步-创建存放图片的仓库"><a href="#第一步-创建存放图片的仓库" class="headerlink" title="第一步 创建存放图片的仓库"></a>第一步 创建存放图片的仓库</h4><p>登录自己的Github，然后新建一个仓库用于存储图片</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721212250153.png" alt="image-20240721212250153"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721221630058.png" alt="image-20240721221630058"></p>
+<p>如此，用于存储的仓库就建好了。</p>
+<h4 id="第二步-安装配置Picgo"><a href="#第二步-安装配置Picgo" class="headerlink" title="第二步 安装配置Picgo"></a>第二步 安装配置Picgo</h4><p>搜索安装软件，注意，记住软件安装的位置在哪！！！下一步需要用到</p>
+<p>安装后的界面如下</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721222042533.png" alt="image-20240721222042533"></p>
+<p>点击图床设置中的Github</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721222422203.png" alt="image-20240721222422203"></p>
+<p>仓库名是<strong>账号&#x2F;仓库名</strong>的形式</p>
+<p>分支名一般仓库默认创建的是<strong>main</strong>分支</p>
+<p>Token需要去Github的setting页面获取</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721223035486.png" alt="image-20240721223035486"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721223632140.png" alt="image-20240721223632140"></p>
+<p>然后滑至最下的页面生成token，将token复制到picgo配置的位置</p>
+<p>注意，token生成的时候不要立马关掉页面，关闭后不会再显示，注意保存</p>
+<p>点击picgo配置设置的确定保存</p>
+<p>然后找一张图片直接拖动到上传区的页面，上传，再去GitHub的仓库看看图片是否上传成功</p>
+<h4 id="第三步-Typora有关设置"><a href="#第三步-Typora有关设置" class="headerlink" title="第三步 Typora有关设置"></a>第三步 Typora有关设置</h4><p>打开Typora,点击文件，偏好设置，图像</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240721230247030-1721574249377-2.png"></p>
+<p>点击验证会向仓库上传位置上传Typora的图标</p>
+<p>如果出现错误，可以看报错信息提示的文件路径，打开picgo.log日志文件，查看错误原因，针对对应的错误去解决，这一部分就得多利用搜索以及ai等工具，<del>确信</del></p>
+<h3 id="上传博客文章图片"><a href="#上传博客文章图片" class="headerlink" title="上传博客文章图片"></a>上传博客文章图片</h3><p>在写文章的时候，需要插入图片就直接插入图片，右键图片，可以看到上传图片，点击即可上传</p>
+<p>如果你嫌每次插入图片都要上传麻烦的话，可以直接回Typora的设置，将图像插入时的操作直接跟换为上传图片，不过这样的弊端就是只要是用Typora写东西插入图片都会自动上传，有时容易将一些原本不想上传的内容都直接上传</p>
+<p>建议插入图片和上传图片还是有个分离，而不是直接捆绑。</p>
+<h3 id="当图床过期怎么办？"><a href="#当图床过期怎么办？" class="headerlink" title="当图床过期怎么办？"></a>当图床过期怎么办？</h3><p>前往github重新生成token，去Github的setting页面获取，记得picgo里也需要更新token。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>至此，就是Typora+picgo+Github搭建图床的全部内容。如果还是无法显示图片，看看网络情况，再看看仓库内是否上传了图片等。善用搜索、善用ai。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

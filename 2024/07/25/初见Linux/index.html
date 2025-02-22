@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>初见Linux | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>初见Linux</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/25
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                总结
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Linux/" style="color: #03a9f4">Linux</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>玩Linux，最重要就是要留意报错信息，然后使劲搜，搜着搜着就能解决了。<del>(雾)</del></p>
+<p>本篇文章主要记录我装系统的过程以及使用Linux的基本命令</p>
+<span id="more"></span>
+
+<h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><p>Linux 是一款基于 GNU 通用公共许可证（GPL）发布的<strong>免费开源操作系统</strong>。任何人都可以运行、研究、修改和重新分发源代码，甚至还可以销售修改后代码的副本。Linux已成为全球范围内规模最大的开源软件项目。</p>
+<h3 id="装系统"><a href="#装系统" class="headerlink" title="装系统"></a>装系统</h3><p>我是在自己的笔记本电脑装第二系统，装的Ubuntu，因此需要做些准备。</p>
+<h4 id="0-准备部分"><a href="#0-准备部分" class="headerlink" title="0.准备部分"></a>0.准备部分</h4><h5 id="0-1分配空间"><a href="#0-1分配空间" class="headerlink" title="0.1分配空间"></a>0.1分配空间</h5><p>右键“此电脑”进入管理，点击左侧的“磁盘管理”，选择需要的盘，点击”压缩卷”，分配空间。假设分配200G空间，就填入200*1024&#x3D;204800MB。</p>
+<h5 id="0-2制作启动盘"><a href="#0-2制作启动盘" class="headerlink" title="0.2制作启动盘"></a>0.2制作启动盘</h5><p>准备闲置u盘，或者空的，制作系统盘。制作过程会清空盘的内容，注意备份资料。下载软件”UltraSO”，下载Ubuntu镜像，然后在软件中打开Ubuntu，点击”启动”-&gt;”写入硬盘映像”，选择用于制作系统盘的u盘，如此，系统盘就做好了。</p>
+<h4 id="1-引导安装"><a href="#1-引导安装" class="headerlink" title="1.引导安装"></a>1.引导安装</h4><h5 id="1-1进入bios调整系统引导"><a href="#1-1进入bios调整系统引导" class="headerlink" title="1.1进入bios调整系统引导"></a>1.1进入bios调整系统引导</h5><p>插入制作好的系统盘，重启电脑，按”F2“进入bios界面。(不同厂商进入的方式不同)</p>
+<p>将UEFI字样的引导分区放到最前面，保存后退出，重启。此时，就会进入Ubuntu安装程序。</p>
+<h5 id="1-2Ubuntu安装"><a href="#1-2Ubuntu安装" class="headerlink" title="1.2Ubuntu安装"></a>1.2Ubuntu安装</h5><p>按喜好进行选择语言，然后选择最小化安装，有需要的后续再装就好。</p>
+<p>在安装类型的时候选择其他选项，自行分配系统分区。我这里是参考了一篇文章的内容，但是我忘了在哪。</p>
+<p>找到上文中在windows系统分配的200GB空间(看自己分配的是多少)。点击左下角“+”号进行分区设置。</p>
+<p>新建boot引导分区，大小为2GB &#x3D; 2*1024MB &#x3D; 2048MB。设置为主分区，文件系统选择“Ext4”。</p>
+<p>新建交换分区，大小一般为主机内存1-2倍，由于本机内存为8GB，所以设置分区大小为8GB&#x3D;8192MB。分区类型选择“逻辑分区”，文件系统选择“交换空间”。</p>
+<p>新建主分区（相当于windows的C盘），存储Ubuntu的主要系统文件，大小一般为20-50GB，我设置为50GB&#x3D;51200MB，分区类型选择主分区，文件系统选择“Ext4”，挂载点选择“&#x2F;”。</p>
+<p>新建数据分区（相当于Windows的数据盘），容量大小为分配后剩余的空间。分区类型选择逻辑分区，文件系统选择“Ext4”，挂载点选择“&#x2F;home”。</p>
+<p>点击右下角“现在安装”，确认分区无误后，点击“继续”。</p>
+<p>根据目前所在地选择时区，我选择的是上海。</p>
+<p>然后就是设置账号名，主机名，(记得全英文)，登录密码(也是root密码)。等待安装完毕，重启。根据提示拔掉U盘，按下”Enter“。重启后，进入选择界面，选择Ubuntu系统，就可以进入系统了，如此，系统就算安装完毕。</p>
+<h4 id="2-初始配置"><a href="#2-初始配置" class="headerlink" title="2.初始配置"></a>2.初始配置</h4><h5 id="2-1更换国内软件源"><a href="#2-1更换国内软件源" class="headerlink" title="2.1更换国内软件源"></a>2.1更换国内软件源</h5><p>由于Ubuntu的软件源服务器在境外，因此下载速度会很慢，需要更改软件源为国内镜像网站。</p>
+<p>点击左下角的设置界面，找到Software&amp;Updates，Download from选择Select Best Server。</p>
+<p>进入&#x2F;ect&#x2F;apt路径，找到软件源配置文件“sources.list”，使用Ubuntu自带的编辑器对“sources.list”进行修改，熟悉vi、vim的可以使用vi、vim命令进行编辑。将源文件清空并替换为下列源地址。</p>
+<pre><code class="text">deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+
+## Pre-released source, not recommended.
+# deb https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+</code></pre>
+<p>点击“保存”按钮或者“ctrl+s”后退出，vi、vim输入“:wq”后退出。</p>
+<h5 id="2-2设置apt包管理工具"><a href="#2-2设置apt包管理工具" class="headerlink" title="2.2设置apt包管理工具"></a>2.2设置apt包管理工具</h5><p>apt是Ubuntu上的软件包管理器，可以通过apt的相关命令进行软件的更新、卸载、故障排除等。更换国内软件源后需要对apt进行更新。</p>
+<p>首先更新apt软件包的源。输入命令：</p>
+<pre><code class="bash">sudo apt update
+</code></pre>
+<p>更新完apt的源后，进行相关软件包的升级。输入命令：</p>
+<pre><code class="bash">sudo apt upgrade
+</code></pre>
+<h5 id="2-3配置局域网ssh连接"><a href="#2-3配置局域网ssh连接" class="headerlink" title="2.3配置局域网ssh连接"></a>2.3配置局域网ssh连接</h5><p>使用以下命令安装一下Ubuntu的网络工具包</p>
+<pre><code class="bash">sudo apt install net-tools
+</code></pre>
+<p>在Ubuntu上启用SSH。</p>
+<p>Secure Shell (SSH) 是一个网络协议，它主要被用来加密客户端和服务端之间的连接。 从而建立一条安全的交互通道。</p>
+<p>使用以下命令安装ssh工具：</p>
+<pre><code class="bash">sudo apt install openssh-server
+</code></pre>
+<p>如果显示安装依赖，无法安装，先卸掉原本可能安装的不完整的。</p>
+<p>输入命令:</p>
+<pre><code class="bash">sudo apt autoremove openssh-client
+</code></pre>
+<p>然后重新安装。</p>
+<p>接下来修改一下ssh的系统配置，输入以下命令，用编辑器打开配置文件。</p>
+<pre><code class="bash">sudo gedit /etc/ssh/sshd_config //注意不要和ssh_config文件搞混了
+</code></pre>
+<p>修改四个位置。</p>
+<pre><code class="text">将“Port 22”一行解除注释，可以自定义端口号，这里直接用默认的“22”端口号。
+将“ListenAddress 0.0.0.0”一行解除注释。
+将“PermitRootLogin prohibit-password”一行解除注释并将“prohibit-password”修改为“yes”。
+将“PasswordAuthentication yes”一行解除注释。
+</code></pre>
+<p>打开ssh服务。</p>
+<pre><code class="bash">sudo service ssh start 或 systemctl start ssh
+</code></pre>
+<p>查看目前ssh的服务状态</p>
+<pre><code class="bash">sudo service ssh status 或 systemctl status ssh
+</code></pre>
+<p>设置ssh开机自启动。输入以下命令：</p>
+<pre><code class="bash">sudo systemctl enable ssh
+</code></pre>
+<p>至此ssh的配置完成。</p>
+<h4 id="3-常用软件安装"><a href="#3-常用软件安装" class="headerlink" title="3.常用软件安装"></a>3.常用软件安装</h4><h5 id="3-1Chrome"><a href="#3-1Chrome" class="headerlink" title="3.1Chrome"></a>3.1Chrome</h5><p>进入官网下载chrome浏览器的“deb”后缀文件。</p>
+<p>找到下载路径，输入以下命令进行安装：</p>
+<pre><code class="bash">sudo dpkg -i google-chrome-stable_current_amd64.deb
+</code></pre>
+<p><strong>google-chrome-stable_current_amd64.deb</strong>是下载的文件的名字，如果有报错，就检查一下是否和下载的文件名一致。</p>
+<h5 id="3-2搜狗输入法"><a href="#3-2搜狗输入法" class="headerlink" title="3.2搜狗输入法"></a>3.2搜狗输入法</h5><p>进入浏览器搜索，官方有教程，按教程一步一步，即可安装。</p>
+<p>其他软件都可以按这个方式去下载，去浏览器搜官网。</p>
+<p>ps：</p>
+<p>1.终端的autoremove慎用，我忘了删什么东西的时候，把图形界面给删掉，然后就只剩下命令行，然后就搜啊搜，重新将图形界面下回来。</p>
+<p>2.如果时间不一致，可使用以下命令:</p>
+<pre><code class="bash">sudo apt install ntpdate
+sudo ntpdate time.windows.com
+sudo hwclock --localtime --systohc
+</code></pre>
+<p>3.如果声音无法播放，原因有些多，具体情况具体排查，可能是默认静音，也可能是没有声卡驱动，也可能是系统没更新完，有可能是什么其他问题。</p>
+<p>我的问题是windows10下可以正常播放，进入Ubuntu没有声音，重启，暂时性恢复，指过了几天，又没有声音了。然后，删掉自带的snap后，声音恢复，我也很奇怪。</p>
+<p>4.如果还有什么其他问题，搜索，搜着搜着就有解决方案。</p>
+<h3 id="常用命令总结"><a href="#常用命令总结" class="headerlink" title="常用命令总结"></a>常用命令总结</h3><p>0.提权，类似于管理员模式</p>
+<pre><code class="bash">sudo
+</code></pre>
+<p>需要输入自己的密码</p>
+<p>1.重启</p>
+<pre><code class="bash">reboot
+</code></pre>
+<p>2.杀死进程(关闭程序)</p>
+<p>ctrl+c退出当前程序</p>
+<p>后台程序需要kill，PID是程序的进程ID</p>
+<pre><code class="bash">kill PID
+</code></pre>
+<p>3.下载安装</p>
+<p>浏览器下载.deb文件,然后终端打开文件所在位置，输入以下命令</p>
+<pre><code class="bash">sudo dpkg -i 文件名
+</code></pre>
+<p>命令行直接下载</p>
+<pre><code class="bash">sudo apt install XXX
+</code></pre>
+<p>4.列出目录内容</p>
+<pre><code class="bash">ls
+</code></pre>
+<p>5.切换目录</p>
+<pre><code class="bash">cd
+</code></pre>
+<p>6.显示文件内容</p>
+<pre><code class="bash">cat 文件名
+</code></pre>
+<p>7.创建新目录</p>
+<pre><code class="bash">mkdir 名字
+</code></pre>
+<p>8.搜索内容</p>
+<pre><code class="bash">grep
+</code></pre>
+<p>使用上的话，这些够用了，有图形界面，这些有些也用不上，其他有需要，搜就完事了。<del>(绝对不是因为我懒)</del></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>初见Linux系统，并没有看到其特别优秀之处，应该是我还没学到或者是用到，感受不到，但是用着确实感觉帅。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">学习资料</a></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

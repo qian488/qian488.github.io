@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>如何给你的Hexo个人博客加上可爱的live2d小人？ | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>如何给你的Hexo个人博客加上可爱的live2d小人？</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/4
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/hexo/" style="color: #ffa2c4">hexo</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/live2d/" style="color: #ff7d73">live2d</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文操作的前置准备，需要已经搭建好自己的hexo个人博客。没有搭建博客的话，可以根据本站之前的教程文章一步一步跟着搭建。搭建好后，需要live2d小人就可以跟着本文操作</p>
+<span id="more"></span>
+
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="1-拉取live2d-widget项目"><a href="#1-拉取live2d-widget项目" class="headerlink" title="1.拉取live2d-widget项目"></a>1.拉取live2d-widget项目</h4><p>前往<a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget">live2d-widget</a>，通过<code>git clone</code>拉取项目到使用的主题的<strong>source</strong>文件夹下</p>
+<h4 id="2-使用live2d"><a href="#2-使用live2d" class="headerlink" title="2.使用live2d"></a>2.使用live2d</h4><p>在主题的<strong>layout</strong>文件夹内，找到<strong>head</strong>文件，并将以下代码添加其中</p>
+<pre><code class="js">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>修改<strong>live2d-widget</strong>文件夹下的<code>autoload.js</code></p>
+<pre><code class="js">const live2d_path = &quot;/live2d-widget/&quot;;
+</code></pre>
+<pre><code class="js">cdnPath: &quot;https://npm.elemecdn.com/akilar-live2dapi@latest/&quot;,
+</code></pre>
+<p>修改后，保存</p>
+<p>再将博文重新生成，部署，不出意外，即可看见效果</p>
+<p>如果<strong>live2d</strong>被遮挡住，可以进入<strong>live2d-widget</strong>文件夹下的<code>waifu.css</code></p>
+<p>找到<code>z-index</code>，将后面的数值修改为一个较大的数，数字越大，所在图层越高</p>
+<p>我这里设置的是99999</p>
+<p>一般情况下，这样就可以用了。</p>
+<h4 id="3-进阶微调"><a href="#3-进阶微调" class="headerlink" title="3.进阶微调"></a>3.进阶微调</h4><p>先将进入<a target="_blank" rel="noopener" href="https://github.com/Akilarlxh/live2d_api">live2d-api</a>，然后<strong>fork</strong>到自己的仓库，再将自己的仓库<code>git clone</code>到自己的本地，放在主题的<strong>source</strong>文件夹下,这个路径记住</p>
+<p>然后，修改<strong>live2d-widget</strong>文件夹下的<code>autoload.js</code></p>
+<p>将<strong>cdnPath</strong>修改为<strong>live2-api</strong>的路径，例如</p>
+<pre><code class="js">cdnPath: &quot;/live2d-api/Blog_live2d_api/&quot;,
+</code></pre>
+<h5 id="修改模型大小比例与位置"><a href="#修改模型大小比例与位置" class="headerlink" title="修改模型大小比例与位置"></a>修改模型大小比例与位置</h5><p>如果需要修改模型大小比例与位置，进入<strong>live2d-api</strong>的<strong>model</strong>文件夹下，进入需要修改的模型文件夹，找到<code>index.json</code>文件，找到<code>layout</code>部分,进行微调</p>
+<pre><code class="js">&quot;layout&quot;: &#123;
+        &quot;center_x&quot;:0.0,
+        &quot;center_y&quot;:-0.1,
+        &quot;width&quot;:2.0
+    &#125;,
+</code></pre>
+<p>我这里以蕾姆的为例</p>
+<h5 id="修改live2d插件的样式"><a href="#修改live2d插件的样式" class="headerlink" title="修改live2d插件的样式"></a>修改live2d插件的样式</h5><p>如果需要修改整个live2d的位置的话，进入<strong>live2d-widget</strong>文件夹下的<code>waifu.css</code></p>
+<p>以下是我的配置，可做参考</p>
+<pre><code class="css">#waifu-toggle &#123;
+    background-color: rgba(100, 179, 243, 0.048);
+    border-radius: 50px;
+    bottom: 80px;
+    color: #f4f9fa6e;
+    cursor: pointer;
+    font-size: 24px;
+    right: 0;
+    margin-right: 30px;
+    padding: 5px 2px 5px 5px;
+    position: fixed;
+    transition: margin-left 1s;
+    width: 150px;
+    writing-mode: horizontal-tb;
+&#125;
+
+#waifu-toggle.waifu-toggle-active &#123;
+    margin-left: -50px;
+&#125;
+
+#waifu-toggle.waifu-toggle-active:hover &#123;
+    margin-left: -30px;
+&#125;
+
+#waifu &#123;
+    bottom: -1000px;
+    right: 0;
+    line-height: 1;
+    margin-bottom: -5px;
+    position: fixed;
+    transform: translateY(3px);
+    transition: transform .3s ease-in-out, bottom 3s ease-in-out;
+    z-index: 999999;
+&#125;
+
+#waifu:hover &#123;
+    transform: translateY(0);
+&#125;
+
+#waifu-tips &#123;
+    animation: shake 50s ease-in-out 5s infinite;
+    background-color: rgba(60, 220, 248, 0.356);
+    border: 1px solid rgba(48, 176, 235, 0.62);
+    border-radius: 12px;
+    box-shadow: 0 3px 15px 2px rgba(191, 158, 118, .2);
+    font-size: 14px;
+    line-height: 24px;
+    margin: -30px 20px;
+    min-height: 70px;
+    opacity: 0;
+    overflow: hidden;
+    padding: 5px 10px;
+    position: absolute;
+    text-overflow: ellipsis;
+    transition: opacity 1s;
+    width: 250px;
+    word-break: break-all;
+&#125;
+
+#waifu-tips.waifu-tips-active &#123;
+    opacity: 1;
+    transition: opacity .2s;
+&#125;
+
+#waifu-tips span &#123;
+    color: #0099cc;
+&#125;
+
+#live2d &#123;
+    cursor: grab;
+    height: 300px;
+    position: relative;
+    width: 300px;
+&#125;
+
+#live2d:active &#123;
+    cursor: grabbing;
+&#125;
+
+#waifu-tool &#123;
+    color: #aaa;
+    opacity: 0;
+    position: absolute;
+    right: 5px;
+    top: 70px;
+    transition: opacity 1s;
+&#125;
+
+#waifu:hover #waifu-tool &#123;
+    opacity: 1;
+&#125;
+
+#waifu-tool span &#123;
+    display: block;
+    height: 30px;
+    text-align: center;
+&#125;
+
+#waifu-tool svg &#123;
+    fill: #7b8c9d;
+    cursor: pointer;
+    height: 25px;
+    transition: fill .3s;
+&#125;
+
+#waifu-tool svg:hover &#123;
+    fill: #0684bd; /* #34495e */
+&#125;
+</code></pre>
+<p>如果需要live2d小人在左边的话</p>
+<pre><code class="css">#waifu &#123;
+    bottom: -1000px;
+    right: 0;
+    line-height: 1;
+    margin-bottom: -5px;
+    position: fixed;
+    transform: translateY(3px);
+    transition: transform .3s ease-in-out, bottom 3s ease-in-out;
+    z-index: 999999;
+&#125;
+</code></pre>
+<p>将这部分的<strong>right</strong>修改为<strong>left</strong>即可</p>
+<h5 id="修改live2d的文本"><a href="#修改live2d的文本" class="headerlink" title="修改live2d的文本"></a>修改live2d的文本</h5><p>进入<strong>live2d-widget</strong>文件夹下的<code>waifu-tips.json</code></p>
+<p>就可以按照自己的想法修改</p>
+<h5 id="删除模型"><a href="#删除模型" class="headerlink" title="删除模型"></a>删除模型</h5><p>进入<strong>live2d-api</strong>文件夹下的<code>model_list.json</code></p>
+<p>即可看见使用的模型以及切换看板娘对应的语句</p>
+<p>不需要的删去即可，记得去<strong>model</strong>文件夹也将对应的模型删去</p>
+<p>当然，也可以不删，需要用的时候，可以回到<code>model_list.json</code>加回去</p>
+<h5 id="增加模型"><a href="#增加模型" class="headerlink" title="增加模型"></a>增加模型</h5><p>这一部分暂时还没摸索，之后有机会看情况补充</p>
+<p>有关<strong>live2d-widget</strong>和<strong>live2d-api</strong>的其他信息，也可直接去找到对应的github仓库，看看<strong>issue</strong>,或许你的问题已经被解答了。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget/issues?page=5&q=is:issue+is:closed">Issues · stevenjoezhang&#x2F;live2d-widget (github.com)</a></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>其实最花时间的是<code>waifu.css</code>和对应model的微调，毕竟要调整到适配自己网站再加上自己满意的情况，还是需要些时间滴</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>远程控制解决方案Parsec + Todesk，让你上课不再无聊 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>远程控制解决方案Parsec + Todesk，让你上课不再无聊</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/7
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/parsec/" style="color: #00bcd4">parsec</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/todesk/" style="color: #03a9f4">todesk</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先，这两种解决方案都不需要固定在同一网络下，所以才会是我首先选择的，但是为什么会有两个呢？其实就是各自都有些问题，需要互补。综合体验下来，我认为两者配合使用，是不错的选择。而且都是免费，虽然todesk付费可以解决挺多问题的，但是，秉着能白嫖绝不花钱的心思，这里我们仅需要下载免费的个人版。</p>
+<span id="more"></span>
+
+<h3 id="Todesk"><a href="#Todesk" class="headerlink" title="Todesk"></a>Todesk</h3><p>简单直接，开箱直用。去官网<a target="_blank" rel="noopener" href="https://www.todesk.com/">ToDesk远程桌面软件</a>下载，然后注册账号登陆，设置连接密码，两个设备都登录同一个账号，就可以在两个设备上直接连接了。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250117134907368.png" alt="image-20250117134907368"></p>
+<p>记得在设置中选择可以使用安全密码进行连接</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250117133223552.png" alt="image-20250117133223552"></p>
+<p>todesk的优势之处就在于:</p>
+<ul>
+<li><p>不限于设备，手机、平板、其他系统的电脑，均可使用。</p>
+</li>
+<li><p>连接相对比较稳定</p>
+</li>
+</ul>
+<p>但是免费版的缺点就是</p>
+<ul>
+<li><p>画质较差</p>
+</li>
+<li><p>不能接手柄等外设操控<del>（得加钱）</del></p>
+</li>
+</ul>
+<p>以我个人的使用经验来看，使用平板远控敲代码、看书、看视频都是不错的选择，上课的时候还可以挂着游戏刷刷刷</p>
+<p>注，todesk还有远程开机功能，但是需要有另外一个设备登录账号并且与被控设备在同一网络下，且需要去电脑bios开启一个功能，<del>我忘了</del>，总之原理就是类似于路由器通过网络唤醒电脑，需要确保这个功能有开启，才能实现远程开机。</p>
+<p>我个人闲比较鸡肋，想了一个算麻烦也不算麻烦的解决方案，选择去bios设置通电定时开机，并且写一个小工具检测电脑网络，没有网络重置网络适配器，一般情况下，都是可以确保开机就有网络，这个工具设置在电脑开机的时候就自动启动就行了。</p>
+<h3 id="Parsec"><a href="#Parsec" class="headerlink" title="Parsec"></a>Parsec</h3><p>parsec相对来说会比较麻烦，但是功能强大很多。前往官网<a target="_blank" rel="noopener" href="https://parsec.app/downloads">Download Parsec | Parsec</a>下载，注册账号，登录。并且，需要自己准备一个魔法&#x2F;科学上网工具。主要用于打开软件登录，远控的时候可以不需要。</p>
+<p>如果出现-800或者-6023等报错，可以前往以下路径C:\Users\Awith\AppData\Roaming\Parsec去修改配置文件config.txt或者config.json，在txt里面更改后保存后会自动到json里，</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250117142335896.png" alt="image-20250117142335896"></p>
+<pre><code class="json">app_proxy_address = 127.0.0.1
+app_proxy_scheme = http
+app_proxy = true
+app_proxy_port = 7890
+</code></pre>
+<p>这里的7890是你使用的魔法&#x2F;科学上网工具的端口。</p>
+<p>这里的log文件记录了程序的日志，如果有其他报错，可以查看日志，再搜搜是什么问题。目前，我只遇到过-800和-6023，但是还是有些时候会连不上，什么都没改变的情况下，有时又可以连上，我还在看看是什么情况。</p>
+<p>如果找不到这个文件路径以及没有扩展名，记得在查看选项框内，勾选文件扩展名和隐藏的项目。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250117143005951.png" alt="image-20250117143005951"></p>
+<p>parsec的操作也很简单，两边启动parsec，点击connect就行。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250117143312227.png" alt="image-20250117143312227"></p>
+<p>parsec基本上各方面完爆todesk，前提是网络必须比较好，在网络都差的情况下，parsec的画质甚至不如todesk。</p>
+<p>在网络条件好的情况下，画质在远控中表现得很不错，而且也比较稳定，并且还可以连接手柄、触控板等外接输入设备。实现远程打游戏完全不是问题。唯一的问题就是，只有pc端，ipad等其他设备并没有适配。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我使用parsec的使用场景基本上就是远控开发游戏和打游戏，其他场景下基本使用todesk即可满足。至少，以目前我的使用场景来看，parsec+todesk已经是非常不错的远程控制解决方案。parsec除了不能在其他设备上进行远控和连接有时会被墙，刚需好网络，其他的所有体验都是完爆todesk，至于todesk付费的功能，能做到什么程度我不知道。</p>
+<p>另外，如果需要被控电脑不被查看显示的内容，可以买个显卡欺瞒器，插上去，然后关闭物理显示器，就可以实现隐私屏的功能了。</p>
+<p>这篇文章鸽了挺久，终于想起来要发。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

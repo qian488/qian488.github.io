@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CS自学资料收集总结 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>CS自学资料收集总结</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/20
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                总结
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/CS/" style="color: #00bcd4">CS</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这部分内容是我收集到的有关computer science(CS)的资料汇总，不定期更新。其实也不只是cs，只是主要是cs，嗯。</p>
+<span id="more"></span>
+
+<h3 id="CS自学"><a href="#CS自学" class="headerlink" title="CS自学"></a>CS自学</h3><p>无论是科班想要自救，或是其他专业对cs感兴趣，都可以试试自学之路。</p>
+<p>北大</p>
+<p><a target="_blank" rel="noopener" href="https://csdiy.wiki/">CS自学指南</a></p>
+<p>比较多公开课等资料的整理，更多的时候是按需自取，去查有什么公开课看</p>
+<p>清华</p>
+<p><a target="_blank" rel="noopener" href="https://rekcarc-tsc-uht.readthedocs.io/en/latest/README.html">清华大学计算机系课程攻略 — THU-CST-Cracker documentation</a></p>
+<p>直白的展示大学本科四年的学习课程有哪些，可以参考，制定自己的自学计划</p>
+<p>上交</p>
+<p><a target="_blank" rel="noopener" href="https://survivesjtu.gitbook.io/survivesjtumanual/li-zhi-pian/huan-ying-lai-dao-shang-hai-jiao-tong-da-xue">欢迎来到上海交通大学 | SurviveSJTUManual</a></p>
+<p>更多的是谈论自学的思想，算导论？</p>
+<p>华南师大</p>
+<p><a target="_blank" rel="noopener" href="https://0xffff.one/d/358">https://0xffff.one/d/358</a></p>
+<p>信息也很齐全，很多认识方面的理解</p>
+<p>南大</p>
+<p><a target="_blank" rel="noopener" href="https://ysyx.oscc.cc/docs/ics-pa/">https://ysyx.oscc.cc/docs/ics-pa/</a></p>
+<p>主要是一个计算机系统的实验内容</p>
+<p>哈工大</p>
+<p><a target="_blank" rel="noopener" href="https://jowus72zrc.feishu.cn/wiki/Khl9wKWO7iuKKpkTUEOcqRzvnVh">https://jowus72zrc.feishu.cn/wiki/Khl9wKWO7iuKKpkTUEOcqRzvnVh</a></p>
+<p>很直白明了的自学建议</p>
+<p>还有一个还不错的自学社区</p>
+<p><a target="_blank" rel="noopener" href="https://www.learncs.site/docs/roadmap">https://www.learncs.site/docs/roadmap</a></p>
+<h3 id="刷题网站"><a href="#刷题网站" class="headerlink" title="刷题网站"></a>刷题网站</h3><p>codeforces</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contests">https://codeforces.com/contests</a></p>
+<p>最好的算法竞赛练习平台，几万人同时在线做题，比较锻炼思维，题面全英</p>
+<p>atcoder</p>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/">https://atcoder.jp/contests/</a></p>
+<p>典题很多，其实很适合需要快速掌握各种竞赛常见知识，题面全英</p>
+<p>洛谷</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/">https://www.luogu.com.cn/</a></p>
+<p>题单很多，覆盖面广，适合专题复习，中文题面</p>
+<p>pta</p>
+<p><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/dashboard">https://pintia.cn/problem-sets/dashboard</a></p>
+<p>中文题面，题目接近天梯赛</p>
+<p>力扣</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/">https://leetcode.cn/</a></p>
+<p>有每日一题，可以养成不错的习惯，有面试热题，可以熟悉题型，中英题面都有</p>
+<p>牛客</p>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/exam/oj">https://www.nowcoder.com/exam/oj</a></p>
+<p>中文题面，题目也挺多，也有一些面试经验分享</p>
+<p>代码随想录</p>
+<p><a target="_blank" rel="noopener" href="https://programmercarl.com/">https://programmercarl.com/</a></p>
+<p>专门针对面试</p>
+<h3 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h3><p>自己自救才是正道。</p>
+<p>比较好的一个规划是，大一学了语法，学一下数据结构，就猛猛刷题，打好基础，到大一下的时候会有蓝桥杯，天梯赛，icpc,ccpc等邀请赛。一般这个时候也就大概知道自己是否适合算法竞赛，能打就打，不能打就立马转开发。一般到大二上的时候会有ccpc和icpc的网络赛，也是绝大多数用来参考的边界线。大一期间，开始可以pta，洛谷和牛客，用于熟练语言以及一些简单的算法。然后就可以atcoder和codeforces开始咔咔刷题。当然，如果对算法竞赛没什么兴趣，那就直接cs自学，打好基础，有更多的时间去练内功。</p>
+<p>如果能继续算竞，就打个一年半，也就是到大二下。不能的话，就转开发。计算机四大件是基础，cs自学+黑马培训班的课，快速学起来，积累一个项目，好好打磨，直到大二下的暑假去投简历面试实习。中途项目可以丢计算机设计大赛，大学生创新创业项目计划等，不断打磨。总之，尽量在大二下的暑假去找实习。</p>
+<p>大三期间，就是不断打磨自己的简历，根据简历去学习，去精进，期间不断投简历，去实习，去面试，去找到自己真正想走的方向。如果有考研打算，这个时候就直接备考，不用去想着实习。</p>
+<p>大四期间，就是容错，看自己想做的工作是什么方向，思考怎么转过去。为什么不建议大一大二找方向，因为其实很大程度找不到。当大三大四的时候，起码已经在一个方向上有所体验，先占了一个坑位。这个时候，会有自己的新的思考，相对来说，更容易找到。</p>
+<p>想法容易有，规划也相对好做，最大的问题，是怎么持续学习，怎么做，才是最重要的事。</p>
+<p>自学路上，只有自己。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>资料挺多，但要去做，才是自己的。以及，注意身心健康。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Stable Diffusion 模型与提示词分享 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Stable Diffusion 模型与提示词分享</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/17
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%80%BB%E7%BB%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                总结
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/SD/" style="color: #00a596">SD</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/prompt/" style="color: #ffa2c4">prompt</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>该板块分享形式为对应提示词与模型,有个人实践的，有其他人推荐的。</p>
+<span id="more"></span>
+
+<h3 id="个人实践"><a href="#个人实践" class="headerlink" title="个人实践"></a>个人实践</h3><h4 id="绿毛"><a href="#绿毛" class="headerlink" title="绿毛"></a>绿毛</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/02354-3069966321-best%20quality%2Cmasterpiece%2CHDR%2CUHD%2C8K%2Cbest%20quality%2Cabsurdres%2Cultra-fine%20painting%2CVivid%20Colors%2Csimple%20background%2C1girl%2Clong%20hair%2Caq.png" alt="02354-3069966321-best quality,masterpiece,HDR,UHD,8K,best quality,absurdres,ultra-fine painting,Vivid Colors,simple background,1girl,long hair,aq"></p>
+<p>正向:</p>
+<pre><code>best quality,masterpiece,HDR,UHD,8K,best quality,
+absurdres,ultra-fine painting,Vivid Colors,simple background,
+1girl,long hair,aqua hair,full body,Shy and bashful face,
+((Hand-drawn style)),Clear lines
+</code></pre>
+<p>负面:</p>
+<pre><code>bad proportions, low resolution,worst quality, low quality, normal quality, lowres, 
+inaccurate limb, bad, ugly, terrible, 
+extra fingers, fewer fingers, missing fingers, extra arms, extra legs, 
+inaccurate eyes, bad composition, bad anatomy, error,
+extra digit, fewer digits, cropped, low res, jpeg artifacts, trademark,
+artist&#39;s name, username, watermarksignature, watermark,text, words,
+malformed hands,lowres,extra limb,poorly drawn hands,disconnected limbs, 
+badhandv4
+</code></pre>
+<p>采用模型:</p>
+<pre><code>Stable Diffusion:darkSushiMixMix_225D.safetensors
+VAE:vae-ft-mse-840000-ema-pruned
+</code></pre>
+<h4 id="黑丝or白丝"><a href="#黑丝or白丝" class="headerlink" title="黑丝or白丝"></a>黑丝or白丝</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/01952%252C.png" alt="01952,.png"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/02877%252C.png" alt="02877,.png"></p>
+<p>正向:</p>
+<pre><code>best quality,Vivid Colors,simple background,
+extreme detail description,
+(((1girl))),full_body,medium breasts,white_stockings,
+HDR,UHD,8K,
+long hair,black hair ,
+&lt;lora:BArtstyleREv3-CF3-Lion:1&gt;
+</code></pre>
+<p>负面:</p>
+<pre><code>bad proportions, low resolution,worst quality, low quality, normal quality, lowres, 
+inaccurate limb, bad, ugly, terrible, 
+extra fingers, fewer fingers, missing fingers, extra arms, extra legs,
+inaccurate eyes, bad composition, bad anatomy, error,
+extra digit, fewer digits, cropped, low res, jpeg artifacts, trademark,
+artist&#39;s name, username, watermarksignature, watermark,text, words,
+bad proportions, low resolution,worst quality, low quality, normal quality, lowres,  
+inaccurate limb, bad, ugly, terrible, 
+extra fingers, fewer fingers, missing fingers, extra arms, extra legs, 
+inaccurate eyes, bad composition, bad anatomy, error, 
+extra digit, fewer digits, cropped, low res, jpeg artifacts, trademark,
+artist&#39;s name, username, watermarksignature, watermark,text, words,
+</code></pre>
+<p>采用模型:</p>
+<pre><code>Stable Diffusion:kohakuXLBeta_beta7.safetensors
+VAE:sdxl_vae
+Lora:BArtstyleREv3-CF3-Lion
+</code></pre>
+<p>其他关键调节:</p>
+<pre><code>Steps:25  Sampler:DPM++2M  CFG Scale:7  
+Hires.fix放大算法:R-ESRGAN 4x+ Anime6B 
+</code></pre>
+<h3 id="他人推荐"><a href="#他人推荐" class="headerlink" title="他人推荐"></a>他人推荐</h3><p>以下为b站up<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Us4y117Rg/?spm_id_from=333.999.0.0&vd_source=212c67fc161f36062c5d44784ed8b749">Nenly</a>推荐的一部分模型，我认为挺好用的</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240817112928784.png" alt="image-20240817112928784"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240817113032923.png" alt="image-20240817113032923"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240817113358054.png" alt="image-20240817113358054"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240817113437659.png" alt="image-20240817113437659"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240817113530317.png" alt="image-20240817113530317"></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>虽然看起来效果或许不错，但实际上能够用来运用的还是较少的，但出出普通的图，倒是还行。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

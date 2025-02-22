@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>C#基础一览 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>C#基础一览</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/24
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%80%BB%E7%BB%93/" style="color: #03a9f4">总结</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="C-基础一览"><a href="#C-基础一览" class="headerlink" title="C#基础一览"></a>C#基础一览</h2><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423213738286.png" alt="image-20240423213738286"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225741021.png" alt="image-20240423225741021"></p>
+<span id="more"></span>
+
+<h3 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423213815091.png" alt="image-20240423213815091"></p>
+<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\C-基础一览.assets\image-20240423224156790.png" alt="image-20240423224156790"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423214027525.png" alt="image-20240423214027525"></p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225719092.png" alt="image-20240423225719092"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230544949.png" alt="image-20240423230544949"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231929349.png" alt="image-20240423231929349"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230819040.png" alt="image-20240423230819040"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423232022222.png" alt="image-20240423232022222"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225606226.png" alt="image-20240423225606226"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423091505313.png" alt="image-20240423091505313"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230901761.png" alt="image-20240423230901761"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225644142.png" alt="image-20240423225644142"></p>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231754296.png" alt="image-20240423231754296"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231807400.png" alt="image-20240423231807400"></p>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231835532.png" alt="image-20240423231835532"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231847589.png" alt="image-20240423231847589"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231855144.png" alt="image-20240423231855144"></p>
+<h3 id="参数详情"><a href="#参数详情" class="headerlink" title="参数详情"></a>参数详情</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224629949.png" alt="image-20240423224629949"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224718526.png" alt="image-20240423224718526"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224733467.png" alt="image-20240423224733467"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224754580.png" alt="image-20240423224754580"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224808654.png" alt="image-20240423224808654"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224903042.png" alt="image-20240423224903042"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224915587.png" alt="image-20240423224915587"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224927237.png" alt="image-20240423224927237"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224941662.png" alt="image-20240423224941662"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423224955906.png" alt="image-20240423224955906"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225018033.png" alt="image-20240423225018033"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225002425.png" alt="image-20240423225002425"><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225514909.png" alt="image-20240423225514909"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223908471.png" alt="image-20240423223908471"></p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423091716748.png" alt="image-20240423091716748"></p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240530181818612.png" alt="image-20240530181818612"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240531171510068.png" alt="image-20240531171510068"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225816556.png" alt="image-20240423225816556"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230930577.png" alt="image-20240423230930577"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230704333.png" alt="image-20240423230704333"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423232108303.png" alt="image-20240423232108303"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423232121019.png" alt="image-20240423232121019"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225832987.png" alt="image-20240423225832987"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423225904111.png" alt="image-20240423225904111"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423231042314.png" alt="image-20240423231042314"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230238719.png" alt="image-20240423230238719"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230304049.png" alt="image-20240423230304049"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230440445.png" alt="image-20240423230440445"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423230316370.png" alt="image-20240423230316370"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092008806.png" alt="image-20240423092008806"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092044580.png" alt="image-20240423092044580"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092459785.png" alt="image-20240423092459785"></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423233158069.png" alt="image-20240423233158069"></p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092330070.png" alt="image-20240423092330070"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092348633.png" alt="image-20240423092348633"></p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092537723.png" alt="image-20240423092537723"></p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092554206.png" alt="image-20240423092554206"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092727350.png" alt="image-20240423092727350"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423092913463.png" alt="image-20240423092913463"></p>
+<h3 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222628058.png" alt="image-20240423222628058"></p>
+<p>函数指针例子</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223419194.png" alt="image-20240423223419194"><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223430737.png" alt="image-20240423223430737"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223629501.png" alt="image-20240423223629501"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222644032.png" alt="image-20240423222644032"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222700154.png" alt="image-20240423222700154"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223529190.png" alt="image-20240423223529190"><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223540611.png" alt="image-20240423223540611"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222715405.png" alt="image-20240423222715405"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223728500.png" alt="image-20240423223728500"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223748001.png" alt="image-20240423223748001"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423223826450.png" alt="image-20240423223826450"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093021347.png" alt="image-20240423093021347"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093043616.png" alt="image-20240423093043616"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093124538.png" alt="image-20240423093124538"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093144556.png" alt="image-20240423093144556"></p>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222533493.png" alt="image-20240423222533493"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423222448701.png" alt="image-20240423222448701"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240530172049121.png" alt="image-20240530172049121"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240530180259134.png" alt="image-20240530180259134"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093206385.png" alt="image-20240423093206385"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093239413.png" alt="image-20240423093239413"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093310629.png" alt="image-20240423093310629"></p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240423093334959.png" alt="image-20240423093334959"></p>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006114841703.png" alt="image-20241006114841703"></p>
+<p><img src="D:\Projects\MyProjects\HexoBlog\blog\source_posts\C-基础一览.assets\image-20241006114946908.png" alt="image-20241006114946908"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006115112869.png" alt="image-20241006115112869"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006115932380.png" alt="image-20241006115932380"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006115740170.png" alt="image-20241006115740170"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120250170.png" alt="image-20241006120250170"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120406248.png" alt="image-20241006120406248"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120631954.png" alt="image-20241006120631954"></p>
+<p>通过反射设置数据成员、调用成员函数</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006120932958.png" alt="image-20241006120932958"></p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20241006121059892.png" alt="image-20241006121059892"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

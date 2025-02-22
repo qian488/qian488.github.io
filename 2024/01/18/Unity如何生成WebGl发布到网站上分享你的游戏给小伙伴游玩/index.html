@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/18
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/unity/" style="color: #ffa2c4">unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/WebGl/" style="color: #00bcd4">WebGl</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
+<p>首先，要明确一点的是，<code>(仅个人观点)</code>unity打包到WebGl这个功能主要用于将小型游戏demo发布试玩，本文是将游戏发布到unity官方提供的空间上，如果想要部署到自己的服务器的话，<del>我暂时不会</del>。</p>
+<p>网页快速试玩永远是让大家最容易接受的方法，快来看看如何快速分享你的游戏给小伙伴吧。</p>
+<span id="more"></span>
+
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先，准备好一个你想要分享的简单的游戏demo。好了，第一步就结束捏<del>(bushi)</del></p>
+<p>其次，安装<strong>WebGL Build Support</strong>到你的unity游戏项目的编辑器版本。这是非常简单的操作，直接去到<strong>unity hub</strong>中安装的编辑器版本中<strong>添加模块</strong>，勾选WebGl选项。</p>
+<p>然后，打开你的unity游戏项目。</p>
+<h3 id="打包上传"><a href="#打包上传" class="headerlink" title="打包上传"></a>打包上传</h3><p>将你的unity游戏项目在<strong>Build Settings</strong>中切换到 WebGL 平台。</p>
+<p><code>注意！！！</code>切换好平台可能会有一些问题，最主要集中的就是在<strong>Color Space</strong> 上。很可能你的项目设置的是 <strong>Liner</strong>，但是为了生成 WebGL 你需要切换到 <strong>Gamma</strong> 。Gamma和Linear颜色空间，两者有色差，Gamma有个2.25左右的修正值。<del>其实具体的我也不懂</del></p>
+<p>接下来，需要安装一个 package 插件包 ：<strong>WebGL Publisher</strong></p>
+<p>在你的unity游戏项目中菜单栏找到<strong>window</strong>，打开<strong>Package Manager</strong>，勾选<strong>Unity Registry</strong>，然后搜索该插件包(WebGl Publisher)进行安装。</p>
+<p>安装好了之后，你的整个菜单当中会多出来一个 <strong>Publish</strong>的菜单，里面可以打开一个窗口叫做：<strong>WebGL Project</strong> </p>
+<p>然后还是用正常的<strong>Build Settings</strong> 的窗口来 Build 保存你的整个项目。当你打包成功了，就可以在 WebGL Project 的窗口里看到你最新打包的 WebGL 项目。 然后点击 <strong>Publish</strong> 就会帮你上传到你的 connect 网站(unity官方提供的网站)上。</p>
+<p>上传完成后，会自动在浏览器跳转到网站上，没有的话，就在 WebGL Project 的窗口里应该可以看到一个click相关的字样，点击就能跳转。在网站上，<strong>add</strong>可以为游戏选择一个封面，<strong>play</strong>选项就可以直接试玩游戏。然后填写相关信息即可发布。</p>
+<p><strong>至此你就成功上传好了 WebGL 平台的游戏了！可以把网址分享给你的朋友试玩啦！</strong></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.网站仅支持电脑端打开游玩，<del>(我也不知道做其他平台的操作适配后可不可以)</del></p>
+<p>2.游戏项目不能太大，不然容易卡加载界面</p>
+<p>3.默认的字体打包后不显示中文，需要中文的话需要连相对应的字体文件一起打包<del>(但是字体文件本身也挺大，需要优化)</del></p>
+<p>4.默认游玩的时候，音频是关闭的，需要手动打开</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>好耶，奇怪的知识增加了、</p>
+<p>测试的游戏项目试玩网址</p>
+<p>Running：<a target="_blank" rel="noopener" href="https://play.unity.com/mg/other/runningwebgl-3">Running_Webgl_Test - Unity Play</a></p>
+<p>这是我首次接触unity时制作的小游戏<del>(初学者学习项目)</del>，欢迎试玩！！！</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

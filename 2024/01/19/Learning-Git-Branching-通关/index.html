@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Learning Git Branching 通关 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Learning Git Branching 通关</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/19
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/git/" style="color: #ffa2c4">git</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>好耶、边玩边学！！！</p>
+<p><strong>Learning Git Branching游玩地址：</strong><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/?locale=zh_CN">https://learngitbranching.js.org/?locale=zh_CN</a></p>
+<p>我在思考需不需要将知识点总结写出来，但是我觉得这个网页的闯关式教学就已经挺好的。于是，我决定只保留每一关的问题与我的答案。<code>Q</code>表示问题，<code>A</code>表示答案。就当是一个小项目的分享。</p>
+<p>强烈建议直接进入网站游玩闯关。</p>
+<span id="more"></span>
+
+<h3 id="Git-commit"><a href="#Git-commit" class="headerlink" title="Git commit"></a>Git commit</h3><h4 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h4><p>进行两次提交</p>
+<h4 id="A"><a href="#A" class="headerlink" title="A"></a>A</h4><pre><code>git commit
+git commit
+</code></pre>
+<h3 id="Git-branch"><a href="#Git-branch" class="headerlink" title="Git branch"></a>Git branch</h3><h4 id="Q-1"><a href="#Q-1" class="headerlink" title="Q"></a>Q</h4><p>创建一个名为 <code>bugFix</code> 的新分支，然后切换过去。</p>
+<h4 id="A-1"><a href="#A-1" class="headerlink" title="A"></a>A</h4><pre><code>git branch bugFix
+git checkout bugFix
+</code></pre>
+<p>or</p>
+<pre><code>git checkout -b bugFix
+</code></pre>
+<h3 id="Git-merge"><a href="#Git-merge" class="headerlink" title="Git merge"></a>Git merge</h3><h4 id="Q-2"><a href="#Q-2" class="headerlink" title="Q"></a>Q</h4><p>创建新分支 <code>bugFix</code>，切换到该分支，提交一次</p>
+<p>切换回 <code>main</code>，再提交一次</p>
+<p>把 <code>bugFix</code> 合并到 <code>main</code></p>
+<h4 id="A-2"><a href="#A-2" class="headerlink" title="A"></a>A</h4><pre><code>git checkout -b bugFix
+git commit
+git checkout main
+git commit
+git merge bugFix
+</code></pre>
+<h3 id="Git-rebase"><a href="#Git-rebase" class="headerlink" title="Git rebase"></a>Git rebase</h3><h4 id="Q-3"><a href="#Q-3" class="headerlink" title="Q"></a>Q</h4><p>新建并切换到 <code>bugFix</code> 分支，提交一次</p>
+<p>切换回 <code>main</code> 分支再提交一次</p>
+<p>再次切换到 <code>bugFix</code> 分支，rebase 到 <code>main</code> 上</p>
+<h4 id="A-3"><a href="#A-3" class="headerlink" title="A"></a>A</h4><pre><code>git checkout -b bugFix
+git commit
+git checkout main
+git commit
+git checkout bugFix
+git rebase main
+</code></pre>
+<h3 id="分离HEAD"><a href="#分离HEAD" class="headerlink" title="分离HEAD"></a>分离HEAD</h3><h4 id="Q-4"><a href="#Q-4" class="headerlink" title="Q"></a>Q</h4><p>从 <code>bugFix</code> 分支中分离出 HEAD 并让其指向一个提交记录。</p>
+<p>通过哈希值指定提交记录。每个提交记录的哈希值显示在代表提交记录的圆圈中。</p>
+<h4 id="A-4"><a href="#A-4" class="headerlink" title="A"></a>A</h4><pre><code>git checkout c4
+</code></pre>
+<h3 id="相对引用"><a href="#相对引用" class="headerlink" title="相对引用(^)"></a>相对引用(^)</h3><h4 id="Q-5"><a href="#Q-5" class="headerlink" title="Q"></a>Q</h4><p>切换到 <code>bugFix</code> 的 parent 节点。这会进入分离 <code>HEAD</code> 状态。</p>
+<h4 id="A-5"><a href="#A-5" class="headerlink" title="A"></a>A</h4><pre><code>git checkout bugFix^
+</code></pre>
+<h3 id="相对引用2"><a href="#相对引用2" class="headerlink" title="相对引用2(~)"></a>相对引用2(~)</h3><h4 id="Q-6"><a href="#Q-6" class="headerlink" title="Q"></a>Q</h4><p>移动 <code>HEAD</code>，<code>main</code> 和 <code>bugFix</code> 到目标所示的位置。</p>
+<h4 id="A-6"><a href="#A-6" class="headerlink" title="A"></a>A</h4><pre><code>git checkout HEAD^
+git branch -f bugFix HEAD^
+git branch -f main c6
+</code></pre>
+<p>or</p>
+<pre><code>git branch -f bugFix HEAD~2
+git checkout HEAD^
+git branch -f main c6
+</code></pre>
+<h3 id="撤销变更"><a href="#撤销变更" class="headerlink" title="撤销变更"></a>撤销变更</h3><h4 id="Q-7"><a href="#Q-7" class="headerlink" title="Q"></a>Q</h4><p>分别撤销 <code>local</code> 分支和 <code>pushed</code> 分支上的最近一次提交。共需要撤销两个提交（每个分支一个）。</p>
+<p>记住 <code>pushed</code> 是远程分支，<code>local</code> 是本地分支</p>
+<h4 id="A-7"><a href="#A-7" class="headerlink" title="A"></a>A</h4><pre><code>git reset local^
+git checkout pushed
+git revert pushed
+</code></pre>
+<h3 id="Git-cherry-pick"><a href="#Git-cherry-pick" class="headerlink" title="Git cherry-pick"></a>Git cherry-pick</h3><h4 id="Q-8"><a href="#Q-8" class="headerlink" title="Q"></a>Q</h4><p>选取其他分支的指定提交记录，合并到<code>main</code>分支</p>
+<h4 id="A-8"><a href="#A-8" class="headerlink" title="A"></a>A</h4><pre><code>git cherry-pick c3 c4 c7
+</code></pre>
+<h3 id="交互式-rebase"><a href="#交互式-rebase" class="headerlink" title="交互式 rebase"></a>交互式 rebase</h3><h4 id="Q-9"><a href="#Q-9" class="headerlink" title="Q"></a>Q</h4><p>当 rebase UI界面打开时, 你能做3件事:</p>
+<ul>
+<li>调整提交记录的顺序（通过鼠标拖放来完成）</li>
+<li>删除你不想要的提交（通过切换 <code>pick</code> 的状态来完成，关闭就意味着你不想要这个提交记录）</li>
+<li>合并提交。</li>
+</ul>
+<p>做一次交互式的 rebase，整理成目标窗口中的提交顺序。</p>
+<h4 id="A-9"><a href="#A-9" class="headerlink" title="A"></a>A</h4><pre><code>git rebase -i overHere
+调整按题目顺序即可
+</code></pre>
+<h3 id="只取一个提交记录"><a href="#只取一个提交记录" class="headerlink" title="只取一个提交记录"></a>只取一个提交记录</h3><h4 id="Q-10"><a href="#Q-10" class="headerlink" title="Q"></a>Q</h4><p>确保 <code>main</code> 分支能得到 <code>bugFix</code> 分支上的相关提交。</p>
+<h4 id="A-10"><a href="#A-10" class="headerlink" title="A"></a>A</h4><pre><code>git rebase -i main
+git checkout main
+git cherry-pick bugFix
+</code></pre>
+<p>or</p>
+<pre><code>git rebase -i main
+git rebase bugFix main
+</code></pre>
+<h3 id="提交的技巧1"><a href="#提交的技巧1" class="headerlink" title="提交的技巧1"></a>提交的技巧1</h3><h4 id="Q-11"><a href="#Q-11" class="headerlink" title="Q"></a>Q</h4><p>你之前在 <code>newImage</code> 分支上进行了一次提交，然后又基于它创建了 <code>caption</code> 分支，然后又提交了一次。</p>
+<p>此时你想对某个以前的提交记录进行一些小小的调整。比如设计师想修改一下 <code>newImage</code> 中图片的分辨率，尽管那个提交记录并不是最新的了。</p>
+<p>通过下面的方法来克服困难：</p>
+<ul>
+<li>先用 <code>git rebase -i</code> 将提交重新排序，然后把我们想要修改的提交记录挪到最前</li>
+<li>然后用 <code>git commit --amend</code> 来进行一些小修改</li>
+<li>接着再用 <code>git rebase -i</code> 来将他们调回原来的顺序</li>
+<li>最后我们把 main 移到修改的最前端（用你自己喜欢的方法），就大功告成啦</li>
+</ul>
+<h4 id="A-11"><a href="#A-11" class="headerlink" title="A"></a>A</h4><pre><code>git rebase -i HEAD~2
+git commit --amend
+git rebase -i main
+git rebase caption main
+</code></pre>
+<h3 id="提交的技巧-2"><a href="#提交的技巧-2" class="headerlink" title="提交的技巧 2"></a>提交的技巧 2</h3><h4 id="Q-12"><a href="#Q-12" class="headerlink" title="Q"></a>Q</h4><p>可以使用 <code>rebase -i</code> 对提交记录进行重新排序。只要把我们想要的提交记录挪到最前端，我们就可以很轻松的用 <code>--amend</code> 修改它，然后把它们重新排成我们想要的顺序。</p>
+<p>但这样做就唯一的问题就是要进行两次排序，而这有可能造成由 rebase 而导致的冲突。下面还是看看 <code>git cherry-pick</code> 是怎么做的吧。</p>
+<p>目标和上一关一样，通过 <code>--amend</code> 改变提交记录 <code>C2</code>，但你不能用 <code>rebase -i</code></p>
+<h4 id="A-12"><a href="#A-12" class="headerlink" title="A"></a>A</h4><pre><code>git checkout main
+git cherry-pick c2
+git commit --amend
+git cherry-pick c3
+</code></pre>
+<h3 id="Git-Tag"><a href="#Git-Tag" class="headerlink" title="Git Tag"></a>Git Tag</h3><h4 id="Q-13"><a href="#Q-13" class="headerlink" title="Q"></a>Q</h4><p>按照目标建立两个标签，然后切换到 <code>v1</code> 上面，要注意你会进到分离 <code>HEAD</code> 的状态 —— 这是因为不能直接在<code>v1</code> 上面做 commit。</p>
+<h4 id="A-13"><a href="#A-13" class="headerlink" title="A"></a>A</h4><pre><code>git checkout c2
+git tag v0 HEAD^
+git tag v1
+</code></pre>
+<h3 id="Git-Describe"><a href="#Git-Describe" class="headerlink" title="Git Describe"></a>Git Describe</h3><h4 id="Q-14"><a href="#Q-14" class="headerlink" title="Q"></a>Q</h4><p><code>git describe</code> 的语法是：</p>
+<pre><code>git describe &lt;ref&gt;
+</code></pre>
+<p><code>&lt;ref&gt;</code> 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会使用你目前所在的位置（<code>HEAD</code>）。</p>
+<p>它输出的结果是这样的：</p>
+<pre><code>&lt;tag&gt;_&lt;numCommits&gt;_g&lt;hash&gt;
+</code></pre>
+<p><code>tag</code> 表示的是离 <code>ref</code> 最近的标签， <code>numCommits</code> 是表示这个 <code>ref</code> 与 <code>tag</code> 相差有多少个提交记录， <code>hash</code> 表示的是你所给定的 <code>ref</code> 所表示的提交记录哈希值的前几位。</p>
+<p>当 <code>ref</code> 提交记录上有某个标签时，则只输出标签名称</p>
+<p>试着在这个关卡指定几个位置来感受一下这个命令</p>
+<h4 id="A-14"><a href="#A-14" class="headerlink" title="A"></a>A</h4><pre><code>git describe main
+git describe side
+git describe bugFix
+git commit
+</code></pre>
+<h3 id="多次-Rebase"><a href="#多次-Rebase" class="headerlink" title="多次 Rebase"></a>多次 Rebase</h3><h4 id="Q-15"><a href="#Q-15" class="headerlink" title="Q"></a>Q</h4><p>把所有这些分支上所做的工作都通过 rebase 合并到 main 分支上吧。</p>
+<p>但是你的领导给你提了点要求 —— 他们希望得到有序的提交历史，也就是我们最终的结果应该是 <code>C6&#39;</code> 在 <code>C7&#39;</code> 上面， <code>C5&#39;</code> 在 <code>C6&#39;</code> 上面，依此类推。</p>
+<h4 id="A-15"><a href="#A-15" class="headerlink" title="A"></a>A</h4><pre><code>git rebase main bugFix
+git rebase bugFix side
+git rebase side another
+git rebase another main
+</code></pre>
+<h3 id="两个-parent-节点"><a href="#两个-parent-节点" class="headerlink" title="两个 parent 节点"></a>两个 parent 节点</h3><h4 id="Q-16"><a href="#Q-16" class="headerlink" title="Q"></a>Q</h4><p>操作符 <code>^</code> 与 <code>~</code> 符一样，后面也可以跟一个数字。</p>
+<p>但是该操作符后面的数字与 <code>~</code> 后面的不同，并不是用来指定向上返回几代，而是指定合并提交记录的某个 parent 提交。还记得前面提到过的一个合并提交有两个 parent 提交吧，所以遇到这样的节点时该选择哪条路径就不是很清晰了。</p>
+<p>Git 默认选择合并提交的“第一个” parent 提交，在操作符 <code>^</code> 后跟一个数字可以改变这一默认行为。这些操作符还支持链式操作！</p>
+<p>在指定的目标位置创建一个新的分支。</p>
+<p>很明显可以简单地直接使用提交记录的哈希值（比如 <code>C6</code>），但我要求你使用刚刚讲到的相对引用修饰符</p>
+<h4 id="A-16"><a href="#A-16" class="headerlink" title="A"></a>A</h4><pre><code>git branch -f bugWork c2
+</code></pre>
+<p>or</p>
+<pre><code>git branch bugWork main^^2^
+</code></pre>
+<h3 id="纠缠不清的分支"><a href="#纠缠不清的分支" class="headerlink" title="纠缠不清的分支"></a>纠缠不清的分支</h3><h4 id="Q-17"><a href="#Q-17" class="headerlink" title="Q"></a>Q</h4><p>现在我们的 <code>main</code> 分支是比 <code>one</code>、<code>two</code> 和 <code>three</code> 要多几个提交。出于某种原因，我们需要把 <code>main</code> 分支上最近的几次提交做不同的调整后，分别添加到各个的分支上。</p>
+<p><code>one</code> 需要重新排序并删除 <code>C5</code>，<code>two</code> 仅需要重排排序，而 <code>three</code> 只需要提交一次。</p>
+<h4 id="A-17"><a href="#A-17" class="headerlink" title="A"></a>A</h4><pre><code>git checkout one
+git cherry-pick c4 c3 c2
+git checkout two
+git cherry-pick c5 c4 c3 c2
+git checkout three
+git rebase c2 three
+</code></pre>
+<p>or</p>
+<pre><code>git checkout one
+git cherry-pick c4 c3 c2
+git checkout two
+git cherry-pick c5 c4 c3 c2
+git branch -f three c2
+</code></pre>
+<h3 id="Git-clone"><a href="#Git-clone" class="headerlink" title="Git clone"></a>Git clone</h3><p>从技术上来讲，<code>git clone</code> 命令在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。 但在该教程中使用这个命令会有一些不同 —— 它会在远程创建一个你本地仓库的副本。显然这和真实命令的意思刚好相反，但是它帮咱们把本地仓库和远程仓库关联到了一起，在教程中就凑合着用吧。</p>
+<h4 id="Q-18"><a href="#Q-18" class="headerlink" title="Q"></a>Q</h4><p>克隆仓库</p>
+<h4 id="A-18"><a href="#A-18" class="headerlink" title="A"></a>A</h4><pre><code>git clone
+</code></pre>
+<h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><h4 id="Q-19"><a href="#Q-19" class="headerlink" title="Q"></a>Q</h4><p>在 <code>main</code> 分支上做一次提交；然后切换到 <code>o/main</code>，再做一提交。这有助于你理解远程分支的不同，他们的更新只是反映了远程的状态。</p>
+<h4 id="A-19"><a href="#A-19" class="headerlink" title="A"></a>A</h4><pre><code>git commit
+git checkout o/main
+git commit
+</code></pre>
+<h3 id="Git-Fetch"><a href="#Git-Fetch" class="headerlink" title="Git Fetch"></a>Git Fetch</h3><h4 id="Q-20"><a href="#Q-20" class="headerlink" title="Q"></a>Q</h4><p><code>git fetch</code> 完成了仅有的但是很重要的两步:</p>
+<ul>
+<li>从远程仓库下载本地仓库中缺失的提交记录</li>
+<li>更新远程分支指针(如 <code>o/main</code>)</li>
+</ul>
+<p><code>git fetch</code> 实际上将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
+<p><code>git fetch</code> 并不会改变你本地仓库的状态。它不会更新你的 <code>main</code> 分支，也不会修改你磁盘上的文件。</p>
+<p>本关只需用 <code>git fetch</code> 下载所有的提交！</p>
+<h4 id="A-20"><a href="#A-20" class="headerlink" title="A"></a>A</h4><pre><code>git fetch
+</code></pre>
+<h3 id="Git-Pull"><a href="#Git-Pull" class="headerlink" title="Git Pull"></a>Git Pull</h3><h4 id="Q-21"><a href="#Q-21" class="headerlink" title="Q"></a>Q</h4><p><code>git pull</code> 就是 git fetch 和 git merge 的缩写！接下来会探索一下 <code>git pull</code> 的细节(包括选项和参数)，现在咱们先解决这个关卡。</p>
+<p>实际上你完全可以用 <code>fetch</code> 和 <code>merge</code> 通过本关，但是这会增加你的命令数。</p>
+<h4 id="A-21"><a href="#A-21" class="headerlink" title="A"></a>A</h4><pre><code>git pull
+</code></pre>
+<h3 id="模拟团队合作"><a href="#模拟团队合作" class="headerlink" title="模拟团队合作"></a>模拟团队合作</h3><h4 id="Q-22"><a href="#Q-22" class="headerlink" title="Q"></a>Q</h4><p>为了接下来的课程, 我们需要先教你如何制造远程仓库的变更。</p>
+<p>这意味着，我们需要“假装”你的同事、朋友、合作伙伴更新了远程仓库，有可能是某个特定的分支，或是几个提交记录。</p>
+<p>注意：该网页为了做到这点，引入一个自造命令 <code>git fakeTeamwork</code></p>
+<p><code>fakeTeamwork</code> 默认操作就是在远程仓库的 main 分支上做一次提交。可以指定提交的分支或是数量，只需要在命令后加上它们就可以了。</p>
+<p>克隆一个远程仓库（用 <code>git clone</code>），再在刚创建的远程仓库中模拟一些修改，然后在你自己的本地分支上做一些提交，再拉取远程仓库的变更。</p>
+<h4 id="A-22"><a href="#A-22" class="headerlink" title="A"></a>A</h4><pre><code>git clone
+git fakeTeamwork 2
+git commit
+git pull
+</code></pre>
+<h3 id="Git-Push"><a href="#Git-Push" class="headerlink" title="Git Push"></a>Git Push</h3><h4 id="Q-23"><a href="#Q-23" class="headerlink" title="Q"></a>Q</h4><p>与 <code>git pull</code> 相反的命令是什么呢？<code>git push</code>！</p>
+<p><code>git push</code> 负责将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录。一旦 <code>git push</code> 完成, 你的朋友们就可以从这个远程仓库下载。</p>
+<p>要完成本关，需要向远程仓库分享两个提交记录。</p>
+<h4 id="A-23"><a href="#A-23" class="headerlink" title="A"></a>A</h4><pre><code>git commit
+git commit
+git push
+</code></pre>
+<h3 id="偏离的提交历史"><a href="#偏离的提交历史" class="headerlink" title="偏离的提交历史"></a>偏离的提交历史</h3><h4 id="Q-24"><a href="#Q-24" class="headerlink" title="Q"></a>Q</h4><p>我们用 <code>git fetch</code> 更新了本地仓库中的远程分支，然后用 rebase 将我们的工作移动到最新的提交记录下，最后再用 <code>git push</code> 推送到远程仓库。还可以使用 <code>merge</code>，尽管 <code>git merge</code> 不会移动你的工作（它会创建新的合并提交），但是它会告诉 Git 你已经合并了远程仓库的所有变更。这是因为远程分支现在是你本地分支的祖先，也就是说你的提交已经包含了远程分支的所有变化。前面已经介绍过 <code>git pull</code> 就是 fetch 和 merge 的简写，类似的 <code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
+<p>要完成本关，你需要完成以下几步：</p>
+<ul>
+<li>克隆你的仓库</li>
+<li>模拟一次远程提交（fakeTeamwork）</li>
+<li>完成一次本地提交</li>
+<li>用 <em>rebase</em> 发布你的工作</li>
+</ul>
+<h4 id="A-24"><a href="#A-24" class="headerlink" title="A"></a>A</h4><pre><code>git clone
+git fakeTeamwork
+git commit
+git pull --rebase
+git push
+</code></pre>
+<h3 id="锁定的Main-Locked-Main"><a href="#锁定的Main-Locked-Main" class="headerlink" title="锁定的Main(Locked Main)"></a>锁定的Main(Locked Main)</h3><h4 id="Q-25"><a href="#Q-25" class="headerlink" title="Q"></a>Q</h4><p>如果你是在一个大的合作团队中工作, 很可能是main被锁定了, 需要一些Pull Request流程来合并修改。如果你直接提交(commit)到本地main, 然后试图推送(push)修改, 你将会收到这样类似的信息:</p>
+<pre><code>! [远程服务器拒绝] main -&gt; main (TF402455: 不允许推送(push)这个分支; 你必须使用pull request来更新这个分支.)
+</code></pre>
+<p>远程服务器拒绝直接推送(push)提交到main, 因为策略配置要求 pull requests 来提交更新.</p>
+<p>你应该按照流程,新建一个分支, 推送(push)这个分支并申请pull request,但是你忘记并直接提交给了main.现在你卡住并且无法推送你的更新.</p>
+<p>解决办法：新建一个分支feature, 推送到远程服务器. 然后reset你的main分支和远程服务器保持一致, 否则下次你pull并且他人的提交和你冲突的时候就会有问题.</p>
+<h4 id="A-25"><a href="#A-25" class="headerlink" title="A"></a>A</h4><p>注意：该网页中默认的行为是<code>--hard</code>硬重置，但是要记录Git中默认的是<code>--mixed</code></p>
+<pre><code>git reset --hard o/main
+git checkout -b feature c2
+git push
+</code></pre>
+<h3 id="推送主分支"><a href="#推送主分支" class="headerlink" title="推送主分支"></a>推送主分支</h3><h4 id="Q-26"><a href="#Q-26" class="headerlink" title="Q"></a>Q</h4><p>在大型项目中开发人员通常会在（从 <code>main</code> 上分出来的）特性分支上工作，工作完成后只做一次集成。这跟前面课程的描述很相像（把 side 分支推送到远程仓库），不过本节我们会深入一些.</p>
+<p>但是有些开发人员只在 main 上做 push、pull —— 这样的话 main 总是最新的，始终与远程分支 (o&#x2F;main) 保持一致。</p>
+<p>对于接下来这个工作流，我们集成了两个步骤：</p>
+<ul>
+<li>将特性分支集成到 <code>main</code> 上</li>
+<li>推送并更新远程分支</li>
+</ul>
+<p>快速的更新 <code>main</code> 分支并推送到远程:</p>
+<ul>
+<li>将我们的工作 rebase 到远程分支的最新提交记录</li>
+<li>向远程仓库推送我们的工作</li>
+</ul>
+<p>这个关卡的 Boss 很厉害 —— 以下是通关提示：</p>
+<ul>
+<li>这里共有三个特性分支 —— <code>side1</code> <code>side2</code> 和 <code>side3</code></li>
+<li>我需要将这三分支按顺序推送到远程仓库</li>
+<li>因为远程仓库已经被更新过了，所以我们还要把那些工作合并过来</li>
+</ul>
+<h4 id="A-26"><a href="#A-26" class="headerlink" title="A"></a>A</h4><pre><code>git checkout main
+git pull --rebase
+git rebase main side1
+git rebase side1 side2
+git rebase side2 side3
+git rebase side3 main
+git push
+</code></pre>
+<p>or</p>
+<pre><code>git fetch
+git rebase o/main side1
+git rebase side1 side2
+git rebase side2 side3
+git rebase side3 main
+git push
+</code></pre>
+<h3 id="合并远程仓库"><a href="#合并远程仓库" class="headerlink" title="合并远程仓库"></a>合并远程仓库</h3><h4 id="Q-27"><a href="#Q-27" class="headerlink" title="Q"></a>Q</h4><p>在开发社区里，有许多关于 merge 与 rebase 的讨论。以下是关于 rebase 的优缺点：</p>
+<p>优点:</p>
+<ul>
+<li>Rebase 使你的提交树变得很干净, 所有的提交都在一条线上</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>Rebase 修改了提交树的历史</li>
+</ul>
+<p>比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。</p>
+<p>一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人可能更喜欢干净的提交树，于是偏爱 rebase。</p>
+<p>本关，我们还是解决上一关卡中的问题，但是要用 merge 替换 rebase。这显然有点画蛇添足，但这只是为了更好的说明上面的观点。</p>
+<h4 id="A-27"><a href="#A-27" class="headerlink" title="A"></a>A</h4><pre><code>git checkout main
+git pull
+git merge side1
+git merge side2
+git merge side3
+git push
+</code></pre>
+<h3 id="远程跟踪分支"><a href="#远程跟踪分支" class="headerlink" title="远程跟踪分支"></a>远程跟踪分支</h3><h4 id="Q-28"><a href="#Q-28" class="headerlink" title="Q"></a>Q</h4><p>Git 好像知道 <code>main</code> 与 <code>o/main</code> 是相关的。当然这些分支的名字是相似的，可能会让你觉得是依此将远程分支 main 和本地的 main 分支进行了关联。这种关联在以下两种情况下可以清楚地得到展示：</p>
+<ul>
+<li>pull 操作时, 提交记录会被先下载到 o&#x2F;main 上，之后再合并到本地的 main 分支。隐含的合并目标由这个关联确定的。</li>
+<li>push 操作时, 我们把工作从 <code>main</code> 推到远程仓库中的 <code>main</code> 分支(同时会更新远程分支 <code>o/main</code>) 。这个推送的目的地也是由这种关联确定的！</li>
+</ul>
+<p>直接了当地讲，<code>main</code> 和 <code>o/main</code> 的关联关系就是由分支的“remote tracking”属性决定的。<code>main</code> 被设定为跟踪 <code>o/main</code> —— 这意味着为 <code>main</code> 分支指定了推送的目的地以及拉取后合并的目标。</p>
+<p>你可能想知道 <code>main</code> 分支上这个属性是怎么被设定的，你并没有用任何命令指定过这个属性呀！好吧, 当你克隆仓库的时候, Git 就自动帮你把这个属性设置好了。</p>
+<p>当你克隆时, Git 会为远程仓库中的每个分支在本地仓库中创建一个远程分支（比如 <code>o/main</code>）。然后再创建一个跟踪远程仓库中活动分支的本地分支，默认情况下这个本地分支会被命名为 <code>main</code>。</p>
+<p>克隆完成后，你会得到一个本地分支（如果没有这个本地分支的话，你的目录就是“空白”的），但是可以查看远程仓库中所有的分支（如果你好奇心很强的话）。这样做对于本地仓库和远程仓库来说，都是最佳选择。</p>
+<p>这也解释了为什么会在克隆的时候会看到下面的输出：</p>
+<pre><code>local branch &quot;main&quot; set to track remote branch &quot;o/main&quot;
+</code></pre>
+<p>你可以让任意分支跟踪 <code>o/main</code>, 然后该分支会像 <code>main</code> 分支一样得到隐含的 push 目的地以及 merge 的目标。 这意味着你可以在分支 <code>totallyNotMain</code> 上执行 <code>git push</code>，将工作推送到远程仓库的 <code>main</code> 分支上。</p>
+<p>有两种方法设置这个属性</p>
+<p><strong>第一种方法</strong></p>
+<p>第一种就是通过远程分支切换到一个新的分支，执行:</p>
+<pre><code>git checkout -b totallyNotMain o/main
+</code></pre>
+<p>就可以创建一个名为 <code>totallyNotMain</code> 的分支，它跟踪远程分支 <code>o/main</code>。</p>
+<p><strong>第二种方法</strong></p>
+<p>另一种设置远程追踪分支的方法就是使用：<code>git branch -u</code> 命令，执行：</p>
+<pre><code>git branch -u o/main foo
+</code></pre>
+<p>这样 <code>foo</code> 就会跟踪 <code>o/main</code> 了。如果当前就在 foo 分支上, 还可以省略 foo：</p>
+<pre><code>git branch -u o/main
+</code></pre>
+<p>本节我们在<strong>不</strong>切换到 <code>main</code> 分支的情况下将工作推送到的远程仓库中的 <code>main</code> 分支上。</p>
+<h4 id="A-28"><a href="#A-28" class="headerlink" title="A"></a>A</h4><pre><code>git checkout -b side o/main
+git commit
+git pull --rebase
+git push
+</code></pre>
+<h3 id="Git-push-的参数1"><a href="#Git-push-的参数1" class="headerlink" title="Git push 的参数1"></a>Git push 的参数1</h3><h4 id="Q-29"><a href="#Q-29" class="headerlink" title="Q"></a>Q</h4><p>既然你知道了远程跟踪分支，我们可以开始揭开 git push、fetch 和 pull 的神秘面纱了。我们会逐个介绍这几个命令，它们在理念上是非常相似的。</p>
+<p>首先来看 <code>git push</code>。在远程跟踪课程中，你已经学到了 Git 是通过当前所在分支的属性来确定远程仓库以及要 push 的目的地的。这是未指定参数时的行为，我们可以为 push 指定参数，语法是：</p>
+<pre><code>git push &lt;remote&gt; &lt;place&gt;
+</code></pre>
+<p><code>&lt;place&gt;</code> 参数是什么意思呢？我们稍后会深入其中的细节, 先看看例子, 这个命令是:</p>
+<pre><code>git push origin main
+</code></pre>
+<p>把这个命令翻译过来就是：</p>
+<p><em>切到本地仓库中的“main”分支，获取所有的提交，再到远程仓库“origin”中找到“main”分支，将远程仓库中没有的提交记录都添加上去，搞定之后告诉我。</em></p>
+<p>我们通过“place”参数来告诉 Git 提交记录来自于 main, 要推送到远程仓库中的 main。它实际就是要同步的两个仓库的位置。</p>
+<p>需要注意的是，因为我们通过指定参数告诉了 Git 所有它需要的信息, 所以它就忽略了我们所切换分支的属性！</p>
+<p>本关我们要更新远程仓库中的 <code>foo</code> 和 <code>main</code>, 但是 <code>git checkout</code> 被禁用了！</p>
+<p><em>注意：远程分支使用 <code>o/</code> 开头是因为 <code>origin/</code> 对于 UI 来说太长了。不用太在意这个，直接用 <code>origin</code> 作为远程仓库的名称就可以了。</em></p>
+<h4 id="A-29"><a href="#A-29" class="headerlink" title="A"></a>A</h4><pre><code>git push origin main
+git push origin foo
+</code></pre>
+<h3 id="Git-push-参数-2"><a href="#Git-push-参数-2" class="headerlink" title="Git push 参数 2"></a>Git push 参数 2</h3><h4 id="Q-30"><a href="#Q-30" class="headerlink" title="Q"></a>Q</h4><p>当为 git push 指定 place 参数为 <code>main</code> 时，我们同时指定了提交记录的来源和去向。</p>
+<p>你可能想问 —— 如果来源和去向分支的名称不同呢？比如你想把本地的 <code>foo</code> 分支推送到远程仓库中的 <code>bar</code> 分支。</p>
+<p>哎，很遗憾 Git 做不到…… 开个玩笑，别当真！当然是可以的啦 :) Git 拥有超强的灵活性（有点过于灵活了）</p>
+<p>要同时为源和目的地指定 <code>&lt;place&gt;</code> 的话，只需要用冒号 <code>:</code> 将二者连起来就可以了：</p>
+<pre><code>git push origin &lt;source&gt;:&lt;destination&gt;
+</code></pre>
+<p>这个参数实际的值是个 refspec，“refspec” 是一个自造的词，意思是 Git 能识别的位置（比如分支 <code>foo</code> 或者 <code>HEAD~1</code>）</p>
+<p>一旦你指定了独立的来源和目的地，就可以组织出言简意赅的远程操作命令.</p>
+<p>在这个关卡中，试着完成目标窗口展示的提交树，记住参数格式哟：</p>
+<pre><code>&lt;source&gt;:&lt;destination&gt;
+</code></pre>
+<h4 id="A-30"><a href="#A-30" class="headerlink" title="A"></a>A</h4><pre><code>git push origin foo:main
+git push origin main^:foo
+</code></pre>
+<h3 id="Git-fetch-的参数"><a href="#Git-fetch-的参数" class="headerlink" title="Git fetch 的参数"></a>Git fetch 的参数</h3><h4 id="Q-31"><a href="#Q-31" class="headerlink" title="Q"></a>Q</h4><p><code>git fetch</code> 的参数和 <code>git push</code> 极其相似。他们的概念是相同的，只是方向相反罢了（因为现在你是下载，而非上传）</p>
+<p>如果你像如下命令这样为 git fetch 设置 的话：</p>
+<pre><code>git fetch origin foo
+</code></pre>
+<p>Git 会到远程仓库的 <code>foo</code> 分支上，然后获取所有本地不存在的提交，放到本地的 <code>o/foo</code> 上。</p>
+<p>为何 Git 会将新提交放到 <code>o/foo</code> 而不是放到我本地的 foo 分支呢？之前不是说这样的 参数就是同时应用于本地和远程的位置吗？</p>
+<p>好吧, 本例中 Git 做了一些特殊处理，因为你可能在 foo 分支上的工作还未完成，你也不想弄乱它。还记得在 <code>git fetch</code> 课程里我们讲到的吗 —— 它不会更新你的本地的非远程分支, 只是下载提交记录（这样, 你就可以对远程分支进行检查或者合并了）。</p>
+<p>如果你觉得直接更新本地分支很爽，那你就用冒号分隔的 refspec 吧。不过，你不能在当前切换的分支上干这个事，但是其它分支是可以的。</p>
+<p>这里有一点是需要注意的 —— <code>source</code> 现在指的是远程仓库中的位置，而 <code>&lt;destination&gt;</code> 才是要放置提交的本地仓库的位置。它与 git push 刚好相反，这是可以讲的通的，因为我们在往相反的方向传送数据。</p>
+<p>理论上虽然行的通，但开发人员很少这么做。我在这里介绍它主要是为了从概念上说明 <code>fetch</code> 和 <code>push</code> 的相似性，只是方向相反罢了。</p>
+<p>要完成本关，抓取目标窗口中指定的提交记录，使用这些魔幻的命令吧！</p>
+<p>使用 fetch 时, 你必须指定 source 和 destination。 注意一下目标窗口, 因为提交对象的 ID 可能会变哦!</p>
+<h4 id="A-31"><a href="#A-31" class="headerlink" title="A"></a>A</h4><pre><code>git fetch origin foo:main
+git fetch origin main^:foo
+git checkout foo 
+git merge main
+</code></pre>
+<h3 id="没有-source-的-source"><a href="#没有-source-的-source" class="headerlink" title="没有 source 的 source"></a>没有 source 的 source</h3><h4 id="Q-32"><a href="#Q-32" class="headerlink" title="Q"></a>Q</h4><p>Git 有两种关于 <code>&lt;source&gt;</code> 的用法是比较诡异的，即你可以在 git push 或 git fetch 时不指定任何 <code>source</code>，方法就是仅保留冒号和 destination 部分，source 部分留空。</p>
+<ul>
+<li><code>git push origin :side</code></li>
+<li><code>git fetch origin :bugFix</code></li>
+</ul>
+<p>我们分别来看一下这两条命令的作用</p>
+<p>通过给 push 传空值 source，成功删除了远程仓库中的 <code>foo</code> 分支</p>
+<p> fetch 空 到本地，会在本地创建一个新分支。</p>
+<p>这个关卡很容易 —— 只要删除一个远程的分支, 再用 <code>git fetch</code> 在本地创建一个新分支就可以了！</p>
+<h4 id="A-32"><a href="#A-32" class="headerlink" title="A"></a>A</h4><pre><code>git push origin :foo
+git fetch origin :bar
+</code></pre>
+<h3 id="Git-pull-的参数"><a href="#Git-pull-的参数" class="headerlink" title="Git pull 的参数"></a>Git pull 的参数</h3><h4 id="Q-33"><a href="#Q-33" class="headerlink" title="Q"></a>Q</h4><p> git pull 到头来就是 fetch 后跟 merge 的缩写。你可以理解为用同样的参数执行 git fetch，然后再 merge 你所抓取到的提交记录。</p>
+<p>以下命令在 Git 中是等效的:</p>
+<p><code>git pull origin foo</code> 相当于：</p>
+<pre><code>git fetch origin foo; git merge o/foo
+</code></pre>
+<p>还有…</p>
+<p><code>git pull origin bar~1:bugFix</code> 相当于：</p>
+<pre><code>git fetch origin bar~1:bugFix; git merge bugFix
+</code></pre>
+<p>看到了? git pull 实际上就是 fetch + merge 的缩写, git pull 唯一关注的是提交最终合并到哪里（也就是为 git fetch 所提供的 destination 参数）</p>
+<p>请按照目标窗口中的状态进行操作。你需要下载一些提交，然后创建一些新分支，再合并这些分支到其它分支, 但这用不了几个命令</p>
+<h4 id="A-33"><a href="#A-33" class="headerlink" title="A"></a>A</h4><pre><code>git fetch origin bar:foo
+git fetch origin main:side
+git merge foo
+git merge side
+</code></pre>
+<p>or</p>
+<pre><code>git pull origin bar:foo
+git pull origin main:side
+</code></pre>
+<h3 id="Wow！你通关了！-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ"><a href="#Wow！你通关了！-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ-ﾉ" class="headerlink" title="Wow！你通关了！ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ"></a><strong>Wow！你通关了！ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ (ﾉ^_^)ﾉ</strong></h3><p>本来以为两个小时左右应该就可以搞定，但没想到不止。不过这么一玩，也知道了Git大致的用法啦！</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
