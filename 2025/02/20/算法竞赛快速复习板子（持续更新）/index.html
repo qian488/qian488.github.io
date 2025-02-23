@@ -170,7 +170,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
             </span>
             
         </span>
@@ -182,6 +182,7 @@
 <li>并查集</li>
 <li>树状数组</li>
 <li>Floor_Sum问题</li>
+<li>最大流</li>
 </ul>
 <span id="more"></span>
 
@@ -267,7 +268,7 @@
     &#125;
 &#125;;
 </code></pre>
-<h3 id="类欧几里德算法解决Floor-Sum问题"><a href="#类欧几里德算法解决Floor-Sum问题" class="headerlink" title="类欧几里德算法解决Floor_Sum问题"></a>类欧几里德算法解决Floor_Sum问题</h3><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/euclidean/">问题解析</a></p>
+<h3 id="类欧几里德算法解决Floor-Sum问题"><a href="#类欧几里德算法解决Floor-Sum问题" class="headerlink" title="类欧几里德算法解决Floor_Sum问题"></a>类欧几里德算法解决<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_c">Floor_Sum</a>问题</h3><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/euclidean/">问题解析</a></p>
 <pre><code class="cpp">constexpr long long MOD = 998244353;
 constexpr long long INV_2 = 499122177;  // 2的逆元
 constexpr long long INV_6 = 166374059;  // 6的逆元
@@ -323,6 +324,190 @@ Floor_sum calculate(long long n, long long a, long long b, long long c, bool is_
     Floor_sum gh = calculate_gh(n, a, b, c, f, is_mod);
     return Floor_sum(f, gh.g, gh.h);
 &#125;
+</code></pre>
+<h3 id="最大流-Dinic"><a href="#最大流-Dinic" class="headerlink" title="最大流(Dinic)"></a>最大流(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_d">Dinic</a>)</h3><pre><code class="cpp">const int INF = 1e9 + 10;
+const ll INF_LL = 4e18;
+
+// 最大流 Dinic 算法实现
+struct MXF &#123;
+    struct Edge &#123;
+        int from, to, rev; // 边的起点、终点和反向边索引
+        ll cap, flow;      // 边的容量和流量
+        bool isrev;        // 是否是反向边
+        Edge(int from, int to, ll cap, int rev, bool isrev)
+            : from(from), to(to), rev(rev), cap(cap), flow(0), isrev(isrev) &#123;&#125;
+    &#125;;
+
+    vector&lt;vector&lt;Edge&gt;&gt; graph; // 邻接表
+    vector&lt;int&gt; level, iter;    // BFS 层次和 DFS 当前弧
+
+    // 构造函数，初始化图
+    MXF(int n) : graph(n), level(n), iter(n) &#123;&#125;
+
+    // 添加边
+    void add_edge(int from, int to, ll cap) &#123;
+        graph[from].emplace_back(from, to, cap, graph[to].size(), false);
+        graph[to].emplace_back(to, from, 0, graph[from].size() - 1, true);
+    &#125;
+
+    // BFS 构建层次图
+    void bfs(int s) &#123;
+        fill(level.begin(), level.end(), -1);
+        queue&lt;int&gt; q;
+        level[s] = 0;
+        q.push(s);
+        while (!q.empty()) &#123;
+            int v = q.front();
+            q.pop();
+            for (auto &amp;e : graph[v]) &#123;
+                if (e.cap &gt; 0 &amp;&amp; level[e.to] &lt; 0) &#123;
+                    level[e.to] = level[v] + 1;
+                    q.push(e.to);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+
+    // DFS 寻找增广路径
+    ll dfs(int v, int t, ll f) &#123;
+        if (v == t) return f;
+        for (int &amp;i = iter[v]; i &lt; graph[v].size(); ++i) &#123;
+            Edge &amp;e = graph[v][i];
+            if (e.cap &gt; 0 &amp;&amp; level[v] &lt; level[e.to]) &#123;
+                ll d = dfs(e.to, t, min(f, e.cap));
+                if (d &gt; 0) &#123;
+                    e.cap -= d;
+                    graph[e.to][e.rev].cap += d;
+                    e.flow += d;
+                    graph[e.to][e.rev].flow -= d;
+                    return d;
+                &#125;
+            &#125;
+        &#125;
+        return 0;
+    &#125;
+
+    // 计算从源点 s 到汇点 t 的最大流
+    ll flow(int s, int t) &#123;
+        ll ret = 0;
+        while (true) &#123;
+            bfs(s);
+            if (level[t] &lt; 0) return ret; // 如果汇点不可达，结束算法
+            fill(iter.begin(), iter.end(), 0);
+            ll f;
+            while ((f = dfs(s, t, INF_LL)) &gt; 0) ret += f;
+        &#125;
+    &#125;
+
+    // 获取最小割
+    vector&lt;bool&gt; mincut(int v = 0) &#123;
+        vector&lt;bool&gt; ret(graph.size());
+        queue&lt;int&gt; q;
+        q.push(v);
+        ret[v] = true;
+        while (!q.empty()) &#123;
+            int v = q.front();
+            q.pop();
+            for (auto &amp;e : graph[v]) &#123;
+                if (e.cap &gt; 0 &amp;&amp; !ret[e.to]) &#123;
+                    ret[e.to] = true;
+                    q.push(e.to);
+                &#125;
+            &#125;
+        &#125;
+        return ret;
+    &#125;
+
+    // 获取所有边的信息
+    vector&lt;Edge&gt; get_edges() &#123;
+        vector&lt;Edge&gt; ret;
+        for (int i = 0; i &lt; graph.size(); ++i) &#123;
+            for (auto &amp;e : graph[i]) &#123;
+                if (e.isrev) continue;
+                ret.push_back(e);
+            &#125;
+        &#125;
+        return ret;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="最小费用流-MinCostFlow"><a href="#最小费用流-MinCostFlow" class="headerlink" title="最小费用流(MinCostFlow)"></a>最小费用流(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_e">MinCostFlow</a>)</h3><pre><code class="cpp">const int INF = 1e9 + 10;
+const ll INF_LL = 4e18;
+
+// 最小費用流
+// 支持负权边，但不允许存在负环。
+struct MCF &#123;
+    struct Edge &#123;
+        int from, to, rev;
+        ll cap, cost;
+        bool isrev;
+        Edge(int from, int to, ll cap, ll cost, int rev, bool isrev) : from(from), to(to), cap(cap), cost(cost), rev(rev), isrev(isrev) &#123;&#125;
+    &#125;;
+
+    vector&lt;vector&lt;Edge&gt;&gt; graph;
+    vector&lt;ll&gt; dist, pot;  // dist: 最短距离，pot: 势能函数
+    vector&lt;int&gt; pv, pe;
+
+    MCF(int n) &#123; graph.resize(n), dist.resize(n), pot.resize(n), pv.resize(n), pe.resize(n); &#125;
+
+    // 添加边
+    // 增加一条从 from 到 to 的边，容量为 cap，费用为 cost
+    // cost 可以为负，但图中不能有负环
+    void add_edge(int from, int to, ll cap, ll cost) &#123;
+        graph[from].push_back(Edge(from, to, cap, cost, graph[to].size(), false));
+        graph[to].push_back(Edge(to, from, 0, -cost, (int)graph[from].size() - 1, true));
+    &#125;
+
+    // 获取所有边的信息
+    vector&lt;Edge&gt; get_edges() &#123;
+        vector&lt;Edge&gt; ret;
+        for (int i = 0; i &lt; (int)graph.size(); i++)
+            for (auto &amp;e : graph[i])
+                if (!e.isrev) ret.push_back(e);
+        return ret;
+    &#125;
+
+    // 计算最小费用流
+    // 从源点 s 到汇点 t，寻找流量为 f 的最小费用流
+    // 如果无法满足流量 f，则返回 INFL 表示无解
+    // 时间复杂度：O(FE log V)，其中 F 是流量，E 是边数，V 是顶点数
+    ll flow(int s, int t, ll f) &#123;
+        int n = graph.size();
+        priority_queue&lt;pair&lt;ll, int&gt;, vector&lt;pair&lt;ll, int&gt;&gt;, greater&lt;pair&lt;ll, int&gt;&gt;&gt; pq;
+        fill(pot.begin(), pot.end(), 0), fill(pv.begin(), pv.end(), 0), fill(pe.begin(), pe.end(), 0);
+        ll ret = 0;
+
+        while (f &gt; 0) &#123;
+            fill(dist.begin(), dist.end(), INF_LL);
+            dist[s] = 0;
+            pq.push(&#123;0, s&#125;);
+            while (!pq.empty()) &#123;
+                auto [tmp, now] = pq.top();
+                pq.pop();
+                if (dist[now] &lt; tmp) continue;
+                for (int i = 0; i &lt; (int)graph[now].size(); i++) &#123;
+                    auto [from, to, rev, cap, cost, isrev] = graph[now][i];
+                    ll ncost = dist[now] + cost + pot[now] - pot[to];
+                    if (cap &gt; 0 &amp;&amp; dist[to] &gt; ncost) &#123;
+                        dist[to] = ncost, pv[to] = now, pe[to] = i;
+                        pq.push(&#123;dist[to], to&#125;);
+                    &#125;
+                &#125;
+            &#125;
+            if (dist[t] == INF_LL) return INF_LL;
+            for (int i = 0; i &lt; n; i++) pot[i] += dist[i];
+            ll d = f;
+            for (int v = t; v != s; v = pv[v]) d = min(d, graph[pv[v]][pe[v]].cap);
+            f -= d, ret += d * pot[t];
+            for (int v = t; v != s; v = pv[v]) &#123;
+                auto &amp;e = graph[pv[v]][pe[v]];
+                e.cap -= d, graph[v][e.rev].cap += d;
+            &#125;
+        &#125;
+
+        return ret;
+    &#125;
+&#125;;
 </code></pre>
 
     </div>
