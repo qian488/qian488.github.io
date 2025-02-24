@@ -175,7 +175,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/deepseek/" style="color: #00bcd4">deepseek</a>
+                <a href="../../../../tags/deepseek/" style="color: #ffa2c4">deepseek</a>
             </span>
             
         </span>
@@ -316,6 +316,32 @@ class ModelClient:
 LLM_MODEL = &quot;deepseek-r1:14b&quot;
 </code></pre>
 <p>其他我暂时也还没有探索。</p>
+<p>也可参考使用C#，导入对应的包直接开箱即用</p>
+<pre><code class="csharp">using Microsoft.Extensions.AI;
+using OllamaSharp;
+
+Uri modelEndpoint = new(&quot;http://localhost:11434&quot;);
+
+//指定模型
+string modelName = &quot;deepseek-r1:14b&quot;;
+
+var chatClient = new OllamaApiClient(modelEndpoint, modelName);
+//提问
+string question = &quot;我是编程小白，应该如何学习编程？&quot;;
+
+var response = chatClient.GetStreamingResponseAsync(question);
+
+Console.WriteLine($&quot;&gt;&gt;&gt; 你: &#123;question&#125;&quot;);
+Console.Write(&quot;&gt;&gt;&gt;&quot;);
+Console.WriteLine(&quot;&gt;&gt;&gt; DeepSeek: &quot;);
+//输出
+await foreach (var item in response) 
+&#123; 
+    Console.Write(item); 
+&#125;
+
+Console.ReadLine();
+</code></pre>
 
     </div>
     
