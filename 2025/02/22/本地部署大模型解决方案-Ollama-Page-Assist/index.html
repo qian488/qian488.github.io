@@ -170,12 +170,12 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/ollama/" style="color: #03a9f4">ollama</a>
+                <a href="../../../../tags/ollama/" style="color: #ff7d73">ollama</a>
             </span>
             
             <span class="tag">
                 
-                <a href="../../../../tags/deepseek/" style="color: #ffa2c4">deepseek</a>
+                <a href="../../../../tags/deepseek/" style="color: #00a596">deepseek</a>
             </span>
             
         </span>
@@ -319,28 +319,48 @@ LLM_MODEL = &quot;deepseek-r1:14b&quot;
 <p>也可参考使用C#，导入对应的包直接开箱即用</p>
 <pre><code class="csharp">using Microsoft.Extensions.AI;
 using OllamaSharp;
+using System.Net.Mail;
 
-Uri modelEndpoint = new(&quot;http://localhost:11434&quot;);
+namespace OllamaApiTest
+&#123;
+    class Program
+    &#123;
+        static async Task Main(string[] args)
+        &#123;
+            Uri modelEndpoint = new(&quot;http://localhost:11434&quot;);
 
-//指定模型
-string modelName = &quot;deepseek-r1:14b&quot;;
+            //指定模型
+            string modelName = &quot;deepseek-r1:14b&quot;;
 
-var chatClient = new OllamaApiClient(modelEndpoint, modelName);
-//提问
-string question = &quot;我是编程小白，应该如何学习编程？&quot;;
+            var chatClient = new OllamaApiClient(modelEndpoint, modelName);
 
-var response = chatClient.GetStreamingResponseAsync(question);
+            while (true)
+            &#123;
+                Console.Write(&quot;&gt;&gt;&gt; 请输入您的问题：&quot;);
+                //提问
+                string? question = Console.ReadLine();
 
-Console.WriteLine($&quot;&gt;&gt;&gt; 你: &#123;question&#125;&quot;);
-Console.Write(&quot;&gt;&gt;&gt;&quot;);
-Console.WriteLine(&quot;&gt;&gt;&gt; DeepSeek: &quot;);
-//输出
-await foreach (var item in response) 
-&#123; 
-    Console.Write(item); 
+                if (question == &quot;exit&quot;) break;
+                if (!string.IsNullOrEmpty(question))
+                &#123;
+                    var response = chatClient.GetStreamingResponseAsync(question);
+
+                    Console.WriteLine($&quot;&gt;&gt;&gt; 你: &#123;question&#125;&quot;);
+                    Console.Write(&quot;&gt;&gt;&gt; &quot;);
+                    Console.WriteLine(&quot;&gt;&gt;&gt; DeepSeek: &quot;);
+
+                    //输出
+                    await foreach (var item in response)
+                    &#123;
+                        Console.Write(item);
+                    &#125;
+
+                    Console.WriteLine();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
 &#125;
-
-Console.ReadLine();
 </code></pre>
 
     </div>
