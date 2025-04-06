@@ -170,7 +170,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
             </span>
             
         </span>
@@ -510,7 +510,119 @@ struct MCF &#123;
     &#125;
 &#125;;
 </code></pre>
-<h3 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h3>
+<h3 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h3><pre><code class="cpp">const int INF = 1e9 + 10;
+const ll INFL = 4e18;
+
+template &lt;ll MOD&gt;
+struct ModInt &#123;
+    ll value;
+    ModInt(ll x = 0) &#123; value = (x &gt;= 0 ? x % MOD : MOD - (-x) % MOD); &#125;
+    ModInt operator-() const &#123; return ModInt(-value); &#125;
+    ModInt operator+() const &#123; return ModInt(*this); &#125;
+    ModInt&amp; operator+=(const ModInt&amp; other) &#123;
+        value += other.value;
+        if (value &gt;= MOD) value -= MOD;
+        return *this;
+    &#125;
+    ModInt&amp; operator-=(const ModInt&amp; other) &#123;
+        value += MOD - other.value;
+        if (value &gt;= MOD) value -= MOD;
+        return *this;
+    &#125;
+    ModInt&amp; operator*=(const ModInt other) &#123;
+        value = value * other.value % MOD;
+        return *this;
+    &#125;
+    ModInt&amp; operator/=(ModInt other) &#123;
+        (*this) *= other.inv();
+        return *this;
+    &#125;
+    ModInt operator+(const ModInt&amp; other) const &#123; return ModInt(*this) += other; &#125;
+    ModInt operator-(const ModInt&amp; other) const &#123; return ModInt(*this) -= other; &#125;
+    ModInt operator*(const ModInt&amp; other) const &#123; return ModInt(*this) *= other; &#125;
+    ModInt operator/(const ModInt&amp; other) const &#123; return ModInt(*this) /= other; &#125;
+    ModInt pow(ll x) const &#123;
+        ModInt ret(1), mul(value);
+        while (x) &#123;
+            if (x &amp; 1) ret *= mul;
+            mul *= mul;
+            x &gt;&gt;= 1;
+        &#125;
+        return ret;
+    &#125;
+    ModInt inv() const &#123; return pow(MOD - 2); &#125;
+    bool operator==(const ModInt&amp; other) const &#123; return value == other.value; &#125;
+    bool operator!=(const ModInt&amp; other) const &#123; return value != other.value; &#125;
+    friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const ModInt&amp; x) &#123; return os &lt;&lt; x.value; &#125;
+    friend istream&amp; operator&gt;&gt;(istream&amp; is, ModInt&amp; x) &#123;
+        ll v;
+        is &gt;&gt; v;
+        x = ModInt&lt;MOD&gt;(v);
+        return is;
+    &#125;
+    static constexpr ll get_mod() &#123; return MOD; &#125;
+&#125;;
+using Mod998 = ModInt&lt;998244353&gt;;
+using Mod107 = ModInt&lt;1000000007&gt;;
+
+vector&lt;Mod998&gt; NTT998(vector&lt;Mod998&gt; a, bool inv = false) &#123;
+    int n = a.size(), h = 0;
+    while ((1 &lt;&lt; h) &lt; n) h++;
+    for (int i = 0; i &lt; n; i++) &#123;
+        int j = 0;
+        for (int k = 0; k &lt; h; k++) j |= (i &gt;&gt; k &amp; 1) &lt;&lt; (h - 1 - k);
+        if (i &lt; j) swap(a[i], a[j]);
+    &#125;
+
+    const vector&lt;Mod998&gt; rt = &#123;1, 998244352, 911660635, 372528824, 929031873, 452798380, 922799308, 781712469, 476477967, 166035806, 258648936, 584193783, 63912897, 350007156, 666702199, 968855178, 629671588, 24514907, 996173970, 363395222, 565042129, 733596141, 267099868, 15311432&#125;;
+    const vector&lt;Mod998&gt; irt = &#123;1, 998244352, 86583718, 509520358, 337190230, 87557064, 609441965, 135236158, 304459705, 685443576, 381598368, 335559352, 129292727, 358024708, 814576206, 708402881, 283043518, 3707709, 121392023, 704923114, 950391366, 428961804, 382752275, 469870224&#125;;
+
+    for (int b = 1, t = 1; b &lt; n; b &lt;&lt;= 1, t++) &#123;
+        Mod998 w = 1, base = inv ? irt[t] : rt[t];
+        for (int j = 0; j &lt; b; j++) &#123;
+            for (int k = 0; k &lt; n; k += b * 2) &#123;
+                Mod998 s = a[j + k];
+                Mod998 t = a[j + k + b] * w;
+                a[j + k] = s + t;
+                a[j + k + b] = s - t;
+            &#125;
+            w *= base;
+        &#125;
+    &#125;
+
+    if (inv) &#123;
+        Mod998 inv_n = Mod998(n).inv();
+        for (int i = 0; i &lt; n; i++) a[i] *= inv_n;
+    &#125;
+
+    return a;
+&#125;
+
+vector&lt;Mod998&gt; convolve998(vector&lt;Mod998&gt; a, vector&lt;Mod998&gt; b) &#123;
+    int n = 1;
+    while (n &lt; (int)a.size() + (int)b.size() - 1) n &lt;&lt;= 1;
+    vector&lt;Mod998&gt; fa(n), fb(n);
+    for (int i = 0; i &lt; (int)a.size(); i++) fa[i] = a[i];
+    for (int i = 0; i &lt; (int)b.size(); i++) fb[i] = b[i];
+    fa = NTT998(fa), fb = NTT998(fb);
+    for (int i = 0; i &lt; n; i++) fa[i] *= fb[i];
+    fa = NTT998(fa, true);
+    while ((int)fa.size() &gt; (int)a.size() + (int)b.size() - 1) fa.pop_back();
+    return fa;
+&#125;
+
+void solve() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;Mod998&gt; a(n), b(m);
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+    for (int i = 0; i &lt; m; i++) cin &gt;&gt; b[i];
+
+    for (auto x : convolve998(a, b)) cout &lt;&lt; x &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; endl;
+&#125;
+</code></pre>
+
     </div>
     
     

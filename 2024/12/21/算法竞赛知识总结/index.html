@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
             </span>
             
         </span>
@@ -1764,6 +1764,16 @@ int get_max(int a, int b) &#123;
     cout&lt;&lt;endl;
 &#125;
 </code></pre>
+<h4 id="质因数计数"><a href="#质因数计数" class="headerlink" title="质因数计数"></a>质因数计数</h4><pre><code class="cpp">int N = 1000001;
+vector&lt;int&gt; v(N);
+for (int i = 2; i &lt; N; i++) &#123;
+    if (v[i] == 0) &#123; 
+        for (int j = i; j &lt; N; j += i) &#123;
+            v[j]++;
+        &#125;
+    &#125;
+    &#125;
+</code></pre>
 <h4 id="朴素筛法求素数"><a href="#朴素筛法求素数" class="headerlink" title="朴素筛法求素数"></a>朴素筛法求素数</h4><pre><code class="cpp">int primes[N],cnt;//primes[]存储所有素数
 bool vis[N];//vis[x]存储x是否被筛掉
 
@@ -1829,7 +1839,9 @@ int exgcd(int a,int b,int &amp;x,int &amp;y)
     return d;
 &#125;
 </code></pre>
-<h3 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h3><h4 id="朴素求欧拉函数"><a href="#朴素求欧拉函数" class="headerlink" title="朴素求欧拉函数"></a>朴素求欧拉函数</h4><pre><code class="cpp">int phi(int x)
+<h3 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h3><p>描述的是小于或等于n的正整数当中与n互质数的个数</p>
+<p>phi(5):就是1、2、3、4、5与5互质数的个数，1、2、3、4，即其值为4</p>
+<h4 id="朴素求欧拉函数"><a href="#朴素求欧拉函数" class="headerlink" title="朴素求欧拉函数"></a>朴素求欧拉函数</h4><pre><code class="cpp">int phi(int x)
 &#123;
     int res=x;
     for(int i=2;i&lt;=x/i;i++)
@@ -1872,7 +1884,7 @@ void get_eulers(int n)
     &#125;
 &#125;
 </code></pre>
-<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><h3 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h3><h3 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h3><pre><code class="cpp">// a[N][N]是增广矩阵
+<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><h3 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h3><h3 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h3><h3 id="快速傅里叶变换"><a href="#快速傅里叶变换" class="headerlink" title="快速傅里叶变换"></a>快速傅里叶变换</h3><h3 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h3><pre><code class="cpp">// a[N][N]是增广矩阵
 int gauss()
 &#123;
     int c, r;
@@ -2183,6 +2195,54 @@ int main()
         &#125;
     &#125;
     bfs();
+&#125;
+</code></pre>
+<h4 id="0-1BFS"><a href="#0-1BFS" class="headerlink" title="0-1BFS"></a>0-1BFS</h4><p>一种变体，专门用于边权仅包含 0 和 1 的图。</p>
+<p>0-1 BFS 的核心在于使用<strong>双端队列（deque）</strong>来优化搜索过程：</p>
+<ul>
+<li><strong>边权为 0 的边：</strong> 当从当前节点通过一条权重为 0 的边到达下一个节点时，由于这条边不会增加路径长度，因此将该节点插入队列的前端（<code>push_front</code>）。</li>
+<li><strong>边权为 1 的边：</strong> 当通过一条权重为 1 的边到达下一个节点时，路径长度增加 1，因此将该节点插入队列的末端（<code>push_back</code>）。</li>
+</ul>
+<pre><code class="cpp">const int INF = 0x3f3f3f3f;
+const int dx[4] = &#123;-1, 1, 0, 0&#125;; 
+const int dy[4] = &#123;0, 0, -1, 1&#125;;
+
+void solve() &#123;
+    int H, W, A, B, C, D;
+    cin &gt;&gt; H &gt;&gt; W;
+    vector&lt;string&gt; grid(H);
+    for (int i = 0; i &lt; H; i++) cin &gt;&gt; grid[i];
+    cin &gt;&gt; A &gt;&gt; B &gt;&gt; C &gt;&gt; D;
+    --A; --B; --C; --D; 
+
+    vector&lt;vector&lt;int&gt;&gt; dist(H, vector&lt;int&gt;(W, INF));
+    deque&lt;pair&lt;int,int&gt;&gt; dq;
+    dist[A][B] = 0;
+    dq.push_front(&#123;A, B&#125;);
+
+    while (!dq.empty()) &#123;
+        auto [x, y] = dq.front();
+        dq.pop_front();
+
+        for (int d = 0; d &lt; 4; d++) &#123;
+            int nx = x + dx[d], ny = y + dy[d];
+            if (nx &gt;= 0 &amp;&amp; nx &lt; H &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; W &amp;&amp; grid[nx][ny] == &#39;.&#39; &amp;&amp; dist[nx][ny] &gt; dist[x][y]) &#123;
+                dist[nx][ny] = dist[x][y];
+                dq.push_front(&#123;nx, ny&#125;);
+            &#125;
+        &#125;
+
+        for (int d = 0; d &lt; 4; d++) &#123;
+            for (int step = 1; step &lt;= 2; step++) &#123;
+                int nx = x + dx[d] * step, ny = y + dy[d] * step;
+                if (nx &gt;= 0 &amp;&amp; nx &lt; H &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; W &amp;&amp; dist[nx][ny] &gt; dist[x][y] + 1) &#123;
+                    dist[nx][ny] = dist[x][y] + 1;
+                    dq.push_back(&#123;nx, ny&#125;);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    cout&lt;&lt; dist[C][D] &lt;&lt; endl;
 &#125;
 </code></pre>
 <h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>首先要确定<strong>图是有向无环图才有拓扑序</strong></p>
