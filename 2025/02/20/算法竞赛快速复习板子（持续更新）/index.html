@@ -170,7 +170,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
             </span>
             
         </span>
@@ -179,18 +179,18 @@
     
     <div class="content" v-pre>
         <ul>
-<li>[并查集](#并查集(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_a">Disjoint Set Union</a>)</li>
-<li>[树状数组](#树状数组（<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_b">Fenwick Tree</a>）)</li>
-<li><a href="#%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%5BFloor_Sum%5D(https://atcoder.jp/contests/practice2/tasks/practice2_c)%E9%97%AE%E9%A2%98">Floor_Sum问题</a></li>
-<li><a href="#%E6%9C%80%E5%A4%A7%E6%B5%81(%5BDinic%5D(https://atcoder.jp/contests/practice2/tasks/practice2_d)">最大流</a></li>
-<li><a href="#%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%B5%81(%5BMinCostFlow%5D(https://atcoder.jp/contests/practice2/tasks/practice2_e)">最小费用流</a></li>
+<li><a href="#%E5%B9%B6%E6%9F%A5%E9%9B%86">并查集</a></li>
+<li><a href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84">树状数组</a></li>
+<li><a href="#%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3Floor_Sum%E9%97%AE%E9%A2%98">Floor_Sum问题</a></li>
+<li><a href="#%E6%9C%80%E5%A4%A7%E6%B5%81">最大流</a></li>
+<li><a href="#%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%B5%81">最小费用流</a></li>
 <li><a href="#%E5%8D%B7%E7%A7%AF">卷积</a></li>
 </ul>
 <span id="more"></span>
 
 
 
-<h3 id="并查集-Disjoint-Set-Union"><a href="#并查集-Disjoint-Set-Union" class="headerlink" title="并查集(Disjoint Set Union)"></a>并查集(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_a">Disjoint Set Union</a>)</h3><pre><code class="cpp">struct DSU &#123;
+<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><h3 id="Disjoint-Set-Union"><a href="#Disjoint-Set-Union" class="headerlink" title="(Disjoint Set Union)"></a>(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_a">Disjoint Set Union</a>)</h3><pre><code class="cpp">struct DSU &#123;
     std::vector&lt;int&gt; f, siz;
     
     DSU() &#123;&#125;
@@ -231,7 +231,7 @@
     &#125;
 &#125;;
 </code></pre>
-<h3 id="树状数组（Fenwick-Tree）"><a href="#树状数组（Fenwick-Tree）" class="headerlink" title="树状数组（Fenwick Tree）"></a>树状数组（<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_b">Fenwick Tree</a>）</h3><pre><code class="cpp">struct FenwickTree &#123;
+<h3 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h3><h3 id="（Fenwick-Tree）"><a href="#（Fenwick-Tree）" class="headerlink" title="（Fenwick Tree）"></a>（<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_b">Fenwick Tree</a>）</h3><pre><code class="cpp">struct FenwickTree &#123;
     vector&lt;int&gt; tree;
     int n;
 
@@ -270,7 +270,7 @@
     &#125;
 &#125;;
 </code></pre>
-<h3 id="类欧几里德算法解决Floor-Sum问题"><a href="#类欧几里德算法解决Floor-Sum问题" class="headerlink" title="类欧几里德算法解决Floor_Sum问题"></a>类欧几里德算法解决<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_c">Floor_Sum</a>问题</h3><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/euclidean/">问题解析</a></p>
+<h3 id="类欧几里德算法解决Floor-Sum问题"><a href="#类欧几里德算法解决Floor-Sum问题" class="headerlink" title="类欧几里德算法解决Floor_Sum问题"></a>类欧几里德算法解决Floor_Sum问题</h3><h3 id="Floor-Sum"><a href="#Floor-Sum" class="headerlink" title="Floor_Sum"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_c">Floor_Sum</a></h3><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/euclidean/">问题解析</a></p>
 <pre><code class="cpp">constexpr long long MOD = 998244353;
 constexpr long long INV_2 = 499122177;  // 2的逆元
 constexpr long long INV_6 = 166374059;  // 6的逆元
@@ -327,7 +327,7 @@ Floor_sum calculate(long long n, long long a, long long b, long long c, bool is_
     return Floor_sum(f, gh.g, gh.h);
 &#125;
 </code></pre>
-<h3 id="最大流-Dinic"><a href="#最大流-Dinic" class="headerlink" title="最大流(Dinic)"></a>最大流(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_d">Dinic</a>)</h3><pre><code class="cpp">const int INF = 1e9 + 10;
+<h3 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h3><h3 id="Dinic"><a href="#Dinic" class="headerlink" title="(Dinic)"></a>(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_d">Dinic</a>)</h3><pre><code class="cpp">const int INF = 1e9 + 10;
 const ll INF_LL = 4e18;
 
 // 最大流 Dinic 算法实现
@@ -433,7 +433,7 @@ struct MXF &#123;
     &#125;
 &#125;;
 </code></pre>
-<h3 id="最小费用流-MinCostFlow"><a href="#最小费用流-MinCostFlow" class="headerlink" title="最小费用流(MinCostFlow)"></a>最小费用流(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_e">MinCostFlow</a>)</h3><pre><code class="cpp">const int INF = 1e9 + 10;
+<h3 id="最小费用流"><a href="#最小费用流" class="headerlink" title="最小费用流"></a>最小费用流</h3><h3 id="MinCostFlow"><a href="#MinCostFlow" class="headerlink" title="(MinCostFlow)"></a>(<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/practice2/tasks/practice2_e">MinCostFlow</a>)</h3><pre><code class="cpp">const int INF = 1e9 + 10;
 const ll INF_LL = 4e18;
 
 // 最小費用流
