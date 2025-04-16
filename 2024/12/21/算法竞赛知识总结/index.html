@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
             </span>
             
         </span>
@@ -1772,7 +1772,7 @@ for (int i = 2; i &lt; N; i++) &#123;
             v[j]++;
         &#125;
     &#125;
-    &#125;
+&#125;
 </code></pre>
 <h4 id="朴素筛法求素数"><a href="#朴素筛法求素数" class="headerlink" title="朴素筛法求素数"></a>朴素筛法求素数</h4><pre><code class="cpp">int primes[N],cnt;//primes[]存储所有素数
 bool vis[N];//vis[x]存储x是否被筛掉
@@ -1802,6 +1802,49 @@ void get_primes(int n)
         &#125;
     &#125;
 &#125;
+</code></pre>
+<h4 id="筛法统计质因数值"><a href="#筛法统计质因数值" class="headerlink" title="筛法统计质因数值"></a>筛法统计质因数值</h4><pre><code class="cpp">const int MX = 1e5;
+bool isPrime[MX + 5]; //isPrime[i]代表i这个数是否是质数 false为质数 true不是质数
+unordered_map&lt;int, vector&lt;int&gt;&gt; mp; //mp[i]表示i这个数的因数的集合
+ 
+//埃及筛求每个数的因数
+//int init = []() &#123;... &#125;(); 立即执行的匿名函数
+int init = []()&#123;
+    for (int i = 2; i &lt;= MX; i++) &#123;
+        if (isPrime[i] == false) &#123;
+            //是质数，筛去它的倍数
+            for (int j = i; j &lt;= MX; j += i) &#123;
+                isPrime[j] = true;
+                mp[j].push_back(i);
+            &#125;
+        &#125;
+    &#125;
+    return 0;
+&#125;();
+</code></pre>
+<h4 id="预处理求质因数指数"><a href="#预处理求质因数指数" class="headerlink" title="预处理求质因数指数"></a>预处理求质因数指数</h4><pre><code class="cpp">const int MAX_N = 10&#39;000;
+vector&lt;int&gt; EXP[MAX_N + 1]; 
+
+int init = []() &#123;
+    // EXP[x] 为 x 分解质因数后，每个质因数的指数
+    for (int x = 2; x &lt;= MAX_N; x++) &#123;
+        int t = x;
+        for (int i = 2; i * i &lt;= t; i++) &#123;
+            int e = 0;
+            while(t % i == 0)&#123;
+                e++;
+                t /= i;
+            &#125;
+            if (e) &#123;
+                EXP[x].push_back(e);
+            &#125;
+        &#125;
+        if (t &gt; 1) &#123;
+            EXP[x].push_back(1);
+        &#125;
+    &#125;
+    return 0;
+&#125;();
 </code></pre>
 <h4 id="试除法求所有约数"><a href="#试除法求所有约数" class="headerlink" title="试除法求所有约数"></a>试除法求所有约数</h4><pre><code class="cpp">vector&lt;int&gt; get_divisors(int x)
 &#123;
@@ -1923,6 +1966,11 @@ int gauss()
 &#125;
 </code></pre>
 <h3 id="组合计数"><a href="#组合计数" class="headerlink" title="组合计数"></a>组合计数</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/40572741-3470-412c-b208-039a8df38911-3350490.jpg"></p>
+<p>相关结论</p>
+<h4 id="放球问题"><a href="#放球问题" class="headerlink" title="放球问题"></a>放球问题</h4><ul>
+<li>把 <em>k</em>&#x3D;3 个无区别的小球放到 <em>n</em> 个有区别的盒子中，允许盒子为空，一个盒子也可以放多个小球，有多少种不同的放法？</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/1744685351-GGrXfu-lc2338-c.png" alt="lc2338-c.png"></p>
 <h4 id="递归法求组合数"><a href="#递归法求组合数" class="headerlink" title="递归法求组合数"></a>递归法求组合数</h4><pre><code class="cpp">// c[a][b] 表示从a个苹果中选b个的方案数
 for (int i = 0; i &lt; N; i ++ )
     for (int j = 0; j &lt;= i; j ++ )
@@ -1948,6 +1996,53 @@ for (int i = 1; i &lt; N; i ++ )
 &#123;
     fact[i] = (LL)fact[i - 1] * i % mod;
     infact[i] = (LL)infact[i - 1] * qmi(i, mod - 2, mod) % mod;
+&#125;
+</code></pre>
+<p>预处理阶乘及其逆元，每个数的最小质因子，进而快速进行质因数分解，进行组合数计算。</p>
+<pre><code class="cpp">const int MOD = 1&#39;000&#39;000&#39;007;
+const int MX = 10013;
+const int MX_K = 10001;
+
+long long F[MX]; // F[i] = i!
+long long INV_F[MX]; // INV_F[i] = i!^-1
+int LPF[MX_K]; // i 的最小质因子是 LPF[i]
+
+long long pow(long long x, int n) &#123;
+    long long res = 1;
+    for (; n; n /= 2) &#123;
+        if (n % 2) &#123;
+            res = res * x % MOD;
+        &#125;
+        x = x * x % MOD;
+    &#125;
+    return res;
+&#125;
+
+auto init = [] &#123;
+    F[0] = 1;
+    for (int i = 1; i &lt; MX; i++) &#123;
+        F[i] = F[i - 1] * i % MOD;
+    &#125;
+
+    INV_F[MX - 1] = pow(F[MX - 1], MOD - 2);
+    for (int i = MX - 1; i; i--) &#123;
+        INV_F[i - 1] = INV_F[i] * i % MOD;
+    &#125;
+
+    for (int i = 2; i &lt; MX_K; i++) &#123;
+        if (LPF[i] == 0) &#123; // i 是质数
+            for (int j = i; j &lt; MX_K; j += i) &#123;
+                if (LPF[j] == 0) &#123;
+                    LPF[j] = i; // j 的最小质因子是 i
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    return 0;
+&#125;();
+
+int comb(int n, int m) &#123;
+    return F[n] * INV_F[m] % MOD * INV_F[n - m] % MOD;
 &#125;
 </code></pre>
 <h4 id="Lucas定理"><a href="#Lucas定理" class="headerlink" title="Lucas定理"></a>Lucas定理</h4><p>若p是质数，则对于任意整数 $1 &lt;&#x3D; m &lt;&#x3D; n$，有：<br>    $C_n^m &#x3D; C_{n%p}^{m%p} * C_{n &#x2F; p}^{m &#x2F; p} (%p)$</p>
@@ -2993,7 +3088,91 @@ int main()
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240330090737129.png" alt="image-20240330090737129"></p>
 <h4 id="区间DP"><a href="#区间DP" class="headerlink" title="区间DP"></a>区间DP</h4><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412230731618.png" alt="image-20240412230731618"></p>
 <p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240412230707607.png" alt="image-20240412230707607"></p>
-<h4 id="计数类DP"><a href="#计数类DP" class="headerlink" title="计数类DP"></a>计数类DP</h4><h4 id="数位统计DP"><a href="#数位统计DP" class="headerlink" title="数位统计DP"></a>数位统计DP</h4><h4 id="状态压缩DP"><a href="#状态压缩DP" class="headerlink" title="状态压缩DP"></a>状态压缩DP</h4><h4 id="树形DP"><a href="#树形DP" class="headerlink" title="树形DP"></a>树形DP</h4><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><p>单峰的情况下，才有贪心的可能性</p>
+<h4 id="计数类DP"><a href="#计数类DP" class="headerlink" title="计数类DP"></a>计数类DP</h4><h4 id="数位统计DP"><a href="#数位统计DP" class="headerlink" title="数位统计DP"></a>数位统计DP</h4><p>数位 DP 通常利用“位与位之间”的关系来设计状态（例如当前位置、是否已达上界、前导零情况以及其他辅助信息如模状态）（从最高位到最低位一个个确定数字）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-special-integers/description/">题目链接</a></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    int countSpecialNumbers(int n) &#123;
+        string s = to_string(n);
+        int m = s.length();
+        vector&lt;vector&lt;int&gt;&gt; memo(m, vector&lt;int&gt;(1 &lt;&lt; 10, -1)); // -1 表示没有计算过
+        auto dfs = [&amp;](auto&amp;&amp; dfs, int i, int mask, bool is_limit, bool is_num) -&gt; int &#123;
+            if (i == m) &#123;
+                return is_num; // is_num 为 true 表示得到了一个合法数字
+            &#125;
+            if (!is_limit &amp;&amp; is_num &amp;&amp; memo[i][mask] != -1) &#123;
+                return memo[i][mask]; // 之前计算过
+            &#125;
+            int res = 0;
+            if (!is_num) &#123; // 可以跳过当前数位
+                res = dfs(dfs, i + 1, mask, false, false);
+            &#125;
+            // 如果前面填的数字都和 n 的一样，那么这一位至多填数字 s[i]（否则就超过 n 啦）
+            int up = is_limit ? s[i] - &#39;0&#39; : 9;
+            // 枚举要填入的数字 d
+            // 如果前面没有填数字，则必须从 1 开始（因为不能有前导零）
+            for (int d = is_num ? 0 : 1; d &lt;= up; d++) &#123;
+                if ((mask &gt;&gt; d &amp; 1) == 0) &#123; // d 不在 mask 中，说明之前没有填过 d
+                    res += dfs(dfs, i + 1, mask | (1 &lt;&lt; d), is_limit &amp;&amp; d == up, true);
+                &#125;
+            &#125;
+            if (!is_limit &amp;&amp; is_num) &#123;
+                memo[i][mask] = res; // 记忆化
+            &#125;
+            return res;
+        &#125;;
+        return dfs(dfs, 0, 0, true, false);
+    &#125;
+&#125;;
+</code></pre>
+<p>上下界数位dp</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-the-number-of-powerful-integers/description/">题目链接</a></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    long long numberOfPowerfulInt(long long start, long long finish, int limit, string s) &#123;
+        string low = to_string(start);
+        string high = to_string(finish);
+        int n = high.size();
+        low = string(n - low.size(), &#39;0&#39;) + low; // 补前导零，和 high 对齐
+        int diff = n - s.size();
+
+        vector&lt;long long&gt; memo(n, -1);
+        auto dfs = [&amp;](this auto&amp;&amp; dfs, int i, bool limit_low, bool limit_high) -&gt; long long &#123;
+            if (i == low.size()) &#123;
+                return 1;
+            &#125;
+
+            if (!limit_low &amp;&amp; !limit_high &amp;&amp; memo[i] != -1) &#123;
+                return memo[i]; // 之前计算过
+            &#125;
+
+            // 第 i 个数位可以从 lo 枚举到 hi
+            // 如果对数位还有其它约束，应当只在下面的 for 循环做限制，不应修改 lo 或 hi
+            int lo = limit_low ? low[i] - &#39;0&#39; : 0;
+            int hi = limit_high ? high[i] - &#39;0&#39; : 9;
+
+            long long res = 0;
+            if (i &lt; diff) &#123; // 枚举这个数位填什么
+                for (int d = lo; d &lt;= min(hi, limit); d++) &#123;
+                    res += dfs(i + 1, limit_low &amp;&amp; d == lo, limit_high &amp;&amp; d == hi);
+                &#125;
+            &#125; else &#123; // 这个数位只能填 s[i-diff]
+                int x = s[i - diff] - &#39;0&#39;;
+                if (lo &lt;= x &amp;&amp; x &lt;= hi) &#123; // 题目保证 x &lt;= limit，无需判断
+                    res = dfs(i + 1, limit_low &amp;&amp; x == lo, limit_high &amp;&amp; x == hi);
+                &#125;
+            &#125;
+
+            if (!limit_low &amp;&amp; !limit_high) &#123;
+                memo[i] = res; // 记忆化 (i,false,false)
+            &#125;
+            return res;
+        &#125;;
+        return dfs(0, true, true);
+    &#125;
+&#125;;
+</code></pre>
+<h4 id="状态压缩DP"><a href="#状态压缩DP" class="headerlink" title="状态压缩DP"></a>状态压缩DP</h4><h4 id="树形DP"><a href="#树形DP" class="headerlink" title="树形DP"></a>树形DP</h4><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><p>单峰的情况下，才有贪心的可能性</p>
 <p><strong>总选择局部最优解，以获得全局最优解</strong></p>
 <p>贪心算法一般分为如下四步：</p>
 <ul>
@@ -3251,6 +3430,14 @@ d[x]++;
 d[y]++;
 d[lca]-=2;
 </code></pre>
+<h4 id="商分"><a href="#商分" class="headerlink" title="商分"></a>商分</h4><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-the-number-of-ideal-arrays/solutions/1659088/shu-lun-zu-he-shu-xue-zuo-fa-by-endlessc-iouh/">题目传送门</a></p>
+<p>类似[差分](# 一维差分)，计算 a 的「商分」，即相邻两数的商。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250416085523202.png" alt="image-20250416085523202"></p>
+<p>例如：</p>
+<p>a&#x3D;[2,2,4,8,8] 的商分数组为 q&#x3D;[2,1,2,2,1]。<br>a&#x3D;[1,4,4,8,8] 的商分数组为 q&#x3D;[1,4,1,2,1]。<br>不同的 a，唯一对应着不同的 q。计算理想数组 a 的个数，可以转化成计算商分数组 q 的个数。</p>
+<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20250416085609222.png" alt="image-20250416085609222"></p>
+<p>现在假设 a<sub>n−1</sub>&#x3D;8，也就是所有 q<sub>i</sub> 的乘积等于 8，有多少个不同的 <em>q</em>？</p>
+<p>这个问题等价于<a href="#%E6%94%BE%E7%90%83%E9%97%AE%E9%A2%98">放球问题</a></p>
 <h3 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h3><p>将离散的数据映射到一个小区间内</p>
 <p>对数据直接mod一个数也相当于将数据映射在这个区间内</p>
 <p><strong>1.排序</strong></p>
