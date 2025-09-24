@@ -3,12 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity 2D Shader Graph实现溶解和发光思路 | 千幻笙的小窝</title>
+    <title>Categories: 每日一题 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="icon" href="../../images/avatar.jpg" />
     <link rel="preconnect" href="https://cdn.staticfile.org" />
 <script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
 <script src="/live2d-widget/autoload.js"></script>
@@ -27,21 +27,17 @@
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
 />
-<script src="../../../../js/lib/highlight.js"></script>
+<script src="../../js/lib/highlight.js"></script>
 
 
 
-<script src="../../../../js/lib/preview.js"></script>
-
-
-
-
+<script src="../../js/lib/preview.js"></script>
 
 
 
 
 
-<link rel="stylesheet" href="../../../../css/main.css" />
+<link rel="stylesheet" href="../../css/main.css" />
 
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body>
@@ -51,7 +47,7 @@
                 <div id="loading-circle">
                     <h2>LOADING</h2>
                     <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="../../../../images/loading.gif" />
+                    <img src="../../images/loading.gif" />
                 </div>
             </div>
         </transition>
@@ -61,27 +57,27 @@
             <span>千幻笙的小窝</span>
         </a>
         
-        <a href="../../../../index.html">
+        <a href="../../index.html">
             <i class="fa-solid fa-house fa-fw"></i>
             <span>&ensp;Home</span>
         </a>
         
-        <a href="../../../../about">
+        <a href="../../about">
             <i class="fa-solid fa-id-card fa-fw"></i>
             <span>&ensp;About</span>
         </a>
         
-        <a href="../../../../archives">
+        <a href="../../archives">
             <i class="fa-solid fa-box-archive fa-fw"></i>
             <span>&ensp;Archives</span>
         </a>
         
-        <a href="../../../../categories">
+        <a href="../../categories">
             <i class="fa-solid fa-bookmark fa-fw"></i>
             <span>&ensp;Categories</span>
         </a>
         
-        <a href="../../../../tags">
+        <a href="../../tags">
             <i class="fa-solid fa-tags fa-fw"></i>
             <span>&ensp;Tags</span>
         </a>
@@ -95,7 +91,7 @@
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
                 
-                <a href="../../../../index.html">
+                <a href="../../index.html">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-house fa-fw"></i>
@@ -104,7 +100,7 @@
                     </div>
                 </a>
                 
-                <a href="../../../../about">
+                <a href="../../about">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-id-card fa-fw"></i>
@@ -113,7 +109,7 @@
                     </div>
                 </a>
                 
-                <a href="../../../../archives">
+                <a href="../../archives">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-box-archive fa-fw"></i>
@@ -122,7 +118,7 @@
                     </div>
                 </a>
                 
-                <a href="../../../../categories">
+                <a href="../../categories">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-bookmark fa-fw"></i>
@@ -131,7 +127,7 @@
                     </div>
                 </a>
                 
-                <a href="../../../../tags">
+                <a href="../../tags">
                     <div class="item">
                         <div style="min-width: 20px; max-width: 50px; width: 10%">
                             <i class="fa-solid fa-tags fa-fw"></i>
@@ -149,20 +145,36 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>Unity 2D Shader Graph实现溶解和发光思路</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/8/18
+            <div id="archives">
+    
+    <div class="categories-tags">
+        
+        
+        
+        <span>
+            <a href="../%E5%88%86%E4%BA%AB/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                分享
+            </a>
         </span>
         
-        <span class="category">
-            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+        
+        
+        <span>
+            <a href="../%E6%80%BB%E7%BB%93/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                总结
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="../%E6%95%99%E7%A8%8B/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -171,64 +183,114 @@
         </span>
         
         
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/unity/" style="color: #ffa2c4">unity</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/2D/" style="color: #ff7d73">2D</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/Shader/" style="color: #00bcd4">Shader</a>
-            </span>
-            
+        
+        <span>
+            <a href="../%E5%85%AC%E5%91%8A/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                公告
+            </a>
         </span>
+        
+        
+        
+        <span>
+            <a href="../%E6%80%BB%E7%BB%93/%E6%95%99%E7%A8%8B/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                每日一题
+            </a>
+        </span>
+        
+        
+        
         
     </div>
     
-    <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要介绍通过使用unity的2d Shader Graph实现溶解和发光的思路。</p>
-<span id="more"></span>
-
-<p>首先需要导入URP的包，然后再设置用于2D的shader</p>
-<p><strong>2D Shader Graph设置：</strong></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180222086.png" alt="image-20240819180222086"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180001392.png" alt="image-20240819180001392"></p>
-<p>生成URP Assest的时候会生成一个默认的Renderer，不过默认是3D用的，所以记得删去。</p>
-<h3 id="Dissolve效果展示"><a href="#Dissolve效果展示" class="headerlink" title="Dissolve效果展示"></a>Dissolve效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174737029.png" alt="image-20240819174737029"></p>
-<p>从效果上可以看到，除了溶解，还有边缘发光的效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174829845.png" alt="image-20240819174829845"></p>
-<p>Shader编辑器如图。</p>
-<p>溶解的思路就是生成一个噪声图，与图片叠加，由噪声图控制透明度，然后用step节点控制噪声图，就能形成淡出淡入的效果，再加上噪声图的大小缩放也控制上，就能实现溶解。</p>
-<p>间隙发光的思路是用原来的噪声图进行一点点偏差，生成一个新的噪声图，再将两个噪声图做差，再与原本的噪声图（指最初的噪声图与图片叠加后的结果），得到间隙，再附带上颜色，就形成了间隙发光的效果。</p>
-<h3 id="Glowing效果展示"><a href="#Glowing效果展示" class="headerlink" title="Glowing效果展示"></a>Glowing效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174946598.png" alt="image-20240819174946598"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175437088.png" alt="image-20240819175437088"></p>
-<p>这个发光效果的好处就是可以变化颜色，也就是说，可以代码控制颜色变化，实现角色获得buff展示不同效果或者是角色技能升级产生不同效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175231392.png" alt="image-20240819175231392"></p>
-<p>Shader编辑器如图。</p>
-<p>首先要制作一个原本技能贴图的蒙版，作为原本图片的次级纹理。蒙版图片只有黑白，所以只选取RGB其中任意一个通道就行，然后再用个颜色叠加，就能只影响技能的发光并且可以更改技能颜色。</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这也算是我第一次接触这部分的知识，道阻且长。无他，只是想记录记录，其实这也没什么技术含量，但是我想写就写。</p>
-<p>参考资料：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d541167q4/?spm_id_from=333.788.video.desc.click&vd_source=212c67fc161f36062c5d44784ed8b749">Dissolve</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gA411h7Qc/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=212c67fc161f36062c5d44784ed8b749">Glowing</a></p>
-
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2025/9/24</div>
+            <a href="../../2025/09/24/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0/">
+                <h3>每日一题:分数到小数</h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        每日一题
+                    </a>
+                </span>
+                
+                
+                <span class="tags">
+                    <span class="icon">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </span>
+                    
+                    
+                    <span class="tag">
+                        
+                        <a href="../../tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+                    </span>
+                    
+                </span>
+                
+            </div>
+        </div>
     </div>
     
-    
-    
-    
-    
-    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2025/9/23</div>
+            <a href="../../2025/09/23/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7/">
+                <h3>每日一题:比较版本号</h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        每日一题
+                    </a>
+                </span>
+                
+                
+                <span class="tags">
+                    <span class="icon">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </span>
+                    
+                    
+                    <span class="tag">
+                        
+                        <a href="../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+                    </span>
+                    
+                </span>
+                
+            </div>
+        </div>
+    </div>
     
 </div>
 
@@ -259,13 +321,7 @@
         </transition>
         
     </div>
-    <script src="../../../../js/main.js"></script>
-    
-    
-
-
-
-
+    <script src="../../js/main.js"></script>
     
 </body>
 </html>

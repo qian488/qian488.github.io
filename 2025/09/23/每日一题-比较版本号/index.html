@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity 2D Shader Graph实现溶解和发光思路 | 千幻笙的小窝</title>
+    <title>每日一题:比较版本号 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
@@ -151,22 +151,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Unity 2D Shader Graph实现溶解和发光思路</h1>
+        <h1>每日一题:比较版本号</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/8/18
+            2025/9/23
         </span>
         
         <span class="category">
-            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                教程
+                每日一题
             </a>
         </span>
         
@@ -179,17 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/unity/" style="color: #ffa2c4">unity</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/2D/" style="color: #ff7d73">2D</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/Shader/" style="color: #00bcd4">Shader</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
             </span>
             
         </span>
@@ -197,30 +187,72 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要介绍通过使用unity的2d Shader Graph实现溶解和发光的思路。</p>
-<span id="more"></span>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/compare-version-numbers/description/?envType=daily-question&envId=2025-09-23">每日一题:比较版本号</a></p>
+<p>给你两个 <strong>版本号字符串</strong> <code>version1</code> 和 <code>version2</code> ，请你比较它们。版本号由被点 <code>&#39;.&#39;</code> 分开的修订号组成。<strong>修订号的值</strong> 是它 <strong>转换为整数</strong> 并忽略前导零。</p>
+<p>比较版本号时，请按 <strong>从左到右的顺序</strong> 依次比较它们的修订号。如果其中一个版本字符串的修订号较少，则将缺失的修订号视为 <code>0</code>。</p>
+<p>返回规则如下：</p>
+<ul>
+<li>如果 <code>*version1* &lt; *version2*</code> 返回 <code>-1</code>，</li>
+<li>如果 <code>*version1* &gt; *version2*</code> 返回 <code>1</code>，</li>
+<li>除此之外返回 <code>0</code>。</li>
+</ul>
+ <span id="more"></span>
 
-<p>首先需要导入URP的包，然后再设置用于2D的shader</p>
-<p><strong>2D Shader Graph设置：</strong></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180222086.png" alt="image-20240819180222086"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180001392.png" alt="image-20240819180001392"></p>
-<p>生成URP Assest的时候会生成一个默认的Renderer，不过默认是3D用的，所以记得删去。</p>
-<h3 id="Dissolve效果展示"><a href="#Dissolve效果展示" class="headerlink" title="Dissolve效果展示"></a>Dissolve效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174737029.png" alt="image-20240819174737029"></p>
-<p>从效果上可以看到，除了溶解，还有边缘发光的效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174829845.png" alt="image-20240819174829845"></p>
-<p>Shader编辑器如图。</p>
-<p>溶解的思路就是生成一个噪声图，与图片叠加，由噪声图控制透明度，然后用step节点控制噪声图，就能形成淡出淡入的效果，再加上噪声图的大小缩放也控制上，就能实现溶解。</p>
-<p>间隙发光的思路是用原来的噪声图进行一点点偏差，生成一个新的噪声图，再将两个噪声图做差，再与原本的噪声图（指最初的噪声图与图片叠加后的结果），得到间隙，再附带上颜色，就形成了间隙发光的效果。</p>
-<h3 id="Glowing效果展示"><a href="#Glowing效果展示" class="headerlink" title="Glowing效果展示"></a>Glowing效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174946598.png" alt="image-20240819174946598"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175437088.png" alt="image-20240819175437088"></p>
-<p>这个发光效果的好处就是可以变化颜色，也就是说，可以代码控制颜色变化，实现角色获得buff展示不同效果或者是角色技能升级产生不同效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175231392.png" alt="image-20240819175231392"></p>
-<p>Shader编辑器如图。</p>
-<p>首先要制作一个原本技能贴图的蒙版，作为原本图片的次级纹理。蒙版图片只有黑白，所以只选取RGB其中任意一个通道就行，然后再用个颜色叠加，就能只影响技能的发光并且可以更改技能颜色。</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这也算是我第一次接触这部分的知识，道阻且长。无他，只是想记录记录，其实这也没什么技术含量，但是我想写就写。</p>
-<p>参考资料：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d541167q4/?spm_id_from=333.788.video.desc.click&vd_source=212c67fc161f36062c5d44784ed8b749">Dissolve</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gA411h7Qc/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=212c67fc161f36062c5d44784ed8b749">Glowing</a></p>
+<p><strong>示例 1：</strong></p>
+<ul>
+<li><p><strong>输入：</strong>version1 &#x3D; “1.2”, version2 &#x3D; “1.10”</p>
+</li>
+<li><p><strong>输出：</strong>-1</p>
+</li>
+<li><p><strong>解释：</strong>version1 的第二个修订号为 “2”，version2 的第二个修订号为 “10”：2 &lt; 10，所以 version1 &lt; version2。</p>
+</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<ul>
+<li><p><strong>输入：</strong>version1 &#x3D; “1.01”, version2 &#x3D; “1.001”</p>
+</li>
+<li><p><strong>输出：</strong>0</p>
+</li>
+<li><p><strong>解释：</strong>忽略前导零，”01” 和 “001” 都代表相同的整数 “1”。</p>
+</li>
+</ul>
+<p><strong>示例 3：</strong></p>
+<ul>
+<li><p><strong>输入：</strong>version1 &#x3D; “1.0”, version2 &#x3D; “1.0.0.0”</p>
+</li>
+<li><p><strong>输出：</strong>0</p>
+</li>
+<li><p><strong>解释：</strong>version1 有更少的修订号，每个缺失的修订号按 “0” 处理。</p>
+</li>
+</ul>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= version1.length, version2.length &lt;= 500</code></li>
+<li><code>version1</code> 和 <code>version2</code> 仅包含数字和 <code>&#39;.&#39;</code></li>
+<li><code>version1</code> 和 <code>version2</code> 都是 <strong>有效版本号</strong></li>
+<li><code>version1</code> 和 <code>version2</code> 的所有修订号都可以存储在 <strong>32 位整数</strong> 中</li>
+</ul>
+<p>简单理解实际上就是给你两个字符串，找到第一个不同的数字（字符），然后比较大小。其中需要处理0的补位。</p>
+<p>思路就很简单了，通过点 <code>&#39;.&#39;</code> 分割，然后依次比较即可，超出长度的补0。比较大小，按照答案输出1和-1，其他情况就返回0。</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int CompareVersion(string version1, string version2) &#123;
+        string[] v1 = version1.Split(&#39;.&#39;);
+        string[] v2 = version2.Split(&#39;.&#39;);
+
+        int len1 = v1.Length;
+        int len2 = v2.Length;
+
+        for(int i=0;i&lt;Math.Max(len1,len2);i++)&#123;
+            int num1 = i &lt; len1 ? int.Parse(v1[i]):0;
+            int num2 = i &lt; len2 ? int.Parse(v2[i]):0;
+
+            if(num1 != num2) return num1 &gt; num2 ? 1 : -1;
+        &#125;
+
+        return 0;
+    &#125;
+&#125;
+</code></pre>
 
     </div>
     

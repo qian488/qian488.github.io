@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity 2D Shader Graph实现溶解和发光思路 | 千幻笙的小窝</title>
+    <title>每日一题:分数到小数 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
@@ -151,22 +151,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Unity 2D Shader Graph实现溶解和发光思路</h1>
+        <h1>每日一题:分数到小数</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/8/18
+            2025/9/24
         </span>
         
         <span class="category">
-            <a href="../../../../categories/%E6%95%99%E7%A8%8B/">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                教程
+                每日一题
             </a>
         </span>
         
@@ -179,17 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/unity/" style="color: #ffa2c4">unity</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/2D/" style="color: #ff7d73">2D</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/Shader/" style="color: #00bcd4">Shader</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
             </span>
             
         </span>
@@ -197,30 +187,70 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要介绍通过使用unity的2d Shader Graph实现溶解和发光的思路。</p>
-<span id="more"></span>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fraction-to-recurring-decimal/description/?envType=daily-question&envId=2025-09-24">每日一题:分数到小数</a></p>
+<p>给定两个整数，分别表示分数的分子 <code>numerator</code> 和分母 <code>denominator</code>，以 <strong>字符串形式返回小数</strong> 。</p>
+<p>如果小数部分为循环小数，则将循环的部分括在括号内。</p>
+<p>如果存在多个答案，只需返回 <strong>任意一个</strong> 。</p>
+<p>对于所有给定的输入，<strong>保证</strong> 答案字符串的长度小于 $10^{4}$ 。</p>
+ <span id="more"></span>
 
-<p>首先需要导入URP的包，然后再设置用于2D的shader</p>
-<p><strong>2D Shader Graph设置：</strong></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180222086.png" alt="image-20240819180222086"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819180001392.png" alt="image-20240819180001392"></p>
-<p>生成URP Assest的时候会生成一个默认的Renderer，不过默认是3D用的，所以记得删去。</p>
-<h3 id="Dissolve效果展示"><a href="#Dissolve效果展示" class="headerlink" title="Dissolve效果展示"></a>Dissolve效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174737029.png" alt="image-20240819174737029"></p>
-<p>从效果上可以看到，除了溶解，还有边缘发光的效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174829845.png" alt="image-20240819174829845"></p>
-<p>Shader编辑器如图。</p>
-<p>溶解的思路就是生成一个噪声图，与图片叠加，由噪声图控制透明度，然后用step节点控制噪声图，就能形成淡出淡入的效果，再加上噪声图的大小缩放也控制上，就能实现溶解。</p>
-<p>间隙发光的思路是用原来的噪声图进行一点点偏差，生成一个新的噪声图，再将两个噪声图做差，再与原本的噪声图（指最初的噪声图与图片叠加后的结果），得到间隙，再附带上颜色，就形成了间隙发光的效果。</p>
-<h3 id="Glowing效果展示"><a href="#Glowing效果展示" class="headerlink" title="Glowing效果展示"></a>Glowing效果展示</h3><p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819174946598.png" alt="image-20240819174946598"></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175437088.png" alt="image-20240819175437088"></p>
-<p>这个发光效果的好处就是可以变化颜色，也就是说，可以代码控制颜色变化，实现角色获得buff展示不同效果或者是角色技能升级产生不同效果。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240819175231392.png" alt="image-20240819175231392"></p>
-<p>Shader编辑器如图。</p>
-<p>首先要制作一个原本技能贴图的蒙版，作为原本图片的次级纹理。蒙版图片只有黑白，所以只选取RGB其中任意一个通道就行，然后再用个颜色叠加，就能只影响技能的发光并且可以更改技能颜色。</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这也算是我第一次接触这部分的知识，道阻且长。无他，只是想记录记录，其实这也没什么技术含量，但是我想写就写。</p>
-<p>参考资料：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d541167q4/?spm_id_from=333.788.video.desc.click&vd_source=212c67fc161f36062c5d44784ed8b749">Dissolve</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gA411h7Qc/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=212c67fc161f36062c5d44784ed8b749">Glowing</a></p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：numerator = 1, denominator = 2
+输出：&quot;0.5&quot;
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：numerator = 2, denominator = 1
+输出：&quot;2&quot;
+</code></pre>
+<p><strong>示例 3：</strong></p>
+<pre><code>输入：numerator = 4, denominator = 333
+输出：&quot;0.(012)&quot;
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>-2^31 &lt;= numerator, denominator &lt;= 2^31 - 1</code></li>
+<li><code>denominator != 0</code></li>
+</ul>
+<p>题目的意思就是将分数转换为小数形式，并在小数部分是循环小数时，正确地将循环部分用括号括起来。主要是循环小数的记录，需要插入括号，因此可以使用字典来存储循环开始的索引，另外一个需要注意的就是数据范围比较大，要使用<code>long</code></p>
+<p>实现思路就模拟我们正常使用除法计算就行。除不尽的时候，当余数再次出现在字典里，说明已经开始循环了。因为字典的value存储了索引，所以处理结果的时候就就可以在索引处插入括号以符合题目要求。</p>
+<pre><code class="csharp">public class Solution &#123;
+    public string FractionToDecimal(int numerator, int denominator) &#123;
+        if(numerator == 0) return &quot;0&quot;;
+
+        StringBuilder result = new StringBuilder();
+        
+        // 处理符号
+        if ((numerator &gt; 0) ^ (denominator &gt; 0)) result.Append(&quot;-&quot;);
+
+        // 转换为正数进行计算
+        long n = Math.Abs((long)numerator);
+        long d = Math.Abs((long)denominator);
+
+        result.Append(n / d);
+        long r = n % d;
+
+        if(r == 0) return result.ToString();
+
+        result.Append(&#39;.&#39;);
+        Dictionary&lt;long, int&gt; mp = new Dictionary&lt;long, int&gt;();
+
+        // 处理小数部分
+        while (r != 0 &amp;&amp; !mp.ContainsKey(r)) &#123;
+            mp[r] = result.Length;
+            r *= 10;
+            result.Append(r / d);
+            r %= d;
+        &#125;
+
+        if (r != 0) &#123;
+            int index = mp[r];
+            result.Insert(index, &quot;(&quot;);
+            result.Append(&quot;)&quot;);
+        &#125;
+        return result.ToString();
+    &#125;
+&#125;
+</code></pre>
 
     </div>
     
