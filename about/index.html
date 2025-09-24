@@ -1,215 +1,226 @@
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>About | 千幻笙的小窝</title>
-    <meta name="author" content="Awith" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <link rel="icon" href="../images/avatar.jpg" />
-    <link rel="preconnect" href="https://cdn.staticfile.org" />
-<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
-<script src="/live2d-widget/autoload.js"></script>
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
-<link rel="preconnect" href="https://fonts.loli.net" />
-<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
-<script> const mixins = {}; </script>
+<style>
+/* 简历专用样式 */
+.resume-wrapper {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px;
+  background: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+.resume-header {
+  text-align: center;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
 
+.resume-header h1 {
+  font-size: 2.8em;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+}
 
-<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
-    rel="stylesheet"
-    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
-/>
-<script src="../js/lib/highlight.js"></script>
+.resume-header p {
+  font-size: 1.2em;
+  color: #7f8c8d;
+  margin: 0;
+}
 
+.section {
+  margin-bottom: 35px;
+}
 
+.section-title {
+  font-size: 1.5em;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
 
-<script src="../js/lib/preview.js"></script>
+.experience-item {
+  margin-bottom: 25px;
+  padding-left: 15px;
+  border-left: 3px solid #ecf0f1;
+}
 
+.company {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #2c3e50;
+  display: block;
+}
 
+.position {
+  font-style: italic;
+  color: #7f8c8d;
+  display: block;
+  margin: 5px 0;
+}
 
+.date {
+  float: right;
+  background: #3498db;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
 
+.skills-section ul {
+  padding-left: 20px;
+}
 
+.skills-section li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
 
+.skills-section strong {
+  color: #2c3e50;
+}
 
+.project-description {
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 10px 0 15px 0;
+  border-left: 4px solid #3498db;
+}
 
+ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
 
-<link rel="stylesheet" href="../css/main.css" />
+li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
 
-<meta name="generator" content="Hexo 7.3.0"></head>
-<body>
-    <div id="layout">
-        <transition name="fade">
-            <div id="loading" v-show="loading">
-                <div id="loading-circle">
-                    <h2>LOADING</h2>
-                    <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="../images/loading.gif" />
-                </div>
-            </div>
-        </transition>
-        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
-    <nav id="desktop-menu">
-        <a class="title" href="/">
-            <span>千幻笙的小窝</span>
-        </a>
-        
-        <a href="../index.html">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
-        </a>
-        
-        <a href="../about">
-            <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;About</span>
-        </a>
-        
-        <a href="../archives">
-            <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;Archives</span>
-        </a>
-        
-        <a href="../categories">
-            <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;Categories</span>
-        </a>
-        
-        <a href="../tags">
-            <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;Tags</span>
-        </a>
-        
-    </nav>
-    <nav id="mobile-menu">
-        <div class="title" @click="showMenuItems = !showMenuItems">
-            <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;千幻笙的小窝</span>
-        </div>
-        <transition name="slide">
-            <div class="items" v-show="showMenuItems">
-                
-                <a href="../index.html">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-house fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
-                    </div>
-                </a>
-                
-                <a href="../about">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-id-card fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
-                    </div>
-                </a>
-                
-                <a href="../archives">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-box-archive fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
-                    </div>
-                </a>
-                
-                <a href="../categories">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
-                    </div>
-                </a>
-                
-                <a href="../tags">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
-                    </div>
-                </a>
-                
-            </div>
-        </transition>
-    </nav>
+.achievement {
+  background: #e8f4fc;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid #3498db;
+}
+
+@media (max-width: 768px) {
+  .resume-wrapper {
+    padding: 20px;
+    margin: 20px auto;
+  }
+  
+  .date {
+    float: none;
+    display: inline-block;
+    margin-top: 5px;
+  }
+}
+</style>
+
+<div class="resume-wrapper">
+
+  <!-- 教育经历 -->
+  <div class="section">
+    <h2 class="section-title">教育经历</h2>
+    <div class="experience-item">
+      <span class="company">东莞理工学院（一本）</span>
+      <span class="date">09/2022 - 06/2026</span>
+      <span class="position">数据科学与大数据技术 本科</span>
+    </div>
+  </div>
+
+  <!-- 获奖荣誉 -->
+  <div class="section">
+    <h2 class="section-title">获奖荣誉</h2>
+    <div class="achievement">
+      <strong>铜牌</strong> - 广东省大学生程序设计竞赛(GDCPC) <span class="date">2024</span>
+    </div>
+    <div class="achievement">
+      <strong>铜牌</strong> - 中国大学生程序设计竞赛(CCPC)--全国邀请赛(广东站) <span class="date">2024</span>
+    </div>
+  </div>
+
+  <!-- 技能经验 -->
+  <div class="section skills-section">
+    <h2 class="section-title">技能经验</h2>
+    <ul>
+      <li><strong>游戏引擎</strong>：熟悉 Unity ，掌握 GameObject 生命周期、组件系统等。</li>
+      <li><strong>编程语言</strong>：熟悉 C# ，掌握面向对象编程。了解 cpp 。</li>
+      <li><strong>算法与数据结构</strong>：熟练掌握常见数据结构和算法，解决实际问题。</li>
+      <li><strong>网络知识</strong>：熟悉 TCP、UDP 协议，理解状态同步、帧同步等，能很好配合服务器开发迭代。</li>
+      <li><strong>其他</strong>：理解 AB 打包过程和 Lua 热更新技术原理。</li>
+      <li><strong>版本管理与协作</strong>：熟练使用 Git 等版本管理工具，能够高效地与团队成员协作开发。</li>
+    </ul>
+  </div>
+
+  <!-- 实习经历 -->
+  <div class="section">
+    <h2 class="section-title">实习经历</h2>
+    <div class="experience-item">
+      <span class="company">上海智游九阴网络技术</span>
+      <span class="date">08/2025 - 09/2025</span>
+      <span class="position">游戏开发实习生</span>
+      <div class="project-description">
+        武侠自走棋项目，作为唯一后端，负责服务端全流程。
+      </div>
+      <ul>
+        <li>完成战斗系统的设计与迭代，实现buff系统模块和战术卡、绝学等技能系统模块</li>
+        <li>优化消息设计，重新设计gameMsg类</li>
+        <li>开发供策划使用的生成配表工具，实现基于策划需求生成符合项目使用的表</li>
+        <li>完善供策划使用的配表网页编辑器，实现基于新表结构的增删改查和预览等功能</li>
+        <li>维护服务器正常运行，修复遗留问题</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 项目经历 -->
+  <div class="section">
+    <h2 class="section-title">项目经历</h2>
+    <div class="experience-item">
+      <span class="company">Love Clash</span>
+      <span class="date">03/2024 - 07/2024</span>
+      <span class="position">团队项目</span>
+      <div class="project-description">
+        开发了一款恋爱题材的pvp回合制卡牌游戏。适合和关系好的朋友或者情侣一起玩的趣味轻度策略卡牌游戏。玩家将扮演暧昧期的男生/女生，互相攻略对方。
+      </div>
+      <ul>
+        <li>负责客户端部分卡牌逻辑，完成反制相关功能的开发</li>
+        <li>构建事件系统，实现模块间的松耦合，使代码结构更加清晰，便于维护和扩展</li>
+        <li>实现配置系统 Excel -> SQLite -> SO ，实现数据持久化，且提高策划与程序的协作效率</li>
+        <li>实现资源池与对象池，优化游戏资源管理，有效降低游戏的内存占用和资源加载时间，提升游戏的运行效率</li>
+      </ul>
+    </div>
+    <div class="experience-item">
+      <span class="company">基于unity的算法可视化学习平台</span>
+      <span class="date">01/2025 - 至今</span>
+      <span class="position">个人项目</span>
+      <div class="project-description">
+        开发一个基于unity的算法可视化学习平台，通过3D动态展示和游戏化设计，将抽象算法概念具象化，帮助学习者更好地理解和掌握算法知识。
+      </div>
+      <ul>
+        <li>完成常见算法的可视化以及对应游戏关卡的开发，包括8个核心算法模块（排序、动态规划、图搜索、贪心等）</li>
+        <li>实现资源动态异步加载功能，根据需求动态异步加载相应的资源，有效降低资源的初始加载时间，提升用户体验</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 自我评价 -->
+  <div class="section">
+    <h2 class="section-title">自我评价</h2>
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+      对游戏开发充满热爱，有独到的见解，积极学习，善于与他人配合，认真负责，具有团队精神。
+    </div>
+  </div>
 </div>
-<transition name="fade">
-    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
-</transition>
-
-        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>About</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2025/2/22
-        </span>
-        
-        
-    </div>
-    
-    <div class="content" v-pre>
-        
-    </div>
-    
-    
-    
-    
-    
-    
-    
-</div>
-
-            <footer id="footer">
-    <div id="footer-wrap">
-        <div>
-            &copy;
-            2022 - 2025 千幻笙的小窝
-            <span id="footer-icon">
-                <i class="fa-solid fa-font-awesome fa-fw"></i>
-            </span>
-            &commat;Awith
-        </div>
-        <div>
-            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
-        </div>
-        
-    </div>
-</footer>
-
-        </div>
-        
-        <transition name="fade">
-            <div id="preview" ref="preview" v-show="previewShow">
-                <img id="preview-content" ref="previewContent" />
-            </div>
-        </transition>
-        
-    </div>
-    <script src="../js/main.js"></script>
-    
-    
-
-
-
-
-    
-</body>
-</html>
