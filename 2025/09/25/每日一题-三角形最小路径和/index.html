@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker) | 千幻笙的小窝</title>
+    <title>每日一题:三角形最小路径和 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
@@ -151,22 +151,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</h1>
+        <h1>每日一题:三角形最小路径和</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/8/15
+            2025/9/25
         </span>
         
         <span class="category">
-            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                分享
+                每日一题
             </a>
         </span>
         
@@ -179,17 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/C/" style="color: #ff7d73">C#</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/VS/" style="color: #03a9f4">VS</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/Windows-Forms/" style="color: #00bcd4">Windows Forms</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
             </span>
             
         </span>
@@ -197,64 +187,105 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要是突然间好奇，想写个带图形界面的简单工具看看，然后参考微软官方的资料，写了一个极其简陋的抽号器，文末有下载链接。</p>
-<span id="more"></span>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/triangle/?envType=daily-question&envId=2025-09-25">每日一题:三角形最小路径和</a></p>
+<p>给定一个三角形 <code>triangle</code> ，找出自顶向下的最小路径和。</p>
+<p>每一步只能移动到下一行中相邻的结点上。<strong>相邻的结点</strong> 在这里指的是 <strong>下标</strong> 与 <strong>上一层结点下标</strong> 相同或者等于 <strong>上一层结点下标 + 1</strong> 的两个结点。也就是说，如果正位于当前行的下标 <code>i</code> ，那么下一步可以移动到下一行的下标 <code>i</code> 或 <code>i + 1</code> 。</p>
+  <span id="more"></span>
 
-<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><p>因为这真的很简单，所以就三步走。</p>
-<h4 id="第一步-创建项目"><a href="#第一步-创建项目" class="headerlink" title="第一步 创建项目"></a>第一步 创建项目</h4><p>根据微软官方文档，创建Windows窗体应用项目。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/visualstudio/ide/create-csharp-winform-visual-studio?view=vs-2022">使用 C# 创建 Windows 窗体应用 - Visual Studio (Windows) | Microsoft Learn</a></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818232511943.png" alt="image-20240818232511943"></p>
-<h4 id="第二步-布置控件"><a href="#第二步-布置控件" class="headerlink" title="第二步 布置控件"></a>第二步 布置控件</h4><p>拖动工具栏的控件到窗体中。</p>
-<p>如果没有看见工具箱，可以在左上角的<strong>视图</strong>找到<strong>工具箱</strong>，等一会儿加载，就能够看见。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818233346228.png" alt="image-20240818233346228"></p>
-<p>我这里用到的控件就是Label用于展示文本，TextBox文本框获取随机数的范围，Button控制开始与暂停，Timer控制随机数展示的间隔。</p>
-<h4 id="第三步-编写脚本"><a href="#第三步-编写脚本" class="headerlink" title="第三步 编写脚本"></a>第三步 编写脚本</h4><p>为Button写一个用于在指定范围生成随机数的脚本，双击Button控件可快速转到按钮点击的方法中。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818235237599.png" alt="image-20240818235237599"></p>
-<pre><code class="csharp">private void startStopButton_Click(object sender, EventArgs e)
-&#123;
-    if (!isRolling)
-    &#123;
-        // 开始滚动
-        if (int.TryParse(minValueTextBox.Text, out minValue) &amp;&amp;
-            int.TryParse(maxValueTextBox.Text, out maxValue) &amp;&amp;
-            minValue &lt;= maxValue)
-        &#123;
-            isRolling = true;
-            startStopButton.Text = &quot;Stop&quot;;
-            timer.Start();
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+输出：11
+解释：如下面简图所示：
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：triangle = [[-10]]
+输出：-10
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= triangle.length &lt;= 200</code></li>
+<li><code>triangle[0].length == 1</code></li>
+<li><code>triangle[i].length == triangle[i - 1].length + 1</code></li>
+<li><code>-10^4 &lt;= triangle[i][j] &lt;= 10^4</code></li>
+</ul>
+<p><strong>进阶：</strong></p>
+<ul>
+<li>你可以只使用 <code>O(n)</code> 的额外空间（<code>n</code> 为三角形的总行数）来解决这个问题吗？</li>
+</ul>
+<p>刷题多的人可能一眼就看出来这是典型的线性DP入门问题。按照常规的学的DP推导就可以去做的。但是动态规划并没有那么容易去理解和学会<del>(就素我也不会,我是采购)</del>。或者图论的知识也可以做这个题目，就直接把这个三角形建成一个有向图，然后使用最短路去求，也是可以做出来的。我这里给出的是我认为容易理解的方式来讲解这题的思路。</p>
+<p>题目的意思很清晰明了，就是从顶点出发，求去到底部的最小路径和。按照正常的，暴力的思路，<del>(我这里指的暴力是穷举的意思)</del>，我们是不是可以从上到下去扫描累加，然后记录下来每条路径和，再通过比大小，就可以获得最终答案。使用示例1来举例说明</p>
+<pre><code>图所示：
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+
+2 3 6 4 =&gt; 15
+2 3 6 1 =&gt; 12
+2 3 5 1 =&gt; 11
+2 3 5 8 =&gt; 18
+2 4 5 1 =&gt; 12
+2 4 5 8 =&gt; 19
+2 4 7 8 =&gt; 21
+2 4 7 3 =&gt; 16
+</code></pre>
+<p>这是穷举的思路，那么怎么优化呢？其实就是去观察有什么需要重复计算或使用的。</p>
+<p>从题目中<strong>如果正位于当前行的下标 <code>i</code> ，那么下一步可以移动到下一行的下标 <code>i</code> 或 <code>i + 1</code> 。</strong>可以看出来这就是一个小三角的构成，而这整个三角形由一个个小三角组成。那么我们能知道小三角是怎么算，就可以类推。显然，一个小三角的最小值是顶点加上左右的小值。接下来我们要去算大三角的最小值。</p>
+<p>怎么将这个大三角变成一个个小三角去算，或者说怎么把小三角消除生成一个最后的小三角，做完了这个操作后，就是答案了。</p>
+<p>题目要求是从顶点出发到底部的最小值。自然地，我们就可以想到从上到下去看怎么操作。2出发，34选择一个，选3，接着只能选56，选5，接着选18，选1。好像这样确实就能得到答案。但是这对吗？有没有发现这个路径忽略了很多信息。假如图变成了这样呢？</p>
+<pre><code>图所示：
+   2
+  3 4
+ 6 5 1
+4 1 8 1
+</code></pre>
+<p>按照前面的思路，路径还是锁死，得出来的还是2 3 5 1得到11，但实际上2 4 1 1得到8显然才是答案。</p>
+<p>那么怎么解决这个问题？这个问题出在我们使用的信息很少，除了当前之外的信息都舍弃掉了，所以丢失了正确性。只要我们能够维护记录下消息，就可以解决。那么缺了什么信息？为什么会走235这个方向是因为根本没有241的记录，只要在确定走哪个方向的时候，有这些信息就可以了。也就是说，我们进到一个点的时候，确定什么方向时，需要知道每个方向剩下的路径有多长，选择剩下路径最短的走。从顶点开始，每一个选择下一个方向，都需要知道那个方向剩下的距离。</p>
+<p>这是不是就是构成了一个递归？递归出口就是最底层。因为没有下一层了。剩下的距离要怎么记录？显然需要两个维度，起点和终点。</p>
+<p>那么这要怎么实现？从顶点往下迭代或者递归向下搜索，每一层更新最小路径和。用二维数组记录到达 <code>(i,j)</code> 的最小路径和。</p>
+<p>其实现在这个题目已经可以解了。但是题目还有信息。</p>
+<p><strong>只使用 <code>O(n)</code> 的额外空间（<code>n</code> 为三角形的总行数）来解决这个问题</strong></p>
+<p>现在我们是需要二维数组去记录信息，所以空间不符合。我们需要记录的信息为什么有二维，显然是因为需要确定起点和终点。但是，仔细思考一下，这个题目的起点不是确定的吗？这就说明完全可以省去一个维度。</p>
+<p>前面已经思考过自顶向下需要知道剩下的路径长度才可以保持正确性，但是我们一转方向，自底向上去走呢？一旦有这个想法，这就很明朗了。终点是唯一确定的。从底部向上走，小三角的消除也可以一路往上消除。拿前面的图举例子</p>
+<pre><code>图所示：
+   2
+  3 4
+ 6 5 1
+4 1 8 1
+
+   2
+  3 4
+ 7 6 2
+ 
+   2
+  9 6
+  
+   8
+</code></pre>
+<p>是不是很自然，很顺畅地消除了小三角，而且也不需要特别的信息，因为每一个消除的小三角的内容又构成下一个待消除的小三角，最终只留下终点的小三角。那就是答案。每次计算只依赖下一行的相邻两个元素。使用一维数组就可以存储剩下路径的最小路径和，计算完覆盖即可。</p>
+<p>下面是代码的具体实现</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int MinimumTotal(IList&lt;IList&lt;int&gt;&gt; triangle) &#123;
+        int n = triangle.Count;
+        int[] dp = new int[n+1];
+        for(int i=n-1;i&gt;=0;i--)&#123;
+            for(int j=0;j&lt;=i;j++)&#123;
+                dp[j] = Math.Min(dp[j],dp[j+1])+triangle[i][j];
+            &#125;
         &#125;
-        else
-        &#123;
-            MessageBox.Show(&quot;请输入有效的范围！&quot;);
-        &#125;
-    &#125;
-    else
-    &#123;
-        // 停止滚动并显示结果
-        isRolling = false;
-        startStopButton.Text = &quot;Start&quot;;
-        timer.Stop();
-        int result = int.Parse(rollingNumberLabel.Text);
-        ShowResult(result);
+        return dp[0];
     &#125;
 &#125;
 </code></pre>
-<p>注意引入Timer的时候，需指明是form下的，不然编译器可能不知道。</p>
-<p>以及，一般建议不直接在form上直接进行编写，开一个新窗口继承form，然后将你的内容写进去。这样的好处就是区分开直接自己写和拖动控件智能自动生成的部分。</p>
-<p>提示timer的有关编写。</p>
-<pre><code class="csharp">public Form1()
-&#123;
-    InitializeComponent();
-    timer = new System.Windows.Forms.Timer();
-    timer.Interval = 50; // 数字滚动的速度
-    timer.Tick += Timer_Tick;
-&#125;
-</code></pre>
-<p>Timer_Tick只消写好随机数，并将数值赋值给显示的label即可，这样就可以实现点击按钮后，开始不断随机数显示，直到点击stop时，停止新一轮的随机数。</p>
-<h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p>点击start，按钮的文本变成stop，开始抽数，再次点击stop，确定最终的数。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/78d394e1e03545f0ffe204f0564d796.png" alt="78d394e1e03545f0ffe204f0564d796"></p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这种算<del>图形化？(bushi</del>反正就是比较简单的，基本不用什么基础也能进行开发，快去玩吧。当然如果看到这里你的电脑还没有这个简单的抽号器的话，那也可以点击这里的链接直接下载下来使用。文件夹<strong>NumberPicker\bin\Debug\net6.0-windows</strong>下的<strong>NumberPicker.exe</strong>就是最终的程序。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/qian488/SomeTools">抽号器下载</a></p>
+<p><code>n</code> 是三角形的高度。<code>dp</code> 用于记录每一行计算得到的最小路径和。<code>n+1</code> 是为了方便处理 <code>dp[j+1]</code>，最后多出一个位置不用。</p>
+<p>外层循环 <code>i</code>：从底向上遍历每一行。内层循环 <code>j</code>：遍历当前行的每个元素。</p>
+<p><code>dp[j]</code> 和 <code>dp[j+1]</code> 代表下一行的两个相邻位置的最小路径和。加上当前行的 <code>triangle[i][j]</code> 就得到从当前点出发的最小路径和。</p>
+<p>最终返回顶点的最小路径和。</p>
 
     </div>
     

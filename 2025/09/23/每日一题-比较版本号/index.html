@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
             </span>
             
         </span>
@@ -221,7 +221,7 @@
 <li><code>version1</code> 和 <code>version2</code> 的所有修订号都可以存储在 <strong>32 位整数</strong> 中</li>
 </ul>
 <p>简单理解实际上就是给你两个字符串，找到第一个不同的数字（字符），然后比较大小。其中需要处理0的补位。</p>
-<p>思路就很简单了，通过点 <code>&#39;.&#39;</code> 分割，然后依次比较即可，超出长度的补0。比较大小，按照答案输出1和-1，其他情况就返回0。</p>
+<p>思路就很简单了，<strong>通过点 <code>&#39;.&#39;</code> 分割，然后依次比较即可，超出长度的补0。比较大小，按照答案输出1和-1，其他情况就返回0</strong>。</p>
 <pre><code class="csharp">public class Solution &#123;
     public int CompareVersion(string version1, string version2) &#123;
         string[] v1 = version1.Split(&#39;.&#39;);

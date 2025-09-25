@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
             </span>
             
         </span>
@@ -212,7 +212,7 @@
 <li><code>denominator != 0</code></li>
 </ul>
 <p>题目的意思就是将分数转换为小数形式，并在小数部分是循环小数时，正确地将循环部分用括号括起来。主要是循环小数的记录，需要插入括号，因此可以使用字典来存储循环开始的索引，另外一个需要注意的就是数据范围比较大，要使用<code>long</code></p>
-<p>实现思路就模拟我们正常使用除法计算就行。除不尽的时候，当余数再次出现在字典里，说明已经开始循环了。因为字典的value存储了索引，所以处理结果的时候就就可以在索引处插入括号以符合题目要求。</p>
+<p>实现思路就模拟我们正常使用除法计算就行。<strong>除不尽的时候，当余数再次出现在字典里，说明已经开始循环了。因为字典的value存储了索引，所以处理结果的时候就可以在索引处插入括号以符合题目要求。</strong></p>
 <pre><code class="csharp">public class Solution &#123;
     public string FractionToDecimal(int numerator, int denominator) &#123;
         if(numerator == 0) return &quot;0&quot;;
