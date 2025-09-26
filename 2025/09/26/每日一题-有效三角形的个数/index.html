@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Godot快速上手 | 千幻笙的小窝</title>
+    <title>每日一题:有效三角形的个数 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
@@ -151,22 +151,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Godot快速上手</h1>
+        <h1>每日一题:有效三角形的个数</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/7/21
+            2025/9/26
         </span>
         
         <span class="category">
-            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                分享
+                每日一题
             </a>
         </span>
         
@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/Godot/" style="color: #00a596">Godot</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00bcd4">算法</a>
             </span>
             
         </span>
@@ -187,26 +187,112 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Godot是一款多功能、跨平台的2D与3D开源游戏引擎。可运行于Windows、macOS、Linux等多种操作系统。而其创建的游戏可运行于PC、Android、iOS、HTML5等平台。</p>
-<p>为什么写这篇文章，主要是记录一下Godot游戏引擎的使用体验。</p>
-<p>我跟着的教程是油管游戏开发大神<strong>Brackeys</strong>的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LOhfqjmasi0&t=85s">How to make a vedio game</a></p>
-<p>至此，这篇文章于你的作用可能就结束了，因为他的视频教程真的非常棒，非常酷，跟着做就可以完成一款简单的2d平台跳跃游戏。</p>
-<p><del>怎么感觉好像这篇文章不怎么必要写，不管哩，写都写了</del></p>
-<p>接下来，简单讲讲Godot的优点与不足</p>
-<span id="more"></span>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-triangle-number/?envType=daily-question&envId=2025-09-26">每日一题:有效三角形的个数</a></p>
+<p>给定一个包含非负整数的数组 <code>nums</code> ，返回其中可以组成三角形三条边的三元组个数。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: nums = [2,2,3,4]
+输出: 3
+解释:有效的组合是: 
+2,3,4 (使用第一个 2)
+2,3,4 (使用第二个 2)
+2,2,3
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: nums = [4,2,3,4]
+输出: 4
+</code></pre>
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
+</ul>
+<p>题目很简洁，就是求能够构成三角形三条边的三元组个数。自然地，我们就可以先从暴力法去思考。怎么做？显然三重循环枚举每一个数，再通过三角形的构成条件进行计数，就获得了答案。三角形需要最小的两边之和大于第三边。可以对数组排个序，就可以直接固定。于是就有了下面的代码，但是居然通过了<del>（太暴力了</del></p>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangleNumber(int[] nums) &#123;
+        int ans = 0;
+        int n = nums.Length;
 
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><h4 id="编辑器和脚本高度一致化"><a href="#编辑器和脚本高度一致化" class="headerlink" title="编辑器和脚本高度一致化"></a>编辑器和脚本高度一致化</h4><p>一致化到极致了，因为它的编辑器就是用它的脚本实现的，就是说Godot编辑器本身就是一个游戏。 </p>
-<p>所以可以轻松用脚本来控制它的编辑器，比如在编辑器中直接看代码运行效果。</p>
-<p>另外也可以在运行游戏的过程中实现许多编辑器中的功能，比如动态生成一些东西，或者将运行时的东西反保存到编辑器中。</p>
-<p>虽然这些不算什么新鲜功能，比如后者rpg maker都能做到，前者unity想弄也可以（虽然无比麻烦和拉胯）。但godot的特点因为是高度一致化，所以学习成本还挺低的。</p>
-<h4 id="合并概念，组件-对象，场景-对象"><a href="#合并概念，组件-对象，场景-对象" class="headerlink" title="合并概念，组件&#x3D;对象，场景&#x3D;对象"></a>合并概念，组件&#x3D;对象，场景&#x3D;对象</h4><p>我这里是拿unity里的概念来对比说的。 在Unity里的话，首先是分了很多的场景Scene，场景里会有许多的对象Object，一个对象上挂许多的组件Component。每个Component对应一类功能，比如物理运动、碰撞盒、音频、位图、动画……</p>
-<p>而在Godot里，<strong>所有的这一切，都算是对象</strong>。</p>
-<p>场景本身其实就是一个对象，所以可以场景套场景，或者一下实例化好几个场景。其实Unity虽然设计了场景这种东西，但用的时候，似乎许多项目并没按它设计的那种来用，因为限制很多，而且有许多不可控因素，使用方式反而更倾向Godot的这种设计。 另外就是，组件也是对象。把一个带功能的对象作为子对象挂在一个对象上，这个对象就有了这个功能。这个子对象，既算是组件，也是一个对象。这一点和Unity风格不同，初见可能觉得不太习惯，但用了会儿发现是非常美妙的。<del>（也有可能是我本来也没怎么学好Unity）</del></p>
-<p>Godot的这种合并概念的设计，大大地简化了开发，也弱化了限制，非常酷。</p>
-<h4 id="树形文档查找"><a href="#树形文档查找" class="headerlink" title="树形文档查找"></a>树形文档查找</h4><p>快速查找对象功能，查找直接用的是路径名称，非常方便也非常快速。它一切概念都合并成了对象，所以使用这种快速查找可以快速找到一切对象（场景、组件）。这个风格贯彻着整个游戏开发的始终。</p>
-<h3 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h3><p>相对于UE和Unity，它的学习资料实在是太少了，社区生态也并没有发展起来，编辑器的功能相对来说也还是薄弱。</p>
-<p>确实准确来说，我也不太懂其他方面，我只能说对于初学者而言，体验到的就是这些方面。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Godot还是蛮不错的感觉，至少在跟着<strong>Brackeys</strong>的教程做的时候感觉很简单、很爽。<del>（不排除是因为大神教学牛逼）</del>个人认为该引擎适用于做些独立小游戏这类的，未来学习资料多了，社区发展起来，还是不错的一个选择。至少这种，所有东西都看成Node的理念，我喜欢。</p>
+        if(n &lt; 3) return ans;
+
+        Array.Sort(nums);
+        for(int i = 0; i &lt; n; i++)&#123;
+            for(int j = i + 1; j &lt; n; j++)&#123;
+                for(int k = j + 1; k &lt; n; k++)&#123;
+                    if(nums[i] + nums[j] &gt; nums[k]) ans++;
+                &#125;
+            &#125;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<p>很明显这个解法是不够看的，因为时间复杂度太高，达到<code>O(n^3)</code></p>
+<p>那么怎么优化？</p>
+<p>观察目前的代码，会发现k那层的循环是明显可以优化的。前两层确定了最小的两条边，剩下的就是变成了<strong>找小于这两边之和的数</strong>的个数，然后加起来就是答案。关键在于找。有什么小于<code>O(n)</code>的查找？自然而然就该想到算法守门员，二分。可以把找k的那个数，通过二分查找，快速找到，然后计数。这样的时间复杂度是<code>O(n^2logn)</code>，参考代码如下</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangleNumber(int[] nums) &#123;
+        int ans = 0;
+        int n = nums.Length;
+
+        if(n&lt;3) return ans;
+
+        Array.Sort(nums);
+        for(int i = 0; i &lt; n; i++)&#123;
+            for(int j = i + 1; j &lt; n; j++)&#123;
+                int sum = nums[i] + nums[j];
+                int l = j, r = n;
+                while(l + 1 &lt; r)&#123;
+                    int mid = l + r &gt;&gt; 1;
+                    if(nums[mid] &gt;= sum)&#123;
+                        r = mid;
+                    &#125;else&#123;
+                        l = mid;
+                    &#125;
+                &#125;
+                ans += r - j - 1; 
+            &#125;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<p>二分查找的是第一个大于等于最小两边和的数，然后减去前面的索引就是这次的个数。</p>
+<p>那么还有办法优化吗？继续观察结构，<code>nums[i]+nums[j]&gt;nums[k]</code>，现在我们是固定两条短边找第三边。那我们是不是还可以反过来，固定最长边，找前面两条短边的个数？只要这个查找的过程小于<code>O(nlogn)</code>，那么就能继续优化一个级别。</p>
+<p>已知最长边，怎么快速计算两条短边的个数？是不是这两个短边按照升序时，一左一右，最边界的两个能够满足三角形条件的话，中间的所有都是满足的。边界相减就是存在的个数。那就很明显了，一左一右双指针，在锁定最长边的情况下，只要这两个边符合构成三角形就能进行一次计数。那么只要遍历一次最长边，使用一个最长边去还要遍历一次，最极端情况下就是要去到最右边，即还需要遍历一次。那么时间复杂度就是<code>O(n^2)</code>。</p>
+<p>重新梳理一遍，避免绕晕。枚举最长边，维护左右指针。那么这个指针要从哪开始？自然是最左边和最右边，然后两个指针往中间缩进。参考代码如下</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangleNumber(int[] nums) &#123;
+        int ans = 0;
+        int n = nums.Length;
+
+        if(n&lt;3) return ans;
+
+        Array.Sort(nums);
+        for(int i = 0; i &lt; n; i++)&#123;
+            int l = 0, r = i - 1;
+            while(l &lt; r)&#123;
+                if(nums[l] + nums[r] &gt; nums[i])&#123;
+                    ans += r - l;
+                    r--;
+                &#125;else&#123;
+                    l++;
+                &#125;
+            &#125;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<p>枚举的i是最长边，因此，短边的最右边理论上就是最长边的前一位。因为这里我们是做了升序操作的。然后就是左右指针往中间缩进，当满足条件的时候，进行一次计数。因为我们是要两边之和大于第三边，所以不满足的时候，左边需要右移，不断增加。当满足了，计数之后，右指针左移，减少看看还有没有其他左指针符合条件。当左右指针相逢时，这个最长边的情况下的所有两个短边的情况都计算完了。</p>
+<p><code>总结优化思路</code></p>
+<ol>
+<li>**暴力 O(n³)**：三重循环，直接枚举所有可能情况</li>
+<li>**二分 O(n² log n)**：枚举两最小边 + 二分找最长边</li>
+<li>**双指针 O(n²)**：枚举最长边，双指针维护两最小边</li>
+</ol>
 
     </div>
     
