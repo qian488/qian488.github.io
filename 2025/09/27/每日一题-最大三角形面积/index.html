@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker) | 千幻笙的小窝</title>
+    <title>每日一题:最大三角形面积 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
@@ -151,22 +151,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>基于VS使用C#开发windows窗体应用——简单小工具(NumberPicker)</h1>
+        <h1>每日一题:最大三角形面积</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/8/15
+            2025/9/27
         </span>
         
         <span class="category">
-            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                分享
+                每日一题
             </a>
         </span>
         
@@ -179,17 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/C/" style="color: #00a596">C#</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/VS/" style="color: #03a9f4">VS</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/Windows-Forms/" style="color: #00bcd4">Windows Forms</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
             </span>
             
         </span>
@@ -197,64 +187,46 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要是突然间好奇，想写个带图形界面的简单工具看看，然后参考微软官方的资料，写了一个极其简陋的抽号器，文末有下载链接。</p>
-<span id="more"></span>
-
-<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><p>因为这真的很简单，所以就三步走。</p>
-<h4 id="第一步-创建项目"><a href="#第一步-创建项目" class="headerlink" title="第一步 创建项目"></a>第一步 创建项目</h4><p>根据微软官方文档，创建Windows窗体应用项目。</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/visualstudio/ide/create-csharp-winform-visual-studio?view=vs-2022">使用 C# 创建 Windows 窗体应用 - Visual Studio (Windows) | Microsoft Learn</a></p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818232511943.png" alt="image-20240818232511943"></p>
-<h4 id="第二步-布置控件"><a href="#第二步-布置控件" class="headerlink" title="第二步 布置控件"></a>第二步 布置控件</h4><p>拖动工具栏的控件到窗体中。</p>
-<p>如果没有看见工具箱，可以在左上角的<strong>视图</strong>找到<strong>工具箱</strong>，等一会儿加载，就能够看见。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818233346228.png" alt="image-20240818233346228"></p>
-<p>我这里用到的控件就是Label用于展示文本，TextBox文本框获取随机数的范围，Button控制开始与暂停，Timer控制随机数展示的间隔。</p>
-<h4 id="第三步-编写脚本"><a href="#第三步-编写脚本" class="headerlink" title="第三步 编写脚本"></a>第三步 编写脚本</h4><p>为Button写一个用于在指定范围生成随机数的脚本，双击Button控件可快速转到按钮点击的方法中。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/image-20240818235237599.png" alt="image-20240818235237599"></p>
-<pre><code class="csharp">private void startStopButton_Click(object sender, EventArgs e)
-&#123;
-    if (!isRolling)
-    &#123;
-        // 开始滚动
-        if (int.TryParse(minValueTextBox.Text, out minValue) &amp;&amp;
-            int.TryParse(maxValueTextBox.Text, out maxValue) &amp;&amp;
-            minValue &lt;= maxValue)
-        &#123;
-            isRolling = true;
-            startStopButton.Text = &quot;Stop&quot;;
-            timer.Start();
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/largest-triangle-area/?envType=daily-question&envId=2025-09-27">每日一题:最大三角形面积</a></p>
+<p>给你一个由 <strong>X-Y</strong> 平面上的点组成的数组 <code>points</code> ，其中 <code>points[i] = [xi, yi]</code> 。从其中取任意三个不同的点组成三角形，返回能组成的最大三角形的面积。与真实值误差在 <code>10^-5</code> 内的答案将会视为正确答案<strong>。</strong></p>
+<p>​    <span id="more"></span></p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/04/1027.png" alt="img"></p>
+<pre><code>输入：points = [[0,0],[0,1],[1,0],[0,2],[2,0]]
+输出：2.00000
+解释：输入中的 5 个点如上图所示，红色的三角形面积最大。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：points = [[1,0],[0,0],[0,1]]
+输出：0.50000
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= points.length &lt;= 50</code></li>
+<li><code>-50 &lt;= xi, yi &lt;= 50</code></li>
+<li>给出的所有点 <strong>互不相同</strong></li>
+</ul>
+<p>题目的意思很清晰，就是要找能构成最大三角形面积的三个点。最直接的方法自然是暴力枚举，三重循环枚举三个点。有三个点坐标就可以直接算三角形的面积了，然后比较获取最大值。计算方法可以用初中学过的<strong>海伦公式</strong>，高中的<strong>向量叉积</strong>或者<strong>向量点积和三角函数</strong>。这里以向量叉积为例子写代码。</p>
+<pre><code class="csharp">public class Solution &#123;
+    public double LargestTriangleArea(int[][] points) &#123;
+        int n = points.Length;
+        int ans = 0;
+        for(int i = 0; i &lt; n - 2; i++)&#123;
+            for(int j = i + 1; j &lt; n - 1; j++)&#123;
+                for(int k = j + 1; k &lt; n; k++)&#123;
+                    int x1 = points[j][0] - points[i][0];
+                    int y1 = points[j][1] - points[i][1];
+                    int x2 = points[k][0] - points[i][0];
+                    int y2 = points[k][1] - points[i][1];
+                    ans = Math.Max(ans,Math.Abs(x1 * y2 - x2 * y1));
+                &#125;
+            &#125;
         &#125;
-        else
-        &#123;
-            MessageBox.Show(&quot;请输入有效的范围！&quot;);
-        &#125;
-    &#125;
-    else
-    &#123;
-        // 停止滚动并显示结果
-        isRolling = false;
-        startStopButton.Text = &quot;Start&quot;;
-        timer.Stop();
-        int result = int.Parse(rollingNumberLabel.Text);
-        ShowResult(result);
+        return ans / 2.0;
     &#125;
 &#125;
 </code></pre>
-<p>注意引入Timer的时候，需指明是form下的，不然编译器可能不知道。</p>
-<p>以及，一般建议不直接在form上直接进行编写，开一个新窗口继承form，然后将你的内容写进去。这样的好处就是区分开直接自己写和拖动控件智能自动生成的部分。</p>
-<p>提示timer的有关编写。</p>
-<pre><code class="csharp">public Form1()
-&#123;
-    InitializeComponent();
-    timer = new System.Windows.Forms.Timer();
-    timer.Interval = 50; // 数字滚动的速度
-    timer.Tick += Timer_Tick;
-&#125;
-</code></pre>
-<p>Timer_Tick只消写好随机数，并将数值赋值给显示的label即可，这样就可以实现点击按钮后，开始不断随机数显示，直到点击stop时，停止新一轮的随机数。</p>
-<h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p>点击start，按钮的文本变成stop，开始抽数，再次点击stop，确定最终的数。</p>
-<p><img src="https://raw.githubusercontent.com/qian488/qian_personal_bolg_images/main/img/78d394e1e03545f0ffe204f0564d796.png" alt="78d394e1e03545f0ffe204f0564d796"></p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这种算<del>图形化？(bushi</del>反正就是比较简单的，基本不用什么基础也能进行开发，快去玩吧。当然如果看到这里你的电脑还没有这个简单的抽号器的话，那也可以点击这里的链接直接下载下来使用。文件夹<strong>NumberPicker\bin\Debug\net6.0-windows</strong>下的<strong>NumberPicker.exe</strong>就是最终的程序。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/qian488/SomeTools">抽号器下载</a></p>
+<p>海伦公式要开根号，三角函数要算角度，在计算机中都相对比较麻烦。向量叉积就只用乘除，相对比较友好。<code>向量叉积的物理意义就是这个两条边构成的平行四边形的面积，三角形的面积就是这个面积的一半。</code>如果高中知识没有全部遗忘的话，应该是比较容易理解这个的。</p>
 
     </div>
     
