@@ -179,7 +179,12 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #03a9f4">算法</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E8%B4%AA%E5%BF%83/" style="color: #ff7d73">贪心</a>
             </span>
             
         </span>
@@ -212,7 +217,7 @@
 <li><code>3 &lt;= nums.length &lt;= 104</code></li>
 <li><code>1 &lt;= nums[i] &lt;= 106</code></li>
 </ul>
-<p>题目是要求构成三角形的最大周长，就是要找能构成的三角形的最长三条边就是答案。最长的三条边，显然可以排个序，从最大的边开始找。第一个符合能构成三角形就是答案，再往小了找也不会是答案。参考代码如下</p>
+<p>题目是要求构成三角形的最大周长，就是要找能构成的三角形的最长三条边就是答案。直觉地，贪心的想法。最长的三条边，显然可以排个序，从最大的边开始找。第一个符合能构成三角形就是答案，再往小了找也不会是答案。参考代码如下</p>
 <pre><code class="csharp">public class Solution &#123;
     public int LargestPerimeter(int[] nums) &#123;
         Array.Sort(nums);
