@@ -161,11 +161,87 @@
             2025/9/29
         </span>
         
+        <span class="category">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                每日一题
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
+            </span>
+            
+        </span>
         
     </div>
     
     <div class="content" v-pre>
-        
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/?envType=daily-question&envId=2025-09-29">每日一题:多边形三角剖分的最低得分</a></p>
+<p>你有一个凸的 <code>n</code> 边形，其每个顶点都有一个整数值。给定一个整数数组 <code>values</code> ，其中 <code>values[i]</code> 是第 <code>i</code> 个顶点的值（即 <strong>顺时针顺序</strong> ）。</p>
+<p>假设将多边形 <strong>剖分</strong> 为 <code>n - 2</code> 个三角形。对于每个三角形，该三角形的值是顶点标记的<strong>乘积</strong>，三角剖分的分数是进行三角剖分后所有 <code>n - 2</code> 个三角形的值之和。</p>
+<p>返回 <em>多边形进行三角剖分后可以得到的最低分</em> 。<br>  <span id="more"></span></p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/25/shape1.jpg" alt="img"></p>
+<pre><code>输入：values = [1,2,3]
+输出：6
+解释：多边形已经三角化，唯一三角形的分数为 6。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/25/shape2.jpg" alt="img"></p>
+<pre><code>输入：values = [3,7,4,5]
+输出：144
+解释：有两种三角剖分，可能得分分别为：3*7*5 + 4*5*7 = 245，或 3*4*5 + 3*4*7 = 144。最低分数为 144。
+</code></pre>
+<p><strong>示例 3：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/25/shape3.jpg" alt="img"></p>
+<pre><code>输入：values = [1,3,1,4,1,5]
+输出：13
+解释：最低分数三角剖分的得分情况为 1*1*3 + 1*1*4 + 1*1*5 + 1*1*1 = 13。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == values.length</code></li>
+<li><code>3 &lt;= n &lt;= 50</code></li>
+<li><code>1 &lt;= values[i] &lt;= 100</code></li>
+</ul>
+<p>区间DP</p>
+<p><strong>定义状态：</strong> $DP[i][j]$ 为从顶点 $i$ 到 $j$ 的子多边形剖分的最小得分。</p>
+<p><strong>基准情况：</strong> 长度为 2 的区间 ($DP[i][i+1]$) 对应于多边形的一条边，不能构成三角形，所以 $DP[i][i+1] &#x3D; 0$。</p>
+<p><strong>遍历区间长度：</strong> 从 $len&#x3D;3$（三角形）开始递增，确保计算子问题时，其解 $DP[i][k]$ 和 $DP[k][j]$ 已经求得。</p>
+<p><strong>状态转移</strong>： 对于每个 DP[i][j]，枚举分割点 k（i&lt;k&lt;j），将大问题分解为 △(i,k,j) 和两个子问题（左右多边形）。</p>
+<p><strong>$$\text{Score}(i, j) &#x3D; \min_{k} { v_i \cdot v_k \cdot v_j + DP[i][k] + DP[k][j] }$$</strong></p>
+<p>以下是参考代码：</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int MinScoreTriangulation(int[] values) &#123;
+        int n = values.Length;
+        int[,] dp = new int[n, n];
+
+        for (int len = 3; len &lt;= n; len++) &#123;
+            for (int i = 0; i &lt;= n - len; i++) &#123;
+                int j = i + len - 1;
+                dp[i, j] = int.MaxValue;
+                for (int k = i + 1; k &lt; j; k++) &#123;
+                    dp[i, j] = Math.Min(dp[i, j], dp[i, k] + dp[k, j] + values[i] * values[k] * values[j]);
+                &#125;
+            &#125;
+        &#125;
+
+        return dp[0, n - 1];
+    &#125;
+&#125;
+</code></pre>
+
     </div>
     
     

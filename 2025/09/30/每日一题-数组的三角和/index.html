@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩 | 千幻笙的小窝</title>
+    <title>每日一题-数组的三角和 | 千幻笙的小窝</title>
     <meta name="author" content="Awith" />
     <meta name="description" content="" />
     <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
@@ -151,22 +151,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Unity如何生成WebGl发布到网站上分享你的游戏给小伙伴游玩</h1>
+        <h1>每日一题-数组的三角和</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/1/18
+            2025/9/30
         </span>
         
         <span class="category">
-            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                分享
+                每日一题
             </a>
         </span>
         
@@ -179,12 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/unity/" style="color: #ffa2c4">unity</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="../../../../tags/WebGl/" style="color: #ff7d73">WebGl</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
             </span>
             
         </span>
@@ -192,30 +187,47 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文的内容需要首先掌握unity的基本操作，能够制作小型的游戏demo即可。<del>(毕竟连游戏本体都没有，怎么打包出来？)</del></p>
-<p>首先，要明确一点的是，<code>(仅个人观点)</code>unity打包到WebGl这个功能主要用于将小型游戏demo发布试玩，本文是将游戏发布到unity官方提供的空间上，如果想要部署到自己的服务器的话，<del>我暂时不会</del>。</p>
-<p>网页快速试玩永远是让大家最容易接受的方法，快来看看如何快速分享你的游戏给小伙伴吧。</p>
-<span id="more"></span>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-triangular-sum-of-an-array/description/?envType=daily-question&envId=2025-09-30">每日一题-数组的三角和</a></p>
+<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> ，其中 <code>nums[i]</code> 是 <code>0</code> 到 <code>9</code> 之间（两者都包含）的一个数字。</p>
+<p><code>nums</code> 的 <strong>三角和</strong> 是执行以下操作以后最后剩下元素的值：</p>
+<ol>
+<li><code>nums</code> 初始包含 <code>n</code> 个元素。如果 <code>n == 1</code> ，<strong>终止</strong> 操作。否则，<strong>创建</strong> 一个新的下标从 <strong>0</strong> 开始的长度为 <code>n - 1</code> 的整数数组 <code>newNums</code> 。</li>
+<li>对于满足 <code>0 &lt;= i &lt; n - 1</code> 的下标 <code>i</code> ，<code>newNums[i]</code> <strong>赋值</strong> 为 <code>(nums[i] + nums[i+1]) % 10</code> ，<code>%</code> 表示取余运算。</li>
+<li>将 <code>newNums</code> <strong>替换</strong> 数组 <code>nums</code> 。</li>
+<li>从步骤 1 开始 <strong>重复</strong> 整个过程。</li>
+</ol>
+<p>请你返回 <code>nums</code> 的三角和。</p>
+   <span id="more"></span>
 
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先，准备好一个你想要分享的简单的游戏demo。好了，第一步就结束捏<del>(bushi)</del></p>
-<p>其次，安装<strong>WebGL Build Support</strong>到你的unity游戏项目的编辑器版本。这是非常简单的操作，直接去到<strong>unity hub</strong>中安装的编辑器版本中<strong>添加模块</strong>，勾选WebGl选项。</p>
-<p>然后，打开你的unity游戏项目。</p>
-<h3 id="打包上传"><a href="#打包上传" class="headerlink" title="打包上传"></a>打包上传</h3><p>将你的unity游戏项目在<strong>Build Settings</strong>中切换到 WebGL 平台。</p>
-<p><code>注意！！！</code>切换好平台可能会有一些问题，最主要集中的就是在<strong>Color Space</strong> 上。很可能你的项目设置的是 <strong>Liner</strong>，但是为了生成 WebGL 你需要切换到 <strong>Gamma</strong> 。Gamma和Linear颜色空间，两者有色差，Gamma有个2.25左右的修正值。<del>其实具体的我也不懂</del></p>
-<p>接下来，需要安装一个 package 插件包 ：<strong>WebGL Publisher</strong></p>
-<p>在你的unity游戏项目中菜单栏找到<strong>window</strong>，打开<strong>Package Manager</strong>，勾选<strong>Unity Registry</strong>，然后搜索该插件包(WebGl Publisher)进行安装。</p>
-<p>安装好了之后，你的整个菜单当中会多出来一个 <strong>Publish</strong>的菜单，里面可以打开一个窗口叫做：<strong>WebGL Project</strong> </p>
-<p>然后还是用正常的<strong>Build Settings</strong> 的窗口来 Build 保存你的整个项目。当你打包成功了，就可以在 WebGL Project 的窗口里看到你最新打包的 WebGL 项目。 然后点击 <strong>Publish</strong> 就会帮你上传到你的 connect 网站(unity官方提供的网站)上。</p>
-<p>上传完成后，会自动在浏览器跳转到网站上，没有的话，就在 WebGL Project 的窗口里应该可以看到一个click相关的字样，点击就能跳转。在网站上，<strong>add</strong>可以为游戏选择一个封面，<strong>play</strong>选项就可以直接试玩游戏。然后填写相关信息即可发布。</p>
-<p><strong>至此你就成功上传好了 WebGL 平台的游戏了！可以把网址分享给你的朋友试玩啦！</strong></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.网站仅支持电脑端打开游玩，<del>(我也不知道做其他平台的操作适配后可不可以)</del></p>
-<p>2.游戏项目不能太大，不然容易卡加载界面</p>
-<p>3.默认的字体打包后不显示中文，需要中文的话需要连相对应的字体文件一起打包<del>(但是字体文件本身也挺大，需要优化)</del></p>
-<p>4.默认游玩的时候，音频是关闭的，需要手动打开</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>好耶，奇怪的知识增加了、</p>
-<p>测试的游戏项目试玩网址</p>
-<p>Running：<a target="_blank" rel="noopener" href="https://play.unity.com/mg/other/runningwebgl-3">Running_Webgl_Test - Unity Play</a></p>
-<p>这是我首次接触unity时制作的小游戏<del>(初学者学习项目)</del>，欢迎试玩！！！</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/02/22/ex1drawio.png" alt="img"></p>
+<pre><code>输入：nums = [1,2,3,4,5]
+输出：8
+解释：
+上图展示了得到数组三角和的过程。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：nums = [5]
+输出：5
+解释：
+由于 nums 中只有一个元素，数组的三角和为这个元素自己。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 9</code></li>
+</ul>
+<p>题目的意思很明确，模拟即可。以下是参考代码：</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangularSum(int[] nums) &#123;
+        int n = nums.Length;
+        for(int i=n-1;i&gt;0;i--)&#123;
+            for(int j=0;j&lt;i;j++) nums[j] = (nums[j] + nums[j+1]) % 10;
+        &#125;
+        return nums[0];
+    &#125;
+&#125;
+</code></pre>
 
     </div>
     
