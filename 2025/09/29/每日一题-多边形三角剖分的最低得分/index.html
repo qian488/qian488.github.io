@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
             </span>
             
         </span>
@@ -215,12 +215,14 @@
 <li><code>3 &lt;= n &lt;= 50</code></li>
 <li><code>1 &lt;= values[i] &lt;= 100</code></li>
 </ul>
-<p>区间DP</p>
-<p><strong>定义状态：</strong> $DP[i][j]$ 为从顶点 $i$ 到 $j$ 的子多边形剖分的最小得分。</p>
-<p><strong>基准情况：</strong> 长度为 2 的区间 ($DP[i][i+1]$) 对应于多边形的一条边，不能构成三角形，所以 $DP[i][i+1] &#x3D; 0$。</p>
-<p><strong>遍历区间长度：</strong> 从 $len&#x3D;3$（三角形）开始递增，确保计算子问题时，其解 $DP[i][k]$ 和 $DP[k][j]$ 已经求得。</p>
-<p><strong>状态转移</strong>： 对于每个 DP[i][j]，枚举分割点 k（i&lt;k&lt;j），将大问题分解为 △(i,k,j) 和两个子问题（左右多边形）。</p>
-<p><strong>$$\text{Score}(i, j) &#x3D; \min_{k} { v_i \cdot v_k \cdot v_j + DP[i][k] + DP[k][j] }$$</strong></p>
+<p>这种问题看似复杂，其实是找规律，利用递归的思路。重要的两个点在于多边形和三角形。一个多边形可以划分成多个三角形，而一个三角形主要是一条边加一个顶点。也就是说，需要固定一条边，然后枚举找顶点。多边形可以继续划分多边形和三角形，这就构成一个子问题。</p>
+<p>以一个五边形举例，就是可以固定两个点作为找的三角形的底边，然后枚举顶点。找到一个顶点可以构成一个三角形，而这个三角形的左右两边也有多边形（即子问题）。这个五边形的答案就是左右子问题加中间三角形，找最小值就是题目答案。</p>
+<p>书面一点的解释就是区间DP</p>
+<p><strong>定义状态：</strong> <code>DP[i][j]</code> 为从顶点 <code>i</code> 到 <code>j</code>的子多边形剖分的最小得分。</p>
+<p><strong>基准情况：</strong> 长度为 2 的区间 (<code>DP[i][i+1]</code>) 对应于多边形的一条边，不能构成三角形，所以 <code>DP[i][i+1] = 0</code>。</p>
+<p><strong>遍历区间长度：</strong> 从 <code>len=3</code>（三角形）开始递增，确保计算子问题时，其解 <code>DP[i][k]</code> 和 <code>DP[k][j]</code> 已经求得。</p>
+<p><strong>状态转移</strong>： 对于每个 <code>DP[i][j]</code>，枚举分割点<code> k（i&lt;k&lt;j）</code>，将大问题分解为<code>△(i,k,j)</code>和两个子问题（左右多边形）。</p>
+<p><strong>$\text{Score}(i, j) &#x3D; \min_{k} { v_i \cdot v_k \cdot v_j + DP[i][k] + DP[k][j] }$</strong></p>
 <p>以下是参考代码：</p>
 <pre><code class="csharp">public class Solution &#123;
     public int MinScoreTriangulation(int[] values) &#123;
