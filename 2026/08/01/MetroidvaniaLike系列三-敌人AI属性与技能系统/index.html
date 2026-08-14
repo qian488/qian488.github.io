@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MetroidvaniaLike 系列三：敌人 AI、属性与技能系统如何解耦 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>MetroidvaniaLike 系列三：敌人 AI、属性与技能系统如何解耦</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/1
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                项目复盘
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #ffa2c4">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%8A%B6%E6%80%81%E6%9C%BA/" style="color: #00a596">状态机</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/MetroidvaniaLike/" style="color: #03a9f4">MetroidvaniaLike</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%88%98%E6%96%97%E7%B3%BB%E7%BB%9F/" style="color: #ffa2c4">战斗系统</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F/" style="color: #03a9f4">技能系统</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前两篇整理的是玩家状态和跳跃手感。这部分继续看战斗相关内容：敌人怎样切换状态、属性怎样计算、Buff 放在哪里，以及技能冷却和旧技能树目前是什么情况。<br>MetroidvaniaLike 目前用 <code>Entity</code> 提供共同能力，Player 和 Enemy 再各自处理输入或 AI。重新检查代码时也发现，旧技能树已经标记为废弃，这里会按现状写清楚。<br>项目源码：<a target="_blank" rel="noopener" href="https://github.com/qian488/MetroidvaniaLike">qian488&#x2F;MetroidvaniaLike</a>。</p>
+<span id="more"></span>
+<h3 id="这个系列"><a href="#这个系列" class="headerlink" title="这个系列"></a>这个系列</h3><ol>
+<li><a href="/2026/07/21/MetroidvaniaLike%E7%B3%BB%E5%88%97%E4%B8%80-%E7%94%A8%E7%B1%BB%E7%8A%B6%E6%80%81%E6%9C%BA%E7%BB%84%E7%BB%87%E5%8A%A8%E4%BD%9C%E8%A7%92%E8%89%B2/">用类状态机组织动作角色</a></li>
+<li><a href="/2026/07/26/MetroidvaniaLike%E7%B3%BB%E5%88%97%E4%BA%8C-%E5%9C%9F%E7%8B%BC%E6%97%B6%E9%97%B4%E8%BE%93%E5%85%A5%E7%BC%93%E5%86%B2%E4%B8%8E%E5%8A%A8%E4%BD%9C%E6%89%93%E6%96%AD/">土狼时间、输入缓冲与动作打断</a></li>
+<li>本文：敌人 AI、属性与技能系统</li>
+</ol>
+<h3 id="Entity-里放了哪些共同能力"><a href="#Entity-里放了哪些共同能力" class="headerlink" title="Entity 里放了哪些共同能力"></a>Entity 里放了哪些共同能力</h3><p>玩家由输入驱动，敌人由感知、距离、冷却和战术条件驱动。二者的切换原因不同，但底层都有：</p>
+<ul>
+<li>当前状态与 Enter&#x2F;Update&#x2F;Exit；</li>
+<li>移动、朝向和物理检测；</li>
+<li>血量、受击、击退和死亡；</li>
+<li>动画触发器；</li>
+<li>属性与状态效果。<br>因此项目用 <code>Entity</code> 提供共同实体能力，Player 与 Enemy 在其上组合各自控制逻辑：</li>
+</ul>
+<pre><code class="text">Entity
+├── EntityHealth
+├── EntityCombat
+├── EntityStats
+├── EntityStatusHandler
+└── EntityVFX
+Player：输入驱动状态
+Enemy：感知和距离驱动状态
+</code></pre>
+<p>Player 和 Enemy 共享移动、受击、属性等实体能力。Player 的决策输入来自玩家操作，Enemy 的决策输入来自感知、距离和冷却。</p>
+<h3 id="敌人的状态切换"><a href="#敌人的状态切换" class="headerlink" title="敌人的状态切换"></a>敌人的状态切换</h3><p>典型敌人包含 Idle、Move、Battle、Attack、Stunned 和 Dead：</p>
+<pre><code class="text">Idle
+  └─发现玩家→ Battle
+Battle
+  ├─距离过远→ Move
+  ├─进入攻击范围且冷却完成→ Attack
+  └─失去目标→ Idle
+Attack
+  └─动画完成→ Battle
+任意可受控状态
+  ├─受到强控制→ Stunned
+  └─生命归零→ Dead
+</code></pre>
+<p><code>Battle</code> 作为警觉&#x2F;决策状态很有用：它避免 Idle、Move 和 Attack 两两直接耦合，也给转身、后撤、等待冷却等行为留下空间。<br>随着兵种增加，可以把目标、距离、视线、上次受击时间和技能冷却整理成感知上下文。Battle 状态读取上下文并选择移动或攻击，感知计算保持独立。</p>
+<h3 id="近战和远程敌人怎样复用"><a href="#近战和远程敌人怎样复用" class="headerlink" title="近战和远程敌人怎样复用"></a>近战和远程敌人怎样复用</h3><p>近战与远程敌人的差异主要在攻击执行与安全距离：</p>
+<ul>
+<li>移动、受伤、死亡等状态可以复用；</li>
+<li>AttackState 可以由子类实现近战判定或生成投射物；</li>
+<li>BattleState 根据理想距离选择靠近、保持或后撤；</li>
+<li>伤害仍通过统一 <code>EntityCombat</code> 结算。<br>如果为了弓箭手复制完整敌人状态机，后续修复死亡或眩晕 Bug 时就要维护多份逻辑。更合适的是复用状态骨架，通过组合攻击策略表达差异。</li>
+</ul>
+<h3 id="属性和-modifier"><a href="#属性和-modifier" class="headerlink" title="属性和 modifier"></a>属性和 modifier</h3><p>最初直接写 <code>attack</code>、<code>defense</code> 和 <code>moveSpeed</code> 很方便，但装备、技能和 Buff 加入后，同一属性会有多种来源：</p>
+<pre><code class="text">基础值
++ 固定加成
++ 装备加成
+× 百分比修正
+× 临时状态倍率
+= 最终值
+</code></pre>
+<p>项目用 <code>Stat</code> 包装基础值和 modifier，再由 <code>EntityStats</code> 按资源、攻击、防御等组管理。ScriptableObject 提供实体的默认数值配置，多个 prefab 可以复用同一份设置。<br>每次修改都保留来源。卸下装备时移除对应 modifier，最终属性随后重新计算。<br>属性计算还需要定义明确顺序。加法、乘法、取整和上下限顺序不同会产生不同结果，应由一处公式决定并通过测试固定。</p>
+<h3 id="Buff-和-Debuff-放在哪里"><a href="#Buff-和-Debuff-放在哪里" class="headerlink" title="Buff 和 Debuff 放在哪里"></a>Buff 和 Debuff 放在哪里</h3><p>减速、中毒、眩晕等效果有持续时间、来源和叠加规则。如果 Buff 开始时直接把 <code>moveSpeed *= 0.5</code>，结束时再除回去，多来源叠加和提前移除很容易出错。<br>更可靠的模型是：</p>
+<pre><code class="text">EntityStats：保存裸属性和长期 modifier
+EntityStatusHandler：保存当前 Buff/Debuff 实例
+EntityCombat：查询最终属性并执行伤害
+</code></pre>
+<p>状态实例至少需要：</p>
+<ul>
+<li>类型与唯一标识；</li>
+<li>来源；</li>
+<li>持续时间或剩余 tick；</li>
+<li>数值与加成方式；</li>
+<li>叠加、刷新或互斥规则；</li>
+<li>添加和移除时的副作用。<br>眩晕会请求行为状态切换，减速添加属性 modifier，持续伤害定时调用战斗结算。<code>EntityStatusHandler</code> 通过这些明确入口协调效果，避免 Buff 直接查找场景组件。</li>
+</ul>
+<h3 id="技能数据、冷却和具体效果"><a href="#技能数据、冷却和具体效果" class="headerlink" title="技能数据、冷却和具体效果"></a>技能数据、冷却和具体效果</h3><p>项目的 <code>SkillBase</code> 负责技能类型、升级类型、冷却和最近使用时间；ScriptableObject 承载图标、描述和配置；具体技能组件实现冲刺、时间回声或治疗等行为。<br>可以把技能拆成三层：</p>
+<pre><code class="text">SkillData
+  名称、图标、冷却、数值、升级配置
+SkillRuntime
+  是否解锁、当前等级、剩余冷却、使用条件
+SkillBehaviour
+  位移、伤害、生成对象、施加状态等实际效果
+</code></pre>
+<p>UI 读取技能数据和运行时状态，点击后向技能服务提出使用请求。位移和伤害由技能行为与战斗模块执行。<br>如果 <code>lastUsedTime</code> 初始为 0，而游戏开始时 <code>Time.time &lt; cooldown</code>，技能会被误判为仍在冷却。初始化阶段需要显式设置技能为可用状态。</p>
+<h3 id="旧技能树已经废弃"><a href="#旧技能树已经废弃" class="headerlink" title="旧技能树已经废弃"></a>旧技能树已经废弃</h3><p>公开仓库 README 展示了技能树能力，但项目笔记也记录了旧 <code>UI_SkillTree</code> 已进入废弃状态：它与后续 UI 框架方向不一致，数据、解锁状态和表现存在耦合。<br>这个旧实现目前可以确认以下状态：</p>
+<ul>
+<li>已验证节点、连线和解锁交互；</li>
+<li>当前实现已经废弃，不再作为长期维护版本；</li>
+<li>后续应让技能数据进入配置、解锁状态进入存档、UI 只负责显示；</li>
+<li>旧代码应移入 Legacy 或从构建中剥离，避免误用。<br>指出技术债比把所有模块描述成“完善”更有价值，因为它说明开发者能识别边界和演进方向。</li>
+</ul>
+<h3 id="一次攻击经过哪些模块"><a href="#一次攻击经过哪些模块" class="headerlink" title="一次攻击经过哪些模块"></a>一次攻击经过哪些模块</h3><p>一次攻击可以组织成：</p>
+<pre><code class="text">AttackState 在动画命中帧提出攻击
+        ↓
+Hitbox 查询目标
+        ↓
+EntityCombat 根据双方属性计算伤害
+        ↓
+EntityHealth 扣除生命并判断死亡
+        ↓
+EntityStatusHandler 添加击退、眩晕等效果
+        ↓
+事件通知 VFX、UI、音频
+</code></pre>
+<p>状态负责“何时攻击”，Combat 负责“造成什么结果”，Health 负责“生命怎样变化”，表现层负责“怎样反馈”。这条边界能让玩家和敌人复用结算，也便于以后替换伤害公式。</p>
+<h3 id="如果继续整理，我会先改什么"><a href="#如果继续整理，我会先改什么" class="headerlink" title="如果继续整理，我会先改什么"></a>如果继续整理，我会先改什么</h3><p>如果继续整理项目，我会按以下顺序推进：</p>
+<ol>
+<li>给状态切换增加优先级、原因记录和关键测试；</li>
+<li>抽出 <code>PlayerStateContext</code>，减少状态构造样板；</li>
+<li>将攻击与技能效果统一走 Combat&#x2F;Effect 接口；</li>
+<li>明确 Stat modifier 与 Buff 的叠加顺序；</li>
+<li>把旧技能树迁移到统一 UI 和存档接口；</li>
+<li>清理 Legacy 与编码问题，再补项目演示。<br>这个顺序先保证行为和结算正确，再整理内容制作工具。直接先重做技能树 UI，无法解决底层状态和数据边界问题。</li>
+</ol>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><ul>
+<li>玩家和敌人共享实体能力与状态机机制，但不共享决策来源。</li>
+<li>Enemy 的 Battle 状态适合承接距离、冷却和攻击选择，具体攻击通过策略扩展。</li>
+<li><code>Stat</code> 和 modifier 让属性修改有来源，Buff 不应直接乘除裸属性。</li>
+<li>技能需要分离配置、运行时状态和具体效果，UI 只提交意图。</li>
+<li>项目说明需要标出已经验证的范围、废弃实现和后续方向。<br>MetroidvaniaLike 的三篇先写到这里。这个项目完成度不如商业项目，但状态机、动作手感、属性和技能几个部分都能继续往下整理。现阶段最需要补的是状态切换约束、旧技能树迁移和更完整的测试，等实际修改后再继续更新。</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

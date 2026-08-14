@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>每日一题:最大三角形面积 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>每日一题:最大三角形面积</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/9/27
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                每日一题
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%87%B8%E5%8C%85/" style="color: #ff7d73">凸包</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%97%8B%E8%BD%AC%E5%8D%A1%E5%A3%B3/" style="color: #03a9f4">旋转卡壳</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/largest-triangle-area/?envType=daily-question&envId=2025-09-27">每日一题:最大三角形面积</a><br>给你一个由 <strong>X-Y</strong> 平面上的点组成的数组 <code>points</code> ，其中 <code>points[i] = [xi, yi]</code> 。从其中取任意三个不同的点组成三角形，返回能组成的最大三角形的面积。与真实值误差在 <code>10^-5</code> 内的答案将会视为正确答案<strong>。</strong><br>​    <span id="more"></span><br><strong>示例 1：</strong><br><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/04/1027.png" alt="img"></p>
+<pre><code>输入：points = [[0,0],[0,1],[1,0],[0,2],[2,0]]
+输出：2.00000
+解释：输入中的 5 个点如上图所示，红色的三角形面积最大。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：points = [[1,0],[0,0],[0,1]]
+输出：0.50000
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= points.length &lt;= 50</code></li>
+<li><code>-50 &lt;= xi, yi &lt;= 50</code></li>
+<li>给出的所有点 <strong>互不相同</strong><br>题目的意思很清晰，就是要找能构成最大三角形面积的三个点。最直接的方法自然是暴力枚举，三重循环枚举三个点。有三个点坐标就可以直接算三角形的面积了，然后比较获取最大值。计算方法可以用初中学过的<strong>海伦公式</strong>，高中的<strong>向量叉积</strong>或者<strong>向量点积和三角函数</strong>。这里以向量叉积为例子写代码。</li>
+</ul>
+<pre><code class="csharp">public class Solution &#123;
+    public double LargestTriangleArea(int[][] points) &#123;
+        int n = points.Length;
+        int ans = 0;
+        for(int i = 0; i &lt; n - 2; i++)&#123;
+            for(int j = i + 1; j &lt; n - 1; j++)&#123;
+                for(int k = j + 1; k &lt; n; k++)&#123;
+                    int x1 = points[j][0] - points[i][0];
+                    int y1 = points[j][1] - points[i][1];
+                    int x2 = points[k][0] - points[i][0];
+                    int y2 = points[k][1] - points[i][1];
+                    ans = Math.Max(ans,Math.Abs(x1 * y2 - x2 * y1));
+                &#125;
+            &#125;
+        &#125;
+        return ans / 2.0;
+    &#125;
+&#125;
+</code></pre>
+<p>海伦公式要开根号，三角函数要算角度，在计算机中都相对比较麻烦。向量叉积就只用乘除，相对比较友好。<code>向量叉积的物理意义就是这个两条边构成的平行四边形的面积，三角形的面积就是这个面积的一半。</code>如果高中知识没有全部遗忘的话，应该是比较容易理解这个的。<br>那么要怎么优化呢？<br>现在是要三重循环枚举三个点来进行计算。可以回到三角形面积的计算公式去思考，主要是要确定底和高，就可以计算。这就可以是两重循环，前提是能做到一个循环找底边，一个循环找高。问题是怎么快速确定底边呢？枚举显然是不行的。<br>看着思路有点不对 ，我们可以再想想这个问题本身。给出一组点，求构成三角形的最大面积。那是不是这个三角形的三个点应该都是在这个点图的最边缘。那就可以固定两个点，然后找第三个点。这里枚举两个点就行，第三个点不需要再通过循环查找。<br>整个的思路，我们可以像，在一个圆中，固定有一个直径，第三个点的移动对面积的影响是先增大后减小，即有一个峰值，是单调的。以<code>i,j,k</code>来代表三个点来讲，有单调性，枚举<code>i,j</code>，确定底边，然后找<code>k</code>，枚举<code>j</code>的时候，直接继续移动上次找到的<code>k</code>，不需要重新枚举<code>k</code>，当枚举完<code>j</code>的时候，<code>k</code>也已经同时找到了。而这个“圆”，在这个题目中，就是这个点图的最边缘点的集合，也就是点集的凸包。固定的直径就是三角形的底边，而找最高点就是找三角形的高。现在的核心问题就变成怎么求凸包了。只有先有这个凸包，才能满足前面提到的单调性。凸包是要最边缘的点的集合，显然可以先排序。可以按照点的坐标从X优先后Y进行排序，就可以将这些点拟合成近似一条线。但是接下来要怎么操作？思考到这里我就不会了，遂询问ai得出，凸包可以使用单调链，前面那个找面积的方法有个名词叫旋转卡壳。具体代码如下</p>
+<pre><code class="csharp">public class Solution &#123;
+    public double LargestTriangleArea(int[][] points) &#123;
+        // 1. 先求凸包
+        List&lt;int[]&gt; hull = ConvexHull(points);
+        int h = hull.Count;
+        if (h &lt; 3) return 0.0;
+        double maxArea = 0.0;
+        // 2. 旋转卡壳求最大三角形面积
+        for (int i = 0; i &lt; h; i++) &#123;
+            for (int j = i + 1; j &lt; h; j++) &#123;
+                int k = (j + 1) % h;
+                // 移动 k，找到使面积最大的点
+                while (true) &#123;
+                    double curArea = Area(hull[i], hull[j], hull[k]);
+                    double nextArea = Area(hull[i], hull[j], hull[(k + 1) % h]);
+                    if (nextArea &gt; curArea) &#123;
+                        k = (k + 1) % h;
+                    &#125; else &#123;
+                        maxArea = Math.Max(maxArea, curArea);
+                        break;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        return maxArea;
+    &#125;
+    // 计算三角形面积（叉积公式）
+    private double Area(int[] a, int[] b, int[] c) &#123;
+        long x1 = b[0] - a[0];
+        long y1 = b[1] - a[1];
+        long x2 = c[0] - a[0];
+        long y2 = c[1] - a[1];
+        return Math.Abs(x1 * y2 - x2 * y1) / 2.0;
+    &#125;
+    // 凸包（Andrew 单调链算法）
+    private List&lt;int[]&gt; ConvexHull(int[][] points) &#123;
+        Array.Sort(points, (p1, p2) =&gt; &#123;
+            if (p1[0] == p2[0]) return p1[1].CompareTo(p2[1]);
+            return p1[0].CompareTo(p2[0]);
+        &#125;);
+        List&lt;int[]&gt; lower = new List&lt;int[]&gt;();
+        foreach (var p in points) &#123;
+            while (lower.Count &gt;= 2 &amp;&amp; Cross(lower[lower.Count - 2], lower[lower.Count - 1], p) &lt;= 0) &#123;
+                lower.RemoveAt(lower.Count - 1);
+            &#125;
+            lower.Add(p);
+        &#125;
+        List&lt;int[]&gt; upper = new List&lt;int[]&gt;();
+        for (int i = points.Length - 1; i &gt;= 0; i--) &#123;
+            var p = points[i];
+            while (upper.Count &gt;= 2 &amp;&amp; Cross(upper[upper.Count - 2], upper[upper.Count - 1], p) &lt;= 0) &#123;
+                upper.RemoveAt(upper.Count - 1);
+            &#125;
+            upper.Add(p);
+        &#125;
+        lower.RemoveAt(lower.Count - 1);
+        upper.RemoveAt(upper.Count - 1);
+        lower.AddRange(upper);
+        return lower;
+    &#125;
+    // 叉积判断 (b - a) × (c - a)
+    private long Cross(int[] a, int[] b, int[] c) &#123;
+        return (long)(b[0] - a[0]) * (c[1] - a[1]) - (long)(b[1] - a[1]) * (c[0] - a[0]);
+    &#125;
+&#125;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

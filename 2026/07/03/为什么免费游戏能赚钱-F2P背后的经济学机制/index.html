@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>为什么免费游戏能赚钱：F2P 背后的经济学机制 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>为什么免费游戏能赚钱：F2P 背后的经济学机制</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/3
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E5%88%86%E4%BA%AB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                分享
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%B8%B8%E6%88%8F/" style="color: #ffa2c4">游戏</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6/" style="color: #00bcd4">经济学</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/F2P/" style="color: #ff7d73">F2P</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%95%86%E4%B8%9A%E5%8C%96/" style="color: #ffa2c4">商业化</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近整理经济学笔记时，我专门补了一部分游戏经济学。这里面有个看起来很基础的问题：免费游戏连门票都不收，到底靠什么赚钱？<br>以前我对这件事的理解很简单，无非就是月卡、抽卡、皮肤和各种礼包。继续往下整理才发现，这些只是收费入口。F2P 能够运转，前面还要有玩家规模、留存、资源循环和长期内容更新。<br>这篇文章记录一下我目前对免费游戏商业模式的理解。本人并非游戏策划，部分内容来自经济学笔记以及自己的游戏体验，先当作一个分析框架使用。</p>
+<span id="more"></span>
+<h3 id="免费先解决了“要不要试试”"><a href="#免费先解决了“要不要试试”" class="headerlink" title="免费先解决了“要不要试试”"></a>免费先解决了“要不要试试”</h3><p>买断制需要先付钱，玩家付完钱才能判断自己喜不喜欢。免费游戏可以直接下载，试玩成本低很多。<br>对游戏公司来说，免费会带来更大的玩家池。假设在同一个统计周期内：</p>
+<pre><code class="text">活跃玩家：100000
+付费率：3%
+平均每个付费玩家消费：100 元
+收入 = 100000 × 3% × 100 = 300000 元
+</code></pre>
+<p>这个例子很粗糙，没有计算渠道分成、获客成本和玩家生命周期，只是方便理解规模、付费率和付费金额之间的关系。<br>免费游戏通常只需要一部分玩家付费。月卡玩家、偶尔买皮肤的玩家和高付费玩家消费差距很大，所以实际分析还会看付费分层、留存和 LTV 等数据。</p>
+<h3 id="免费玩家也会影响游戏生态"><a href="#免费玩家也会影响游戏生态" class="headerlink" title="免费玩家也会影响游戏生态"></a>免费玩家也会影响游戏生态</h3><p>没有付费的玩家依然会参与匹配、组队、公会、社区讨论和内容传播。<br>这一点在多人游戏里很好理解。如果一个竞技游戏只剩少量付费玩家，匹配时间和对局质量都会变差。外观和稀有称号也需要其他玩家看见，展示价值才会成立。<br>当然，免费玩家带来的活跃很难直接折算成收入，而且服务器和运营也要付出成本。这里能确定的是，玩家数量会影响整个游戏生态，商业化设计不能只盯着付费按钮。</p>
+<h3 id="月卡为什么很常见"><a href="#月卡为什么很常见" class="headerlink" title="月卡为什么很常见"></a>月卡为什么很常见</h3><p>月卡通常价格不高，每天领取一点资源。玩家第一次付费时压力较小，也容易算出自己能拿到多少东西。<br>它同时会带来每日回访。已经购买月卡的玩家如果当天没有上线领取，会产生一点“浪费了”的感觉。这个设计确实能帮助留存，但每日领取太麻烦时也会变成负担。<br>我自己判断一张月卡是否舒服，主要看三个地方：</p>
+<ol>
+<li>不买月卡能否正常游玩；</li>
+<li>每日领取是否花费很多时间；</li>
+<li>奖励能否稳定解决某种资源需求。<br>如果月卡只是把原本正常投放的资源扣下来再出售，体验通常不会太好。</li>
+</ol>
+<h3 id="战令把奖励排成了一条进度线"><a href="#战令把奖励排成了一条进度线" class="headerlink" title="战令把奖励排成了一条进度线"></a>战令把奖励排成了一条进度线</h3><p>战令一般同时包含任务、等级、免费奖励和付费奖励。玩家先完成任务提升等级，再决定是否购买付费档。<br>这种结构有个很直观的效果：玩家已经打到较高等级时，购买战令可以一次领取前面累积的奖励。投入过的时间给了购买行为一个理由。<br>战令的问题也很常见。任务数量太多、时间限制太紧时，玩家会每天清任务，最后玩游戏变成上班。赛季结束后未完成的奖励直接消失，也容易产生压力。</p>
+<h3 id="抽卡为什么让人愿意反复付费"><a href="#抽卡为什么让人愿意反复付费" class="headerlink" title="抽卡为什么让人愿意反复付费"></a>抽卡为什么让人愿意反复付费</h3><p>抽卡把角色或道具放进概率结果中。玩家购买的既有角色本身，也有开奖过程带来的期待。<br>保底会给这份不确定性加上上限。玩家至少可以估算最坏情况下需要多少抽，这会直接影响是否继续投入。<br>这里也最容易消耗信任：</p>
+<ul>
+<li>概率说明不清楚；</li>
+<li>保底规则过于复杂；</li>
+<li>新角色强度快速淘汰旧角色；</li>
+<li>限时内容过多；</li>
+<li>已有资产频繁贬值。<br>这些设计可能提高某一期活动的收入，但玩家也会记住被背刺的感觉。等到下一次活动再出现时，之前的体验会影响付费决定。</li>
+</ul>
+<h3 id="皮肤的逻辑更直接"><a href="#皮肤的逻辑更直接" class="headerlink" title="皮肤的逻辑更直接"></a>皮肤的逻辑更直接</h3><p>皮肤主要提供外观、审美和展示。它不必修改角色数值，对竞技公平的影响也相对小。<br>但皮肤仍然有自己的问题，例如价格、模型质量、特效辨识度，以及是否通过限定时间制造压力。游戏还要保证皮肤特效不会妨碍对局信息，否则付费外观也会影响玩法体验。</p>
+<h3 id="游戏资源也会通胀"><a href="#游戏资源也会通胀" class="headerlink" title="游戏资源也会通胀"></a>游戏资源也会通胀</h3><p>金币、钻石、体力和培养材料都有投放与消耗。经济学里可以把投放叫 Faucet，把消耗叫 Sink。<br>假设一个活动突然投放了大量金币，但金币消耗没有增加。老玩家很快就不缺金币，后续金币奖励也会失去吸引力。另一种极端是消耗远大于投放，玩家处处缺资源，成长过程就会一直卡住。<br>所以分析一个游戏活动时，我现在会顺手看看：</p>
+<ul>
+<li>新增了多少资源；</li>
+<li>玩家会在哪里消耗；</li>
+<li>哪一类玩家最受影响；</li>
+<li>活动结束后资源是否长期留存；</li>
+<li>它会不会降低旧资源和旧内容的价值。<br>这部分和现实中的货币并不完全相同，不过“投放增加后购买力下降”的现象很好理解。</li>
+</ul>
+<h3 id="PVP-和-PVE-的付费边界不同"><a href="#PVP-和-PVE-的付费边界不同" class="headerlink" title="PVP 和 PVE 的付费边界不同"></a>PVP 和 PVE 的付费边界不同</h3><p>竞技游戏依赖胜负可信度。直接出售数值优势，会让玩家怀疑自己输给的是付费金额。皮肤、通行证和不影响战斗的收藏内容通常更容易接受。<br>PVE 养成游戏允许更明显的付费加速，因为玩家主要和关卡以及自己的养成进度比较。但免费和轻付费玩家仍然需要可实现的成长路径。如果所有新内容都围绕最新付费角色设计，旧玩家会逐渐跟不上版本。<br>具体边界取决于游戏最初给玩家的承诺。一个强调公平竞技的游戏，和一个强调角色收集的游戏，玩家预期本来就不同。</p>
+<h3 id="我现在会怎样分析一个商业化活动"><a href="#我现在会怎样分析一个商业化活动" class="headerlink" title="我现在会怎样分析一个商业化活动"></a>我现在会怎样分析一个商业化活动</h3><p>以后遇到月卡、战令、卡池或礼包，我会先记下面几个问题：</p>
+<pre><code class="text">这个活动卖的是什么？
+主要面向哪类玩家？
+玩家为什么会在这个时间购买？
+不购买会失去什么？
+它投放了哪些资源，又在哪里消耗？
+会不会影响公平、养成速度或旧资产价值？
+短期活动结束后，玩家还愿不愿意参加下一次？
+</code></pre>
+<p>这套问题还比较粗糙，但已经比只看礼包价格和奖励数量更有用。以后如果实际接触商业化数据，再继续补充付费率、留存、LTV、活动前后对照等内容。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>免费游戏可以先吸引更大的玩家群体，再由月卡、战令、抽卡、皮肤等方式承接不同玩家的需求。玩家规模、长期内容和资源循环共同支撑这套模式。<br>商业化做得好不好，我目前最关注的是两点：免费玩家还有没有正常体验，以及付费之后得到的价值是否清楚。短期收入很重要，玩家是否愿意继续留下来也同样重要。<br>这篇先整理到这里。后续如果对具体游戏的活动做拆解，可以再拿这套问题逐项分析，看看哪些地方确实适用，哪些地方还需要修改。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>DrawCall 与 SRP Batcher：为什么你的游戏没多少东西却很卡 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>DrawCall 与 SRP Batcher：为什么你的游戏没多少东西却很卡</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/11
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                游戏开发
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="color: #ffa2c4">游戏开发</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #03a9f4">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">渲染</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="color: #03a9f4">性能优化</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/DrawCall/" style="color: #ff7d73">DrawCall</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>“卡顿？那肯定是 DrawCall 太多，合批一下就好了。”——这句话我在无数教程评论区和面试复盘里见过，但它坑了不少人。顺着这句话往下，还衍生出两个常见的”常识”：一是”用了对象池，DrawCall 自然就降了”；二是”我 SRP Batcher 明明开了，没半点效果，Unity 这破引擎垃圾”。</p>
+<p>这三句话，每句都只说对了一半，而且错的那一半正好挡在真正动手之前。这篇文章不罗列概念，我想把这三句话逐个拆穿，重点放在工程上真正卡人的地方：状态切换为什么贵、SRP Batcher 凭什么能跳过它、以及那个”开了等于没开”的现场长什么样。</p>
+<p>下面的内容来自我自己整理的原理笔记，加上一份公开场景的实测数据做量化参考，偏原理和取舍，不绑定你某个项目的落地数字——你项目的具体瓶颈，得自己用 Profiler 量。</p>
+<span id="more"></span>
+
+<h3 id="动手前，先对齐两个概念"><a href="#动手前，先对齐两个概念" class="headerlink" title="动手前，先对齐两个概念"></a>动手前，先对齐两个概念</h3><p>如果你刚接触 Unity 或渲染，下面两个词后面会反复出现，先花一分钟建立直觉：</p>
+<ul>
+<li><strong>DrawCall</strong>：CPU 向 GPU 提交的一个”绘制命令”——“把这批几何体画上去”。场景里每多一个需要独立绘制的物体，CPU 就多发一次这样的命令。</li>
+<li><strong>SetPass Call（常简称 SetPass）</strong>：比 DrawCall 更贵的东西，指”切换渲染状态”——换 Shader、换材质参数、换绑定的纹理。每次切换，GPU 和驱动都要重新准备一整套状态。</li>
+</ul>
+<p>打个比方：DrawCall 像”让工人去搬一批货”，SetPass 像”每搬一批就换一套完全不同的工具和流程”。搬货本身不慢，慢的是反复换工具、重新热身——当然这比喻不严谨，搬货不会”重新热身”得那么贵，但渲染里”换状态”的代价，量级上确实接近这个感觉。</p>
+<p>所以渲染优化的核心口诀是：<strong>减少状态切换（SetPass），能合批则合批。</strong> 但”合批”有很多种方式，搞混了就会踩进前面说的那些坑。</p>
+<h3 id="为什么-DrawCall-多就慢——状态切换才是真凶"><a href="#为什么-DrawCall-多就慢——状态切换才是真凶" class="headerlink" title="为什么 DrawCall 多就慢——状态切换才是真凶"></a>为什么 DrawCall 多就慢——状态切换才是真凶</h3><p>每次 DrawCall 都有固定开销：CPU 要准备好命令、绑定 Shader、绑定常量缓冲、绑定纹理，再提交给 GPU。物体一多，这些”准备动作”本身就把 CPU 渲染线程吃满了，GPU 反而可能在摸鱼。</p>
+<p>关键在于：这个”准备”主要花在<strong>状态切换</strong>上，而不是”画”上。于是 Unity 里有了四种合批技术，它们优化的其实是不同的东西：</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>适合什么</th>
+<th>代价 &#x2F; 限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>静态合批</td>
+<td>建筑、地形等不动的物体</td>
+<td>构建时合并成大网格，占更多内存，物体不能再动</td>
+</tr>
+<tr>
+<td>动态合批</td>
+<td>很小的动态物体（≤300 顶点、同材质）</td>
+<td>条件苛刻，CPU 每帧合并顶点有成本，现代项目基本不用</td>
+</tr>
+<tr>
+<td>GPU Instancing</td>
+<td>大量相同的草、树、子弹</td>
+<td>必须同 Mesh + 同材质，变换走 Instance Buffer</td>
+</tr>
+<tr>
+<td>SRP Batcher</td>
+<td>URP&#x2F;HDRP 下 Shader 相同、材质参数不同的物体</td>
+<td>不减少 DrawCall 数，但大幅降 SetPass；需 Shader 用 CBUFFER 包裹属性</td>
+</tr>
+</tbody></table>
+<p>注意最后一行那个”不减少 DrawCall 数”——这是最多人误解的地方，也是下一节要拆的。回到前言第一句话：”合批一下就好了”。合批确实能救一部分场景，但它不是只有一种，而且 DrawCall 数本身经常只是表象；盲目合批之前，得先知道瓶颈到底在 SetPass 还是 GPU 填充率，否则就是对着错误的敌人开枪。</p>
+<h3 id="SRP-Batcher：它解决的不是你以为的问题"><a href="#SRP-Batcher：它解决的不是你以为的问题" class="headerlink" title="SRP Batcher：它解决的不是你以为的问题"></a>SRP Batcher：它解决的不是你以为的问题</h3><p>先分清两个容易混的词。<strong>SRP（Scriptable Render Pipeline，可编程渲染管线）</strong> 是 Unity 2018 引入的渲染架构，简单说就是把”这一帧怎么画”从引擎写死的逻辑，变成你能用 C# 自定义的一套渲染流程；URP（通用渲染管线）是手游和独立游戏最常用的那套现成流程。而 <strong>SRP Batcher</strong> 是跑在 SRP&#x2F;URP 之上的一项优化——它不改变管线本身，只优化”同 Shader、异参数”物体之间的绘制开销。下文的 SRP Batcher，指的就是这项优化。</p>
+<p>很多人以为 SRP Batcher 是”把多个 DrawCall 合并成一个”。<strong>不对。</strong> 它不减少 DrawCall 的数量，它减少的是 DrawCall 之间的状态切换成本。</p>
+<p>为什么能减？得从 GPU 怎么处理一次绘制说起。正常情况下，连续画两个”用同一个 Shader、但颜色不同”的物体，GPU 要在两次 DrawCall 之间重新绑定整套材质参数（常量缓冲），哪怕它们只差一个颜色值——因为常量是按”这次绘制用哪份状态”绑定的。</p>
+<p>SRP Batcher 的巧思是：把每个物体的材质参数<strong>常驻在 GPU 的一块持久常量缓冲里</strong>，按物体编号排好。这样连续画多个同 Shader、异参数的物体时，DrawCall 之间只需要改一个”指向哪份参数”的偏移指针，不用重新绑定整套状态——SetPass 那套重准备被整体跳过了。（这块持久缓冲业内正式叫 Constant Buffer，缩写 CBUFFER；前面说的”常量缓冲”和这里的 CBUFFER 是同一个东西，下文统一用 CBUFFER。）</p>
+<p>一个真实量化例子（室内 500+ 同 Shader、异参数材质的场景实测）：</p>
+<ul>
+<li>关闭 SRP Batcher：CPU 渲染线程约 <strong>8.2 ms</strong>，SetPassCall &#x3D; <strong>497</strong>，平均 Batch 大小 ≈ 1（基本没合上）。</li>
+<li>开启且全链路合规：渲染线程降到 <strong>3.1 ms</strong>，SetPassCall &#x3D; <strong>12</strong>，平均 Batch 大小 ≈ <strong>41.4</strong>。</li>
+<li>仅开启但 Shader 违规（没用 CBUFFER 包裹属性）：≈ 7.9 ms，<strong>毫无收益</strong>（Frame Debugger 里 Batch Size 还是 1）。</li>
+</ul>
+<p>注意上面”平均 Batch 大小 ≈ 41.4”<strong>不是</strong>“41 个 DrawCall 被合并成一个”。Batch Size 指的是”一次状态切换之后，引擎连续提交了多少个 DrawCall”——DrawCall 的总数并没有减少（还是那 500 多个），减少的是它们之间的 SetPass：因为参数常驻缓冲，这 41 个 DrawCall 彼此之间不再重新绑定状态，于是 SetPass 从 497 掉到 12。</p>
+<blockquote>
+<p>这几个数字出自一份公开项目的实测，我手上没专门跑过基准。你项目里到底合没合上，别拿这组数去对照，开 Frame Debugger 看 Batch Size 最直观。</p>
+</blockquote>
+<h3 id="你开了-Batcher-却没效果？先看这里"><a href="#你开了-Batcher-却没效果？先看这里" class="headerlink" title="你开了 Batcher 却没效果？先看这里"></a>你开了 Batcher 却没效果？先看这里</h3><p>回到前言第三句话：”我 SRP Batcher 明明开了，没半点效果，Unity 垃圾。”</p>
+<p>那个”毫无收益”的第三行，就是现场。常见剧本是这样的：你按教程把 <code>SRPBatcher</code> 勾上，满心欢喜重新跑，渲染线程还是 8ms 没动，你以为引擎骗你。打开 Frame Debugger，看任意一帧的 <code>Batch Size</code>——它写着 <strong>1</strong>。</p>
+<p>Batch Size &#x3D; 1 意味着：引擎一个批次只塞进了一个物体，等于 SRP Batcher 完全没接管。原因几乎总是同一个——你的 Shader 没把材质属性交进那块持久缓冲，引擎没法跳过状态重绑定，只能退回”逐物体老老实实绑一遍”的原始流程。这跟 Unity 没关系，跟你的 Shader 写法有关系。</p>
+<p>所以”开了没效果”第一步不是骂引擎，是看 Batch Size。</p>
+<h3 id="一个经典陷阱：Shader-得把属性交进-CBUFFER"><a href="#一个经典陷阱：Shader-得把属性交进-CBUFFER" class="headerlink" title="一个经典陷阱：Shader 得把属性交进 CBUFFER"></a>一个经典陷阱：Shader 得把属性交进 CBUFFER</h3><p>上面那个现场的根因在这。SRP Batcher 要生效，Shader 必须用 <code>CBUFFER_START(UnityPerMaterial)</code> 把材质属性包起来。否则引擎没法把你的常量放进那块持久 GPU 缓冲，它开了等于没开，Frame Debugger 会诚实告诉你 Batch Size &#x3D; 1。</p>
+<pre><code class="hlsl">// ✅ 合规写法：属性进 UnityPerMaterial 这个 CBUFFER
+CBUFFER_START(UnityPerMaterial)
+    float4 _BaseColor;
+    float  _Metallic;
+CBUFFER_END
+
+// ❌ 违规写法：裸 uniform，引擎无法把它放进持久缓冲
+// float4 _BaseColor;
+</code></pre>
+<p>这跟”你代码逻辑写没写对”无关，是 Shader 侧的约定。很多人项目里明明开了 SRP Batcher，性能却没变化，八成是卡在这——材质属性没包进 CBUFFER，引擎只能退回逐物体绑定。</p>
+<p>好消息是：URP 内置的 Lit、Unlit 等 Shader 已经按这个约定写好了，你一般不用改；只有自己手写自定义 HLSL Shader 时，才需要手动把材质属性包进 <code>UnityPerMaterial</code> 这个 CBUFFER。</p>
+<h3 id="破一个迷思：对象池不降-DrawCall"><a href="#破一个迷思：对象池不降-DrawCall" class="headerlink" title="破一个迷思：对象池不降 DrawCall"></a>破一个迷思：对象池不降 DrawCall</h3><p>前言第二句话：”用了对象池，DrawCall 自然就降了。” 这是两码事，得掰开：</p>
+<ul>
+<li><strong>对象池（Object Pool）</strong> 解决的是”频繁 new &#x2F; 销毁对象带来的 CPU 开销和 GC（垃圾回收）”——它管的是”对象的生死”。</li>
+<li><strong>合批技术（包括 SRP Batcher）</strong> 解决的是”提交绘制时的状态切换开销”——它管的是”怎么画”。</li>
+</ul>
+<p>一个用对象池管理的 500 发子弹，如果每发都是独立材质、Shader 又没走 CBUFFER，DrawCall 和 SetPass 该多少还是多少。池化不会自动帮你合批。把这两件事当成一回事，是新手最常栽的跟头——对象池该用还得用（它救的是 GC，不是 DrawCall）。</p>
+<p>三句话的错那一半，其实是同一件事的三面：合批不是万能药、对象池不降 DrawCall、开了 SRP 没效果是 Shader 没接 CBUFFER 而不是引擎烂。大家都把”画得多”当成了瓶颈，而真正的瓶颈在”切状态切得有多频繁”。</p>
+<h3 id="还有一头：剔除，和合批同等重要的另一根支柱"><a href="#还有一头：剔除，和合批同等重要的另一根支柱" class="headerlink" title="还有一头：剔除，和合批同等重要的另一根支柱"></a>还有一头：剔除，和合批同等重要的另一根支柱</h3><p>合批是”画的时候省状态”，还有一类优化是”根本不画那么多”，它和合批是并列的两大支柱，不该被当成补充：</p>
+<ul>
+<li><strong>视锥剔除（Frustum Culling）</strong>：摄像机看不到的物体直接跳过。Unity 默认就做了，所以单纯 <code>renderer.enabled = false</code> 往往没明显收益——真正浪费的是物体虽然看不见、但它的 Update &#x2F; 动画 &#x2F; AI 还在跑。</li>
+<li><strong>遮挡剔除（Occlusion Culling）</strong>：被墙挡住的也不画，室内场景效果明显。</li>
+<li><strong>LOD（细节层次）</strong>：远处用低精度模型，最远直接不画。</li>
+<li><strong>GPU Instancing &#x2F; Indirect</strong>：几万棵草、树，CPU 逐个提交会崩，让 GPU 一次画几千个相同实例；更进一步用 Compute Shader 在 GPU 上做剔除后 Indirect 提交。角色类（带 Animator、复杂材质）不适合这套，优先用 CullingGroup + 距离逻辑降级。</li>
+</ul>
+<p>手机 GPU 多是 <strong>TBDR（分块延迟渲染）</strong> 架构：它把一帧切成小块，在芯片上那块很小的内存里算（这块叫 Tile 缓存），**最怕”切渲染状态把这块缓存冲刷掉”**。而 SRP Batcher 恰好把状态切换降到最低——两者天生互补。这也是为什么手游默认 URP 前向 + SRP Batcher + 限制额外光源数（比如 ≤4）是性价比最优解，移动端 DrawCall 预算通常压在几百以内。</p>
+<h3 id="工程上的几个注意点"><a href="#工程上的几个注意点" class="headerlink" title="工程上的几个注意点"></a>工程上的几个注意点</h3><ul>
+<li>怀疑合批问题，第一反应是开 Frame Debugger 看 <code>Batch Size</code>，不是猜。</li>
+<li>老 Built-in 管线没有 SRP Batcher 这套机制，得走 CommandBuffer &#x2F; OnRenderImage，这也是为什么新项目基本都迁 URP——不是追新，是这层优化白送。</li>
+<li>远程 &#x2F; 动态内容走 GPU Instancing 要注意：角色类（Animator、复杂材质）不适合，优先 CullingGroup + 距离逻辑降级，别硬套。</li>
+</ul>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>说到底，DrawCall 这东西被”越少越好”四个字耽误了。它真正的杠杆在 SetPass——状态切得多勤，比画了多少次更决定卡不卡。SRP Batcher 是解法，但得 Shader 把属性交进 CBUFFER 才接得住，光勾开关没用。这些都不难，难的是每次动手前真的去量，而不是背一句”合批万能”就上。</p>
+<p>如果手头项目正卡在渲染，下一步很具体：打开 Frame Debugger 切到 Rendering 面板，盯两个数——Batch Size 和 SetPassCall。Batch Size 长期停在 1，回头查 Shader 有没有走 CBUFFER；SetPassCall 高但 Batch Size 不算低，说明 SRP Batcher 已经接住了状态切换，瓶颈在”合批本身”——比如你材质 &#x2F; Shader 种类太多，引擎还是不得不频繁切换，合批也救不了，得从美术规范或资源管理侧收口。先量这两个数，再决定动哪。</p>
+<p>下次谁再跟你说”DrawCall 太多，合批一下就好了”，你现在应该知道这句话漏了什么。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

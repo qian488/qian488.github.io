@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>把 AI 当成低维护信息处理器：从资料到输出的知识库工作流 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>把 AI 当成低维护信息处理器：从资料到输出的知识库工作流</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/6/28
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%96%B9%E6%B3%95%E8%AE%BA/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                方法论
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/AI/" style="color: #00bcd4">AI</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/" style="color: #03a9f4">知识管理</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Obsidian/" style="color: #ffa2c4">Obsidian</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" style="color: #00bcd4">工作流</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我这个 Obsidian 库已经用了挺长时间。最开始的想法很简单：学习资料、项目记录、面试题和临时想法都放进来，以后需要的时候就能找到。<br>实际用起来就没这么顺利了。文件越来越多以后，我开始折腾目录、模板、状态字段、审核区和各种索引。每次整理完看起来都挺完整，过一段时间又会积累一批没处理的内容。<del>知识还没学多少，管理知识的方法倒是越来越复杂。</del><br>后来我开始让 AI 接手整理工作，也踩了新的坑：它很喜欢生成结构完整的长文。标题、总结、表格一应俱全，但内容未必是我真正理解的，写作语气有时也完全不像我。<br>所以这篇文章想记录一下，我现在具体怎么让 AI 帮忙维护这个库，以及哪些事情仍然需要自己判断。</p>
+<span id="more"></span>
+<h3 id="先让-Inbox-保持随便"><a href="#先让-Inbox-保持随便" class="headerlink" title="先让 Inbox 保持随便"></a>先让 Inbox 保持随便</h3><p>我平时遇到资料、问题或突然想到的东西，会先扔进 <code>00-Inbox</code>。文件名可以临时一点，也不用当场判断它属于哪个目录。<br>如果每保存一份资料都要先想分类、标签和状态，大概率会因为嫌麻烦直接不记。Inbox 的作用就是先接住这些东西。<br>等到资料确实和某个目标有关时，再让 AI 一起处理。例如：</p>
+<ul>
+<li>准备 Unity 面试时，查找已有的项目深挖和技术笔记；</li>
+<li>写项目博客时，整理开发记录、公开源码和旧文章；</li>
+<li>做完一份秋招练习后，把错题拆成可以复习的知识点；</li>
+<li>Inbox 堆得比较多时，判断哪些要移动、合并或归档。<br>这样我不用每天专门安排“整理知识库”的时间。</li>
+</ul>
+<h3 id="给-AI-的最好输入是当前目标"><a href="#给-AI-的最好输入是当前目标" class="headerlink" title="给 AI 的最好输入是当前目标"></a>给 AI 的最好输入是当前目标</h3><p>以前我会尝试先设计一套很详细的分类规则，再要求所有内容严格遵守。后来发现，AI 更适合在知道目标以后处理材料。<br>例如我直接说：</p>
+<blockquote>
+<p>明天要准备游戏客户端笔试，根据仓库里的练习和旧资料整理复习文件。<br>AI 就可以先搜索项目和知识笔记，找出相关主题，再生成复习材料。如果只说“帮我整理一下”，它可能会花很多精力调整目录，却没有产生马上能用的东西。<br>我现在常用的目标主要有几类：</p>
+</blockquote>
+<pre><code class="text">准备面试
+完成练习并批改
+整理项目经历
+写博客
+补一份长期技术笔记
+检查仓库里有没有重复和断链
+</code></pre>
+<p>目标确定后，资料应该放在哪里通常也比较好判断。</p>
+<h3 id="AI-整理时要先看真实文件"><a href="#AI-整理时要先看真实文件" class="headerlink" title="AI 整理时要先看真实文件"></a>AI 整理时要先看真实文件</h3><p>让 AI 根据一句描述直接写项目总结很危险。它会补齐听起来合理的架构、性能数据和开发过程，其中一部分可能根本没有在项目里实现。<br>所以我会要求它先找：</p>
+<ul>
+<li>真实代码和调用链；</li>
+<li>现有项目记录；</li>
+<li>以前写过的文章；</li>
+<li>测试结果和构建输出；</li>
+<li>原始资料的链接。<br>以写 Unity 项目博客为例，至少要先对照公开仓库和项目笔记。代码里只有对象池，就只能说明使用了对象池；没有 Profiler 记录时，不能自动写成“性能提升了多少”。<br>这个限制会让文章少一些漂亮结论，不过内容更容易核对。</li>
+</ul>
+<h3 id="整理结果需要对应一个用途"><a href="#整理结果需要对应一个用途" class="headerlink" title="整理结果需要对应一个用途"></a>整理结果需要对应一个用途</h3><p>同一份项目记录可以加工成不同内容：</p>
+<pre><code class="text">开发记录
+├── 面试回答：重点解释个人职责和技术取舍
+├── 博客文章：重点解释问题、代码和踩坑
+├── 长期笔记：抽取以后还能复用的技术知识
+└── 项目索引：帮助以后找到原始文件
+</code></pre>
+<p>这几种输出不能直接互相复制。面试回答追求短和准；博客需要让读者看懂过程；长期笔记要能脱离当前项目独立阅读。<br>我以前容易让 AI 把一份材料改写成几份长得差不多的文档，最后只是增加文件数量。现在会先说明这次要得到什么产物，其他内容暂时不动。</p>
+<h3 id="哪些维护工作可以交给-AI"><a href="#哪些维护工作可以交给-AI" class="headerlink" title="哪些维护工作可以交给 AI"></a>哪些维护工作可以交给 AI</h3><p>目前这类工作比较适合自动处理：</p>
+<ul>
+<li>查找重复、空文件和断链；</li>
+<li>根据正文内容重命名；</li>
+<li>把混在一起的几个主题拆开；</li>
+<li>移动文件后修复 Obsidian 链接；</li>
+<li>更新 MOC；</li>
+<li>从练习和项目记录中提取候选文章；</li>
+<li>检查博客能否正常生成。<br>这些操作有明确结果，也容易验证。整理完以后，我主要看文件是否放对、内容有没有失真，以及下一次能不能快速找到。<br>删除资料、放弃项目、公开公司经历等决定仍然由我确认。尤其是博客发布，AI 可以写草稿和本地构建，正式上线前最好自己过一遍。</li>
+</ul>
+<h3 id="这次重写就是一个例子"><a href="#这次重写就是一个例子" class="headerlink" title="这次重写就是一个例子"></a>这次重写就是一个例子</h3><p>这篇文章原来的版本也是 AI 写的。它把知识库规则整理得很完整，里面有很多“资料不是目标，输出才是目标”一类的句子。单独看都挺有道理，连在一起就很像一份 AI 生成的方法论，而且完全不像我以前写博客的语气。<br>我指出问题后，AI 再去对比以前的博客，才发现我的文章更接近实践记录：先说为什么折腾，然后按实际过程说明怎么做，没验证过的地方直接写清楚。<br>这也刚好说明当前分工：AI 可以快速查文件、整理差异和重写草稿；文章像不像我、哪些判断多余，还是需要我来指出。以后这些修改又会变成新的写作依据。</p>
+<h3 id="我现在的使用流程"><a href="#我现在的使用流程" class="headerlink" title="我现在的使用流程"></a>我现在的使用流程</h3><p>目前这套流程可以压缩成几步：</p>
+<ol>
+<li>平时把东西先丢进 Inbox；</li>
+<li>有具体任务时，把目标直接告诉 AI；</li>
+<li>AI 搜索真实资料，完成整理、移动或草稿；</li>
+<li>自动检查链接、构建和文件范围；</li>
+<li>我确认内容是否符合真实经历和自己的表达；</li>
+<li>有问题就继续改，确认后再公开输出。<br>它没有要求我每天维护状态，也没有把所有资料都变成正式笔记。需要用到哪一部分，就处理哪一部分。</li>
+</ol>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我现在使用 AI 维护知识库，主要是为了少做查找、搬运、改名和修链接这些事情。它也能写初稿，但初稿只是待检查的产物。<br>这套流程还在不断调整。最近最明显的一次调整，就是重新检查博客写作风格。以前只检查内容是否完整，现在还要检查文章有没有我的实际过程、有没有把推测写成事实、读起来像不像我自己会写的东西。<br>如果后面又发现新的问题，再继续改规则就好。只要知识库最终能帮我做项目、准备面试和写出东西，它就算有用。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

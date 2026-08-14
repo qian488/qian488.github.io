@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>每日一题:有效三角形的个数 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>每日一题:有效三角形的个数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/9/26
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                每日一题
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E4%BA%8C%E5%88%86/" style="color: #00a596">二分</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%8F%8C%E6%8C%87%E9%92%88/" style="color: #00bcd4">双指针</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>【题目指路】<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-triangle-number/?envType=daily-question&envId=2025-09-26">每日一题:有效三角形的个数</a><br>给定一个包含非负整数的数组 <code>nums</code> ，返回其中可以组成三角形三条边的三元组个数。<br>   <span id="more"></span><br><strong>示例 1:</strong></p>
+<pre><code>输入: nums = [2,2,3,4]
+输出: 3
+解释:有效的组合是: 
+2,3,4 (使用第一个 2)
+2,3,4 (使用第二个 2)
+2,2,3
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: nums = [4,2,3,4]
+输出: 4
+</code></pre>
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 1000</code><br>题目很简洁，就是求能够构成三角形三条边的三元组个数。自然地，我们就可以先从暴力法去思考。怎么做？显然三重循环枚举每一个数，再通过三角形的构成条件进行计数，就获得了答案。三角形需要最小的两边之和大于第三边。可以对数组排个序，就可以直接固定。于是就有了下面的代码，但是居然通过了<del>（太暴力了</del></li>
+</ul>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangleNumber(int[] nums) &#123;
+        int ans = 0;
+        int n = nums.Length;
+        if(n &lt; 3) return ans;
+        Array.Sort(nums);
+        for(int i = 0; i &lt; n; i++)&#123;
+            for(int j = i + 1; j &lt; n; j++)&#123;
+                for(int k = j + 1; k &lt; n; k++)&#123;
+                    if(nums[i] + nums[j] &gt; nums[k]) ans++;
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<p>很明显这个解法是不够看的，因为时间复杂度太高，达到<code>O(n^3)</code><br>那么怎么优化？<br>观察目前的代码，会发现k那层的循环是明显可以优化的。前两层确定了最小的两条边，剩下的就是变成了<strong>找小于这两边之和的数</strong>的个数，然后加起来就是答案。关键在于找。有什么小于<code>O(n)</code>的查找？自然而然就该想到算法守门员，二分。可以把找k的那个数，通过二分查找，快速找到，然后计数。这样的时间复杂度是<code>O(n^2logn)</code>，参考代码如下</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangleNumber(int[] nums) &#123;
+        int ans = 0;
+        int n = nums.Length;
+        if(n&lt;3) return ans;
+        Array.Sort(nums);
+        for(int i = 0; i &lt; n; i++)&#123;
+            for(int j = i + 1; j &lt; n; j++)&#123;
+                int sum = nums[i] + nums[j];
+                int l = j, r = n;
+                while(l + 1 &lt; r)&#123;
+                    int mid = l + r &gt;&gt; 1;
+                    if(nums[mid] &gt;= sum)&#123;
+                        r = mid;
+                    &#125;else&#123;
+                        l = mid;
+                    &#125;
+                &#125;
+                ans += r - j - 1; 
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<p>二分查找的是第一个大于等于最小两边和的数，然后减去前面的索引就是这次的个数。<br>那么还有办法优化吗？继续观察结构，<code>nums[i]+nums[j]&gt;nums[k]</code>，现在我们是固定两条短边找第三边。那我们是不是还可以反过来，固定最长边，找前面两条短边的个数？只要这个查找的过程小于<code>O(nlogn)</code>，那么就能继续优化一个级别。<br>已知最长边，怎么快速计算两条短边的个数？是不是这两个短边按照升序时，一左一右，最边界的两个能够满足三角形条件的话，中间的所有都是满足的。边界相减就是存在的个数。那就很明显了，一左一右双指针，在锁定最长边的情况下，只要这两个边符合构成三角形就能进行一次计数。那么只要遍历一次最长边，使用一个最长边去还要遍历一次，最极端情况下就是要去到最右边，即还需要遍历一次。那么时间复杂度就是<code>O(n^2)</code>。<br>重新梳理一遍，避免绕晕。枚举最长边，维护左右指针。那么这个指针要从哪开始？自然是最左边和最右边，然后两个指针往中间缩进。参考代码如下</p>
+<pre><code class="csharp">public class Solution &#123;
+    public int TriangleNumber(int[] nums) &#123;
+        int ans = 0;
+        int n = nums.Length;
+        if(n&lt;3) return ans;
+        Array.Sort(nums);
+        for(int i = 0; i &lt; n; i++)&#123;
+            int l = 0, r = i - 1;
+            while(l &lt; r)&#123;
+                if(nums[l] + nums[r] &gt; nums[i])&#123;
+                    ans += r - l;
+                    r--;
+                &#125;else&#123;
+                    l++;
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<p>枚举的i是最长边，因此，短边的最右边理论上就是最长边的前一位。因为这里我们是做了升序操作的。然后就是左右指针往中间缩进，当满足条件的时候，进行一次计数。因为我们是要两边之和大于第三边，所以不满足的时候，左边需要右移，不断增加。当满足了，计数之后，右指针左移，减少看看还有没有其他左指针符合条件。当左右指针相逢时，这个最长边的情况下的所有两个短边的情况都计算完了。<br><strong>总结优化思路</strong></p>
+<ol>
+<li><code>暴力 O(n³)</code>：三重循环，直接枚举所有可能情况</li>
+<li><code>二分 O(n² log n)</code>：枚举两最小边 + 二分找最长边</li>
+<li><code>双指针 O(n²)</code>：枚举最长边，双指针维护两最小边</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

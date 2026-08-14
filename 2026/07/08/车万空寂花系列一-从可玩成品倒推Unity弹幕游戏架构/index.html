@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>车万空寂花系列一：从可玩成品倒推 Unity 弹幕游戏架构 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>车万空寂花系列一：从可玩成品倒推 Unity 弹幕游戏架构</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/8
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                项目复盘
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #00a596">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%BC%B9%E5%B9%95%E5%B0%84%E5%87%BB/" style="color: #ffa2c4">弹幕射击</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E8%BD%A6%E4%B8%87%E7%A9%BA%E5%AF%82%E8%8A%B1/" style="color: #ff7d73">车万空寂花</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>“车万空寂花”最开始只是想做一个仿东方 Project 的弹幕游戏。项目往后做，角色与难度选择、完整关卡、Boss、分数记录、PC 和移动端控制都加了进来，原本单独运行的弹幕代码也要和关卡、输入、资源、UI 接起来。<br>最近正好在整理这个项目的资料，于是先把目前已经跑通的流程写下来。本文主要看整体结构，后面两篇再分别展开弹幕管理和关卡加载。<br>项目源码：<a target="_blank" rel="noopener" href="https://github.com/qian488/Danmaku">qian488&#x2F;Danmaku</a>；试玩页面：<a target="_blank" rel="noopener" href="https://qian488.itch.io/">itch.io</a>。</p>
+<span id="more"></span>
+<h3 id="这个系列"><a href="#这个系列" class="headerlink" title="这个系列"></a>这个系列</h3><ol>
+<li>本文：从可玩成品倒推整体架构</li>
+<li><a href="/2026/07/12/%E8%BD%A6%E4%B8%87%E7%A9%BA%E5%AF%82%E8%8A%B1%E7%B3%BB%E5%88%97%E4%BA%8C-%E9%9B%86%E4%B8%AD%E6%9B%B4%E6%96%B0%E5%AF%B9%E8%B1%A1%E6%B1%A0%E4%B8%8E%E7%A2%B0%E6%92%9E/">集中更新、对象池与碰撞判定</a></li>
+<li><a href="/2026/07/16/%E8%BD%A6%E4%B8%87%E7%A9%BA%E5%AF%82%E8%8A%B1%E7%B3%BB%E5%88%97%E4%B8%89-%E6%97%B6%E9%97%B4%E8%BD%B4%E5%85%B3%E5%8D%A1%E4%B8%8E%E8%B5%84%E6%BA%90%E9%A2%84%E7%83%AD/">时间轴关卡、资源预热与加载流程</a></li>
+</ol>
+<h3 id="这个项目目前做到了什么"><a href="#这个项目目前做到了什么" class="headerlink" title="这个项目目前做到了什么"></a>这个项目目前做到了什么</h3><p>项目当前的完整游戏循环如下：</p>
+<pre><code class="text">主菜单选择角色、章节和难度
+        ↓
+加载关卡资源并预热高频对象
+        ↓
+玩家移动、射击、擦弹、收集道具
+        ↓
+时间轴生成敌人、波次和 Boss
+        ↓
+胜利或失败结算，记录最高分
+</code></pre>
+<p>为了支撑这条循环，项目需要处理六项工作：推进关卡；生成、更新和回收弹幕；把主菜单选择传入战斗场景；准备首次使用的贴图、音效和预制体；统一键盘与触摸输入；集中管理玩法数值。下面的五条链路说明这些工作在项目中的归属。</p>
+<h3 id="我现在整理出的五条运行链路"><a href="#我现在整理出的五条运行链路" class="headerlink" title="我现在整理出的五条运行链路"></a>我现在整理出的五条运行链路</h3><h4 id="1-一局游戏的选择数据"><a href="#1-一局游戏的选择数据" class="headerlink" title="1. 一局游戏的选择数据"></a>1. 一局游戏的选择数据</h4><p>主菜单选择角色、章节和难度后，将本局需要的数据写入 <code>DanmakuRunSettings</code>。战斗场景读取这些会话数据，再创建对应玩家、加载关卡并应用难度倍率。<br><code>DanmakuRunSettings</code> 只保存本局选择。默认数值由配置提供，历史成绩由持久化模块保存。三类数据分开后，各自的创建和清理时机更清楚。</p>
+<h4 id="2-键盘和触摸输入"><a href="#2-键盘和触摸输入" class="headerlink" title="2. 键盘和触摸输入"></a>2. 键盘和触摸输入</h4><p><code>PlayerController</code> 只消费统一的移动、低速、射击和炸弹意图。键盘与触摸组件分别采集输入，再转换成相同语义。</p>
+<pre><code class="text">键盘 / 触摸
+     ↓
+移动向量、低速状态、炸弹请求
+     ↓
+PlayerController
+     ↓
+移动、射击、受伤和 Bomb
+</code></pre>
+<p>这样做的好处是，修改虚拟摇杆不会影响受伤逻辑，增加手柄输入也不需要复制玩家控制器。</p>
+<h4 id="3-关卡时间轴"><a href="#3-关卡时间轴" class="headerlink" title="3. 关卡时间轴"></a>3. 关卡时间轴</h4><p><code>StageRunner</code> 推进关卡时间，读取 <code>StageData</code>，在时间到达时触发敌人波次、弹幕或 Boss。具体怎样发射，则交给 shooter 或 pattern。<br>时间轴提供任务触发时间，发射器计算弹幕参数，<code>BulletManager</code> 更新生成后的子弹。调整关卡节奏时主要修改任务时间与 pattern 参数。</p>
+<h4 id="4-弹幕的生成与回收"><a href="#4-弹幕的生成与回收" class="headerlink" title="4. 弹幕的生成与回收"></a>4. 弹幕的生成与回收</h4><p>敌弹进入 <code>BulletManager</code> 后，由统一的活跃列表更新位置、做碰撞和判断越界。对象从 <code>GameObjectPool</code> 取得，结束后回池，而不是频繁 <code>Instantiate/Destroy</code>。<br>集中管理后，当前活跃弹幕、判定顺序和回收规则都可以从 <code>BulletManager</code> 追踪。排查未消失的子弹时，检查范围也随之收敛。</p>
+<h4 id="5-进入战斗前的加载"><a href="#5-进入战斗前的加载" class="headerlink" title="5. 进入战斗前的加载"></a>5. 进入战斗前的加载</h4><p>主菜单与战斗场景分别维护预加载清单。<code>DanmakuLauncher</code> 和关内控制器异步加载资源、更新进度，并在开战前预热核心对象池和子弹贴图索引。<br>与其让第一次开火随机卡顿，不如在玩家已经接受等待的 Loading 阶段完成资源准备。</p>
+<h3 id="数值放在哪里"><a href="#数值放在哪里" class="headerlink" title="数值放在哪里"></a>数值放在哪里</h3><p>弹幕游戏的手感来自许多相互影响的数值：</p>
+<ul>
+<li>玩家高速与低速移动速度</li>
+<li>受击半径与擦弹半径</li>
+<li>子弹速度和难度倍率</li>
+<li>火力档位与升级经验</li>
+<li>敌人生命、Boss 倍率和掉落权重</li>
+<li>击坠、擦弹、时间奖励的分数组成<br>项目用 <code>DanmakuGameplayBalance</code> 一类的配置承载这些调节项。同一套平衡规则因此有明确入口，关卡逻辑也能读取配置，减少散落在脚本中的魔法数字。<br>判断一个字段是否应该进入配置，可以问三个问题：</li>
+</ul>
+<ol>
+<li>它是否可能在不改玩法代码的情况下调整？</li>
+<li>它是否需要在多个系统中保持一致？</li>
+<li>它是否属于会被反复调整的设计规则？<br>三者满足其一，就值得考虑从代码常量中抽离。</li>
+</ol>
+<h3 id="框架和玩法是怎么接起来的"><a href="#框架和玩法是怎么接起来的" class="headerlink" title="框架和玩法是怎么接起来的"></a>框架和玩法是怎么接起来的</h3><p>工程中还有 UI、音频、场景、资源、存档和对象池等通用模块。我采用以下边界：</p>
+<ul>
+<li>通用层提供加载、回收、页面切换和数据保存能力；</li>
+<li>弹幕层定义玩家、敌人、子弹、关卡和计分语义；</li>
+<li>入口负责把两者装配起来。<br>例如 <code>BulletManager</code> 可以使用通用对象池，但对象池不需要理解“擦弹”；UI 框架可以打开结算窗口，但不负责计算最终分数。</li>
+</ul>
+<h3 id="目前还没解决好的地方"><a href="#目前还没解决好的地方" class="headerlink" title="目前还没解决好的地方"></a>目前还没解决好的地方</h3><p>项目已经能完成一局游戏，但不代表架构已经到终点：</p>
+<ul>
+<li>资源仍以 <code>Resources</code> 为主，依赖和卸载粒度有限；</li>
+<li>GameObject 弹幕适合当前规模，再向数千级扩展会受 Transform 与 Renderer 成本限制；</li>
+<li><code>BulletManager</code> 集中管理后容易继续膨胀，需要警惕变成新的 God Object；</li>
+<li>关卡配置需要更直观的编辑器预览，单看时间数字不利于调节节奏；</li>
+<li>公开仓库还缺少稳定的性能基准，现阶段只能说明代码采用了对象池和集中更新，尚无可公开的性能数据。<br>下一步应先建立可重复的性能场景，再根据测量结果决定是否迁移 Addressables、数据导向弹幕或批量渲染。</li>
+</ul>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>重新整理一遍以后，我觉得这个项目目前有四个比较清楚的点：</p>
+<ol>
+<li>完整游玩闭环决定了系统的拆分范围。</li>
+<li>时间轴管时机，发射器管模式，BulletManager 管高频对象生命周期。</li>
+<li>平台输入、游戏规则和通用框架通过明确接口连接。</li>
+<li>对象池和预加载将一部分运行时成本转移到可观察、可控制的流程中。<br>下一篇接着看 <code>BulletManager</code>。这部分代码更具体，包括活跃弹幕列表、对象池状态重置、受击和擦弹判定。</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>车万空寂花系列二：集中更新、对象池与弹幕碰撞 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>车万空寂花系列二：集中更新、对象池与弹幕碰撞</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/12
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                项目复盘
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #ff7d73">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="color: #00a596">性能优化</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%AF%B9%E8%B1%A1%E6%B1%A0/" style="color: #ffa2c4">对象池</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%BC%B9%E5%B9%95%E5%B0%84%E5%87%BB/" style="color: #ff7d73">弹幕射击</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E8%BD%A6%E4%B8%87%E7%A9%BA%E5%AF%82%E8%8A%B1/" style="color: #00bcd4">车万空寂花</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>车万空寂花里的敌弹数量比较多，每颗子弹还要处理移动、碰撞、越界和擦弹。如果全部各写各的，清屏、暂停和回收都会比较麻烦。目前项目把敌弹统一交给 <code>BulletManager</code> 管理，再配合对象池复用 GameObject。<br>这篇把这条链路单独拆出来，顺便记录几个容易出问题的地方。公开仓库目前没有完整的 Profiler 对照数据，所以性能部分只写已经实现的结构和后续验证方法。<br>源码入口：<a target="_blank" rel="noopener" href="https://github.com/qian488/Danmaku">qian488&#x2F;Danmaku</a>。</p>
+<span id="more"></span>
+<h3 id="这个系列"><a href="#这个系列" class="headerlink" title="这个系列"></a>这个系列</h3><ol>
+<li><a href="/2026/07/08/%E8%BD%A6%E4%B8%87%E7%A9%BA%E5%AF%82%E8%8A%B1%E7%B3%BB%E5%88%97%E4%B8%80-%E4%BB%8E%E5%8F%AF%E7%8E%A9%E6%88%90%E5%93%81%E5%80%92%E6%8E%A8Unity%E5%BC%B9%E5%B9%95%E6%B8%B8%E6%88%8F%E6%9E%B6%E6%9E%84/">从可玩成品倒推整体架构</a></li>
+<li>本文：集中更新、对象池与碰撞判定</li>
+<li><a href="/2026/07/16/%E8%BD%A6%E4%B8%87%E7%A9%BA%E5%AF%82%E8%8A%B1%E7%B3%BB%E5%88%97%E4%B8%89-%E6%97%B6%E9%97%B4%E8%BD%B4%E5%85%B3%E5%8D%A1%E4%B8%8E%E8%B5%84%E6%BA%90%E9%A2%84%E7%83%AD/">时间轴关卡、资源预热与加载流程</a></li>
+</ol>
+<h3 id="一颗敌弹从生成到回收"><a href="#一颗敌弹从生成到回收" class="headerlink" title="一颗敌弹从生成到回收"></a>一颗敌弹从生成到回收</h3><pre><code class="text">发射器计算位置、方向和速度
+        ↓
+BulletManager 从池中取对象
+        ↓
+初始化样式、速度、半径和归属
+        ↓
+加入 alive list
+        ↓
+每帧移动 → 碰撞/擦弹 → 越界判断
+        ↓
+命中、清屏、切阶段或出界
+        ↓
+移出 alive list，重置后回池
+</code></pre>
+<p>移动计算很简单，生命周期更容易出错。初始化或回收阶段遗漏字段，会留下幽灵对象、重复擦弹、错误贴图或无法回收的引用。</p>
+<h3 id="用活跃列表集中更新"><a href="#用活跃列表集中更新" class="headerlink" title="用活跃列表集中更新"></a>用活跃列表集中更新</h3><p>最直观的写法是给每个子弹 MonoBehaviour 一个 <code>Update()</code>。它在小规模 Demo 中没有问题，但规模增大后有三个缺点：</p>
+<ol>
+<li>Unity 需要逐个调度大量消息；</li>
+<li>当前活跃子弹分散，统一清屏、暂停和统计不方便；</li>
+<li>移动、碰撞、越界和回收的顺序不容易保持一致。<br>项目由 <code>BulletManager</code> 维护预分配容量的活跃列表。核心结构可以概括为：</li>
+</ol>
+<pre><code class="csharp">private readonly List&lt;DanmakuBullet&gt; aliveBullets = new(256);
+void UpdateBullets(float deltaTime)
+&#123;
+    for (int i = aliveBullets.Count - 1; i &gt;= 0; --i)
+    &#123;
+        DanmakuBullet bullet = aliveBullets[i];
+        bullet.Tick(deltaTime);
+        if (ShouldRecycle(bullet))
+            RecycleAt(i, bullet);
+    &#125;
+&#125;
+</code></pre>
+<p>这里使用倒序遍历，是因为更新中会移除元素。正序删除后，后面的索引前移，很容易跳过下一颗子弹。<br>集中更新的收益不仅是少一些 Unity 消息，还包括：</p>
+<ul>
+<li>同一帧中的处理顺序明确；</li>
+<li>暂停时只需停一个入口；</li>
+<li>Bomb 清屏、Boss 切阶段可批量回收；</li>
+<li>可以记录活跃数量和每帧生成量；</li>
+<li>后续抽成纯数据数组时有清晰迁移边界。<br>代价则是 <code>BulletManager</code> 容易承担过多职责。因此更稳妥的演进是保留集中调度，但将移动、碰撞、样式和回收规则拆成明确方法或子系统。</li>
+</ul>
+<h3 id="对象池以及状态重置"><a href="#对象池以及状态重置" class="headerlink" title="对象池以及状态重置"></a>对象池以及状态重置</h3><p>池化的基本操作很简单：</p>
+<pre><code class="csharp">GameObject instance = pool.Spawn(prefabKey);
+// 初始化本次子弹
+pool.Despawn(instance);
+// 不 Destroy，等待下次复用
+</code></pre>
+<p>难点是“复用前后状态必须等价于一个新对象”。弹幕至少需要重置：</p>
+<ul>
+<li>位置、旋转、缩放和父节点；</li>
+<li>速度、加速度、角速度和存活时间；</li>
+<li>Sprite、颜色、材质参数与动画帧；</li>
+<li>命中半径、阵营和伤害；</li>
+<li>是否已经对本局玩家触发擦弹；</li>
+<li>事件订阅、协程和延迟回调；</li>
+<li>Renderer、Collider 或其他组件的启用状态。<br>如果这些清理由外部管理器针对每一种对象硬编码，池会迅速变得不可维护。更合适的方式是让池化对象实现统一生命周期：</li>
+</ul>
+<pre><code class="csharp">public interface IPoolable
+&#123;
+    void OnSpawned();
+    void OnDespawned();
+&#125;
+</code></pre>
+<p>管理器负责“何时取出与归还”，对象负责“怎样恢复干净状态”。<br>池容量需要根据运行时峰值设置。预热过少会在战斗中扩容；预热过多会让 GameObject、组件和贴图引用长期占用内存。项目后续需要记录峰值，并据此设置预热量和空闲上限。</p>
+<h3 id="圆形受击判定"><a href="#圆形受击判定" class="headerlink" title="圆形受击判定"></a>圆形受击判定</h3><p>项目为玩家使用独立的圆形受击范围。这个范围可以小于角色贴图，方便按弹幕游戏的手感单独调节，无需跟随视觉轮廓改变 Collider 形状。<br>圆与圆相交只需要比较距离平方：</p>
+<pre><code class="csharp">static bool Intersects(in Circle a, in Circle b)
+&#123;
+    float dx = a.x - b.x;
+    float dy = a.y - b.y;
+    float radius = a.radius + b.radius;
+    return dx * dx + dy * dy &lt;= radius * radius;
+&#125;
+</code></pre>
+<p>不做平方根，既减少计算，也避免不必要的浮点转换。<br>在当前玩法中，主要检测目标是单个玩家，因此每帧遍历所有敌弹做 O(N) 判定是一个合理基线。空间划分只有在目标数量、弹幕规模或复杂碰撞明显增加后才值得引入，否则网格维护本身也有成本。</p>
+<h3 id="擦弹判定"><a href="#擦弹判定" class="headerlink" title="擦弹判定"></a>擦弹判定</h3><p>玩家有小的受击圆和更大的擦弹圆：</p>
+<pre><code class="text">进入受击圆              → 命中
+未进入受击圆但进入擦弹圆 → 擦弹
+两者都未进入            → 无事发生
+</code></pre>
+<p>判定顺序应先检查命中，再检查擦弹，避免同一颗子弹在命中帧同时奖励擦弹。<br>此外，每颗子弹通常只能贡献一次擦弹。如果池化对象没有在下次 Spawn 时清掉 <code>hasGrazed</code>，它会永远无法再次触发；如果一帧后没有保留这个状态，又会连续刷分。这正是对象池重置和玩法状态必须一起设计的例子。</p>
+<h3 id="还要留意的-GC-来源"><a href="#还要留意的-GC-来源" class="headerlink" title="还要留意的 GC 来源"></a>还要留意的 GC 来源</h3><p>使用对象池之后仍可能产生分配：</p>
+<ul>
+<li>每波发射时创建闭包或临时委托；</li>
+<li>热路径使用 LINQ；</li>
+<li>每帧创建临时 List；</li>
+<li>字符串拼接日志；</li>
+<li>接口或枚举处理中的装箱；</li>
+<li>运行时按字符串反复查找资源。<br>项目将弹幕生成回调和集合缓存起来，并为活跃列表预分配容量，目的就是让常规战斗帧尽量不产生托管分配。<br>这些代码的目标是减少常规战斗帧的分配。项目目前没有公开的 Profiler 基准，仍需在固定关卡中记录 <code>GC Alloc</code>、主线程耗时、渲染批次和活跃子弹峰值，才能评价实际效果。</li>
+</ul>
+<h3 id="我准备怎样补性能验证"><a href="#我准备怎样补性能验证" class="headerlink" title="我准备怎样补性能验证"></a>我准备怎样补性能验证</h3><p>我会固定一组可重复测试：</p>
+<ol>
+<li>相同 Unity 版本、分辨率和目标帧率；</li>
+<li>相同关卡、难度、随机种子和持续时间；</li>
+<li>记录平均&#x2F;峰值活跃弹幕、每帧 Spawn 数量；</li>
+<li>对比 CPU 主线程、GC Alloc、Batches 和内存；</li>
+<li>分别测试首次进入和资源已缓存的第二次进入。<br>如果只截一张“某一帧 60 FPS”的图，无法说明尖刺、首次加载和长时运行问题。</li>
+</ol>
+<h3 id="当前方案的边界"><a href="#当前方案的边界" class="headerlink" title="当前方案的边界"></a>当前方案的边界</h3><p>GameObject + 集中更新适合当前中等规模，但继续增大时会出现新的限制：</p>
+<ul>
+<li>Transform 和 SpriteRenderer 数量仍然很高；</li>
+<li>活跃列表中的数据布局不利于批量计算；</li>
+<li>每颗子弹仍有完整 GameObject 组件开销。<br>下一阶段可以依次考虑：</li>
+</ul>
+<ol>
+<li>将移动和碰撞数据抽成结构体数组；</li>
+<li>GameObject 只保留表现代理；</li>
+<li>使用网格分桶处理多目标碰撞；</li>
+<li>使用 Mesh、粒子或 instancing 批量渲染；</li>
+<li>规模确实需要时再评估 Job System 或 DOTS。<br>这些方案的投入差异很大，应先用性能数据定位热区，再替换对应部分。</li>
+</ol>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><ul>
+<li>集中更新主要解决调度、顺序和全局生命周期管理问题。</li>
+<li>对象池主要解决高频创建销毁，但必须完整重置状态。</li>
+<li>圆形判定既符合弹幕手感，也提供低成本、可控的碰撞模型。</li>
+<li>池化不代表没有 GC，优化结论必须来自固定场景和 Profiler。</li>
+<li>当前方案有明确规模边界，进一步优化应从数据布局和渲染批次入手。<br>下一篇继续整理关卡时间轴和加载。第一次进入关卡时还要准备 prefab、贴图、音效和池对象，这部分和每帧更新是另一条链路。</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

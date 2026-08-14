@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Unity 热更新技术解析：ILRuntime、xLua 与 Puerts | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Unity 热更新技术解析：ILRuntime、xLua 与 Puerts</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/5
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                游戏开发
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #ffa2c4">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" style="color: #00a596">热更新</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/ILRuntime/" style="color: #ff7d73">ILRuntime</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/xLua/" style="color: #03a9f4">xLua</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Puerts/" style="color: #ffa2c4">Puerts</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" style="color: #03a9f4">资源管理</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>热更新这个词在 Unity 圈被聊得很乱。很多人聊到它，只会甩出”用 xLua”或者”用 ILRuntime”这样的名字，但说不清这些方案到底在解决什么问题，更分不清哪些是资源的事、哪些是代码的事。<br>我先把这件事拆开：Unity 热更新本质上要绕过两道墙——IL2CPP &#x2F; AOT 环境下不能 JIT，以及平台商店审核周期太长。但”热更新”四个字底下其实藏着两条完全不同的技术线。这篇文章想把这两条线讲清楚，重点放在工程上真正卡人的地方——引用计数、依赖去重、跨语言调用开销，还有那两套互相拖累的 GC。这几个名词先记下，文章后面会逐个拆开讲，现在不用纠结。<br>下面的内容主要来自我自己整理的原理笔记，偏原理和取舍，不绑定某个具体项目的落地数据。</p>
+<span id="more"></span>
+<h3 id="动手前，先对齐几个概念"><a href="#动手前，先对齐几个概念" class="headerlink" title="动手前，先对齐几个概念"></a>动手前，先对齐几个概念</h3><p>如果你刚接触 Unity 或游戏开发，下面几个词后面会反复出现，先花一分钟建立直觉：</p>
+<ul>
+<li><strong>资源</strong>：游戏里一切要加载进内存的东西——贴图、模型、音频、预制体（Prefab）、甚至配置表，都叫资源。它们通常不在代码里，而是作为文件存在，需要被”加载”和”卸载”。</li>
+<li><strong>IL2CPP</strong>：Unity 把你的 C# 代码先编译成一种中间语言（叫 IL，像一份”通用指令”），构建时再把 IL 翻译成 C++ 代码，最后用平台编译器（如 clang）编成原生机器码。这套”<strong>C# → IL → C++ → 机器码</strong>“的流程叫 IL2CPP，是 Unity 在手机和主机上的主流运行时。</li>
+<li><strong>AOT（Ahead-Of-Time，提前编译）</strong>：就是上面那种”发布前就把代码编译成机器码”的方式。好处是运行快、运行时不需要编译器；代价是<strong>运行时不能再现场编译新代码</strong>。</li>
+<li><strong>JIT（Just-In-Time，运行时编译）</strong>：程序跑起来以后，才把代码编译成机器码。PC 上的 .NET 常用 JIT，很灵活；但 iOS 等平台出于安全与审核原因<strong>禁止 JIT</strong>。</li>
+<li><strong>为什么这事是热更新的命门</strong>：因为 Unity 手机端用的是 IL2CPP（AOT），运行时不能 JIT，所以”想发个新逻辑上去”不能像在 PC 上那样现场编译——这正是代码热更新要绕过的第一道墙。</li>
+<li><strong>GC（Garbage Collection，垃圾回收）</strong>：自动回收不再使用的内存，让你不用手动 free。Unity 自己用一套叫 Boehm 的 GC；后面会看到，引入 Lua 后又多了一套 Lua 自己的 GC，麻烦就出在这里。<br>有了这几个概念，下面两条线就好跟了。</li>
+</ul>
+<h3 id="先把两条热更新线分开"><a href="#先把两条热更新线分开" class="headerlink" title="先把两条热更新线分开"></a>先把两条热更新线分开</h3><p>很多热更新讨论之所以混乱，是因为把两条完全不同的线混在了一起。<br><strong>资源热更新</strong>解决的是”客户端初始包太大、内容要按需下载 &#x2F; 增量更新”——本质是内容分发与资产管理，和代码能不能执行没关系。它由 AssetBundle 生态承载。<br><strong>代码热更新</strong>解决的是”逻辑改了不用重新发包 &#x2F; 过审”——本质是让一段新逻辑在 IL2CPP 的 AOT 环境下跑起来。因为 iOS &#x2F; 主流平台禁止 JIT，纯 C# 没法在运行时编译新代码，于是出现了两条路线：</p>
+<ul>
+<li><strong>解释执行路线</strong>：ILRuntime 直接加载并解释执行 C# 的 DLL（IL），不需要 JIT；</li>
+<li><strong>脚本绑定路线</strong>：xLua（Lua）&#x2F; Puerts（TypeScript）在 C# 侧绑定一门解释型脚本，逻辑用脚本写。<br>这两条线可以并存：资源走 AssetBundle，逻辑走 Lua 或 ILRuntime。下面分别展开。</li>
+</ul>
+<h3 id="资源热更新：从原生-AssetBundle-到-YooAsset"><a href="#资源热更新：从原生-AssetBundle-到-YooAsset" class="headerlink" title="资源热更新：从原生 AssetBundle 到 YooAsset"></a>资源热更新：从原生 AssetBundle 到 YooAsset</h3><h4 id="为什么不能直接用原生-AssetBundle"><a href="#为什么不能直接用原生-AssetBundle" class="headerlink" title="为什么不能直接用原生 AssetBundle"></a>为什么不能直接用原生 AssetBundle</h4><p>AssetBundle（AB）是 Unity 用于内容分发和管理的核心机制——把资源及其依赖序列化成存档文件，用来减小初始包体、实现按需流式加载。但原生 AB API（<code>BuildPipeline.BuildAssetBundles</code>）有两个致命工程问题：</p>
+<ol>
+<li><strong>没有自动依赖管理</strong>：如果 Bundle1 的材质引用了 Bundle2 的纹理，你得手动保证 Bundle2 先加载，通常要解析 <code>AssetBundleManifest</code> 自己写加载顺序。规模一大就是技术债。</li>
+<li><strong>按路径寻址脆弱</strong>：依赖文件路径寻址，目录一改，所有引用路径的代码和配置都要同步改，维护成本极高。</li>
+</ol>
+<h4 id="Addressables：统一寻址-自动依赖"><a href="#Addressables：统一寻址-自动依赖" class="headerlink" title="Addressables：统一寻址 + 自动依赖"></a>Addressables：统一寻址 + 自动依赖</h4><p>Addressable Asset System（AAS）是建在原生 AB 之上的一层”质量管理层”。两个关键改进：</p>
+<ul>
+<li><strong>统一寻址</strong>：资源标为 Addressable 后获得一个抽象地址，系统通过集中的<strong>内容目录（Content Catalog）</strong>解析”本地还是远程、怎么加载”，代码不再关心物理位置。</li>
+<li><strong>自动依赖管理</strong>：自动处理依赖解析与加载序列，把底层 AB 细节藏起来。<br>顺带一提，AAS 在架构过渡时会强制最佳实践：比如把 Resources 里的资源转 Addressable 时自动移到 <code>Resources_moved</code>，因为同一资源若同时被内置场景、Resources、可寻址引用，构建会出多份副本、造成内存浪费。</li>
+</ul>
+<h4 id="YooAsset：第三方完整方案"><a href="#YooAsset：第三方完整方案" class="headerlink" title="YooAsset：第三方完整方案"></a>YooAsset：第三方完整方案</h4><p>YooAsset 是广泛采用的第三方框架，目标是取代团队自研、易错的 AB 管理层。它同样采用”构建系统 + 运行时清单”模式（AssetBundle Collector 负责分组与生成清单）。<br>它最重要的架构决策是运行时 ID 策略：</p>
+<ul>
+<li><strong>完整路径 ID 模式</strong>（<code>Enable Addressables</code> 关）：用 <code>Assets/Path/File.prefab</code> 作 ID，重构改路径就会让外部配置 &#x2F; 数据库引用全部失效——高度脆弱。</li>
+<li><strong>令牌化 ID 模式</strong>（开）：运行时 ID 与物理路径解耦，移动 &#x2F; 重命名资源不影响 ID。<blockquote>
+<p>从架构稳定性看，令牌化 ID 几乎是强制要求：逻辑地址与物理位置解耦，才能支撑大团队和与外部数据库的集成。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="分组、去重、压缩、卸载的硬规则"><a href="#分组、去重、压缩、卸载的硬规则" class="headerlink" title="分组、去重、压缩、卸载的硬规则"></a>分组、去重、压缩、卸载的硬规则</h4><table>
+<thead>
+<tr>
+<th>决策点</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>分组原则</td>
+<td>按”同时使用”分组（优化加载）与按”更新频率”分组（优化补丁）混合；单 Bundle 使用率低于一半就拆</td>
+</tr>
+<tr>
+<td>依赖去重</td>
+<td>抽公共依赖 Bundle，依赖”向下流动而非水平共享”，消除重复副本</td>
+</tr>
+<tr>
+<td>压缩选型</td>
+<td>远程分发的 AB <strong>一律 LZ4</strong>（基于块加载，内存峰值低）；LZMA 需整文件解压，只适合一次性小包</td>
+</tr>
+<tr>
+<td>卸载</td>
+<td><strong>完全依赖托管系统的引用计数</strong>，严禁 <code>AssetBundle.Unload(true/false)</code> 手动卸载（前者爆引用、后者漏内存）</td>
+</tr>
+<tr>
+<td>TypeTree</td>
+<td>实时服务环境<strong>严禁禁用</strong> <code>DisableWriteTypeTree</code>——省下的包体换来版本不兼容风险</td>
+</tr>
+<tr>
+<td><strong>LZMA vs LZ4 对照</strong>：</td>
+<td></td>
+</tr>
+<tr>
+<td>格式</td>
+<td>磁盘</td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LZMA</td>
+<td>最小</td>
+</tr>
+<tr>
+<td>LZ4</td>
+<td>较大</td>
+</tr>
+<tr>
+<td><strong>引用计数范式</strong>（以 YooAsset &#x2F; AAS 为例）：加载资源 → 资源与所属 Bundle 引用计数 +1；Release → 递减；Bundle 计数归零时自动安全卸载其包含的所有资源。这彻底取代原生危险的手动卸载。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="版本与差分"><a href="#版本与差分" class="headerlink" title="版本与差分"></a>版本与差分</h4><p>AAS &#x2F; YooAsset 都依赖托管在 CDN 的<strong>内容目录 &#x2F; 清单</strong>，把抽象地址映射到 AB 物理位置。YooAsset 通过比较资源依赖哈希做<strong>增量构建</strong>：客户端启动时拉最新远程清单，与本地清单比较，算出”哪些全新、哪些过时、差分总量”，从而绕过 Apple &#x2F; Google &#x2F; 主机的缓慢审核，立即推差分内容。</p>
+<h3 id="代码热更新路线一：ILRuntime"><a href="#代码热更新路线一：ILRuntime" class="headerlink" title="代码热更新路线一：ILRuntime"></a>代码热更新路线一：ILRuntime</h3><h4 id="设计：无-JIT-的-C-热更新"><a href="#设计：无-JIT-的-C-热更新" class="headerlink" title="设计：无 JIT 的 C# 热更新"></a>设计：无 JIT 的 C# 热更新</h4><p>ILRuntime 的核心价值，是用一个<strong>纯 C# 写的 IL 解释器</strong>在运行时加载并执行 DLL 里的 IL 指令——DLL 是 C# 工程编译出的动态链接库，里面装着 IL 指令——从而在不允许 JIT 的 IL2CPP &#x2F; AOT 平台上跑”新写的 C# 逻辑”。它让热更新逻辑仍然用 C# 编写，团队不需要引入第二门语言。<br>设计上它要解决的问题是<strong>跨域调用</strong>：热更新 DLL 里的 C# 代码要调用 Unity 主工程（AOT 域）的类与方法。ILRuntime 通过 <strong>CLR 绑定（Binding）&#x2F; 适配器</strong>把 AOT 侧的类型和方法注册成解释器能识别的桥接，并针对高频调用生成适配器与委托，减少反射开销。</p>
+<h4 id="热修复与方法体替换"><a href="#热修复与方法体替换" class="headerlink" title="热修复与方法体替换"></a>热修复与方法体替换</h4><p>ILRuntime 支持<strong>热修复（Hotfix）</strong>思路：通过重定向（Redirect）把某些 AOT 方法的调用转到热更新实现，实现不重新发包就能替换逻辑。这要求项目在架构上预留好”可被重定向”的接缝（通常配合特性标注或统一入口）。</p>
+<h4 id="它大概长什么样（示意）"><a href="#它大概长什么样（示意）" class="headerlink" title="它大概长什么样（示意）"></a>它大概长什么样（示意）</h4><p>为了让前面不抽象，给一个最小示意。热更新逻辑通常单独放在一个 C# 工程里，编译成 DLL：</p>
+<pre><code class="csharp">// Hotfix 工程（会被 ILRuntime 在运行时加载的 DLL）
+public class ShopLogic &#123;
+    public int CalculateDiscount(int price) &#123;
+        return price / 2; // 想改折扣规则，只更新这个 DLL，不用重新发包
+    &#125;
+&#125;
+</code></pre>
+<p>主工程在启动时加载这个 DLL，并通过 CLR 绑定把 <code>ShopLogic</code> 这类类型注册进解释器，之后就能在运行时调用 <code>CalculateDiscount</code>。这就是”不重新发包也能换逻辑”的最小形态——真实的跨域调用、重定向和热修复当然比这复杂，但骨架就是这个。</p>
+<blockquote>
+<p>说明：上面是结构示意，不是某个具体项目的代码；具体 API 以 ILRuntime 当前版本文档为准。</p>
+</blockquote>
+<h4 id="性能与内存"><a href="#性能与内存" class="headerlink" title="性能与内存"></a>性能与内存</h4><p>解释执行意味着每条 IL 指令都要走解释器循环，吞吐天然低于 AOT 编译后的机器码；跨域调用还要额外付出桥接（CLR Binding &#x2F; 适配器生成）成本。所以热更新逻辑的性能瓶颈，通常不在逻辑本身，而在解释和跨域调用这两层。<br>内存上，热更新类型的对象生命周期需要明确管理。解释器域和 AOT 域互相持有引用，是导致对象无法回收的常见来源——这一点和后面 Lua 那套是同一个坑，只是换了个位置。</p>
+<blockquote>
+<p>诚实一句：我没有自己项目的 Profiler 基准可以引用，所以这一节只给定性结论。具体的跨域调用耗时、对象生命周期管理的一手数据，得等我在自己项目里跑出实测再谈——目前能确定的是原则，不是数字。</p>
+</blockquote>
+<h3 id="代码热更新路线二：xLua-Puerts"><a href="#代码热更新路线二：xLua-Puerts" class="headerlink" title="代码热更新路线二：xLua &#x2F; Puerts"></a>代码热更新路线二：xLua &#x2F; Puerts</h3><p>这条路线的本质是：在 C# 侧绑定一门解释型脚本（xLua 绑 Lua，Puerts 绑 TypeScript），逻辑用脚本写，热更新时只替换脚本资源。</p>
+<h4 id="C-与-Lua-的调用链路"><a href="#C-与-Lua-的调用链路" class="headerlink" title="C# 与 Lua 的调用链路"></a>C# 与 Lua 的调用链路</h4><p>一句话链路：</p>
+<ul>
+<li><strong>C# 调 Lua</strong>：<code>C# → Bridge → dll（C 写的 Lua 库）→ Lua</code></li>
+<li>**Lua 调 C#**：先生成 Wrap 文件把字段 &#x2F; 方法注册进 Lua 虚拟机（如 LuaJIT），Lua 再通过 Wrap 调 C#。<br>慢的根因在桥接层：Lua 调 C# 对象时，要在 <code>ObjectTranslator</code> 里用 id 查回 C# 对象（字典查找），再把结果以 <code>userdata</code> + <code>metatable</code> 的形式塞回 Lua——每一步都是 CPU 时间，还不算中间的内存分配和后续 GC。</li>
+</ul>
+<h4 id="一个经典陷阱：gameobj-transform-position-pos"><a href="#一个经典陷阱：gameobj-transform-position-pos" class="headerlink" title="一个经典陷阱：gameobj.transform.position = pos"></a>一个经典陷阱：<code>gameobj.transform.position = pos</code></h4><p>这行看似普通，在 uLua + cstolua 下实际触发了一长串 LuaAPI 与桥接步骤：</p>
+<ul>
+<li>取 transform：<code>get_transform → luanet_rawnetobj → ObjectTranslator.TryGetValue → gameobject.transform → AddObject(分配 id) → newudata → setmetatable → pushvalue …</code></li>
+<li>设 position：<code>set_position → rawnetobj → TryGetValue → tolua_getfloat3(3 次 getfield+tonumber) → transform.position = new Vector3(…)</code><br>就这么一行，发生多次字典查找、入栈、C#↔Lua 类型转换，还产生临时分配与 GC。而 <code>transform</code> 只是临时返回、很快被 Lua 释放，下次再访问又得重做一遍——<strong>反复分配 + 反复 GC</strong>。<br>在 C++ 里，<code>a.b.c = x</code> 经过优化无非就是拿地址然后内存赋值。但在这里，频繁的取值、入栈、类型转换，每一步都是满满的 CPU 时间。</li>
+</ul>
+<h4 id="值类型与传参的优化纪律"><a href="#值类型与传参的优化纪律" class="headerlink" title="值类型与传参的优化纪律"></a>值类型与传参的优化纪律</h4><p>从这条链路能推出一组可执行的优化规则（不是玄学，是参数传递成本的硬结论）：</p>
+<ol>
+<li><strong>Unity 值类型（Vector3 &#x2F; Quaternion 等）跨语言最贵</strong>：Lua 侧把它们实现成纯 table <code>&#123;x,y,z&#125;</code> 以加速 Lua 内使用，但每次 C#↔Lua 传参都要 3 次 push + 表分配 + 3 次插入。</li>
+<li><strong>优先传 <code>int/float/double</code>，避开 Vector3、数组、bool、string、object</strong>：bool &#x2F; string 属于 Non-Blittable 类型，C↔C# 要转换；数组在 Lua 只能以 table 表示，只能逐个复制。</li>
+<li><strong>频繁调用函数参数控制在 4 个以内</strong>：参数转换逐个进行，十几个参数的函数高频调用，手机上一帧数百次就能见到 10ms 级耗时。</li>
+<li><strong>优先 static 导出，少用成员方法</strong>：成员访问要多查 userdata &#x2F; metatable，static 导出省掉这层。</li>
+<li><strong>用 int id 代替直接传 object</strong>：自己维护”Lua id ↔ C# 对象”的映射（最好用数组而非字典），既提速又明确管理生命周期、避免误引用导致 C# 对象无法释放。</li>
+<li><strong>善用 <code>out</code> 返回复杂值</strong>：<code>Vector3 GetPos(obj)</code> 改成 <code>void GetPos(obj, out float x, out float y, out float z)</code>，把 <code>tolua_getfloat3</code>（含 3 次表查找）降为 3 次栈上 <code>isnumber+tonumber</code>，更快。<br>典型改写：</li>
+</ol>
+<pre><code class="csharp">// 慢：每次都经过 transform 的临时返回与 Lua GC
+// gameobj.transform.position = pos;
+// 快：静态导出 + 拆成三个 float
+class LuaUtil &#123;
+    public static void SetPos(GameObject obj, float x, float y, float z) &#123;
+        obj.transform.position = new Vector3(x, y, z);
+    &#125;
+&#125;
+// Lua 侧：LuaUtil.SetPos(obj, pos.x, pos.y, pos.z)
+</code></pre>
+<h4 id="内存泄漏高发点"><a href="#内存泄漏高发点" class="headerlink" title="内存泄漏高发点"></a>内存泄漏高发点</h4><p>Lua 持有了 C# 对象的 userdata，只要 Lua 侧没回收，C# 对象就被 <code>ObjectTranslator</code> 的字典引用着，无法 GC——即使你 <code>Destroy</code> 了 GameObject，它仍残留在 Mono 堆。排查方法：遍历这个字典（uLua 在 <code>ObjectTranslator</code>、sLua 在 <code>ObjectCache</code>）即可发现。</p>
+<h4 id="Puerts：把-Lua-换成-TypeScript"><a href="#Puerts：把-Lua-换成-TypeScript" class="headerlink" title="Puerts：把 Lua 换成 TypeScript"></a>Puerts：把 Lua 换成 TypeScript</h4><p>Puerts 的思路和 xLua 一致——都是在 C# 侧绑定一门脚本语言，区别是把 Lua 换成了 TypeScript。换来的是编译期类型检查、更好的 IDE 支持和前端生态；调用链路、参数传递的优化纪律，和 xLua 基本通用。如果团队本来就有 TypeScript 技术栈，Puerts 的吸引力主要来自这里，而不是性能上的代际差异。</p>
+<h3 id="GC-视角：热更新架构里其实有两套-GC"><a href="#GC-视角：热更新架构里其实有两套-GC" class="headerlink" title="GC 视角：热更新架构里其实有两套 GC"></a>GC 视角：热更新架构里其实有两套 GC</h3><p>引入脚本热更新后，运行时不再是单一 GC。用三种 GC 的对比能看清风险来源：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Boehm GC（Unity 托管堆）</th>
+<th>C# &#x2F; .NET GC</th>
+<th>Lua GC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>指针识别</td>
+<td>保守式，猜哪些字是指针</td>
+<td>精确式，运行时知道引用布局</td>
+<td>VM 精确知道 Lua 对象引用</td>
+</tr>
+<tr>
+<td>是否移动</td>
+<td>通常不移动（non-compacting）</td>
+<td>通常移动 + 压缩小对象堆</td>
+<td>通常不移动</td>
+</tr>
+<tr>
+<td>回收算法</td>
+<td>modified mark-sweep</td>
+<td>分代 + 压缩</td>
+<td>增量 mark-sweep &#x2F; 5.4 分代</td>
+</tr>
+<tr>
+<td>游戏里表现</td>
+<td>可能 GC spike</td>
+<td>纯 .NET 吞吐强</td>
+<td>表 &#x2F; 闭包高频分配有压力</td>
+</tr>
+<tr>
+<td><strong>关键含义</strong>：</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Unity 用的是 Boehm GC</strong>，保守式、非移动、非压缩。整数若巧合等于某堆对象地址，会被误判为存活（accidental retention）；且不能移动对象，长期有碎片。Unity 默认开<strong>增量 GC</strong>把 mark 摊到多帧降 spike，但对象引用频繁变化会触发 write barrier 额外开销。</li>
+<li>**减少 Unity GC 的核心是”少分配”**：缓存委托、对象池、<code>List.Clear</code> 复用、<code>StringBuilder</code>、避免每帧 LINQ &#x2F; 闭包 &#x2F; 装箱 &#x2F; 字符串拼接——而不是手动 <code>GC.Collect</code>。</li>
+<li><strong>Lua 引入第二套 GC</strong>：增量 mark-sweep，但每帧建 table、建闭包、<code>..</code> 拼字符串都会给 Lua GC 加压；更麻烦的是 C 侧 <code>luaL_ref</code> 进 registry 的引用会让对象长期存活。</li>
+<li><strong>两套 GC 通过 ObjectTranslator 桥接</strong>：Lua 对象 ↔ C# 对象的映射字典本身既是性能瓶颈，也是跨 GC 泄漏的源头（见上节）。<br>一句话：<strong>脚本热更新让”一次 GC 问题”变成”两个 GC 如何不互相拖累”的问题</strong>，优化的总原则是减少跨语言对象持有、减少任意一侧的高频临时分配。</li>
+</ul>
+<h3 id="踩过的坑-取舍"><a href="#踩过的坑-取舍" class="headerlink" title="踩过的坑 &#x2F; 取舍"></a>踩过的坑 &#x2F; 取舍</h3><ul>
+<li>资源热更新**禁用原生 <code>Unload</code>**，必须靠引用计数；否则要么爆引用、要么内存漏。</li>
+<li>资源热更新<strong>严禁禁用 TypeTree</strong>，否则远程内容与客户端版本不兼容。</li>
+<li>远程 AB <strong>统一 LZ4</strong>，别为了包体用 LZMA 牺牲加载与内存。</li>
+<li>脚本热更新里<strong>最贵的不是”调用”本身，是跨语言的对象查找、值类型转换、临时分配与双 GC</strong>；用 static 导出、int id、拆 float、<code>out</code> 返回来压。</li>
+<li>Lua 持有 C# 对象引用是<strong>内存泄漏高发源</strong>，排查就遍历 ObjectTranslator &#x2F; ObjectCache。</li>
+</ul>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>把上面这些串起来，我对 Unity 热更新的理解可以收成几条：</p>
+<ul>
+<li>它一直是两条线——资源（AB 生态）和代码（ILRuntime &#x2F; xLua·Puerts），根因都是绕过 AOT 不可 JIT 和绕过商店审核，但两线的工程难点完全不同。</li>
+<li>资源线的难点在<strong>寻址、依赖去重、引用计数卸载、压缩和版本差分</strong>；YooAsset 令牌化 ID 与 LZ4 是默认纪律。</li>
+<li>代码线的难点在<strong>跨语言调用开销和双 GC</strong>；xLua &#x2F; Puerts 那几条可执行纪律（拆 float、控参数、static 导出、int id、out 返回）比”知道有 Lua”值钱得多。</li>
+<li>ILRuntime 用解释器保住 C# 语法，但跨域桥接有成本；选它还是 Lua，本质是团队愿不愿意引入第二门语言的权衡。<br>热更新从来不是免费午餐。它把”一次 GC 问题”变成”两个 GC 怎么不互相拖累”，把”写对代码”变成”管好跨语言的对象持有”。想清楚这两点，选型的时候才不会只记得几个名字。</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

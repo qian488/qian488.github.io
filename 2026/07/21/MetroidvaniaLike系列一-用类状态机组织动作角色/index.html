@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MetroidvaniaLike 系列一：用类状态机组织 Unity 动作角色 | 千幻笙的小窝</title>
+    <meta name="author" content="Awith" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="Awith's blogs,Awith's algorithm blogs,Awith's home" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="../../../../images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<script src="/live2d-widget/autoload.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="../../../../js/lib/highlight.js"></script>
+
+
+
+<script src="../../../../js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="../../../../images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千幻笙的小窝</span>
+        </a>
+        
+        <a href="../../../../index.html">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="../../../../about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="../../../../archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="../../../../categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="../../../../tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千幻笙的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="../../../../index.html">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="../../../../tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>MetroidvaniaLike 系列一：用类状态机组织 Unity 动作角色</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/21
+        </span>
+        
+        <span class="category">
+            <a href="../../../../categories/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                项目复盘
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/Unity/" style="color: #00a596">Unity</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E7%8A%B6%E6%80%81%E6%9C%BA/" style="color: #03a9f4">状态机</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/%E5%8A%A8%E4%BD%9C%E6%B8%B8%E6%88%8F/" style="color: #ff7d73">动作游戏</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="../../../../tags/MetroidvaniaLike/" style="color: #00bcd4">MetroidvaniaLike</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>MetroidvaniaLike 是我用 Unity 6 做的一个 2D 横版动作 RPG 练习项目。玩家从最初的移动和跳跃，慢慢加到了二段跳、墙滑、蹬墙跳、冲刺、攻击、受伤和死亡。动作多起来以后，<code>Player.Update()</code> 里同时处理输入、动画和速度会越来越乱，于是项目给每个动作单独写了状态类。<br>这篇先记录状态机目前的结构，以及我重新检查代码时发现的切换约束问题。<br>项目源码：<a target="_blank" rel="noopener" href="https://github.com/qian488/MetroidvaniaLike">qian488&#x2F;MetroidvaniaLike</a>。</p>
+<span id="more"></span>
+<h3 id="这个系列"><a href="#这个系列" class="headerlink" title="这个系列"></a>这个系列</h3><ol>
+<li>本文：玩家状态机骨架与边界</li>
+<li><a href="/2026/07/26/MetroidvaniaLike%E7%B3%BB%E5%88%97%E4%BA%8C-%E5%9C%9F%E7%8B%BC%E6%97%B6%E9%97%B4%E8%BE%93%E5%85%A5%E7%BC%93%E5%86%B2%E4%B8%8E%E5%8A%A8%E4%BD%9C%E6%89%93%E6%96%AD/">土狼时间、输入缓冲与动作打断</a></li>
+<li><a href="/2026/08/01/MetroidvaniaLike%E7%B3%BB%E5%88%97%E4%B8%89-%E6%95%8C%E4%BA%BAAI%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F/">敌人 AI、属性与技能系统</a></li>
+</ol>
+<h3 id="动作增加后出现的问题"><a href="#动作增加后出现的问题" class="headerlink" title="动作增加后出现的问题"></a>动作增加后出现的问题</h3><p>一个简单角色控制器可能只有：</p>
+<pre><code class="csharp">ReadInput();
+Move();
+Jump();
+</code></pre>
+<p>加入动作后，约束开始变多：</p>
+<ul>
+<li>地面才能普通跳，空中可能允许二段跳；</li>
+<li>贴墙下落时进入墙滑，但输入离开墙体后退出；</li>
+<li>冲刺期间重力、速度和受击响应可能不同；</li>
+<li>攻击连段由动画关键帧决定能否衔接；</li>
+<li>受伤和死亡应当覆盖普通移动；</li>
+<li>某些攻击可被冲刺取消，某些不可。<br>这些规则全部写入 <code>Player.Update()</code> 后，同一帧会有多个分支读写速度和动画参数，状态切换顺序也变得难以追踪。</li>
+</ul>
+<h3 id="StateMachine-的实现"><a href="#StateMachine-的实现" class="headerlink" title="StateMachine 的实现"></a>StateMachine 的实现</h3><p>项目的 <code>StateMachine</code> 保持简单：</p>
+<pre><code class="csharp">public class StateMachine
+&#123;
+    public EntityState CurrentState &#123; get; private set; &#125;
+    public void Initialize(EntityState initialState)
+    &#123;
+        CurrentState = initialState;
+        CurrentState.Enter();
+    &#125;
+    public void ChangeState(EntityState nextState)
+    &#123;
+        CurrentState.Exit();
+        CurrentState = nextState;
+        CurrentState.Enter();
+    &#125;
+&#125;
+</code></pre>
+<p>它只维护当前状态、初始化和切换。具体“何时从 Jump 进入 Fall”不属于状态机本体，而属于当前状态的业务判断。<br>状态基类提供共享生命周期：</p>
+<pre><code class="text">Enter  → 初始化计时器、打开动画状态、注册临时事件
+Update → 读取当前状态需要的输入、检测切换条件
+Exit   → 关闭动画状态、清理临时标记和事件
+</code></pre>
+<p>如果需要稳定处理 Rigidbody2D，也可以把物理写入 <code>FixedUpdate</code> 对应入口，但要避免一部分状态在 Update 改速度、另一部分在 FixedUpdate 改速度而没有统一约定。</p>
+<h3 id="玩家目前有哪些状态"><a href="#玩家目前有哪些状态" class="headerlink" title="玩家目前有哪些状态"></a>玩家目前有哪些状态</h3><p>项目中包含 Idle、Move、Jump、Fall、DoubleJump、WallSlide、WallJump、Dash、BasicAttack、HeavyAttack、AirAttack、CounterAttack、Hurt 和 Dead 等状态。<br>项目按照以下行为差异拆分状态：</p>
+<ul>
+<li>输入解释不同；</li>
+<li>物理规则不同；</li>
+<li>动画和结束条件不同；</li>
+<li>可打断关系不同；</li>
+<li>生命周期中需要独立清理。<br>例如 Jump 和 Fall 都在空中，但 Jump 需要处理上升初速度、提前松键短跳；Fall 更关心落地、墙体和土狼时间窗口。把它们分开后，每个类的判断更聚焦。<br>只有动画表现不同、行为规则相同的情况，可以继续共用状态。这个判断能控制状态类数量。</li>
+</ul>
+<h3 id="为什么项目最后用了状态类"><a href="#为什么项目最后用了状态类" class="headerlink" title="为什么项目最后用了状态类"></a>为什么项目最后用了状态类</h3><p>状态较少时，<code>enum + switch</code> 可以直接表达分支：</p>
+<pre><code class="csharp">switch (state)
+&#123;
+    case PlayerState.Idle: UpdateIdle(); break;
+    case PlayerState.Move: UpdateMove(); break;
+&#125;
+</code></pre>
+<p>当状态持续增加后，每个状态的 Enter、Update、Exit、动画和切换条件会分散在多个 switch 中。添加一种攻击可能要同时修改五个位置。<br>类状态机的主要收益是局部性：与 Dash 有关的输入、计时、速度和退出条件尽量放在 <code>PlayerDashState</code>。代价则是类和构造代码变多，跨状态共享逻辑需要抽象。<br>本项目的玩家动作已经包含十余种状态，类状态机能让各动作的代码集中在对应文件中，因此采用了这一方案。</p>
+<h3 id="状态实例在哪里创建"><a href="#状态实例在哪里创建" class="headerlink" title="状态实例在哪里创建"></a>状态实例在哪里创建</h3><p>玩家在初始化时创建所需状态，运行中只切换引用。这能避免每次切换都 <code>new</code> 状态对象，也让状态持续持有 Player、StateMachine 和动画参数。<br>但所有构造集中在 <code>Player.Awake()</code> 后会出现样板代码：</p>
+<pre><code class="text">Player
+├── idleState
+├── moveState
+├── jumpState
+├── ...十余种状态
+└── Awake 中逐个 new
+</code></pre>
+<p>当状态继续增加，可以引入 <code>PlayerStateContext</code> 收拢共享依赖，再由状态工厂创建。这里不建议一开始就做通用依赖注入容器；先让状态边界稳定，再消除重复装配。</p>
+<h3 id="攻击动画怎样通知当前状态"><a href="#攻击动画怎样通知当前状态" class="headerlink" title="攻击动画怎样通知当前状态"></a>攻击动画怎样通知当前状态</h3><p>攻击命中帧、连段窗口和动画结束通常由 Animation Event 触发。合理链路是：</p>
+<pre><code class="text">Animation Event
+      ↓
+PlayerAnimationTriggers
+      ↓
+当前状态处理 AttackTrigger / AnimationFinished
+</code></pre>
+<p>动画触发器只报告“命中帧到了”或“动画结束了”。当前状态收到事件后，再决定造成伤害或切换到哪个状态。这样可以在状态代码中追踪完整的切换条件。<br>还要防止旧状态的延迟回调在切换后生效。协程、Tween 和事件订阅应在 <code>Exit()</code> 中停止或校验当前状态。</p>
+<h3 id="当前最明显的问题：切换约束太弱"><a href="#当前最明显的问题：切换约束太弱" class="headerlink" title="当前最明显的问题：切换约束太弱"></a>当前最明显的问题：切换约束太弱</h3><p>最小 <code>ChangeState()</code> 可以从任何状态切到任何状态。这使它易懂，却无法阻止：</p>
+<ul>
+<li>Dead 被 Move 打断；</li>
+<li>Hurt 被普通输入立即覆盖；</li>
+<li>攻击前摇在不允许时被 Jump 取消；</li>
+<li>同一帧连续发生多次切换。<br>进一步的状态机应显式表达：</li>
+</ul>
+<pre><code class="csharp">bool CanTransitionTo(EntityState next);
+int Priority &#123; get; &#125;
+bool CanBeInterrupted &#123; get; &#125;
+</code></pre>
+<p>也可以由 Player 层统一裁决高优先级状态。优先实现死亡、受伤和攻击硬直等关键不变量，再逐步补充其他转换限制。</p>
+<h3 id="还需要补哪些检查"><a href="#还需要补哪些检查" class="headerlink" title="还需要补哪些检查"></a>还需要补哪些检查</h3><p>状态机可以做针对性测试：</p>
+<ul>
+<li>初始化时只调用一次初始状态 Enter；</li>
+<li>ChangeState 顺序必须是旧 Exit → 新 Enter；</li>
+<li>Dead&#x2F;Hurt 的优先级不会被普通输入覆盖；</li>
+<li>状态退出后不再响应旧协程和事件；</li>
+<li>快速交替输入不会让动画参数同时保留互斥状态。<br>在游戏内还应提供调试显示：当前状态、上一状态、最近切换原因和停留时间。动作问题通常发生得很快，只看画面很难区分是输入没读到、检测失败还是状态被另一条规则覆盖。</li>
+</ul>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><ul>
+<li>状态机明确了当前由哪个动作解释输入并控制角色。</li>
+<li>状态按照输入、物理、动画结束条件和打断规则拆分。</li>
+<li>状态实例提前创建减少运行时分配，但装配代码会随规模增长。</li>
+<li>动画事件只表达事实，状态负责 gameplay 决策。</li>
+<li>当前最需要补充的是切换约束、调试信息和测试。<br>下一篇继续看跳跃手感。项目里已经加入土狼时间和跳跃缓冲，还需要把它们和墙滑、冲刺、攻击打断放在一起检查。</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 千幻笙的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Awith
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="../../../../js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
